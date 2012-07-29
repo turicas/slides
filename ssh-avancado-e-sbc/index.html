@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<!--
+Google HTML5 slide template
+
+Authors: Luke Mahé (code)
+Marcin Wichary (code and design)
+
+Dominic Mazzoni (browser compatibility)
+Charles Chen (ChromeVox support)
+
+URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>SSH: dicas & truques sensacionais que (quase) ninguém conhece</title>
+    <meta charset="utf-8">
+    <script src="slides.js"></script>
+  </head>
+
+  <style>
+    * { text-shadow: rgba(0, 0, 0, 0.2) 0 4px 5px; }
+    h1 { margin-top: 0px !important; }
+    h2 { position: static !important; }
+    .centered {
+      text-align: center !important;
+    }
+    img.centered { display: inline-block !important; margin: 0 !important; }
+    .big { font-size: 120%; line-height: 110%; }
+    .huge { font-size: 150%; line-height: 115%; }
+    .super-huge { font-size: 200%; line-height: 120%; }
+    .ultra-huge { font-size: 400%; line-height: 120%; }
+    .ultra-mega-master-huge { font-size: 800%; line-height: 120%; }
+    .ultra-mega-master-fucking-huge { font-size: 1600%; line-height: 120%; }
+    .red-background { background-color: #FF0000 !important; }
+    .white { color: #FFFFFF !important; }
+    .middle-without-title { margin-top: 30% !important; }
+    .middle-with-title { margin-top: 15% !important; }
+    q, .author { margin: 0 !important; }
+    pre { margin-top: 20px !important; padding: 5px 10px !important; }
+    .right { position: absolute; right: 0; bottom: 0;
+      border-bottom-right-radius: 20px; }
+    .without-bullets > li::before { content: '' !important; }
+    .dojo > img { position: absolute; right: 0; margin-top: 30px; }
+    .dojo > a { position: absolute; bottom: 25px; font-size: 200%;
+      margin-left: 80px; }
+    .final > img { position: absolute; right: 0; top: 0;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px; }
+    .final > p { position: absolute; left: 0; bottom: 60px; width: 900px; }
+    .turiquinhas > img { margin-top: 10px; }
+    table { margin-top: 50px !important; }
+    td { border: 0 !important; vertical-align: middle !important; }
+    .notransition {
+      transition: none !important;
+      -o-transition: none !important;
+      -moz-transition: none !important;
+      -webkit-transition: none !important;
+    }
+    .left {
+      float: left;
+      padding-right: 40px;
+    }
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular template-default'>
+
+      <article class="nobackground">
+        <h1>SSH: dicas & truques sensacionais que (quase) ninguém conhece</h1>
+        <br><br>
+        <div class="centered">
+          <br>
+          <p class="centered huge">
+            <a href="http://turicas.info/">
+              <strong>Álvaro Justen</strong> aka <strong>Turicas</strong>
+            </a>
+          </p>
+          <p class="centered huge">
+            <a href="http://flavioamieiro.com/"><strong>Flávio Amieiro</strong></a>
+          </p>
+          <br>
+          <p>
+            13º Fórum Internacional de Software Livre
+            <br>
+            Porto Alegre/RS - Brasil
+          </p>
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <h1>Álvaro Justen, prazer!</h1>
+        <p class="centered">
+          {<a href="http://github.com/turicas">github.com</a>,
+          <a href="http://twitter.com/turicas">twitter.com</a>,
+          <a href="http://youtube.com/turicas">youtube.com</a>}/turicas
+          <br>
+          <a href="http://turicas.info/">turicas.info</a>
+          <br>
+          <a href="mailto:alvarojusten@gmail.com">alvarojusten@gmail.com</a>
+          <br><br>
+          <a href="http://www.CursoDeArduino.com.br"><img src="images/logo_curso-de-arduino.png"
+            width="300"></a>
+            <br>
+          <a href="http://www.CursoDeArduino.com.br">www.CursoDeArduino.com.br</a>
+          <br><br>
+          <a href="http://emap.fgv.br"><img src="images/logo_fgv.gif"
+            width="381" height="86"></a>
+            <br>
+          <a href="http://emap.fgv.br">emap.fgv.br</a>
+        </p>
+      </article>
+
+      <article class="nobackground">
+        <h1>Flávio Amieiro</h1>
+        <p class="centered big">
+          <br><br>
+          <a href="http://flavioamieiro.com">http://flavioamieiro.com</a>
+          <br><br><br>
+          <a href="mailto:flavioamieiro@gmail.com">flavioamieiro@gmail.com</a>
+          <br><br><br>
+          <a href="https://www.twitter.com/flavioamieiro">@flavioamieiro</a>
+      </article>
+
+      <article class="nobackground">
+        <h1>E vocês?</h1>
+        <ul class="build huge">
+          <li> Quem já utiliza SSH? </li>
+          <li>
+            E quem usa para algo além do basicão?
+            <ul class="build">
+                <li> Para quê? </li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+    <article class="red-background">
+      <div class="centered middle-without-title">
+        <br><br>
+          <a class="white big"
+            href="http://turicas.info/slides/ssh-avancado-e-sbc"><b>turicas.info/slides/ssh-avancado-e-sbc</b></a>
+        </div>
+    </article>
+
+    <article>
+      <h1>Roteiro</h1>
+      <ul class="build big">
+        <li>Configuração</li>
+        <li>Port-forwarding (<code>-D</code>, <code>-L</code>, <code>-R</code>)</li>
+        <li>Export display</li>
+        <li>Outros (<code>-w</code>, <code>ProxyCommand</code> etc.)</li>
+        <li><a href="https://github.com/turicas/sbc">sbc</a></li>
+      </ul>
+    </article>
+
+      <article>
+        <h1>O que é?</h1>
+        <ul class="build">
+          <li>
+               <q>Um protocolo para logins remotos seguros e outros
+                   serviços de rede seguros em uma rede insegura.</q>
+                   (<a href="https://tools.ietf.org/html/rfc4251">RFC4521</a>)
+          <br><br>
+          </li>
+          <li> Serve para acessar um shell em uma outra máquina da
+               rede, mas também pra um monte de outras coisas
+          </li>
+          <li> Protocolo <i>versus</i> implementação </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>História</h1>
+        <div class="middle-with-text centered">
+          <img src="images/ssh-timeline.png" alt="Timeline do SSH" />
+        </div>
+      </article>
+
+      <article>
+        <h1>O Protocolo</h1>
+        <ul class="build huge">
+          <li> RFC<code>452{0..4}</code> </li>
+          <li> 3 componentes principais:
+            <br>
+            <ul class="build">
+              <li> Transporte </li>
+              <li> Autenticação </li>
+              <li> Conexão </li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Configuração - Servidor</h1>
+        <ul class="build">
+          <li>
+            Use <b>somente</b> o protocolo versão 2
+            <ul>
+              <li> <pre>Protocol 2</pre> </li>
+            </ul>
+          </li>
+          <li>
+            Autenticação <b>somente</b> por chave SSH
+            <ul>
+              <li> <pre>PasswordAuthentication no</pre> </li>
+              <li> <pre>ssh-keygen -t rsa -b 2048</pre> </li>
+              <li> <pre>ssh-copy-id</pre>
+              (<code>/home/user/.ssh/authorized_keys</code>) </li>
+            </ul>
+          </li>
+      </article>
+
+      <article>
+        <h1>Configuração - Servidor</h1>
+        <ul class="build">
+          <li>
+            Desabilitar login de root
+            <ul>
+              <li> <pre>PermitRootLogin no</pre> </li>
+            </ul>
+          </li>
+          <li> <code>AllowUsers</code> </li>
+          <li>
+            <code>AllowTcpForwarding</code>
+            <ul>
+              <li> <code>PermitOpen</code> </li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Configuração - Cliente</h1>
+        <ul class="build">
+          <li>
+            <code>.ssh/config</code>
+            <ul class="build">
+              <li> Hosts/usernames/etc. padrão </li>
+              <li>
+                <code>ControlMaster</code>,
+                <code>ControlPath</code>,
+                <code>ControlPersist</code>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>X Forwarding</h1>
+        <ul class="build">
+          <li>
+            Servidor:
+            <ul class="without-bullets">
+              <li><pre>X11Forwarding yes</pre></li>
+              <li><pre>X11DisplayOffset 10</pre></li>
+            </ul>
+          </li>
+          <li>
+            Cliente:
+            <ul class="without-bullets">
+              <li><pre>ssh -X username@example.com</pre></li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Início do -D -->
+      <article>
+        <h1>-D[0]</h1>
+        <div class="centered middle-with-title">
+          <img width="800" src="images/diagrama-D-1.png" alt="" />
+        </div>
+      </article>
+
+      <article>
+        <h1>-D[1]</h1>
+        <div class="centered middle-with-title">
+          <img width="800" src="images/diagrama-D-2.png" alt="" />
+        </div>
+      </article>
+
+      <article>
+        <h1>-D[2]</h1>
+        <div class="centered middle-with-title">
+          <img width="800" src="images/diagrama-D-3.png" alt="" />
+        </div>
+      </article>
+
+      <article>
+        <h1>-D[3]</h1>
+        <div class="centered middle-with-title">
+          <img width="800" src="images/diagrama-D-4.png" alt="" />
+        </div>
+      </article>
+
+      <article>
+        <h1>-D[4]</h1>
+        <ul class="without-bullets build">
+          <li>
+            <div class="centered">
+              <img width="800" src="images/diagrama-D-5.png" alt="" />
+            </div>
+          </li>
+          <li><pre>ssh -D 9999 usuario@example.com</pre></li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>-D[5]</h1>
+        <div class="centered">
+          <br>
+          <img src="images/firefox_proxy.png" alt="" />
+        </div>
+      </article>
+
+      <article>
+        <h1>F*ck Yea!</h1>
+        <div class="centered middle-with-title">
+          <img width="800" src="images/diagrama-D-6.png" alt="" />
+        </div>
+      </article>
+
+      <article>
+        <h1>Hmmm...</h1>
+        <ul class="build big">
+          <li>Mas e se o software não suporta proxy?</li>
+          <li>Mas e se ele não suporta proxy SOCKS?</li>
+          <li class="huge"><a href="http://tsocks.sourceforge.net/">tsocks</a>
+            neles!</li>
+        </ul>
+      </article>
+      <!-- Fim do -D -->
+
+      <article>
+        <h1>-L[0]</h1>
+        <div class="centered middle-with-title">
+          <img width="800" src="images/diagrama-L-1.png" alt="" />
+        </div>
+      </article>
+
+      <article>
+        <h1>-L[1]</h1>
+        <ul class="without-bullets">
+          <li>
+            <div class="centered">
+              <img width="800" src="images/diagrama-L-2.png" alt="" />
+            </div>
+          </li>
+          <li><ul class="build without-bullets">
+            <li><pre>usuario@laptop:~$ ssh -L localhost:1234:host-A.com:80 \
+                  usuario@host-B.com</pre></li>
+            <li><pre>usuario@laptop:~$ wget localhost:1234</pre></li>
+            </ul></li>
+        </ul>
+      </article>
+
+      <article class="centered">
+          <img class="middle-with-title" height="400" src="images/meme-thumbs-up.png" />
+      </article>
+
+      <article>
+        <h1>-R[0]</h1>
+        <div class="centered middle-with-title">
+          <img width="800" src="images/diagrama-R-1.png" alt="" />
+        </div>
+      </article>
+
+      <article>
+        <h1>-R[1]</h1>
+        <ul class="without-bullets">
+          <li>
+            <div class="centered">
+              <img width="800" src="images/diagrama-R-2.png" alt="" />
+            </div>
+          </li>
+          <li><ul class="build without-bullets">
+            <li><pre>usuario@host-A.com:~$ ssh -R localhost:8080:host-A.com:80 \
+                      username@host-B.com</pre></li>
+            <li><pre>usuario@laptop:~$ wget host-B.com:8080</pre></li>
+          </ul></li>
+        </ul>
+      </article>
+
+      <article class="centered">
+          <img class="middle-with-title" height="400" src="images/meme-thumbs-up.png" />
+      </article>
+
+      <article>
+        <h1>E mais...</h1>
+        <ul class="build big">
+          <li><code>ProxyCommand</code></li>
+          <li><code>-w local_tun:[remote_tun]</code> (<code>tunX</code>)</li>
+          <li><code>-W host:port</code> ("netcat seguro")</li>
+          <li>Escape characters
+            <ul>
+              <li><code>~.</code> = close connection</li>
+              <li><code>~^Z</code> = suspend connection</li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>sbc</h1>
+        <ul class="build huge">
+          <li>sbc == Secure Back Channel</li>
+          <li>Facilita uso de SSH</li>
+          <li><a href="https://github.com/turicas/sbc">github.com/turicas/sbc</a></li>
+          <li>Livre (GPL3)</li>
+          <li>Seguro (SSH)</li>
+          <li>Extensível (plugins)</li>
+          <li>"Clone" do <a href="http://sshmenu.sourceforge.net/articles/bcvi/">bcvi</a></li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>SSH normal</h1>
+        <div class="centered middle-with-title">
+          <img width="800" src="images/ssh-normal.png" alt="sbc com ssh" />
+        </div>
+      </article>
+
+      <article>
+        <h1>SSH com sbc</h1>
+        <div class="centered middle-with-title">
+          <img width="800" src="images/ssh-with-sbc.png" alt="sbc com ssh" />
+        </div>
+      </article>
+
+      <article>
+        <h1>sbc hands on</h1>
+        <ul class="build big">
+          <li>Instalação local</li>
+          <li><code>sbc install user@example.com</code></li>
+          <li><code>sbc ssh user@example.com</code></li>
+          <li>
+            Plugins:
+            <ul class="build">
+              <li><code>vim</code></li>
+              <li><code>cp</code></li>
+              <li><code>notify</code></li>
+              <li>Criando plugins</li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <a href="http://2012.pythonbrasil.org.br/">
+          <img src="images/pythonbrasil.png" width="800" alt="Python Brasil 2012" />
+        </a>
+      </article>
+
+      <article>
+        <div class="ultra-mega-master-fucking-huge centered">?</div>
+      </article>
+
+      <article>
+        <h1>So long and thanks for all the fish!</h1>
+        <br><br><br><br>
+        <div class="left">
+          <h2>Flávio Amieiro</h2>
+          <ul class="without-bullets">
+              <li><a href="mailto:flavioamieiro@gmail.com">flavioamieiro@gmail.com</a></li>
+              <li><a href="http://flavioamieiro.com/">flavioamieiro.com</a></li>
+              <li><a href="https://twitter.com/flavioamieiro">@flavioamieiro</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Álvaro Justen</h2>
+          <ul class="without-bullets">
+              <li>&nbsp;&nbsp;&nbsp;<a href="mailto:alvarojusten@gmail.com">alvarojusten@gmail.com</a></li>
+              <li>&nbsp;&nbsp;&nbsp;<a href="http://turicas.info/">turicas.info</a></li>
+              <li>&nbsp;&nbsp;&nbsp;<a href="https://twitter.com/turicas">@turicas</a></li>
+          </ul>
+        </div>
+      </article>
+
+    </section>
+  </body>
+</html>
