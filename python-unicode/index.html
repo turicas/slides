@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<!--
+Google HTML5 slide template
+
+Authors: Luke Mahé (code)
+Marcin Wichary (code and design)
+
+Dominic Mazzoni (browser compatibility)
+Charles Chen (ChromeVox support)
+
+URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>Python: tudo o que voc� j� deveria saber sobre Unicode</title>
+    <meta charset="utf-8">
+    <script src="slides.js"></script>
+  </head>
+
+  <style>
+    * { text-shadow: rgba(0, 0, 0, 0.2) 0 4px 5px; }
+    h1 { margin-top: 0px !important; }
+    h2 { position: static !important; }
+    .centered {
+      text-align: center !important;
+    }
+    img.centered { display: inline-block !important; margin: 0 !important; }
+    .big { font-size: 120%; line-height: 110%; }
+    .huge { font-size: 150%; line-height: 115%; }
+    .super-huge { font-size: 200%; line-height: 120%; }
+    .ultra-huge { font-size: 400%; line-height: 120%; }
+    .ultra-mega-master-huge { font-size: 800%; line-height: 120%; }
+    .ultra-mega-master-fucking-huge { font-size: 1600%; line-height: 120%; }
+    .red-background { background-color: #FF0000 !important; }
+    .white { color: #FFFFFF !important; }
+    .middle-without-title { margin-top: 30% !important; }
+    .middle-with-title { margin-top: 15% !important; }
+    q, .author { margin: 0 !important; }
+    pre { margin-top: 20px !important; padding: 5px 10px !important; }
+    .right { position: absolute; right: 0; bottom: 0;
+      border-bottom-right-radius: 20px; }
+    .without-bullets > li::before { content: '' !important; }
+    .dojo > img { position: absolute; right: 0; margin-top: 30px; }
+    .dojo > a { position: absolute; bottom: 25px; font-size: 200%;
+      margin-left: 80px; }
+    .final > img { position: absolute; right: 0; top: 0;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px; }
+    .final > p { position: absolute; left: 0; bottom: 60px; width: 900px; }
+    .turiquinhas > img { margin-top: 10px; }
+    table { margin-top: 50px !important; }
+    td { border: 0 !important; vertical-align: middle !important; }
+  </style>
+  <body style='display: none'>
+    <section class='slides layout-regular template-default'>
+
+      <article class="nobackground">
+        <h1>Python: tudo o que voc� j� deveria saber sobre Unicode</h1>
+        <br />
+        <div class="centered">
+          <img src="images/logo_python-unicode-error.png" alt="Logotipo Python" width="200" />
+          <br />
+          <p class="centered huge"><strong>�lvaro Justen</strong> aka
+            <strong>Turicas</strong></p>
+          <p>
+            IX Confer�ncia Latino-Americana de Software Livre
+            <br />
+            Foz do Igua�u
+            <br />
+            18/10/2012
+          </p>
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <h1>Álvaro Justen, prazer!</h1>
+        <p class="centered big">
+          {<a href="http://twitter.com/turicas">twitter.com</a>,
+          <a href="http://github.com/turicas">github.com</a>,
+          <a href="http://youtube.com/turicas">youtube.com</a>}/turicas
+          <br />
+          <a href="http://turicas.info/">turicas.info</a>
+          <br />
+          <a href="mailto:alvaro.justen@fgv.br">alvaro.justen@fgv.br</a>
+          <br /><br />
+          <a href="http://emap.fgv.br"><img src="images/logo_fgv.gif"
+            width="381" height="86"></a>
+          <br>
+          <a href="http://emap.fgv.br">emap.fgv.br</a>
+          <br /><br />
+          <a href="http://www.CursoDeArduino.com.br"><img src="images/logo_curso-de-arduino.png"
+            width="300"></a>
+          <br>
+          <a
+            href="http://www.CursoDeArduino.com.br">www.CursoDeArduino.com.br</a>
+        </p>
+      </article>
+
+      <article>
+        <h1>Agora vocês...</h1>
+        <ul class="build huge">
+          <li> Quem já desenvolve software em Python? </li>
+          <li>
+            Quem <b>sabe</b> lidar com problemas de codificação de
+            caracteres?
+          </li>
+          <li> Quem tem acentos no nome (em qualquer um deles)? </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Python:</h1>
+        <ul class="build big">
+          <li> Criada por Guido van Rossum em <b>1.989</b> </li>
+          <li> Linguagem de <b>uso geral</b> </li>
+          <li> <b>Multiplataforma</b> </li>
+          <li> Interpretada, <b>VHLL</b> (<i>very high level language</i>) </li>
+          <li> Sintaxe <b>elegante, simples e clara</b> </li>
+          <li> <b>Baterias</b> incluídas! </li>
+          <li> <b>Fácil</b> de aprender </li>
+          <li> <a href="http://python.org">python.org</a> </li>
+          <li> <a href="http://python.org.br">python.org.br</a> </li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h1>Tudo começou com um ônibus...</h1>
+        <div class="centered">
+          <br />
+          <img src="images/unicode-error-onibus-salutaris.png" alt="Ônibus da Salutaris" />
+          <ul class="build">
+            <li> Mas eu aprendi a não usar mais acentos nessa empresa! </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <h1>Porém os erros continuaram acontecendo... :-/</h1>
+        <div class="centered">
+          <br /> <br />
+          <img src="images/unicode-error-traveler-info.png" alt="Traveler info"
+          width="800" />
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <h1>E não só comigo...</h1>
+        <div class="centered">
+          <br /> <br />
+          <img src="images/unicode-error-bilhete-dukao.jpg" alt="Bilhete Dukão" />
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <h1>Erros em todos os lugares</h1>
+        <div class="centered">
+          <br /> <br />
+          <img src="images/unicode-error-email.png" alt="Erro no email" />
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <h1>Até no Facebook!</h1>
+        <div class="centered">
+          <br /> <br />
+          <img src="images/unicode-error-lais-lerbak.png" alt="Erro App Facebook" />
+        </div>
+      </article>
+
+      <article>
+        <h1>Nem as URLs passaram desapercebidas...</h1>
+        <br />
+        <div class="centered">
+          <img src="images/unicode-error-serverfault.png" alt="URL error" />
+        </div>
+      </article>
+
+      <article>
+        <h1>Nem as URLs passaram desapercebidas... [2]</h1>
+        <br />
+        <div class="centered">
+          <img src="images/unicode-error-serverfault-2.png" alt="URL error 2" />
+        </div>
+      </article>
+
+      <article>
+        <div class="centered middle-without-title">
+          <img src="images/logo_unicode.png" alt="Logotipo Unicode" />
+        </div>
+      </article>
+
+      <article>
+        <h1>Unicode</h1>
+        <ul class="build huge">
+          <li> <a href="http://unicode.org/">unicode.org</a> </li>
+          <li> Tabela-referência de símbolos </li>
+          <li> Milhões de code points </li>
+          <li> Regras para propriedades dos caracteres, normalização,
+            decomposição etc. </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Ian Albert: impressão da tabela Unicode</h1>
+        <div class="centered">
+          <img src="images/unicode-printed.jpg" alt="Unicode printed" />
+        </div>
+      </article>
+
+      <article>
+        <h1>Unicode [2]</h1>
+        <ul class="build huge">
+          <li> Para "materializar": usar algum encoding! </li>
+          <li> Recomendado: <b>UTF-8</b> (Unicode Transformation Format, 8-bit
+            variable length)</li>
+        </ul>
+      </article>
+
+      <article>
+        <h1> Como resolver isso? </h1>
+        <ul class="build huge">
+          <li>
+            Regras de ouro:
+            <ul class="build">
+              <li> <b>Decoding</b> o mais rápido possível </li>
+              <li> Trabalhe sempre com a representação em <b>Unicode</b> </li>
+              <li> <b>Encoding</b> o mais tarde possível </li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1> .encode/.decode </h1>
+        <ul class="build huge">
+          <li>
+            <code>.encode</code>: <code>unicode</code> &rarr; <code>str</code>
+          </li>
+          <li>
+            <code>.decode</code>: <code>str</code> &rarr; <code>unicode</code>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Entendendo o que está codificado</h1>
+        <h2>Python 2!</h2>
+<pre>
+>>> print len('álvaro'), type('álvaro')
+>>> print 'álvaro'[0]
+>>> print 'álvaro'[1]
+>>> print len(u'álvaro'), type(u'álvaro')
+>>> print 'álvaro'.decode('utf-8') == u'álvaro'
+>>> print 'álvaro'.upper(), type('álvaro'.upper())
+>>> print 'álvaro'.decode('utf-8').upper(), \
+          type('álvaro'.decode('utf8').upper())
+</pre>
+        </article>
+
+        <article>
+          <h1>ASCII</h1>
+          <ul class="build huge">
+            <li> 128 símbolos </li>
+            <li> 000-032: caracteres de controle </li>
+            <li> 048-057: 0-9 </li>
+            <li> 065-090: A-Z </li>
+            <li> 097-122: a-z </li>
+            <li> <b>Não existe</b>: áàãâä ç ć ... </li>
+          </ul>
+        </article>
+
+        <article>
+          <h1>ASCII [2]</h1>
+<pre>
+>>> for numero in range(129):
+...    print numero, chr(numero), ord(chr(numero))
+... # ...
+>>> print 'á'.decode('utf-8').encode('ascii')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+UnicodeEncodeError: 'ascii' codec can't encode character u'\xe1' in position 0: ordinal not in range(128)
+</pre>
+          </article>
+
+          <article>
+            <h1>UTF-8</h1>
+            <ul class="build huge">
+              <li> Variable-length (começa com 8 bits) </li>
+              <li> Extensão do ASCII </li>
+              <li> Representa toda a tabela Unicode </li>
+              <li> Não possui <b>BOM</b> (Byte-Order-Marker, byte-endianness detection) </li>
+              <li> (UTF-16 possui) </li>
+              <li> (UTF-32 é mais rápido, mas ocupa mais espaço) </li>
+            </ul>
+          </article>
+
+          <article>
+            <h1> Tabelas que não se coincidem </h1>
+<pre>
+>>> print 'python'.decode('utf-8').encode('ascii')
+>>> print 'abcdefghijklmnopqrstuvwxyz'.decode('cp1140')
+>>> print 'abcdefghijklmnopqrstuvwxyz'.decode('rot13')
+>>> print 'abcdefghijklmnopqrstuvwxyz'.encode('base64')
+</pre>
+            </article>
+
+            <article>
+              <h1> Tabelas que não se coincidem [2] </h1>
+<pre>
+>>> print chr(226).decode('iso-8859-15')
+â
+>>> print chr(226).decode('iso-8859-7')
+β
+>>> print chr(226).decode('utf-8')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib/python2.7/encodings/utf_8.py", line 16, in decode
+    return codecs.utf_8_decode(input, errors, True)
+UnicodeDecodeError: 'utf8' codec can't decode byte 0xe2 in position 0: unexpected end of data
+</pre>
+              </article>
+
+                <article>
+                  <h1>Resolvendo alguns problemas específicos</h1>
+                  <ul class="build big">
+                    <li> Cuidado com o <i>fallback</i> da fonte (lembra da Laís?) </li>
+                    <li> Use <code>unicodedata.normalize</code> para fazer slugs </li>
+                    <li> <b>Cuidado</b>: Nem todos encodings são baseados em ASCII! </li>
+                  </ul>
+                </article>
+
+                  <article>
+                    <h1>Fazendo slugs da forma correta</h1>
+<pre>
+>>> from unicodedata import normalize
+>>> new_string = normalize('NFKD', u'Álvaro')
+>>> print new_string.encode('ascii', 'ignore')
+Alvaro
+</pre>
+                    </article>
+
+                <article>
+                  <h1>base64: encodando encodados</h1>
+<pre>
+>>> # "ASCII armor"
+>>> print u'Álvaro'.encode('utf-8').encode('base64')
+w4FsdmFybw==
+>>> 'w4FsdmFybw=='.decode('base64').decode('utf8')
+u'\xc1lvaro'
+</pre>
+                  </article>
+
+        <article>
+          <h1>E no Python 3? #F7U13</h1>
+          <ul class="build">
+            <li>
+              Python 2:
+<pre>
+>>> len('álvaro')
+7
+>>> len(u'álvaro')
+6
+</pre>
+              </li>
+              <li>
+                Python 3:
+<pre>
+>>> len('álvaro')
+6
+</pre>
+                </li>
+                <li> WHY? :-/ </li>
+                <li>
+                  <code>unicode</code> &rarr; <code>str</code>
+                </li>
+                <li>
+                  <code>str</code> &rarr; <code>bytes</code>
+                </li>
+        </article>
+
+        <article>
+          <h1>Cuidado com a Apple!</h1>
+<pre>
+print eh = unichr(0x0065) + unichr(0x0301)
+print eh2 = unichr(0x00e9)
+print eh == eh2
+print print eh, eh2
+print 'é'.decode('utf8')
+print 'é'.decode('utf8')
+print normalize('NFC', 'é'.decode('utf8'))
+print normalize('NFC', 'é'.decode('utf8'))
+print normalize('NFKD', 'é'.decode('utf8'))
+print normalize('NFKD', 'é'.decode('utf8'))
+print normalize('NFKD', u'ế')
+</pre>
+        </article>
+      <article>
+        <h1>Mais algumas dicas</h1>
+        <ul class="build big">
+          <li> Use as <b>regras de ouro</b>! </li>
+          <li> Faça <b>testes</b> de codificação </li>
+          <li> <code>-</code>, <code>_</code> são ignorados no
+            <code>.encode</code>/<code>.decode</code> </li>
+          <li> Use o header <code># coding: ...</code> </li>
+          <li> Verifique se você <b>pode representar</b> o símbolo que você
+            precisa na codificação desejada
+          </li>
+          <li> Verifique qual codificação você <b>recebeu</b> </li>
+          <li> <b>Explicite</b> qual o encoding você está usando </li>
+          <li> Frameworks/bibliotecas <i>deveriam</i> fazer o trabalho sujo </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Mais algumas dicas [2]</h1>
+        <ul class="build big">
+          <li> Use <code>codecs.open</code> (só no Python 2) </li>
+          <li> Use a biblioteca <code>chardet</code>
+               (<code>pip install chardet</code>) </li>
+          <li> Use a representação em Unicode (<code>u'\u03b2'</code>) </li>
+          <li> GNU/Linux: ctrl+shift+u+code </li>
+          <li> <a href="http://farmdev.com/talks/unicode/">Unicode In Python, Completely Demystified</a> </li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <a href="http://2012.pythonbrasil.org.br/">
+          <img src="images/pythonbrasil.png" width="800" alt="PythonBrasil[8]" />
+        </a>
+      </article>
+
+      <article class="nobackground">
+        <p class="centered ultra-mega-master-fucking-huge">?</p>
+      </article>
+
+      <article class="nobackground final">
+        <img width="897" height="430"
+        src="images/so-long-and-thanks-for-all-the-fish.png">
+        <p class="centered big">
+          {<a href="http://twitter.com/turicas">twitter.com</a>,
+          <a href="http://github.com/turicas">github.com</a>,
+          <a href="http://bitbucket.org/turicas">bitbucket.org</a>,
+          <a href="http://youtube.com/turicas">youtube.com</a>}/turicas
+          <br />
+          <a href="http://turicas.info/">turicas.info</a>
+          <br />
+          <a href="mailto:alvaro.justen@fgv.br">alvaro.justen@fgv.br</a>
+          <br />
+          <a href="https://github.com/NAMD/pypln">github.com/NAMD/pypln</a>
+        </p>
+      </article>
+
+    </section>
+  </body>
+</html>
