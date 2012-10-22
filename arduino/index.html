@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<!--
+Google HTML5 slide template
+
+Authors: Luke Mahé (code)
+Marcin Wichary (code and design)
+
+Dominic Mazzoni (browser compatibility)
+Charles Chen (ChromeVox support)
+
+URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>Automação residencial com Android e Arduino, por Álvaro Justen</title>
+    <meta charset='utf-8'>
+    <script src='slides.js'></script>
+  </head>
+
+  <style>
+    * { text-shadow: rgba(0, 0, 0, 0.2) 0 4px 5px; }
+    h1 { margin-top: 0px !important; }
+    h2 { position: static !important; }
+    .centered {
+      text-align: center !important;
+    }
+    .small { line-height: 50%; }
+    .lefted { text-align: left !important; }
+    .less-top { margin-top: 12px; }
+    img.centered { display: inline-block !important; margin: 0 !important; }
+    .big { font-size: 120%; line-height: 110%; }
+    .huge { font-size: 150%; line-height: 115%; }
+    .ultra-huge { font-size: 400%; line-height: 120%; }
+    .ultra-mega-master-huge { font-size: 800%; line-height: 120%; }
+    .ultra-mega-master-fucking-huge { font-size: 1600%; line-height: 120%; }
+    .red-background { background-color: #FF0000 !important; }
+    .white { color: #FFFFFF !important; }
+    .middle-without-title { margin-top: 30% !important; }
+    .middle-with-title { margin-top: 15% !important; }
+    q, .author { margin: 0 !important; }
+    pre { margin-top: 20px !important; padding: 5px 10px !important; }
+    .right { position: absolute; right: 0; bottom: 0; border-bottom-right-radius: 20px; }
+    .without-bullets > li::before { content: '' !important; }
+    .dojo > img { position: absolute; right: 0; margin-top: 30px; }
+    .final > img { position: absolute; right: 0; top: 0; border-top-left-radius:
+      20px; border-top-right-radius: 20px; }
+    .final > p { position: absolute; left: 0; bottom: 60px; width: 900px; }
+    .dojo > a { position: absolute; bottom: 35px; font-size: 200%; margin-left:
+      70px}
+    .turiquinhas > img { margin-top: 10px; }
+    table { margin-top: 50px !important; }
+    td { border: 0 !important; vertical-align: middle !important; }
+    .more-space-between { line-height: 150%; }
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular template-default'>
+
+      <article class="nobackground">
+        <h1>Desenvolvendo Projetos Interativos com Arduino</h1>
+        <br><br>
+        <div class="centered">
+          <img class="centered" src="images/arduino-uno.png" width="340"
+          height="253">
+          <br><br>
+          <p class="centered huge"><strong>Álvaro Justen</strong> aka
+            <strong>Turicas</strong></p>
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <h1>Álvaro Justen, prazer!</h1>
+        <p class="centered big">
+          {<a href="http://twitter.com/turicas">twitter.com</a>,
+          <a href="http://github.com/turicas">github.com</a>,
+          <a href="http://bitbucket.org/turicas">bitbucket.org</a>}/turicas
+          <br>
+          <a href="http://blog.justen.eng.br/">blog.justen.eng.br</a>
+          <br>
+          <a
+            href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a>
+          <br><br>
+          <a href="http://www.CursoDeArduino.com.br"><img src="images/logo_curso-de-arduino.png"
+            width="524" height="196"></a>
+          <br>
+          <a
+            href="http://www.CursoDeArduino.com.br">www.CursoDeArduino.com.br</a>
+          <br><br>
+          <a href="http://emap.fgv.br"><img src="images/logo_fgv.gif"
+            width="381" height="86"></a>
+          <br>
+          <a
+            href="http://emap.fgv.br">emap.fgv.br</a>
+        </p>
+      </article>
+
+      <article class="nobackground red-background">
+        <p class="centered middle-without-title huge"><br><a class="white"
+            href="http://turicas.info/slides/arduino">turicas.info/slides/arduino</a></p>
+      </article>
+
+      <article>
+        <h1>E vocês?</h1>
+        <ul class="build huge">
+          <li> Quem já conhece o Arduino? </li>
+          <li> Quem sabe desenvolver software? </li>
+          <li> Quem já brincou com <a href="http://processing.org/">Processing</a>? </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Roteiro...</h1>
+        <ul class="huge build">
+          <li> Arduino? </li>
+          <li> Pequenos exemplos </li>
+          <li> Projetos </li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <p class="centered middle-without-title ultra-huge">Arduino?</p>
+      </article>
+
+      <article class="nobackground fill">
+        <h1 class="white">Arduino!</h1>
+        <img src="images/arduino-uno-in-a-hand.jpg">
+        <h2 class="white">Um pequeniníssimo computador</h2>
+      </article>
+
+      <article>
+        <h1>Na verdade, um super computador...</h1>
+        <ul class="huge build">
+          <li> 16MHz </li>
+          <li> 32kB de memoria flash </li>
+          <li> 2kB de memoria RAM </li>
+          <li> 1kB de memoria EEPROM </li>
+        </ul>
+      </article>
+
+      <article class="nobackground fill">
+        <h1 class="centered">
+          Não só o software é livre!
+          <br>
+          \o/</h1>
+        <img src="images/freedom.png">
+      </article>
+
+      <article class="nobackground">
+        <h1><i>Forks</i></h1>
+        <div class="centered">
+          <img src="images/arduino-mega.png" width="480" height="250">
+          <br>
+          <table>
+            <tr>
+              <td>
+                <img src="images/arduino-nano.png" width="231" height="300">
+              </td>
+              <td>
+                <img src="images/arduino-lilypad.png" width="200" height="200">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <q>Talk is cheap, show me the code!</q>
+        <div class="author">Linus Torvalds</div>
+        <p class="centered">
+          <img src="images/linus-torvalds.jpg">
+        </p>
+      </article>
+
+      <article class="nobackground">
+        <h1>Controle pela serial</h1>
+        <h2>Código Arduino</h2>
+        <pre>#define LED 13
+
+void setup() {
+    pinMode(LED, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop() {
+    if (Serial.available()) {
+        char c = Serial.read();
+        if (c == 'H') {
+            digitalWrite(LED, HIGH);
+        }
+        else if (c == 'L') {
+            digitalWrite(LED, LOW);
+        }
+    }
+}</pre>
+        </article>
+
+        <article>
+          <div class="centered middle-with-title">
+            <br><br>
+            <img src="images/logo_pyserial.png" width="412" height="224">
+            <br>
+            <a
+              href="http://pyserial.sourceforge.net/">pyserial.sourceforge.net</a>
+          </div>
+        </article>
+
+        <article class="nobackground">
+          <h1>Controle por USB/Serial com Python</h1>
+          <pre>#!/usr/bin/env python
+
+import serial
+import time
+
+# /dev/ttyACM0 = Arduino Uno on Linux
+arduino = serial.Serial('/dev/ttyACM0', 9600)
+time.sleep(2) #waiting the initialization...
+
+arduino.write('H') #turns LED *on*
+time.sleep(3) #zzz
+
+arduino.write('L') #turns LED *off*
+time.sleep(3) #zzz
+
+arduino.close() #let's say goodbye</pre>
+          </article>
+
+          <article class="fill">
+            <h1 class="white">Exemplo: Semáforo Coding Dojo Rio</h1>
+            <img src="images/traffic-light-red.jpg" width="810" height="630">
+          </article>
+
+          <article class="fill">
+            <img src="images/traffic-light-green.jpg" width="810"
+            height="630">
+          </article>
+
+          <article class="nobackground centered dojo">
+            <h1>Coding Dojo</h1>
+            <img src="images/traffic-light-in-use.jpg"
+            width="900" height="464">
+            <a href="http://justen.eng.br/semaforo">justen.eng.br/semaforo</a>
+          </article>
+
+          <article>
+            <h1 class="middle-without-title ultra-huge centered">Só por USB?</h1>
+          </article>
+
+          <article class="fill">
+            <h1 class="white">Arduino Ethernet Shield</h1>
+            <img src="images/arduino-with-ethernet-shield.jpg" width="810"
+            height="630">
+          </article>
+
+          <article class="centered">
+            <h1>
+              Módulo Bluetooth
+              <br>
+              +
+              <br>
+              <a href="http://www.amarino-toolkit.net/">Amarino</a>
+            </h1>
+            <p class="centered">
+              <br>
+              <img src="images/arduino-bluetooth-shield.png">
+            </p>
+          </article>
+
+          <article>
+            <h1>Falando com o Arduino...</h1>
+            <ul class="build huge">
+              <li>
+                <strong>USB</strong>:
+                <code><a href="http://pyserial.sourceforge.net/">PySerial</a></code>,
+                <code>librxtx</code>,
+                <code><a
+                    href="http://developer.android.com/guide/topics/usb/adk.html">ADK</a></code>,
+                ...
+              </li>
+              <li>
+                <strong>Bluetooth</strong>:
+                <code><a href="http://code.google.com/p/pybluez/">pybluez</a></code>,
+                <code><a
+                    href="http://www.amarino-toolkit.net/">Amarino</a></code>,
+                ...
+              </li>
+              <li>
+                <b>Ethernet + Wi-Fi</b> (+ 3G), ...
+                <ul>
+                  <li> HTTP ou outros protocolos </li>
+                  <li> Android como cliente ou servidor </li>
+                  <li> Híbrido (NAT, DNS dinâmico etc.) </li>
+                </ul>
+              </li>
+              <li> <b>...</b> </li>
+            </ul>
+          </article>
+
+          <article>
+            <h1>Álvaro + EuAndroid.com.br</h1>
+            <div class="centered">
+              <br>
+              <a href="http://EuAndroid.com.br"><img
+                border="0" width="400" src="images/logo_euandroid.png" /></a>
+            </div>
+            <ul class="big build">
+              <li>
+                <a href="http://github.com/turicas/tomada-bluetooth">Tomada
+                  Bluetooth</a>
+                <ul class="build">
+                  <li> <a href="http://www.amarino-toolkit.net/">Amarino
+                      Toolkit</a> </li>
+                </ul>
+              </li>
+              <li>
+                <a href="http://github.com/turicas/luminaria-rgb">Luminária RGB</a>
+                <ul class="build">
+                  <li> Arduino + Ethernet shield + LEDs </li>
+                  <li> Roteador Wi-Fi </li>
+                  <li> Android + Wi-Fi (<i>poderia ser 3G</i>) </li>
+                </ul>
+              </li>
+            </ul>
+          </article>
+
+          <article class="nobackground">
+            <h1>Luminária RGB</h1>
+            <div class="centered">
+              <br />
+              <br />
+              <a href="https://www.youtube.com/watch?v=Bj44dt3ONyM"
+                 target="_blank"><img src="images/luminaria-rgb.png" width="400"
+                                      border="0" alt="Luminária RGB" />
+              </a>
+              <br />
+              <a href="http://github.com/turicas/luminaria-rgb">github.com/turicas/luminaria-rgb</a>
+            </div>
+          </article>
+
+          <article>
+            <h1>droiduino</h1>
+            <div class="centered">
+              <br>
+              <br>
+              <img src="images/droiduino_graph.png" />
+              <br>
+              <br>
+              <a class="big"
+                href="http://github.com/turicas/droiduino">github.com/turicas/droiduino</a>
+            </div>
+          </article>
+
+          <article class="fill">
+            <h1 class="white">Projeto: Guitarrino</h1>
+            <img src="images/guitarrino-playing.jpg" width="810" height="630">
+            <h2>
+              <br><br><br>
+              <br><br><br>
+              <br><br><br>
+              <br><br><br>
+              <a style="color: black" href="http://github.com/tatiana/guitarrino">
+                github.com/tatiana/guitarrino
+            </a></h2>
+          </article>
+
+          <article class="nobackground final">
+            <h1>Se interessou?</h1>
+            <h2>Em breve uma turma <i>online</i>!</h2>
+            <p align="center">
+              <a href="http://www.CursoDeArduino.com.br"><img src="images/logo_curso-de-arduino.png"
+                width="655" height="245"></a>
+              <br><br><br>
+              <a class="huge"
+                href="http://www.CursoDeArduino.com.br/pesquisa">CursoDeArduino.com.br/pesquisa</a>
+              <br><br>
+            </p>
+          </article>
+
+          <article>
+            <h1>So long and thanks for all the fish!</h1>
+            <br>
+            <p class="centered huge more-space-between">
+              {<a href="http://twitter.com/turicas">twitter.com</a>,
+              <a href="http://github.com/turicas">github.com</a>,
+              <a
+                href="http://bitbucket.org/turicas">bitbucket.org</a>}/turicas
+              <br>
+              <a href="http://blog.justen.eng.br/">blog.justen.eng.br</a>
+              <br>
+              <a
+                href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a>
+              <br>
+              <a
+                href="http://www.CursoDeArduino.com.br">www.CursoDeArduino.com.br</a>
+              <br>
+              <a href="http://turicas.info/slides/arduino">turicas.info/slides/arduino</a>
+            </p>
+          </article>
+        </section>
+      </body>
+    </html>

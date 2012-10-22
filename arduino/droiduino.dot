@@ -1,0 +1,33 @@
+digraph G {
+    rankdir="TB"
+    dpi=90
+
+    "Android 1" [color="green" style="filled"]
+    "Arduino" [color="blue" style="filled" root]
+    "Cafeteira" [style="filled" color="yellow"]
+    "Lâmpada" [style="filled" color="yellow"]
+    "Portão" [style="filled" color="yellow"]
+    "Django app" [style="filled" color="gray"]
+    "Sensor shield" [style="filled" color="orange"]
+    "Sensor de temperatura" [style="filled" color="orange"]
+    "Sensor de presença" [style="filled" color="orange"]
+
+    subgraph Internet {
+    style=filled
+        label="Web"
+        "Django app" -> "Android 1"
+        "Django app" -> "Arduino" [label="HTTP@Ethernet"]
+    }
+
+    subgraph Controle {
+        label="Controle"
+    "Android 1" -> "Django app" [label="HTTP@3G"]
+}
+    "Arduino" -> "Cafeteira" [label="Relé"]
+    "Arduino" -> "Lâmpada" [label="Relé"]
+    "Arduino" -> "Portão" [label="Ponte-H"]
+    "Sensor shield" -> "Arduino"
+
+    "Sensor de temperatura" -> "Sensor shield"
+    "Sensor de presença" -> "Sensor shield"
+}
