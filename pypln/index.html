@@ -319,7 +319,7 @@ pipeline = {Job('Extractor'): Job('Tokenizer'),
         <h1>Entendeu ou quer que eu desenhe?</h1>
 <pre>
 >>> with open('pipeline.dot', 'w') as dot_file:
-...     dot_file.write('pipeline.dot')
+...     dot_file.write(pipeline.to_dot())
 
 $ dot -Tpng -opipeline.png pipeline.dot # graphviz rules
 </pre>
