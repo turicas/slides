@@ -49,7 +49,7 @@ URL: http://code.google.com/p/html5slides/
     .middle-without-title { margin-top: 30% !important; }
     .middle-with-title { margin-top: 15% !important; }
     q, .author { margin: 0 !important; }
-    pre { margin-top: 20px !important; padding: 5px 10px !important; }
+    pre { margin-top: 5px !important; margin-bottom: 5px !important; }
     .right { position: absolute; right: 0; bottom: 0;
       border-bottom-right-radius: 20px; }
     .without-bullets > li::before { content: '' !important; }
@@ -63,6 +63,10 @@ URL: http://code.google.com/p/html5slides/
     .turiquinhas > img { margin-top: 10px; }
     table { margin-top: 50px !important; }
     td { border: 0 !important; vertical-align: middle !important; }
+    .tabelas { float: left; clear: both; width: 100%; }
+    .tabelas > table { float: left; width: 45%; margin: 2.5%; }
+    .no-bullets { list-style-type: none; }
+    ul { margin-top: 10px !important; }
   </style>
   <body style='display: none'>
     <section class='slides layout-regular template-default'>
@@ -85,12 +89,12 @@ URL: http://code.google.com/p/html5slides/
         </div>
       </article>
 
-      <article class="nobackground">
+      <article class="nobackground final">
         <h1>Álvaro Justen, prazer!</h1>
         <p class="centered big">
           {<a href="http://twitter.com/turicas">twitter.com</a>,
           <a href="http://github.com/turicas">github.com</a>,
-          <a href="http://youtube.com/turicas">youtube.com</a>}/turicas
+          <a href="http://youtube.com/turicas">youtube.com</a>}/<code><b>turicas</b></code>
           <br />
           <a href="http://turicas.info/">turicas.info</a>
           <br />
@@ -122,6 +126,16 @@ URL: http://code.google.com/p/html5slides/
           <li> Quem tem acentos no nome (em qualquer um deles)? </li>
         </ul>
       </article>
+
+
+    <article class="red-background">
+      <div class="centered middle-without-title">
+        <br>
+          <a class="white huge"
+            href="http://turicas.info/slides/python-unicode"><b>turicas.info/slides/python-unicode</b></a>
+        </div>
+    </article>
+
 
       <article>
         <h1>Python:</h1>
@@ -205,11 +219,17 @@ URL: http://code.google.com/p/html5slides/
       </article>
 
       <article>
-        <h1>Unicode</h1>
+        <h1>Unicode Consortium</h1>
         <ul class="build huge">
           <li> <a href="http://unicode.org/">unicode.org</a> </li>
           <li> Tabela-referência de símbolos </li>
-          <li> Milhões de code points </li>
+          <li>
+            1.114.112 <i>code points</i>:
+            <ul>
+              <li> 249.763 (22,4%) <i>assigned</i> </li>
+              <li> 864.349 (77,6%) <i>unassigned</i> </li>
+            </ul>
+          </li>
           <li> Regras para propriedades dos caracteres, normalização,
             decomposição etc. </li>
         </ul>
@@ -226,6 +246,7 @@ URL: http://code.google.com/p/html5slides/
         <h1>Unicode [2]</h1>
         <ul class="build huge">
           <li> Para "materializar": usar algum encoding! </li>
+          <li> Serializar/desserializar </li>
           <li> Recomendado: <b>UTF-8</b> (Unicode Transformation Format, 8-bit
             variable length)</li>
         </ul>
@@ -237,9 +258,9 @@ URL: http://code.google.com/p/html5slides/
           <li>
             Regras de ouro:
             <ul class="build">
-              <li> <b>Decoding</b> o mais rápido possível </li>
+              <li> <b><i>Decoding</i></b> o mais rápido possível </li>
               <li> Trabalhe sempre com a representação em <b>Unicode</b> </li>
-              <li> <b>Encoding</b> o mais tarde possível </li>
+              <li> <b><i>Encoding</i></b> o mais tarde possível </li>
             </ul>
           </li>
         </ul>
@@ -247,6 +268,7 @@ URL: http://code.google.com/p/html5slides/
 
       <article>
         <h1> .encode/.decode </h1>
+        <h2>Python 2!</h2>
         <ul class="build huge">
           <li>
             <code>.encode</code>: <code>unicode</code> &rarr; <code>str</code>
@@ -261,14 +283,20 @@ URL: http://code.google.com/p/html5slides/
         <h1>Entendendo o que está codificado</h1>
         <h2>Python 2!</h2>
 <pre>
->>> print len('álvaro'), type('álvaro')
->>> print 'álvaro'[0]
->>> print 'álvaro'[1]
->>> print len(u'álvaro'), type(u'álvaro')
->>> print 'álvaro'.decode('utf-8') == u'álvaro'
->>> print 'álvaro'.upper(), type('álvaro'.upper())
->>> print 'álvaro'.decode('utf-8').upper(), \
-          type('álvaro'.decode('utf8').upper())
+>>> nome = 'álvaro'
+>>> nome2 = u'álvaro'
+
+>>> print len(nome), type(nome)
+>>> print nome[0], nome[1]
+>>> print len(nome2), type(nome2)
+>>> print nome2[0], nome2[1]
+
+>>> print nome == nome2
+>>> print nome.decode('utf-8') == nome2
+
+>>> print nome.upper(), type(nome.upper())
+>>> maiusculo = nome.decode('utf-8').upper()
+>>> print maiusculo, type(maiusculo)
 </pre>
         </article>
 
@@ -276,7 +304,7 @@ URL: http://code.google.com/p/html5slides/
           <h1>ASCII</h1>
           <ul class="build huge">
             <li> 128 símbolos </li>
-            <li> 000-032: caracteres de controle </li>
+            <li> 000-031: caracteres de controle </li>
             <li> 048-057: 0-9 </li>
             <li> 065-090: A-Z </li>
             <li> 097-122: a-z </li>
@@ -286,31 +314,66 @@ URL: http://code.google.com/p/html5slides/
 
         <article>
           <h1>ASCII [2]</h1>
+          <ul class="build big">
+            <li> Imprimindo toda a tabela:
 <pre>
->>> for numero in range(129):
+>>> for numero in range(128):
 ...    print numero, chr(numero), ord(chr(numero))
-... # ...
+</pre>
+            </li>
+            <li> Codificando o <code>'á'</code>:
+<pre>
 >>> print 'á'.decode('utf-8').encode('ascii')
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin&gt;", line 1, in <module>
 UnicodeEncodeError: 'ascii' codec can't encode character u'\xe1' in position 0: ordinal not in range(128)
 </pre>
-          </article>
+            </li>
+          </ul>
+        </article>
 
           <article>
             <h1>UTF-8</h1>
             <ul class="build huge">
-              <li> Variable-length (começa com 8 bits) </li>
-              <li> Extensão do ASCII </li>
+              <li> Unicode Transformation Format 8 </li>
+              <li> <a href="https://en.wikipedia.org/wiki/Rob_Pike">Robert Pike</a>
+                   e <a href="https://en.wikipedia.org/wiki/Ken_Thompson">Kenneth Thompson</a> </li>
+              <li> 1.992 </li>
+              <li> <a href="https://tools.ietf.org/html/rfc3629">RFC 3629</a> </li>
+            </ul>
+          </article>
+
+          <article>
+            <h1>UTF-8 [2]</h1>
+            <ul class="build huge">
+              <li> <i>Variable-length</i>, 1-4 bytes </li>
+              <li> Compatível binário com ASCII </li>
               <li> Representa toda a tabela Unicode </li>
-              <li> Não possui <b>BOM</b> (Byte-Order-Marker, byte-endianness detection) </li>
-              <li> (UTF-16 possui) </li>
-              <li> (UTF-32 é mais rápido, mas ocupa mais espaço) </li>
+              <li> <b>BOM</b> desabilitado por padrão no Python
+                   (Byte-Order-Marker, byte-endianness detection) -- UTF-16 e
+                   32 possuem </li>
+              <li> UTF-32 é mais rápido, mas mais espaçoso </li>
             </ul>
           </article>
 
           <article>
             <h1> Tabelas que não se coincidem </h1>
+            <div class="tabelas">
+              <table>
+                <tr class="odd"> <th colspan="2">Tabela 1</th> </tr>
+                <tr class="even"> <td>A</td> <td>1</td> </tr>
+                <tr class="odd"> <td>B</td> <td>2</td> </tr>
+                <tr class="even"> <td>C</td> <td>3</td> </tr>
+                <tr class="odd"> <td>D</td> <td>4</td> </tr>
+              </table>
+              <table>
+                <tr class="odd"> <th colspan="2">Tabela 2</th> </tr>
+                <tr class="even"> <td>A</td> <td>4</td> </tr>
+                <tr class="odd"> <td>B</td> <td>3</td> </tr>
+                <tr class="even"> <td>C</td> <td>2</td> </tr>
+                <tr class="odd"> <td>D</td> <td>1</td> </tr>
+              </table>
+            </div>
 <pre>
 >>> print 'python'.decode('utf-8').encode('ascii')
 >>> print 'abcdefghijklmnopqrstuvwxyz'.decode('cp1140')
@@ -328,7 +391,7 @@ UnicodeEncodeError: 'ascii' codec can't encode character u'\xe1' in position 0: 
 β
 >>> print chr(226).decode('utf-8')
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  File "&lt;stdin&gt;", line 1, in <module>
   File "/usr/lib/python2.7/encodings/utf_8.py", line 16, in decode
     return codecs.utf_8_decode(input, errors, True)
 UnicodeDecodeError: 'utf8' codec can't decode byte 0xe2 in position 0: unexpected end of data
@@ -340,26 +403,57 @@ UnicodeDecodeError: 'utf8' codec can't decode byte 0xe2 in position 0: unexpecte
                   <ul class="build big">
                     <li> Cuidado com o <i>fallback</i> da fonte (lembra da Laís?) </li>
                     <li> Use <code>unicodedata.normalize</code> para fazer slugs </li>
-                    <li> <b>Cuidado</b>: Nem todos encodings são baseados em ASCII! </li>
+                    <li> <b>Cuidado</b>: nem todos encodings têm
+                         compatibilidade binária (nem entre si, nem com ASCII)! </li>
                   </ul>
                 </article>
 
-                  <article>
-                    <h1>Fazendo slugs da forma correta</h1>
+            <article>
+              <h1>Fazendo slugs da forma correta</h1>
+              <ul class="no-bullets build">
+                <li> Resolvendo:
 <pre>
 >>> from unicodedata import normalize
 >>> new_string = normalize('NFKD', u'Álvaro')
 >>> print new_string.encode('ascii', 'ignore')
 Alvaro
 </pre>
-                    </article>
+                </li>
+                <li> Entendendo:
+<pre>
+>>> print type(new_string), len(new_string)
+&lt;type 'unicode'&gt; 7
+>>> print new_string.encode('ascii')
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in <module>
+UnicodeEncodeError: 'ascii' codec can't encode character u'\u0301' in position 1: ordinal not in range(128)
+</pre>
+                </li>
+              </ul>
+            </article>
+
+            <article>
+              <h1>Fazendo slugs da forma correta [2]</h1>
+              <h2>Parâmetro <code>'errors'</code>:</h2>
+
+<pre>
+>>> print new_string.encode('ascii', 'replace') # default: 'strict'
+A?lvaro
+>>> print new_string.encode('ascii', 'xmlcharrefreplace')
+A&amp;#769;lvaro
+>>> print new_string.encode('ascii', 'backslashreplace')
+A\u0301lvaro
+</pre>
+            </article>
 
                 <article>
                   <h1>base64: encodando encodados</h1>
+                  <h2><i>aka</i> "ASCII armor"</h2>
 <pre>
->>> # "ASCII armor"
->>> print u'Álvaro'.encode('utf-8').encode('base64')
-w4FsdmFybw==
+>>> u'Álvaro'
+u'\xc1lvaro'
+>>> u'Álvaro'.encode('utf-8').encode('base64')
+'w4FsdmFybw==\n'
 >>> 'w4FsdmFybw=='.decode('base64').decode('utf8')
 u'\xc1lvaro'
 </pre>
@@ -395,18 +489,20 @@ u'\xc1lvaro'
 
         <article>
           <h1>Cuidado com a Apple!</h1>
-<pre>
-print eh = unichr(0x0065) + unichr(0x0301)
-print eh2 = unichr(0x00e9)
-print eh == eh2
-print print eh, eh2
-print 'é'.decode('utf8')
-print 'é'.decode('utf8')
-print normalize('NFC', 'é'.decode('utf8'))
-print normalize('NFC', 'é'.decode('utf8'))
-print normalize('NFKD', 'é'.decode('utf8'))
-print normalize('NFKD', 'é'.decode('utf8'))
-print normalize('NFKD', u'ế')
+<pre class="big">
+>>> eh = unichr(0x0065) + \
+         unichr(0x0301)
+>>> eh2 = unichr(0x00e9)
+>>> print eh, eh2
+>>> print eh == eh2 # WTF?
+>>> print eh.encode('utf8')
+>>> print eh2.encode('utf8')
+>>> # composed
+>>> print normalize('NFC', eh)
+>>> print normalize('NFC', eh2)
+>>> # decomposed
+>>> print normalize('NFKD', eh)
+>>> print normalize('NFKD', eh2)
 </pre>
         </article>
       <article>
@@ -414,14 +510,13 @@ print normalize('NFKD', u'ế')
         <ul class="build big">
           <li> Use as <b>regras de ouro</b>! </li>
           <li> Faça <b>testes</b> de codificação </li>
-          <li> <code>-</code>, <code>_</code> são ignorados no
-            <code>.encode</code>/<code>.decode</code> </li>
           <li> Use o header <code># coding: ...</code> </li>
           <li> Verifique se você <b>pode representar</b> o símbolo que você
             precisa na codificação desejada
           </li>
           <li> Verifique qual codificação você <b>recebeu</b> </li>
-          <li> <b>Explicite</b> qual o encoding você está usando </li>
+          <li> <b>Explicite</b> qual o <i>encoding</i> você está usando </li>
+          <li> <b>Não misture</b> <i>encodings</i> </li>
           <li> Frameworks/bibliotecas <i>deveriam</i> fazer o trabalho sujo </li>
         </ul>
       </article>
@@ -433,7 +528,34 @@ print normalize('NFKD', u'ế')
           <li> Use a biblioteca <code>chardet</code>
                (<code>pip install chardet</code>) </li>
           <li> Use a representação em Unicode (<code>u'\u03b2'</code>) </li>
-          <li> GNU/Linux: ctrl+shift+u+code </li>
+          <li>
+            GNU/Linux: <code>Ctrl</code> + <code>Shift</code> +
+            <code>u</code> + <i>code point</i>
+          </li>
+          <li> <a
+              href="https://en.wikipedia.org/wiki/Free_software_Unicode_fonts">Free/open-source
+          Unicode fonts</a> </li>
+          <li> Navegue na tabela, conheça os metadados:
+<pre>
+>>> print unicodedata.name(u'Á')
+LATIN CAPITAL LETTER A WITH ACUTE
+>>> nome = unicodedata.name(u'Á')
+>>> simbolo = unicodedata.lookup(nome)
+>>> print simbolo, type(simbolo)
+Á &lt;type 'unicode'&gt;
+</pre>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Referências</h1>
+        <ul class="build huge">
+          <li> <a href="http://www.python.org/dev/peps/pep-0263/">PEP-0263: Defining Python Source Encodings</a>
+          <li> <a
+              href="http://docs.python.org/library/codecs.html#standard-encodings">Python Standard Encodings</a> </li>
+          <li> <a href="http://docs.python.org/howto/unicode.html">Python Unicode
+              HowTo</a> </li>
           <li> <a href="http://farmdev.com/talks/unicode/">Unicode In Python, Completely Demystified</a> </li>
         </ul>
       </article>
@@ -454,14 +576,13 @@ print normalize('NFKD', u'ế')
         <p class="centered big">
           {<a href="http://twitter.com/turicas">twitter.com</a>,
           <a href="http://github.com/turicas">github.com</a>,
-          <a href="http://bitbucket.org/turicas">bitbucket.org</a>,
-          <a href="http://youtube.com/turicas">youtube.com</a>}/turicas
+          <a href="http://youtube.com/turicas">youtube.com</a>}/<code><b>turicas</b></code>
           <br />
           <a href="http://turicas.info/">turicas.info</a>
           <br />
           <a href="mailto:alvarojusten@gmail.com">alvarojusten@gmail.com</a>
           <br />
-          <a href="https://github.com/NAMD/pypln">github.com/NAMD/pypln</a>
+          <a href="http://turicas.info/slides/python-unicode">turicas.info/slides/python-unicode</a>
         </p>
       </article>
 
