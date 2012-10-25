@@ -67,6 +67,8 @@ URL: http://code.google.com/p/html5slides/
     .tabelas > table { float: left; width: 45%; margin: 2.5%; }
     .no-bullets { list-style-type: none; }
     ul { margin-top: 10px !important; }
+    .even { background-color: #F0F0F0; }
+    .odd { background-color: #E0E0E0; }
   </style>
   <body style='display: none'>
     <section class='slides layout-regular template-default'>
@@ -357,21 +359,25 @@ UnicodeEncodeError: 'ascii' codec can't encode character u'\xe1' in position 0: 
           </article>
 
           <article>
-            <h1> Tabelas que não se coincidem </h1>
+            <h1> Tabelas incompatíveis </h1>
+            <h2>Binariamente e em tamanho</h2>
             <div class="tabelas">
               <table>
-                <tr class="odd"> <th colspan="2">Tabela 1</th> </tr>
+                <tr class="odd"> <th colspan="2" class="centered">Tabela 1</th> </tr>
+                <tr class="odd"> <th>Símbolo</th> <th>Código</th> </tr>
                 <tr class="even"> <td>A</td> <td>1</td> </tr>
                 <tr class="odd"> <td>B</td> <td>2</td> </tr>
                 <tr class="even"> <td>C</td> <td>3</td> </tr>
                 <tr class="odd"> <td>D</td> <td>4</td> </tr>
               </table>
               <table>
-                <tr class="odd"> <th colspan="2">Tabela 2</th> </tr>
+                <tr class="odd"> <th colspan="2" class="centered">Tabela 2</th> </tr>
+                <tr class="odd"> <th>Símbolo</th> <th>Código</th> </tr>
                 <tr class="even"> <td>A</td> <td>4</td> </tr>
                 <tr class="odd"> <td>B</td> <td>3</td> </tr>
                 <tr class="even"> <td>C</td> <td>2</td> </tr>
                 <tr class="odd"> <td>D</td> <td>1</td> </tr>
+                <tr class="even"> <td>E</td> <td>5</td> </tr>
               </table>
             </div>
 <pre>
