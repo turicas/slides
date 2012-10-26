@@ -129,7 +129,6 @@ URL: http://code.google.com/p/html5slides/
         </ul>
       </article>
 
-
     <article class="red-background">
       <div class="centered middle-without-title">
         <br>
@@ -137,7 +136,6 @@ URL: http://code.google.com/p/html5slides/
             href="http://turicas.info/slides/python-unicode"><b>turicas.info/slides/python-unicode</b></a>
         </div>
     </article>
-
 
       <article>
         <h1>Python:</h1>
@@ -251,12 +249,15 @@ URL: http://code.google.com/p/html5slides/
           <li> Serializar/desserializar </li>
           <li> Recomendado: <b>UTF-8</b> (Unicode Transformation Format, 8-bit
             variable length)</li>
+          <li> Por que existem <i>encodings</i> diferentes? </li>
         </ul>
       </article>
 
       <article>
         <h1> Como resolver isso? </h1>
         <ul class="build huge">
+          <li> Sabendo o <i>encoding</i> da informação recebida </li>
+          <li> Explicitando o <i>encoding</i> da informação enviada </li>
           <li>
             Regras de ouro:
             <ul class="build">
@@ -389,7 +390,7 @@ UnicodeEncodeError: 'ascii' codec can't encode character u'\xe1' in position 0: 
             </article>
 
             <article>
-              <h1> Tabelas que não se coincidem [2] </h1>
+              <h1> Tabelas incompatíveis [2] </h1>
 <pre>
 >>> print chr(226).decode('iso-8859-15')
 â
@@ -402,20 +403,16 @@ Traceback (most recent call last):
     return codecs.utf_8_decode(input, errors, True)
 UnicodeDecodeError: 'utf8' codec can't decode byte 0xe2 in position 0: unexpected end of data
 </pre>
-              </article>
-
-                <article>
-                  <h1>Resolvendo alguns problemas específicos</h1>
-                  <ul class="build big">
-                    <li> Cuidado com o <i>fallback</i> da fonte (lembra da Laís?) </li>
-                    <li> Use <code>unicodedata.normalize</code> para fazer slugs </li>
-                    <li> <b>Cuidado</b>: nem todos encodings têm
-                         compatibilidade binária (nem entre si, nem com ASCII)! </li>
-                  </ul>
-                </article>
+            </article>
 
             <article>
-              <h1>Fazendo slugs da forma correta</h1>
+              <div class="centered middle-without-title ultra-huge">
+                No mundo real...
+              </div>
+            </article>
+
+            <article>
+              <h1>Fazendo slugs direito</h1>
               <ul class="no-bullets build">
                 <li> Resolvendo:
 <pre>
@@ -439,7 +436,7 @@ UnicodeEncodeError: 'ascii' codec can't encode character u'\u0301' in position 1
             </article>
 
             <article>
-              <h1>Fazendo slugs da forma correta [2]</h1>
+              <h1>Fazendo slugs direito [2]</h1>
               <h2>Parâmetro <code>'errors'</code>:</h2>
 
 <pre>
@@ -460,8 +457,29 @@ A\u0301lvaro
 u'\xc1lvaro'
 >>> u'Álvaro'.encode('utf-8').encode('base64')
 'w4FsdmFybw==\n'
+>>> 'w4FsdmFybw=='.decode('base64')
+'\xc3\x81lvaro'
 >>> 'w4FsdmFybw=='.decode('base64').decode('utf8')
 u'\xc1lvaro'
+</pre>
+                  </article>
+
+        <article>
+          <h1>Cuidado com a Apple!</h1>
+<pre class="big">
+>>> eh = unichr(0x0065) + \
+         unichr(0x0301)
+>>> eh2 = unichr(0x00e9)
+>>> print eh, eh2
+>>> print eh == eh2 # WTF?
+>>> print eh.encode('utf8')
+>>> print eh2.encode('utf8')
+>>> # composed
+>>> print normalize('NFC', eh)
+>>> print normalize('NFC', eh2)
+>>> # decomposed
+>>> print normalize('NFKD', eh)
+>>> print normalize('NFKD', eh2)
 </pre>
                   </article>
 
@@ -493,54 +511,70 @@ u'\xc1lvaro'
                 </li>
         </article>
 
-        <article>
-          <h1>Cuidado com a Apple!</h1>
-<pre class="big">
->>> eh = unichr(0x0065) + \
-         unichr(0x0301)
->>> eh2 = unichr(0x00e9)
->>> print eh, eh2
->>> print eh == eh2 # WTF?
->>> print eh.encode('utf8')
->>> print eh2.encode('utf8')
->>> # composed
->>> print normalize('NFC', eh)
->>> print normalize('NFC', eh2)
->>> # decomposed
->>> print normalize('NFKD', eh)
->>> print normalize('NFKD', eh2)
-</pre>
-        </article>
+
       <article>
-        <h1>Mais algumas dicas</h1>
+        <h1>Dicas</h1>
         <ul class="build big">
           <li> Use as <b>regras de ouro</b>! </li>
           <li> Faça <b>testes</b> de codificação </li>
-          <li> Use o header <code># coding: ...</code> </li>
-          <li> Verifique se você <b>pode representar</b> o símbolo que você
-            precisa na codificação desejada
+          <li>
+            Verifique o <b><i>fallback</i></b> da fonte (lembra da Laís?)
+            <ul>
+              <li>
+                <a href="https://en.wikipedia.org/wiki/Free_software_Unicode_fonts">Free/open-source
+                  Unicode fonts</a>
+              </li>
+            </ul>
           </li>
-          <li> Verifique qual codificação você <b>recebeu</b> </li>
-          <li> <b>Explicite</b> qual o <i>encoding</i> você está usando </li>
-          <li> <b>Não misture</b> <i>encodings</i> </li>
+          <li>
+            Verifique se você <b>pode representar</b> o símbolo que você
+            precisa na codificação desejada
+            <ul>
+              <li>
+                Nem todos encodings têm <b>compatibilidade binária</b> (nem entre
+                si, nem com ASCII)!
+              </li>
+            </ul>
+          </li>
+          <li>
+            GNU/Linux (X.org): <code>Ctrl</code> + <code>Shift</code> +
+            <code>u</code> + <i>codepoint</i>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Dicas [2]</h1>
+        <ul class="build big">
+          <li>
+            Verifique qual <i>encoding</i> você <b>recebeu</b>
+            <ul>
+              <li> A biblioteca <code>chardet</code> pode ajudar </li>
+            </ul>
+          </li>
+          <li>
+            <b>Explicite</b> qual o <i>encoding</i> você está usando
+            <ul class="build">
+              <li>
+                <b>Não imprima objetos <code>unicode</code></b>
+                (<code>print</code> usa <code>sys.stdout.encoding</code> quando
+                recebe objeto <code>unicode</code>)
+              </li>
+              <li>
+                Use o header <code># coding: ...</code> (<a
+                  href="http://www.python.org/dev/peps/pep-0263/">PEP-0263</a>)
+              </li>
+              <li> <b>Não misture</b> <i>encodings</i> </li>
+              <li> Use <code>codecs.open</code> (Python 2) </li>
+            </ul>
+          </li>
           <li> Frameworks/bibliotecas <i>deveriam</i> fazer o trabalho sujo </li>
         </ul>
       </article>
 
       <article>
-        <h1>Mais algumas dicas [2]</h1>
+        <h1>Dicas [3]</h1>
         <ul class="build big">
-          <li> Use <code>codecs.open</code> (só no Python 2) </li>
-          <li> Use a biblioteca <code>chardet</code>
-               (<code>pip install chardet</code>) </li>
-          <li> Use a representação em Unicode (<code>u'\u03b2'</code>) </li>
-          <li>
-            GNU/Linux: <code>Ctrl</code> + <code>Shift</code> +
-            <code>u</code> + <i>code point</i>
-          </li>
-          <li> <a
-              href="https://en.wikipedia.org/wiki/Free_software_Unicode_fonts">Free/open-source
-          Unicode fonts</a> </li>
           <li> Navegue na tabela, conheça os metadados:
 <pre>
 >>> print unicodedata.name(u'Á')
@@ -549,8 +583,15 @@ LATIN CAPITAL LETTER A WITH ACUTE
 >>> simbolo = unicodedata.lookup(nome)
 >>> print simbolo, type(simbolo)
 Á &lt;type 'unicode'&gt;
+>>> print u'\N{LATIN CAPITAL LETTER A WITH ACUTE}'
+Á
 </pre>
           </li>
+          <li>
+            Conheça os módulos <code>encodings</code> e <code>codecs</code>
+            (biblioteca padrão)
+          </li>
+          <li> Use a representação em Unicode (<code>u'\u03b2'</code>) </li>
         </ul>
       </article>
 
@@ -563,6 +604,11 @@ LATIN CAPITAL LETTER A WITH ACUTE
           <li> <a href="http://docs.python.org/howto/unicode.html">Python Unicode
               HowTo</a> </li>
           <li> <a href="http://farmdev.com/talks/unicode/">Unicode In Python, Completely Demystified</a> </li>
+          <li> <a href="http://www.doughellmann.com/PyMOTW/codecs/">PyMOTW:
+              codecs</a> </li>
+          <li> <a
+              href="http://stackoverflow.com/questions/2596714/why-does-python-print-unicode-characters-when-the-default-encoding-is-ascii">Discussão
+          no StackOverflow</a> </li>
         </ul>
       </article>
 
