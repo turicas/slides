@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+<!--
+Google HTML5 slide template
+
+Authors: Luke Mahé (code)
+Marcin Wichary (code and design)
+
+Dominic Mazzoni (browser compatibility)
+Charles Chen (ChromeVox support)
+
+URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>Python e Arduino, com Álvaro Justen - Dia-Debian 2012</title>
+    <meta charset="utf-8">
+    <script src="slides.js"></script>
+  </head>
+
+  <style>
+    * { text-shadow: rgba(0, 0, 0, 0.2) 0 4px 5px; }
+    h1 { margin-top: 0px !important; }
+    h2 { position: static !important; }
+    .centered {
+      text-align: center !important;
+    }
+    img.centered { display: inline-block !important; margin: 0 !important; }
+    .big { font-size: 120%; line-height: 110%; }
+    .huge { font-size: 150%; line-height: 115%; }
+    .super-huge { font-size: 200%; line-height: 120%; }
+    .ultra-huge { font-size: 400%; line-height: 120%; }
+    .ultra-mega-master-huge { font-size: 800%; line-height: 120%; }
+    .ultra-mega-master-fucking-huge { font-size: 1600%; line-height: 120%; }
+    .red-background { background-color: #FF0000 !important; }
+    .white { color: #FFFFFF !important; }
+    .middle-without-title { margin-top: 30% !important; }
+    .middle-with-title { margin-top: 15% !important; }
+    q, .author { margin: 0 !important; }
+    pre { margin-top: 20px !important; padding: 5px 10px !important; }
+    .right { position: absolute; right: 0; bottom: 0;
+      border-bottom-right-radius: 20px; }
+    .without-bullets > li::before { content: '' !important; }
+    .dojo > img { position: absolute; right: 0; margin-top: 30px; }
+    .dojo > a { position: absolute; bottom: 25px; font-size: 200%;
+      margin-left: 80px; }
+    .final > img { position: absolute; right: 0; top: 0;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px; }
+    .final > p { position: absolute; left: 0; bottom: 60px; width: 900px; }
+    .turiquinhas > img { margin-top: 10px; }
+    table { margin-top: 50px !important; }
+    td { border: 0 !important; vertical-align: middle !important; }
+  </style>
+  <body style='display: none'>
+    <section class='slides layout-regular template-default'>
+
+      <article class="nobackground">
+        <h1>Python e Arduino</h1>
+        <br><br>
+        <div class="centered">
+          <img class="centered" src="images/logo_python.png" width="230">
+          <img class="centered" src="images/arduino-uno.png" width="340"
+          height="253">
+          <br><br>
+          <p class="centered huge"><strong>Álvaro Justen</strong> aka
+            <strong>Turicas</strong></p>
+          <p>
+            Dia-Debian 2012
+            <br>
+            Centro Universitário Geraldo Di Biase
+            <br>
+            16/08/2012
+          </p>
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <p class="centered middle-without-title ultra-huge">Obrigado!</p>
+      </article>
+
+      <article class="nobackground">
+        <p class="centered middle-without-title ultra-huge">Parabéns!</p>
+      </article>
+
+      <article class="nobackground">
+        <h1>Álvaro Justen, prazer!</h1>
+        <p class="centered big">
+          {<a href="http://twitter.com/turicas">twitter.com</a>,
+          <a href="http://github.com/turicas">github.com</a>,
+          <a href="http://youtube.com/turicas">youtube.com</a>
+          }/turicas
+          <br>
+          <a href="http://turicas.info/">turicas.info</a>
+          <br>
+          <a
+            href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a>
+          <br><br>
+          <a href="http://www.CursoDeArduino.com.br"><img src="images/logo_curso-de-arduino.png"
+            width="524" height="196"></a>
+            <br>
+          <a
+            href="http://www.CursoDeArduino.com.br">www.CursoDeArduino.com.br</a>
+          <br><br>
+          <a href="http://emap.fgv.br"><img src="images/logo_fgv.gif"
+            width="381" height="86"></a>
+            <br>
+          <a
+            href="http://emap.fgv.br">emap.fgv.br</a>
+        </p>
+      </article>
+
+      <article class="fill">
+        <img src="images/rio-de-janeiro.jpg" width="810" height="630">
+      </article>
+
+      <article class="nobackground">
+        <h1>As comunidades de software do Rio de Janeiro</h1>
+        <table class="centered">
+          <tr>
+            <td> <a href="http://pythonrio.org"><img
+                src="images/logo_pythonrio.png" width="200" height=""></a> </td>
+            <td> <a href="http://arduinrio.cc/"><img
+                src="images/logo_arduinrio.png" width="200" height=""></a> </td>
+            <tr>
+            </tr>
+            <td> <a href="http://dojorio.org/"><img
+                src="images/logo_dojorio.png" width="200" height=""></a> </td>
+            <td> <a href="http://softwarelivre-rj.org/"><img
+                src="images/logo_slrj.png" width="200" height=""></a> </td>
+            <tr>
+            </tr>
+            <td> <a href="http://horaextra.org/"><img
+                src="images/logo_horaextra.png" width="200" height=""></a> </td>
+            <td> <a href="http://smallactsmanifesto.org"><img
+                src="images/logo_small-acts.png" width="200" height=""></a> </td>
+          </tr>
+        </table>
+      </article>
+
+      <article class="nobackground">
+        <h1>E vocês?</h1>
+        <ul class="build huge">
+          <li>
+            Quem já sabe programar?
+            <ul class="build">
+              <li> Quais linguagens? </li>
+            </ul>
+          </li>
+          <li> Qual período? </li>
+          <li> Conhece Python? </li>
+          <li> Já trabalha/estagia com desenvolvimento de software? </li>
+          <li> Conhece <a href="http://arduino.cc/">Arduino</a>? </li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <p class="centered">
+          <img src="images/guido-van-rossum.png">
+          <br>
+          Guido Van Rossum
+        </p>
+      </article>
+
+      <article class="nobackground fill">
+        <img src="images/monty-python.png">
+      </article>
+
+      <article>
+        <h1>Python:</h1>
+        <ul class="build big">
+          <li> Criada por Guido van Rossum em <b>1.989</b> </li>
+          <li> Linguagem de <b>uso geral</b> </li>
+          <li> <b>Multiplataforma</b> </li>
+          <li> Interpretada, <b>VHLL</b> (<i>very high level language</i>) </li>
+          <li> Sintaxe <b>elegante, simples e clara</b> </li>
+          <li>
+            <b>Multiparadigma</b>:
+            <ul class="build">
+              <li> Orientada a objetos </li>
+              <li> Procedural </li>
+              <li> Funcional </li>
+            </ul>
+        </ul>
+      </article>
+
+      <article>
+        <h1>+ Python:</h1>
+        <ul class="build big">
+          <li> Tipagem <b>dinâmica</b> e <b>forte</b> </li>
+          <li> Estruturas de dados de <b>alto nível</b> </li>
+          <li> <b>Baterias</b> incluídas! </li>
+          <li> <b>Fácil</b> de aprender </li>
+          <li> Blocos de código são delimitados por <b>indentação</b>! (?) </li>
+          <li> Altamente <b>extensível</b> </li>
+          <li> Interpretadores são <b>software livre</b> </li>
+          <li> E muito mais... </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Livre? Como assim?</h1>
+        <ul class="big build">
+          <li>
+            As <b>4 liberdades</b>:
+            <ul class="build">
+              <li> 0: uso para qualquer <b>fim</b> </li>
+              <li> 1: estudar e modificar (requer <b>código-fonte</b>) </li>
+              <li> 2: <b>distribuir</b> livremente </li>
+              <li> 3: distribuir suas <b>modificações</b> </li>
+            </ul>
+          </li>
+          <li> Definição por <b>Richard M. Stallman</b> em 1.983 </li>
+          <li> <b>Inúmeros benefícios</b> para o software, desenvolvedores e usuários </li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <h1>Muito mais do que uma forma de fazer software...</h1>
+        <ul class="build huge">
+            <li> Aprendizado </li>
+            <li> Colaboração </li>
+            <li> Networking  </li>
+            <li> Mérito  </li>
+            <li> Melhorar a vida de todos  </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Voltando... Aplicações</h1>
+        <ul class="build big">
+          <li> Interfaces de linha de comando (CLI) </li>
+          <li> Interfaces gráficas do usuário (GUI) </li>
+          <li> Computação científica </li>
+          <li> Computação gráfica </li>
+          <li> Jogos </li>
+          <li> Web </li>
+          <li> Robótica </li>
+          <li> "glue-language" </li>
+          <li> <i>(coloque sua área aqui)</i> </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>No mundo real...</h1>
+          <h2>Quem usa?</h2>
+            <ul class="build">
+              <li> Google, Google App Engine </li>
+              <li> YouTube </li>
+              <li> NASA </li>
+              <li> Industrial Light &amp; Magic </li>
+              <li> Canonical </li>
+              <li> Fundação Getúlio Vargas </li>
+              <li> SERPRO </li>
+              <li> Globo.com </li>
+              <li> ... </li>
+            </ul>
+      </article>
+
+      <article class="nobackground fill">
+        <img src="images/google-1998.png">
+      </article>
+
+      <article>
+        <h1>No mundo real... [2]</h1>
+          <h2> Onde é usada? </h2>
+            <ul class="build">
+              <li> GIMP </li>
+              <li> Inkscape </li>
+              <li> Blender </li>
+              <li> Ubuntu </li>
+              <li> Frets on Fire </li>
+              <li> *.gov.br </li>
+              <li> ... </li>
+            </ul>
+      </article>
+
+      <article>
+        <h1> Onde roda? </h1>
+        <ul class="build big">
+          <li> GNU/Linux </li>
+          <li> Mac OS X </li>
+          <li> Outros Unix (BSD etc.) </li>
+          <li> Windows </li>
+          <li> Android (Linux) </li>
+          <li> Nokia S60 </li>
+          <li> Microcontroladores (PyMite) </li>
+          <li> ... </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1> Como instalar? </h1>
+        <ul class="build huge">
+          <li> GNU/Linux e Mac OS: <b>não precisa</b>! </li>
+          <li> Android: Scripting Layer for Android (<b>SL4A</b>) </li>
+          <li> Windows: <a href="http://www.python.org/">www.python.org</a> </li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <q>Talk is cheap, show me the code!</q>
+        <div class="author">Linus Torvalds</div>
+        <p class="centered">
+          <img src="images/linus-torvalds.jpg">
+        </p>
+      </article>
+
+      <article class="nobackground">
+        <h1>Tipos básicos</h1>
+<pre class="big">
+i = 42 # inteiro
+
+f = 3.14 # ponto flutuante
+
+c = 1.5 + 5.3j # complexo!
+
+s = "UFLA" # string
+
+t = (1, "python") # tupla
+
+l = [1, 2.3, "ab", [1, "b"]] # lista
+
+d = {'a': 1, 2: 'b',
+     (1, 2): [3, 4]} # dicionário
+</pre>
+      </article>
+
+      <article>
+        <h1>Nada de parênteses, nada de chaves!</h1>
+<pre class="big">
+if expressao1:
+    comando1
+    if expressao2:
+        comando2
+    elif expressao3:
+        comando3
+elif expressao4:
+    comando4
+else:
+    comando5
+</pre>
+      </article>
+
+      <article>
+        <h1> <i>Slices</i> em listas e strings </h1>
+<pre>
+lista = [1, 3, 4, 'UFLA', 'Python']
+print lista[1]
+print lista[1:4]
+
+for elemento in lista:
+    print elemento
+
+arquivo = 'nome.txt'
+print arquivo[-3:]
+print arquivo[5:]
+
+novo_arquivo = 'nome.do.arquivo.txt'
+print novo_arquivo.split('.')
+print novo_arquivo.split('.')[-1]
+extensao = 'nome.do.arquivo.py'.split('.')[-1]
+print extensao
+</pre>
+      </article>
+
+      <article>
+        <h1>Trabalhando com arquivos</h1>
+        <pre class="big">
+arquivo_1 = open('nome.txt')
+for linha in arquivo_1:
+    print linha
+arquivo_1.close()
+
+arquivo_2 = open('nome-2.txt', 'w')
+arquivo_2.write('Python rules!')
+arquivo_2.close()
+</pre>
+      </article>
+
+      <article>
+        <h1>Baterias incluídas!</h1>
+        <ul class="big">
+          <li> <code>sys</code>, <code>os</code>, <code>re</code>, <code>string</code>, <code>zlib</code> </li>
+          <li> <code>socket</code>, <code>urrlib</code>, <code>httplib</code>, <code>imaplib</code> </li>
+          <li> <code>time</code>, <code>datetime</code>, <code>math</code>, <code>random</code> </li>
+          <li> <code>doctest</code>, <code>unittest</code>, <code>xml</code>, <code>xmlrpclib</code> </li>
+          <li> <code>struct</code>, <code>pickle</code>, <code>cPickle</code>, <code>threading</code> </li>
+          <li> <code>logging</code>, <code>decimal</code> </li>
+          <li> E muito mais! </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Navegando com Python</h1>
+        <pre class="big">
+import urllib
+url = 'http://CursoDeArduino.com.br/'
+pagina = urllib.urlopen(url)
+print pagina.read()
+      </pre>
+      </article>
+
+      <article>
+        <h1>Python: Onde aprender?</h1>
+        <ul class="build big">
+          <li> <a href="http://docs.python.org/tutorial">docs.python.org/tutorial</a> </li>
+          <li> <a href="http://www.python.org.br/">www.python.org.br</a> </li>
+          <li> Google Python Class </li>
+          <li> Dive into Python </li>
+          <li> Lista Python-Brasil e listas locais </li>
+          <li> #python-br @ irc.freenode.net </li>
+          <li> <a href="http://www.PythOnCampus.org/">PythOnCampus.org</a> </li>
+          <li> <a
+              href="http://www.PythonBrasil.org.br/">PythonBrasil.org.br</a> </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Python: mercado</h1>
+        <ul class="build huge">
+          <li> Empresas querem <b>produtividade</b> </li>
+          <li> <b>Faltando</b> profissionais! </li>
+          <li> Faltando profissionais <b>qualificados</b> </li>
+          <li>
+            Diploma não é tudo
+            <ul class="build small">
+              <li> Conhecimento </li>
+              <li> Experiência </li>
+              <li> Mérito </li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <a href="http://2012.pythonbrasil.org.br/">
+          <img src="images/pythonbrasil.png" width="800" alt="Python Brasil 2012" />
+        </a>
+      </article>
+
+      <article class="nobackground">
+        <p class="centered ultra-mega-master-fucking-huge">?</p>
+      </article>
+
+      <article class="nobackground final">
+        <img width="897" height="430"
+        src="images/so-long-and-thanks-for-all-the-fish.png">
+          <p class="centered">
+            (volto mais tarde!)
+            <br>
+            {<a href="http://twitter.com/turicas">twitter.com</a>,
+            <a href="http://github.com/turicas">github.com</a>,
+            <a href="http://bitbucket.org/turicas">bitbucket.org</a>,
+            <a href="http://youtube.com/turicas">youtube.com</a>
+            }/turicas
+            <a href="http://turicas.info/">turicas.info</a>
+            <br>
+            <a
+              href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a>
+            <br>
+            <a
+              href="http://www.CursoDeArduino.com.br">www.CursoDeArduino.com.br</a>
+          </p>
+      </article>
+
+      <article class="nobackground">
+        <h1>Álvaro Justen, prazer!</h1>
+        <p class="centered big">
+          {<a href="http://twitter.com/turicas">twitter.com</a>,
+          <a href="http://github.com/turicas">github.com</a>,
+          <a href="http://youtube.com/turicas">youtube.com</a>
+          }/turicas
+          <br>
+          <a href="http://turicas.info/">turicas.info</a>
+          <br>
+          <a
+            href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a>
+          <br><br>
+          <a href="http://www.CursoDeArduino.com.br"><img src="images/logo_curso-de-arduino.png"
+            width="524" height="196"></a>
+            <br>
+          <a
+            href="http://www.CursoDeArduino.com.br">www.CursoDeArduino.com.br</a>
+          <br><br>
+          <a href="http://emap.fgv.br"><img src="images/logo_fgv.gif"
+            width="381" height="86"></a>
+            <br>
+          <a
+            href="http://emap.fgv.br">emap.fgv.br</a>
+        </p>
+      </article>
+
+
+      <article class="nobackground fill">
+        <h1 class="white">Arduino!</h1>
+        <img src="images/arduino-uno.jpg">
+        <h2 class="white">Um "nano"-computador</h2>
+      </article>
+
+      <article>
+        <h1>Especificações técnicas</h1>
+        <ul class="huge build">
+          <li> 16MHz </li>
+          <li> 32kB de memória flash </li>
+          <li> 2kB de memória RAM </li>
+          <li> 1kB de memória EEPROM </li>
+        </ul>
+      </article>
+
+      <article class="nobackground fill">
+        <h1>Liberdade! \o/</h1>
+        <img src="images/freedom.png">
+      </article>
+
+      <article class="nobackground">
+        <h1>Vários tipos de Arduino...</h1>
+        <div class="centered">
+          <img src="images/arduino-mega.png" width="480" height="250">
+          <br>
+          <table>
+            <tr>
+              <td>
+                <img src="images/arduino-nano.png" width="231" height="300">
+              </td>
+              <td>
+                <img src="images/arduino-lilypad.png" width="200" height="200">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <q>Talk is cheap, show me the code!</q>
+        <div class="author">Linus Torvalds</div>
+        <p class="centered">
+          <img src="images/linus-torvalds.jpg">
+        </p>
+      </article>
+
+      <article>
+        <h1>Python e Arduino!</h1>
+        <br>
+        <h2>Como?</h2>
+        <ul class="build">
+          <li> Python <u>no</u> Arduino
+            <ul>
+              <li> <code><a
+                    href="http://code.google.com/p/python-on-a-chip/">PyMite</a></code> </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Comunicação entre Arduino e Python</strong>
+            <ul class="build">
+              <li> <strong>USB</strong>: <code><a
+                    href="http://pyserial.sourceforge.net/">PySerial</a></code> </li>
+              <li> <strong>Bluetooth</strong>: <code><a href="http://code.google.com/p/pybluez/">pybluez</a></code> </li>
+              <li>
+                Ethernet, Wi-Fi (utilizando HTTP ou outro protocolo)
+                <ul>
+                  <li> Python como cliente </li>
+                  <li> Python como servidor </li>
+                  <li> Híbrido (NAT, processamento de dados etc.) </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <ul class="centered without-bullets">
+          <li>
+            <img src="images/logo_pyserial.png" width="412" height="224">
+            <br>
+            <a
+              href="http://pyserial.sourceforge.net/">pyserial.sourceforge.net</a>
+          </li>
+          <ul class="build centered without-bullets">
+            <li>
+              <br>
+              <q class="small">Talk is cheap, show me the code!</q>
+              <img class="right" src="images/linus-torvalds.jpg" width="210"
+                  height="220">
+            </li>
+          </ul>
+      </article>
+
+      <article class="nobackground">
+        <h1>Controlar LED com Python</h1>
+        <h2>Código Arduino</h2>
+        <pre>#define LED 13
+
+void setup() {
+    pinMode(LED, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop() {
+    if (Serial.available()) {
+        char c = Serial.read();
+        if (c == 'H') {
+            digitalWrite(LED, HIGH);
+        }
+        else if (c == 'L') {
+            digitalWrite(LED, LOW);
+        }
+    }
+}</pre>
+      </article>
+
+      <article class="nobackground">
+        <h1>Controlar LED com Python</h1>
+        <h2>Código Python</h2>
+        <pre>#!/usr/bin/env python
+
+import serial
+import time
+
+# /dev/ttyACM0 = Arduino Uno on Linux
+arduino = serial.Serial('/dev/ttyACM0', 9600)
+time.sleep(2) #waiting the initialization...
+
+arduino.write('H') #turns LED *on*
+time.sleep(3) #zzz
+
+arduino.write('L') #turns LED *off*
+time.sleep(3) #zzz
+
+arduino.close() #let's say goodbye</pre>
+      </article>
+
+      <article class="fill">
+        <h1 class="white">Projeto: Semáforo Coding Dojo Rio</h1>
+        <img src="images/traffic-light-red.png" width="810" height="630">
+      </article>
+
+      <article class="fill">
+        <img src="images/traffic-light-green.png" width="810"
+        height="630">
+      </article>
+
+      <article class="nobackground centered dojo">
+        <h1>Coding Dojo na Globo.com</h1>
+        <img src="images/traffic-light-in-use.png"
+        width="900" height="464">
+        <br>
+        <a class="huge" href="http://justen.eng.br/semaforo">justen.eng.br/semaforo</a>
+      </article>
+
+      <article class="centered nobackground turiquinhas">
+        <h1>Projeto: Turiquinhas 2.0</h1>
+        <img src="images/turiquinhas-v2.png">
+        <br>
+        <a class="huge"
+          href="http://justen.eng.br/turiquinhas">justen.eng.br/turiquinhas</a>
+      </article>
+
+      <article class="centered">
+        <h1>pybluez</h1>
+        <img class="middle-with-title" src="images/arduino-bluetooth-shield.png">
+      </article>
+
+      <article class="fill">
+        <h1 class="white">Projeto: Guitarrino</h1>
+        <img src="images/guitarrino-playing.jpg" width="810" height="630">
+      </article>
+
+      <article class="fill">
+        <h1 class="white">Arduino Ethernet Shield</h1>
+        <img src="images/arduino-with-ethernet-shield.jpg" width="810"
+        height="630">
+      </article>
+
+      <article>
+        <h1>Projeto: droiduino</h1>
+        <p class="centered huge">
+          <br><br>
+          <b>Automação</b> residencial
+          <br>
+          através da <b>Internet</b>
+          <br>
+          <b>Python</b> + <b>Android</b> + <b>Arduino</b>
+          <br>
+          <br>
+          <a
+            href="http://github.com/turicas/tweetlamp">github.com/turicas/droiduino</a>
+          <br>
+        </p>
+      </article>
+
+      <article class="fill">
+        <h1 class="white">Projeto: Tweetlamp</h1>
+        <img src="images/tweetlamp.png" width="810" height="630">
+        <br>
+        &nbsp;&nbsp;
+        <a class="white huge"
+          href="http://github.com/turicas/tweetlamp">github.com/turicas/tweetlamp</a>
+      </article>
+
+      <article>
+        <h1>Outros Projetos - Sem Python</h1>
+        <ul class="build huge">
+          <li> Tomada Bluetooth </li>
+          <li> Luminária RGB </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Luminária RGB</h1>
+        <br>
+        <br>
+        <video controls="controls" width="770" preload="auto">
+        <source src="media/luminaria-rgb.ogg" type="video/ogg" />
+        Your browser does not support HTML5 videos.
+        </video>
+        <br>
+        <a href="http://github.com/turicas/luminaria-rgb">github.com/turicas/luminaria-rgb</a>
+      </article>
+
+      <article class="fill nobackground">
+        <img src="images/curso-lampada-ac.jpg" alt="Lâmpada AC controlada
+        pelo Arduino - experimento desenvolvido por alunos do Curso de Arduino">
+      </article>
+
+      <article class="fill nobackground">
+        <img src="images/kit.png" alt="Kit do Curso de Arduino">
+      </article>
+
+      <article class="fill nobackground">
+        <img src="images/curso-ferramentas.jpg" alt="Algumas das
+        ferramentas utilizadas durante o Curso de Arduino">
+      </article>
+
+      <article class="nobackground final">
+        <h1>Se interessou?</h1>
+        <h2>Em breve uma turma <i>online</i>!</h2>
+        <p align="center">
+          <a href="http://www.CursoDeArduino.com.br"><img src="images/logo_curso-de-arduino.png"
+            width="655" height="245"></a>
+          <br><br><br><br>
+          <a class="huge"
+            href="http://www.CursoDeArduino.com.br/pesquisa">CursoDeArduino.com.br/pesquisa</a>
+          <br><br>
+        </p>
+      </article>
+
+      <article class="nobackground">
+        <a href="http://2012.pythonbrasil.org.br/">
+          <img src="images/pythonbrasil.png" width="800" alt="Python Brasil 2012" />
+        </a>
+      </article>
+
+      <article class="nobackground">
+        <p class="ultra-mega-master-huge" style="text-align: right"><br>Dicas</p>
+      </article>
+
+      <article>
+        <h1>Eu - História...</h1>
+        <ul class="build">
+            <li> Programo desde os 14 anos </li>
+            <li> Utilizo, desenvolvo e divulgo software livre desde os 16 </li>
+            <li>
+              01/2005: <a href="http://www.telecom.uff.br/">Engª de Telecomunicações</a> @ <a href="http://www.uff.br/">UFF</a>
+              <ul class="build">
+                <li> Monitor da <a href="http://www.casadadescoberta.uff.br/">Casa da Descoberta</a> </li>
+                <li> Bolsista do Programa de Educação Tutorial/MEC (<a href="http://www.telecom.uff.br/pet">PET-Tele</a>) </li>
+                <li> Idealizador e organizador da <a
+                href="http://www.telecom.uff.br/setel">SeTel 2007</a> </li>
+                <li> <i>Trainee</i> da empresa júnior <a
+                href="http://metaconsultoria.com">Meta Consultoria</a> </li>
+                <li> Aluno de iniciação científica no grupo de <a
+                href="http://complex.if.uff.br/">Sistemas
+                Complexos do Instituto de Física</a> </li>
+              </ul>
+            </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Eu - História... (2)</h1>
+        <ul class="build">
+            <li> ...UFF:
+              <ul class="build">
+                <li> Bolsista de projeto de pesquisa em redes sem fio,
+                laboratório <a href="http://midiacom.uff.br">MídiaCom</a> </li>
+              </ul>
+            </li>
+            <li> 2009: primeira empresa - <a href="http://www.peta5.com.br/">Peta5</a> </li>
+            <li> 2010-2011: desenvolvedor de software da <a
+            href="http://www.intelie.com.br/">Intelie</a> </li>
+            <li> 2011-hoje: <a href="http://www.cursodearduino.com.br/">Curso de Arduino</a> </li>
+            <li> Final de 2011-hoje: desenvolvedor de software na
+            <a href="http://emap.fgv.br/">EMAp/FGV</a> </li>
+            <li> 01/2012: Computação - <a href="http://www.cederj.edu.br/">CEDERJ</a>/UFF </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Dicas</h1>
+        <ul class="build big">
+          <li> Mercado? Seja um <b>bom profissional</b>! </li>
+          <li> Ganhe <b>experiência</b>! Como? </li>
+          <li> Use <b>software livre</b> </li>
+          <li> <b>Contribua</b> com softwares livres </li>
+          <li> Utilize <b>DVCS</b>: Git, Mercurial, Bazaar </li>
+          <li> Utilize <b>Test-driven development</b> (TDD) </li>
+          <li> Participe de <b>Coding Dojos</b> </li>
+          <li> Organize uma <b><a
+                href="http://www.pythoncampus.org/">PythOnCampus</a></b> </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>+ Dicas</h1>
+        <ul class="build big">
+          <li>
+            Participe de <b>muitos eventos</b>
+            <ul class="build">
+              <li> Caravanas! \o/ </li>
+            </ul>
+          </li>
+          <li> Escreva software para <b>ser lido por humanos</b>,
+            não por máquinas (<i>make it work, make it beautiful,
+              refactor</i>)
+          </li>
+          <li> Seja <b>autodidata</b> e <b>pró-ativo</b> </li>
+          <li> Viva em <b>grupo</b> </li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <p class="centered ultra-mega-master-fucking-huge">?</p>
+      </article>
+
+      <article class="nobackground final">
+        <img width="897" height="430"
+        src="images/so-long-and-thanks-for-all-the-fish.png">
+          <p class="centered">
+            {<a href="http://twitter.com/turicas">twitter.com</a>,
+            <a href="http://github.com/turicas">github.com</a>,
+            <a href="http://bitbucket.org/turicas">bitbucket.org</a>,
+            <a href="http://youtube.com/turicas">youtube.com</a>
+            }/turicas
+            <a href="http://turicas.info/">turicas.info</a>
+            <br>
+            <a
+              href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a>
+            <br>
+            <a
+              href="http://www.CursoDeArduino.com.br">www.CursoDeArduino.com.br</a>
+          </p>
+      </article>
+
+    </section>
+  </body>
+</html>
