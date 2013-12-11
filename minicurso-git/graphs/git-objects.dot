@@ -1,0 +1,9 @@
+digraph G {
+    rankdir="TB"
+    dpi=180
+
+    "Git Objects" -> "blob"
+    "Git Objects" -> "tree"
+    "Git Objects" -> "commit"
+    "Git Objects" -> "tag"
+}

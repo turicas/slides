@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<!--
+Google HTML5 slide template
+
+Authors: Luke Mahé (code)
+Marcin Wichary (code and design)
+
+Dominic Mazzoni (browser compatibility)
+Charles Chen (ChromeVox support)
+
+URL: http://code.google.com/p/html5slides/
+-->
+<html>
+  <head>
+    <title>Sistemas de versionamento de código e Git, com Álvaro Justen</title>
+    <meta charset='utf-8'>
+    <script src="media/scripts/slides.js" type="text/javascript"></script>
+  </head>
+
+  <style>
+    * { text-shadow: rgba(0, 0, 0, 0.2) 0 4px 5px; }
+    h1 { margin-top: 0px !important; }
+    h2 { position: static !important; }
+    .centered {
+      text-align: center !important;
+    }
+    img.centered { display: inline-block !important; margin: 0 !important; }
+    .hundred { font-size: 90%; line-height: 110%; }
+    .big { font-size: 120%; line-height: 110%; }
+    .huge { font-size: 150%; line-height: 115%; }
+    .super-huge { font-size: 200%; line-height: 120%; }
+    .ultra-huge { font-size: 400%; line-height: 120%; }
+    .ultra-mega-master-huge { font-size: 800%; line-height: 120%; }
+    .ultra-mega-master-fucking-huge { font-size: 1600%; line-height: 120%; }
+    .red-background { background-color: #FF0000 !important; }
+    .white { color: #FFFFFF !important; }
+    .middle-without-title { margin-top: 30% !important; }
+    .middle-with-title { margin-top: 15% !important; }
+    q, .author { margin: 0 !important; }
+    pre { margin-top: 20px !important; padding: 5px 10px !important; }
+    .right { position: absolute; right: 0; bottom: 0;
+      border-bottom-right-radius: 20px; }
+    .without-bullets > li::before { content: '' !important; }
+    .dojo > img { position: absolute; right: 0; margin-top: 30px; }
+    .dojo > a { position: absolute; bottom: 25px; font-size: 200%;
+      margin-left: 80px; }
+    .final > img { position: absolute; right: 0; top: 0;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px; }
+    .final > p { position: absolute; left: 0; bottom: 60px; width: 900px; }
+    .turiquinhas > img { margin-top: 10px; }
+    table { margin-top: 50px !important; }
+    td { border: 0 !important; vertical-align: middle !important; }
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular template-default'>
+
+      <article class="nobackground">
+        <h1 class="super-huge">Sistemas de versionamento de código e Git</h1>
+        <div class="centered">
+          <br>
+          <img class="centered" src="media/images/logo_git.png" width="350">
+          <p class="centered huge">
+            <strong>Álvaro Justen</strong>
+            <br>
+            aka
+            <br>
+            <strong>Turicas</strong>
+          </p>
+          <p>
+            Fundação Getúlio Vargas
+            <br>
+            Rio de Janeiro/RJ
+            <br>
+            08 de dezembro de 2011
+          </p>
+        </div>
+      </article>
+
+      <article class="nobackground">
+        <h1>Álvaro Justen, prazer!</h1>
+        <p class="centered big">
+          <br><br>
+          {<a href="https://twitter.com/turicas">twitter</a>,
+           <a href="http://youtube.com/turicas">youtube</a>,
+           <a
+             href="https://github.com/turicas">github</a>}.com/<b>turicas</b>
+          <br>
+          <a href="http://turicas.info/">turicas.info</a>
+          <br>
+          <a
+            href="mailto:alvarojusten@gmail.com">alvarojusten@gmail.com</a>
+          <br><br><br><br>
+          <a href="http://emap.fgv.br"><img src="media/images/logo_fgv.gif"
+            width="450"></a>
+          <br>
+          <a
+            href="http://emap.fgv.br">emap.fgv.br</a>
+        </p>
+      </article>
+
+      <article class="nobackground">
+        <h1>E vocês?</h1>
+        <ul class="build huge">
+          <li> Quem desenvolve software no dia-a-dia? </li>
+          <li> Quem escreve artigos com razoável frequência? </li>
+          <li>
+            Quem já conhece e usa algum VCS?
+            <ul><li>Quais?</li></ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Por que utilizar Sistemas de Controle de Versão?</h1>
+        <ul class="build huge">
+          <li>Fazer <b><i>rollbacks</i></b> facilmente</li>
+          <li>Manter <b>histórico</b> de desenvolvimento</li>
+          <li>Facilitar processo de <b>colaboração</b></li>
+          <li>Controle de <b>diferentes versões</b> do mesmo software</li>
+          <li><b>Qualidade</b></li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>VCSs: alguns exemplos</h1>
+        <ul class="build big">
+          <li>
+            <b>Centralizados:</b>
+            <ul>
+              <li>CVS</li>
+              <li>Subversion (aka SVN)</li>
+              <li>Clearcase (privativo)</li>
+              <li>Perforce (privativo)</li>
+            </ul>
+          </li>
+          <li>
+            <b>Distribuídos:</b>
+            <ul>
+              <li>Git</li>
+              <li>Mercurial</li>
+              <li>Bazaar</li>
+              <li>BitKeeper (privativo)</li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1><u>Centralizados</u> <i>versus</i> Distribuídos</h1>
+        <p class="centered">
+          <img src="media/images/flow-CVCS.png" height="500">
+        </p>
+      </article>
+
+      <article>
+        <h1>Centralizados <i>versus</i> <u>Distribuídos</u></h1>
+        <p class="centered">
+          <img src="media/images/flow-DVCS.png" height="500">
+        </p>
+      </article>
+
+      <article>
+        <h1>Diferenças</h1>
+        <ul class="build big">
+          <li>
+            <b>Centralizados:</b>
+            <ul>
+              <li>Um <b>repositório central</b></li>
+              <li>Um <b>diretório de trabalho</b> por colaborador</li>
+              <li>Commits <b>necessitam de rede</b></li>
+            </ul>
+          </li>
+          <li>
+            <b>Distribuídos:</b>
+            <ul>
+              <li>
+                Um <b>clone</b> por colaborador
+                <ul>
+                  <li>Repositório + diretório de trabalho</li>
+                </ul>
+              </li>
+              <li>Commits <b>locais</b></li>
+              <li><b>Sincronização</b> entre repositórios (push/pull)</li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article class="nobackground">
+        <q>Git, the information manager from hell.</q>
+        <div class="author">Linus Torvalds</div>
+        <p class="centered">
+          <img src="media/images/linus-torvalds.jpg">
+        </p>
+      </article>
+
+      <article>
+        <h1>Git:</h1>
+        <ul class="build big">
+          <li>
+            Criado por Linus Torvalds em <b>7 abril de 2005</b>
+          </li>
+          <li>
+            Mantido por <a href="http://github.com/gitster">Junio Harmano
+              aka gitster</a> (Google) desde 26/07/2005
+          </li>
+          <li> <b>Distribuído</b> (e desconectado) </li>
+          <li> <b>Multiplataforma</b> </li>
+          <li> <b>Rápido</b>, <b>eficiente</b> e <b>poderoso</b> </li>
+          <li> <b>Software livre</b> (GPL 2) </li>
+          <li> Facilita <b>merges</b> </li>
+          <li> Baseado em <b>conteúdo</b>, não em arquivos </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Git: curiosidades</h1>
+        <ul class="build super-huge">
+          <li>Repositório do git em git <b>em 4 dias</b></li>
+          <li>
+            Em <b>16 de abril de 2005</b> já estava versionando o
+            Linux-2.6.12-rc2
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h1> Como instalar? </h1>
+        <ul class="build huge">
+          <li>
+            Debian e derivados (como Ubuntu):
+            <pre class="hundred">aptitude install git-core</pre>
+            <ul class="build">
+              <li>
+                Dica para Ubuntu:
+                <pre class="hundred">sudo apt-get install aptitude</pre>
+                </li>
+              </ul>
+              <li>
+                Mac OS X e Windows: <a href="http://git-scm.com">git-scm.com</a>
+              </li>
+            </ul>
+          </article>
+
+          <article class="nobackground">
+            <p class="centered middle-without-title ultra-huge"><i>Handson!</i></p>
+          </article>
+
+          <article>
+            <h1>Primeiro commit -> CLI</h1>
+            <pre>
+git clone emap@10.244.3.243:repo.git
+git config --global user.name "Álvaro Justen"
+git config --global user.email "alvarojusten@gmail.com"
+# hack hack hack
+git add arquivo
+git commit -m 'Meu primeiro commit'</pre>
+            </article>
+
+            <article>
+              <h1>#top12</h1>
+              <table class="huge">
+                <tr>
+                  <td>
+                    <ul>
+                      <li> git clone </li>
+                      <li> git status </li>
+                      <li> git add </li>
+                      <li> git commit </li>
+                      <li> git log </li>
+                      <li> git branch </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                      <li> git pull </li>
+                      <li> git diff </li>
+                      <li> git fetch </li>
+                      <li> git push </li>
+                      <li> git checkout </li>
+                      <li> git merge </li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </article>
+
+            <article>
+              <h1>Working directory + staging area</h1>
+              <p align="center">
+                <br>
+                <img src="media/images/flow.png" width="700">
+              </p>
+            </article>
+
+            <article>
+              <h1>Repositório == DAG</h1>
+              <h2>Commits com SHA1</h2>
+              <p align="center">
+                <br><br>
+                <img src="media/images/repo-0.png">
+              </p>
+            </article>
+
+            <article>
+              <h1>master branch</h1>
+              <p align="center">
+                <br><br>
+                <img src="media/images/repo-1.png">
+              </p>
+            </article>
+
+            <article>
+              <h1>Vários branches</h1>
+              <p align="center">
+                <br><br>
+                <img src="media/images/repo-2.png">
+              </p>
+            </article>
+
+            <article>
+              <h1>git merge</h1>
+              <h2>fast-forward, octopus, merge-through-rename</h2>
+              <p align="center">
+                <img src="media/images/repo-3.png">
+              </p>
+            </article>
+
+            <article class="nobackground">
+              <q>
+                I merge 22,000 files several times a day, and I get unhappy if a
+                merge takes more than 5 seconds
+              </q>
+              <div class="author">Linus Torvalds</div>
+              <p class="centered">
+                <img src="media/images/linus-torvalds.jpg">
+              </p>
+            </article>
+
+            <article>
+              <h1>HEAD</h1>
+              <p align="center">
+                <img src="media/images/repo-4.png">
+              </p>
+            </article>
+
+            <article>
+              <h1>git tag</h1>
+              <p align="center">
+                <img src="media/images/repo-5.png">
+              </p>
+            </article>
+
+            <article>
+              <h1>git remote</h1>
+              <p align="center">
+                <img src="media/images/repo-6.png">
+              </p>
+            </article>
+
+            <article>
+              <h1> git checkout <i>versus</i> git reset </h1>
+              <p class="centered">
+                <br><br><br><br>
+                <img src="media/images/checkout-vs-reset.png">
+              </p>
+            </article>
+
+            <article>
+              <h1> git checkout devel </h1>
+              <p class="centered">
+                <br><br><br><br>
+                <img src="media/images/git-checkout.png">
+              </p>
+            </article>
+
+            <article>
+              <h1> git reset devel </h1>
+              <p class="centered">
+                <br><br><br><br>
+                <img src="media/images/git-reset.png">
+              </p>
+            </article>
+
+            <article>
+              <h1>Git objects</h1>
+              <p align="center">
+                <br><br>
+                <br><br>
+                <img src="media/images/git-objects.png" width="700">
+              </p>
+            </article>
+
+            <article>
+              <h1>Git objects (2)</h1>
+              <p align="center">
+                <img src="media/images/objects-example.png" width="700">
+              </p>
+            </article>
+
+            <article>
+              <h1>Git objects (3)</h1>
+              <p align="center">
+                <br><br>
+                <br><br>
+                <img src="media/images/object-tag.png">
+              </p>
+            </article>
+
+            <article>
+              <h1>Dica: Workflow</h1>
+              <p class="centered">
+                <img src="media/images/gitflow.png" height="500">
+                <br>
+                <a
+                  href="http://nvie.com/posts/a-successful-git-branching-model/">git
+                  workflow</a>
+                e
+                <a href="https://github.com/nvie/gitflow">gitflow</a>
+              </p>
+            </article>
+
+            <article>
+              <h1>Dica: pequenos commits</h1>
+              <ul class="build huge">
+                <li> Commits grandes + DVCS == <i>nonsense</i> </li>
+                <li>
+                  <b>Facilita demais:</b>
+                  <ul class="build">
+                    <li> Merges </li>
+                    <li> Isolamento de problemas </li>
+                    <li> Code reviews </li>
+                  </ul>
+                </li>
+                <li> <i>stage area </i> pode ajudar </li>
+              </ul>
+            </article>
+
+            <article>
+              <h1>Onde Hospedar Repositórios Git</h1>
+              <ul class="build huge">
+                <li> <a href="http://github.com/">GitHub</a> - social coding </li>
+                <li> <a href="http://code.google.com/">Google Code</a> </li>
+                <li> <a href="http://bitbucket.org/">BitBucket</a> </li>
+                <li> <a href="http://gitorious.org/">Gitorious</a> ("GitHub livre") </li>
+                <li> <a href="http://savannah.gnu.org/">GNU Savannah</a> </li>
+                <li> <a href="http://www.sf.net/">SourceForge</a> </li>
+                <li> <b>Redmine EMAp</b> </li>
+              </ul>
+            </article>
+
+            <article>
+              <h1>Referências</h1>
+              <ul class="build big">
+                <li> <a href="http://git-scm.com/">git-scm.com</a> </li>
+                <li> <a href="http://gitref.org/">gitref.org</a> </li>
+                <li> <a href="http://progit.org">progit.org</a> </li>
+                <li> <a
+                    href="http://www-cs-students.stanford.edu/~blynn/gitmagic/">Git
+                    Magic</a> </li>
+                <li>
+                  <a href="http://www.youtube.com/watch?v=4XpnKHJAok8">Linus Torvalds
+                    on Git</a>
+                </li>
+                <li>
+                  <a href="http://www.youtube.com/watch?v=8dhZ9BXQgc4">Git - Randal
+                    Schwartz</a>
+                </li>
+                <li>
+                  <a href="http://sitaramc.github.com/gcs">Git for Computer
+                    Scientists</a>, por Sitaram Chamarty
+                </li>
+                <li>
+                  <a href="http://whygitisbetterthanx.com/">Why Git is better
+                    than X</a>
+                </li>
+                <li> #git @ irc.freenode.net </li>
+              </ul>
+            </article>
+
+            <article class="nobackground">
+              <p class="centered ultra-mega-master-fucking-huge">?</p>
+            </article>
+
+            <article class="nobackground">
+              <h1>So long and thanks for all the fish</h1>
+              <p class="centered huge">
+                <br><br>
+                {<a href="https://twitter.com/turicas">twitter</a>,
+                 <a href="http://youtube.com/turicas">youtube</a>,
+                 <a
+                   href="https://github.com/turicas">github</a>}.com/<b>turicas</b>
+                <br>
+                <a href="http://turicas.info/">turicas.info</a>
+                <br>
+                <a
+                  href="mailto:alvarojusten@gmail.com">alvarojusten@gmail.com</a>
+                <br>
+              </p>
+            </article>
+
+          </section>
+        </body>
+      </html>
