@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Git, gitflow e GitHub</title>
+
+    <meta name="description" content="Git, gitflow e GitHub">
+    <meta name="author" content="Álvaro Justen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      .reveal li {
+        font-size: 1.5em;
+        line-height: 1em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+      <section data-markdown>
+        ## Git, gitflow e GitHub
+
+        ![logo git](images/logo_git.png)
+
+        Turicas aka Álvaro Justen
+      </section>
+
+      <section class="fragments" data-markdown>
+        # Por quê?
+
+        - Manter **histórico** de desenvolvimento
+        - Facilitar **colaboração**
+        - Controle de **diferentes versões**
+        - Adicionar **qualidade** ao processo de desenvolvimento
+      </section>
+
+      <section class="fragments" data-markdown>
+        # VCS Centralizados
+
+        - CVS
+        - Subversion (aka SVN)
+        - Clearcase (privativo)
+        - Perforce (privativo)
+      </section>
+
+      <section class="fragments" data-markdown>
+        # VCS Distribuídos
+
+        - Git
+        - Mercurial
+        - Bazaar
+        - BitKeeper (privativo)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Centralizados
+
+        ![Centralizados](images/flow-CVCS.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Distribuídos
+
+        ![Centralizados](images/flow-DVCS.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        # Centralizados
+          - Um **repositório central**
+          - Um **diretório de trabalho** por colaborador
+          - Commits **necessitam de rede**
+      </section>
+
+      <section class="fragments" data-markdown>
+        # Distribuídos
+          - Um **clone** por colaborador (repo + working dir)
+          - Commits **locais**
+          - **Sincronização** entre repositórios (push/pull)
+      </section>
+
+      <section class="fragments">
+        <q>Git, the information manager from hell.</q>
+        <div class="author">Linus Torvalds</div>
+        <p class="centered">
+          <img src="images/linus-torvalds.jpg">
+        </p>
+      </section>
+
+      <section class="fragments">
+        <h1>Git:</h1>
+        <ul class="build big">
+          <li>
+            Criado por Linus Torvalds em <b>7 abril de 2005</b>
+          </li>
+          <li>
+            Mantido por <a href="http://github.com/gitster">Junio Harmano
+              aka gitster</a> (Google) desde 26/07/2005
+          </li>
+          <li> <b>Distribuído</b> (e desconectado) </li>
+          <li> <b>Multiplataforma</b> </li>
+          <li> <b>Rápido</b>, <b>eficiente</b> e <b>poderoso</b> </li>
+          <li> <b>Software livre</b> (GPL 2) </li>
+          <li> Facilita <b>merges</b> </li>
+          <li> Baseado em <b>conteúdo</b>, não em arquivos </li>
+        </ul>
+      </section>
+
+      <section class="fragments">
+        <h1>Git: curiosidades</h1>
+        <ul class="build super-huge">
+          <li>Repositório do git em git <b>em 4 dias</b></li>
+          <li>
+            Em <b>16 de abril de 2005</b> já estava versionando o
+            Linux-2.6.12-rc2
+          </li>
+        </ul>
+      </section>
+
+      <section class="fragments" data-markdown>
+        # Como instalar?
+
+        - [git-scm.com](http://git-scm.com)
+        - `apt-get install git`
+      </section>
+
+      <section class="fragments">
+            <h1>Primeiro commit</h1>
+<pre><code># Configuração inicial
+git config --global user.name "Álvaro Justen"
+git config --global user.email "alvarojusten@gmail.com"
+
+# Clone do repositório
+git clone https://github.com/trendmicro/aleph.git
+
+# hack hack hack
+git add arquivo
+git commit -m 'Meu primeiro commit'
+</code></pre>
+      </section>
+
+      <section class="fragments" data-markdown>
+        # top12 (parte 1)
+          - git clone
+          - git status
+          - git add
+          - git commit
+          - git log
+          - git branch
+      </section>
+
+      <section class="fragments" data-markdown>
+        # top12 (parte 2)
+          - git pull
+          - git diff
+          - git fetch
+          - git push
+          - git checkout
+          - git merge
+        </section>
+
+      <section class="fragments" data-markdown>
+        ## Git Objects
+
+        ![git objects](images/git-objects.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Git Objects (2)
+
+        ![objects example](images/objects-example.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Git Objects (3)
+
+        ![object tag](images/object-tag.png)
+      </section>
+
+      <section class="fragments">
+        <img src="images/flow.png" width="80%">
+        <br />
+        Working directory + staging area
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Repositório = Directed Acyclic Graph
+
+        ![repo = dag](images/repo-0.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## master branch
+
+        ![master branch](images/repo-1.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Vários branches
+
+        ![Vários branches](images/repo-2.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `git merge`
+
+        ![git merge](images/repo-3.png)
+      </section>
+
+      <section class="fragments">
+        <q>
+          I merge 22,000 files several times a day, and I get unhappy if a
+          merge takes more than 5 seconds
+        </q>
+        <div class="author">Linus Torvalds</div>
+        <p class="centered">
+          <img src="images/linus-torvalds.jpg">
+        </p>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `HEAD`
+
+        ![HEAD](images/repo-4.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `git tag`
+
+        ![git tag](images/repo-5.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `git remote`
+
+        ![git remote](images/repo-6.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `git checkout` vs `git reset`
+
+        ![git checkout vs reset](images/checkout-vs-reset.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `git checkout devel`
+
+        ![git checkout](images/git-checkout.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `git reset devel`
+
+        ![git reset](images/git-reset.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Workflow
+
+        [a successful git branching model](http://nvie.com/posts/a-successful-git-branching-model)
+        ![git flow](images/gitflow.png)
+
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Dica: pequenos commits
+
+        - Commits grandes + DVCS = nonsense
+        - Facilita merges
+        - Isolamento de problemas
+        - Code reviews mais didáticos
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Referências
+
+        - [git-scm.com](http://git-scm.com/">git-scm.com)
+        - [gitref.org](http://gitref.org)
+        - [progit.org](http://progit.org)
+        - [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/)
+        - [Linus Torvalds on Git](http://www.youtube.com/watch?v=4XpnKHJAok8)
+        - [Git for Computer Scientists](http://gitolite.com/gcs.html)
+        - [Why Git is better than X](http://whygitisbetterthanx.com/)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## [GitHub.com](http://github.com/)
+
+        - Maior site de software livre do mundo
+        - "Social coding"
+        - Interface amigável
+        - Forks
+        - Pull requests
+        - [GitHub Pages](http://pages.github.com)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Links interessantes
+
+        - [Markdown syntax](http://daringfireball.net/projects/markdown/syntax)
+        - [GitHub-flavored markdown](https://help.github.com/articles/github-flavored-markdown/)
+        - [Semantic Versioning](http://semver.org/)
+        - [How to write commit messages](http://chris.beams.io/posts/git-commit/)
+      </section>
+
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>

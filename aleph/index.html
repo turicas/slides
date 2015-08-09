@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Contribuindo com o Aleph</title>
+
+    <meta name="description" content="Contribuindo com o Aleph">
+    <meta name="author" content="Álvaro Justen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      .reveal li {
+        font-size: 1.5em;
+        line-height: 1em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h1><a href="https://github.com/trendmicro/aleph/">Aleph</a></h1>
+          <h3>Contribuindo com software livre em Python através do GitHub</h3>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="https://github.com/trendmicro/">TrendMicro</a> - São Paulo/SP</h4>
+          <h4>6 e 7 de junho de 2015</h4>
+        </section>
+
+        <section>
+          <h2>Turicas, prazer! =)</h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter.com</a>,
+            <a href="https://github.com/turicas">github.com</a>,
+            <a href="https://youtube.com/turicas">youtube.com</a>,
+            <a href="http://slideshare.net/turicas">slideshare.net</a>}/<b>turicas</b>
+          </h3>
+          <h3><a
+              href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+          <p>
+            <a href="http://www.CursoDeArduino.com.br/">
+              <img width="400" src="images/logo_curso-de-arduino.png">
+            </a>
+          </p>
+
+          <p>
+            <a href="http://www.onyo.com/">
+              <img width="350" src="images/logo_onyo.png">
+            </a>
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide" class="fragments">
+          <h1> <b>Vocês?</b> </h1>
+          <ul>
+            <li> Python </li>
+            <li> Git e GitHub </li>
+            <li> eXtreme Programming </li>
+          </ul>
+        </section>
+
+        <section data-markdown>
+        # Objetivo
+
+        ## Aprender a melhor forma de colaborar com um software livre escrito em Python através do GitHub.
+        </section>
+
+        <section class="fragments" data-markdown>
+        # Roteiro (?)
+
+        - Aleph: apresentação do projeto
+        - Python: documentação de projeto e estilo de código
+        - Git, git flow e GitHub
+        - eXtreme Programming, Test-driven development
+        - Arquitetura de sistemas, design patterns
+        - (coloque um tema aqui)
+        </section>
+
+        <section>
+          <img src="images/packages_Aleph.png" alt="Packages Aleph"
+               width="85%" />
+          <br />
+          <pre><code>
+            pip install pylint
+            pyreverse -o png -p Aleph aleph/
+            eog packages_Aleph.png
+          </code></pre>
+        </section>
+
+        <section class="fragments" data-markdown>
+        # Aleph: Perguntas
+
+        - Como é usado atualmente?
+        - Quais são as necessidades atuais?
+        - Precisamos de outros coletores?
+        - Precisamos de outros plugins?
+        - Alguma funcionalidade na interface?
+        - [GitHub Issues](https://github.com/trendmicro/aleph/issues)
+        </section>
+
+        <section class="fragments" data-markdown>
+        # Python Enhancement Proposals (PEPs)
+
+        - [PEP-0008](https://www.python.org/dev/peps/pep-0008/)
+        - `pip install pep8`
+        - `pip install flake8`
+        - `pip install pylint`
+        </section>
+
+        <section class="fragments" data-markdown>
+        # Docstrings
+
+        - Fork
+        - `git clone`
+        - `git branch`
+        - `# hack hack hack`
+        - `git add`
+        - `git commit`
+        - `git push`
+        - Criar pull request
+        </section>
+
+        <section class="fragments" data-markdown>
+        # eXtreme Programming
+
+        - Test-driven development
+        - `nosetests`, `yanc`, `coverage`
+        - Coding Dojo
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Coding Dojo
+
+          - Treinar
+          - Aumentar a qualidade (***bugs* causam prejuízo**)
+          - *eXtreme programming* (XP)
+          - *Test-driven development* (TDD)
+          - *Pair programming*
+        </section>
+
+        <section>
+          <iframe width="854" height="510" src="https://www.youtube.com/embed/-sa0-BJPoxs" frameborder="0" allowfullscreen></iframe>
+          <br />
+          TDD com Mock e Orientação a Objetos
+          <br />
+          Bernardo Fontes - PythonNordeste 2015
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
