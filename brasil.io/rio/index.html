@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>import brasil: Dados Abertos de Forma Fácil</title>
+
+    <meta name="description" content="Capturando Dados Com Python">
+    <meta name="author" content="Álvaro Justen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h1>Capturando Dados Com Python</h1>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4>Ciclo de Palestras</h4>
+          <h4>10 de agosto de 2015, Rio de Janeiro/RJ</h4>
+        </section>
+
+
+        <section>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter.com</a>,
+            <a href="https://github.com/turicas">github.com</a>,
+            <a href="https://youtube.com/turicas">youtube.com</a>}/<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvarojusten@gmail.com">alvarojusten@gmail.com</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+          <p>
+            <a href="http://www.CursoDeArduino.com.br/">
+              <img width="400" src="images/logo_curso-de-arduino.png">
+            </a>
+          </p>
+
+          <p>
+            <a href="http://www.onyo.com/">
+              <img width="400" src="images/logo_onyo.png">
+            </a>
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#ff0000"
+          data-background-transition="slide">
+          <h1><b>WARNING:</b></h1>
+          <h2>UNDER DEVELOPMENT</h2>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>
+            <a
+              href="http://turicas.info/slides/brasil.io/rio"><b>turicas.info/slides/brasil.io/rio</b></a>
+          </h3>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Roteiro
+
+          - Jornalismo de dados
+          - Dados abertos
+          - Brasil.IO
+          - Python?
+          - Biblioteca `rows`/*live coding*
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Jornalismo de dados
+
+          - Captura
+          - Normalização
+          - Análise
+          - Visualização
+        </section>
+
+        <section data-markdown>
+          # 5 Stars Data
+
+          ## [5stardata.info](http://5stardata.info/)
+
+          ![](images/5-stars-data.png)
+        </section>
+
+        <section data-markdown>
+          # Linked Data
+
+          ## [linkeddata.org](http://linkeddata.org/)
+
+          ![](images/linked-data.png)
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Dados Abertos no Brasil
+
+          - [Lei de Acesso à Informação](http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm)
+          - [dados.gov.br](http://dados.gov.br/)
+          - Catalogação/indexação
+          - Adesão dos órgãos
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Projetos
+
+          - [Olho Neles](http://olhoneles.org/)
+          - [CopaTransparente.org](http://copatransparente.org)
+          - [TeleMob](http://telemob.com.br/)
+          - ...
+        </section>
+
+        <section>
+          <h1>Era uma vez...</h1>
+        </section>
+
+        <section data-background="images/logo_brasil.io.png">
+        </section>
+
+        <section data-markdown>
+          # Brasil.IO
+
+          ## Contribuições são bem-vindas!
+
+          ### [github.com/turicas/api.brasil.io](https://github.com/turicas/api.brasil.io)
+          ### [groups.google.com/group/brasil-io](https://groups.google.com/group/brasil-io)
+          ### [twitter.com/brasil_io](https://twitter.com/brasil_io)
+          ### [facebook.com/api.brasil.io](https://facebook.com/api.brasil.io)
+          #### `#Brasil.IO` @ `irc.FreeNode.net`
+        </section>
+
+        <section data-markdown>
+          # `import rows`
+
+
+              pip install -U git+https://github.com/turicas/rows.git@api-rewrite
+
+              # OR
+
+              git clone https://github.com/turicas/rows.git
+              git checkout api-rewrite
+              cd rows
+              python setup.py install
+
+          Live coding! \o/
+        </section>
+
+        <section data-markdown>
+          # Curso de Python no Rio!
+
+          ## Setembro de 2015 (seg, qua, sex)
+          ## [edx.srv.br/python](http://edx.srv.br/python)
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1> <b>?</b> </h1>
+        </section>
+
+        <section>
+          <h1>Obrigado! (:</h1>
+          <h2><b>Turicas</b> aka <b>Álvaro Justen</b></h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter.com</a>,
+            <a href="https://github.com/turicas">github.com</a>,
+            <a href="https://youtube.com/turicas">youtube.com</a>}/<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvarojusten@gmail.com">alvarojusten@gmail.com</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+          <h3>
+            <a
+              href="http://turicas.info/slides/brasil.io/rio"><b>turicas.info/slides/brasil.io/rio</b></a>
+          </h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
