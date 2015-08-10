@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Arduino: Robótica com software e hardware livres, com Álvaro Justen</title>
+
+    <meta name="description" content="Arduino: Robótica com software e hardware livres">
+    <meta name="author" content="Álvaro Justen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h1>Arduino</h1>
+          <h3>Robótica com software e hardware livres</h3>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4>Semana Acadêmica Computação - CEDERJ/UFF</h4>
+          <h4>09 de outubro de 2014</h4>
+          <h4>Três Rios/RJ</h4>
+        </section>
+
+
+        <section>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter.com</a>,
+            <a href="https://github.com/turicas">github.com</a>,
+            <a href="https://youtube.com/turicas">youtube.com</a>}/<b>turicas</b>
+          </h3>
+          <h3><a
+              href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+
+          <p>
+            <a href="http://www.CursoDeArduino.com.br/">
+              <img width="400" src="images/logo_curso-de-arduino.png">
+            </a>
+          </p>
+
+          <p>
+            <a href="http://www.onyo.com/">
+              <img width="350" src="images/logo_onyo.png">
+            </a>
+          </p>
+
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1> <b>Vocês?</b> </h1>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Roteiro
+
+          - ## Arduino?
+          - ## **Mão na massa**! \o/
+          - ## Projetos
+          - ## Dúvidas
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>
+            <a
+              href="http://turicas.info/slides/arduino/2014/"><b>turicas.info/slides/arduino/2014</b></a>
+          </h3>
+        </section>
+
+        <section>
+          <h1>Era uma vez...</h1>
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-uno.jpg" alt="Placa Arduino Uno" />
+          <br />
+          <a href="http://arduino.cc/">arduino.cc</a>
+        </section>
+
+        <section>
+          <h1> Computador?</h1>
+          <br />
+
+          <ul>
+            <li> 16MHz </li>
+            <li> 32kB de memória flash </li>
+            <li> 2kB de memória RAM </li>
+            <li> 1kB de memória EEPROM </li>
+            <li> Conversores AD </li>
+            <li> ... </li>
+          </ul>
+        </section>
+
+        <section class="fragments">
+          <h1> Software <b>Livre</b> </h1>
+          <h1> Hardware <b>Livre</b> </h1>
+          <h1> Usuários <b>Livres</b> </h1>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Software?
+          ## Arduino IDE
+
+          - ### GNU/Linux: `aptitude install arduino`
+          - ### Download em [arduino.cc](http://arduino.cc/)
+        </section>
+
+        <section>
+          <h1>Hardware</h1>
+          <img src="images/placa_arduino-uno.jpg" alt="Arduino Uno" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardUno">Arduino Uno</a>
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-leonardo.jpg" alt="Arduino Leonardo" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardLeonardo">Arduino Leonardo</a>
+        </section>
+
+        <section>
+          <img src="images/placa_brasuino.jpg" alt="Brasuino" />
+          <br />
+          <a href="http://brasuino.holoscopio.com/">Brasuíno</a> (da <a href="http://holoscopio.com/">Holoscópio</a>)
+        </section>
+
+        <section>
+          <img src="images/placa_blackboard.jpg" alt="Blackboard" />
+          <br />
+          <a
+            href="https://www.robocore.net/modules.php?name=GR_LojaVirtual&prod=530">BlackBoard</a> (da <a href="http://robocore.net/">RoboCore</a>)
+        </section>
+
+        <section>
+          <img src="images/placa_garagino.jpg" alt="Garagino" />
+          <br />
+          <a
+            href="http://www.labdegaragem.org/loja/garagino-4.html">Garagino</a> (do <a href="http://loja.labdegaragem.com.br/">Lab de Garagem</a>)
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-mega.jpg" alt="Arduino Mega" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardMega">Arduino Mega</a>
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-lilypad.png" alt="Arduino Lilypad" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardLilyPad">Arduino Lilypad</a>
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-nano.jpg" alt="Arduino Nano" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardNano">Arduino Nano</a>
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-pro-mini.jpg" alt="Arduino Pro Mini" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardProMini">Arduino Pro Mini</a>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1>Módulos e <i>Shields</i></h1>
+        </section>
+
+        <section>
+          <img src="images/arduino-bluetooth-shield.png"
+          alt="Arduino Bluetooth Shield" />
+          <br />
+          <a
+            href="http://www.labdegaragem.org/loja/bluetooth-shield.html">Bluetooth
+          Shield</a>
+        </section>
+
+        <section>
+          <img src="images/arduino-ethernet-shield.jpg"
+          alt="Arduino Ethernet Shield" width="600" />
+          <br />
+          <a
+            href="http://arduino.cc/en/pmwiki.php?n=Main/ArduinoEthernetShield">Ethernet
+          Shield</a>
+      </section>
+
+        <section>
+          <img src="images/modulo-rele.png"
+          alt="Módulo Relé" width="600" />
+          <br />
+          <a
+            href="images/modulo-rele.png">Módulo Relé</a>
+        </section>
+
+        <section>
+          <q>Talk is cheap, show me the code!</q>
+          <p class="centered">
+            <img src="images/linus-torvalds.jpg">
+          </p>
+          <div class="author"> <a href="http://en.wikiquote.org/wiki/Linus_Torvalds#2000-04">Linus Torvalds</a> </div>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1>Projetos! \o/</h1>
+        </section>
+
+        <section>
+          <h1>Luminária RGB</h1>
+          <a href="http://youtu.be/Bj44dt3ONyM"><img
+            src="images/projeto_luminaria-rgb.png"
+            alt="Projeto Luminária RGB" border="0" /></a>
+          <br/>
+          <a href="http://youtu.be/Bj44dt3ONyM">youtu.be/Bj44dt3ONyM</a>
+        </section>
+
+        <section>
+          <h2>Turiquinhas</h2>
+          <h3>Carrinho controlado por luz</h3>
+          <a href="http://youtu.be/PzNY_iImNeo"><img
+            src="images/projeto_turiquinhas.png"
+            alt="Projeto Turiquinhas" border="0" /></a>
+          <br />
+          <a href="http://youtu.be/PzNY_iImNeo">youtu.be/PzNY_iImNeo</a>
+        </section>
+
+        <section>
+          <h2>Experimentos com Processing</h2>
+          <a href="http://youtu.be/1SeAk9p_KCU"><img
+            src="images/projeto_processing.png"
+            alt="Projeto Experimentos com Processing" border="0" /></a>
+          <br />
+          <a href="http://youtu.be/1SeAk9p_KCU">youtu.be/1SeAk9p_KCU</a>
+        </section>
+
+        <section>
+          <h1>Timelapse</h1>
+          <p>
+            <a href="http://timelapsemaracana.com.br/"><img width="600"
+              src="images/timelapse-maracana.png"
+              alt="Timelapse Maracanã - Huoliover Fotografia" border="0" /></a>
+          <h2><a href="http://www.huoliver.com/">Huoliver Fotografia</a></h2>
+        </section>
+
+        <section class="fragments" data-markdown>
+        # Onde Comprar?
+
+        - ## [RoboCore.net](http://robocore.net/)
+        - ## [Lab de Garagem](http://loja.labdegaragem.com.br/)
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Alternativas?
+          ## Outras Plataformas
+
+          - Não existe **bala de prata**
+          - Arduino: um **marco**
+            - Liberdade
+            - *Do-it-yourself* (DIY)
+          - Outras soluções, com outros propósitos:
+            - [RaspberryPi](http://www.raspberrypi.org/)
+            - [Intel Galileo](http://arduino.cc/en/ArduinoCertified/IntelGalileo)
+            - ...
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Onde Aprender?
+
+          - [arduino.cc](http://arduino.cc/)
+          - Congressos ([FISL](http://www.fisl.org.br/),
+          [ArduInRio](http://arduinrio.com/) etc.)
+          - [Curso de Arduino](http://www.CursoDeArduino.com.br) - com [Turicas](https://twitter.com/turicas)! \o/
+        </section>
+
+        <section>
+          <h2>Rio de Janeiro</h2>
+          <p>
+            <a href="http://www.CursoDeArduino.com.br/">
+              <img width="400" src="images/logo_curso-de-arduino.png">
+            </a>
+            <br />
+            <a href="http://www.edx.srv.br/">
+              <img width="300" src="images/logo_edx.png">
+            </a>
+          </p>
+
+          <a
+            href="http://edx.srv.br/arduino-basico">edx.srv.br/arduino-<b>basico</b></a>
+          <br />
+          22 e 29 de novembro de 2014
+
+          <br /><br />
+          <a
+            href="http://edx.srv.br/arduino-avancado">edx.srv.br/arduino-<b>avancado</b></a>
+          <br />
+          11 e 25 de outubro de 2014
+          <br />
+          06 e 20 de dezembro de 2014
+        </section>
+
+        <section>
+          <h2>Belo Horizonte</h2>
+          <p>
+            <a href="http://bit.ly/cda-bh">
+              <img width="600" src="images/curso-de-arduino-guajajaras.jpg">
+            </a>
+          </p>
+
+          <a href="http://bit.ly/cda-bh">bit.ly/cda-bh</a>
+          <br />
+          10 e 17 de janeiro de 2015
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1> <b>?</b> </h1>
+        </section>
+
+        <section>
+          <h1>Obrigado! (:</h1>
+          <br />
+          <h2><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter.com</a>,
+            <a href="https://github.com/turicas">github.com</a>,
+            <a href="https://youtube.com/turicas">youtube.com</a>}/<b>turicas</b>
+          </h3>
+          <h3><a
+              href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+          <br />
+          <h3>
+            <a
+              href="http://turicas.info/slides/arduino/2014/"><b>turicas.info/slides/arduino/2014</b></a>
+          </h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
