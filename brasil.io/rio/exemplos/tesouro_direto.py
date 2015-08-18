@@ -5,6 +5,7 @@ from __future__ import print_function, unicode_literals
 import datetime
 import time
 
+from collections import OrderedDict
 from decimal import Decimal
 
 import rows
@@ -68,7 +69,7 @@ def parser_resultado(html):
     </table>
     '''.format(dados)
 
-    retorno = {}
+    retorno = OrderedDict()
     for registro in rows.import_from_html(tabela_html):
         if registro.valor.startswith('R$'):
             valor = formata_dinheiro(registro.valor)
