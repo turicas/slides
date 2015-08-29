@@ -7,6 +7,7 @@ import time
 
 from collections import OrderedDict
 from decimal import Decimal
+from io import BytesIO
 
 import rows
 
@@ -37,7 +38,7 @@ def resultado_calculadora(codigo_titulo, data_compra, data_vencimento,
     browser.visit(URL_CALCULADORA)
     browser.select('cbTitulo', codigo_titulo)
     while not browser.find_by_name('txtDtCompra'):
-        time.sleep(0.1)
+        time.sleep(0.01)
     browser.fill('txtDtCompra', formata_data(data_compra))
     browser.fill('txtDtVencimento', formata_data(data_vencimento))
     browser.fill('txtValorInvestido', formata_valor(valor_investido))
@@ -47,7 +48,7 @@ def resultado_calculadora(codigo_titulo, data_compra, data_vencimento,
         browser.fill('txtTaxaGenerica', formata_valor(taxa_generica))
     browser.find_by_name('btnCalcular').click()
     while 'RESULTADO DA SIMULAÇÃO' not in browser.html:
-        time.sleep(0.1)
+        time.sleep(0.01)
     html = browser.html
     browser.quit()
     return html
@@ -67,10 +68,10 @@ def parser_resultado(html):
       <tr> <td>chave</td> <td>valor</td> </tr>
       {}
     </table>
-    '''.format(dados)
+    '''.format(dados).encode('utf-8')
 
     retorno = OrderedDict()
-    for registro in rows.import_from_html(tabela_html):
+    for registro in rows.import_from_html(BytesIO(tabela_html)):
         if registro.valor.startswith('R$'):
             valor = formata_dinheiro(registro.valor)
         elif '%' in registro.valor:

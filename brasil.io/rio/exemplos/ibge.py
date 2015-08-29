@@ -2,6 +2,8 @@
 
 from __future__ import unicode_literals, print_function
 
+from io import BytesIO
+
 import requests
 import rows
 
@@ -24,17 +26,17 @@ def indicador_por_uf(indicador, uf):
     parametros = INDICADORES[indicador].copy()
     parametros['coduf'] = CODIGO_UF[uf]
     resposta = requests.get(URL_DADOS, parametros)
-    html = resposta.content.decode('utf-8')
+    html = resposta.content
 
     with rows.locale_context('pt_BR.UTF-8'):
-        tabela = rows.import_from_html(html)
+        tabela = rows.import_from_html(BytesIO(html))
 
     return tabela
 
 
 def indicador_brasil(indicador):
     tabelas = []
-    for uf in CODIGO_UF:
+    for uf in sorted(CODIGO_UF.keys()):
         print('Baixando {} para {}...'.format(indicador, uf))
         tabela = indicador_por_uf(indicador, uf)
         tabelas.append(tabela)
