@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dados Tabulares: A Maneira Pythônica, por Álvaro Justen aka Turicas</title>
+
+    <meta name="description" content="Dados Tabulares: A Maneira Pythônica">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>Dados Tabulares:</h2>
+          <h2>A Maneira Pythônica</h2>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="https://www.facebook.com/events/837043949774904/permalink/861055774040388/">VIII Encontro PythOnRio</a></h4>
+          <h4>30 de abril de 2016, Elo Group - Rio, Brasil</h4>
+        </section>
+
+        <section>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter.com</a>,
+            <a href="https://github.com/turicas">github.com</a>,
+            <a href="https://youtube.com/turicas">youtube.com</a>,
+            <a href="https://slideshare.net/turicas">slideshare.net</a>}/<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvarojusten@gmail.com">alvarojusten@gmail.com</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+        </section>
+
+        <section>
+          <h2>Quem sou eu?</h2>
+          <ul>
+            <li>Não tenho graduação</li>
+            <li>Não trabalho em empresa</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Software Livre</h1>
+          <p>
+            <a href="http://www.gnu.org/">
+              <img width="50%" src="images/gnu.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h1>Python</h1>
+          <p>
+            <a href="http://www.python.org/">
+              <img width="50%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h1>Arduino</h1>
+          <p>
+            <a href="http://www.arduino.cc/">
+              <img width="70%" src="images/arduino-uno.jpg">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2><a
+              href="http://www.CursoDeArduino.com.br/">CursoDeArduino.com.br</a></h2>
+          <p>
+            <a href="http://www.CursoDeArduino.com.br/">
+              <img width="80%" src="images/logo_curso-de-arduino.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <a href="http://2012.pythonbrasil.org.br/">
+              <img width="80%" src="images/pythonbrasil8.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <a href="http://www.pythonquito.tk/">
+              <img width="80%" src="images/pythonquito.png">
+            </a>
+          </p>
+          <p>
+            <a href="http://www.pythonquito.tk/">pythonquito.tk</a>
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # E vocês?
+
+          - Quem já sabe Python?
+          - Quem trabalha com Python?
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>
+            <a href="http://bit.ly/pyrio-rows"><b>bit.ly/pyrio-rows</b></a>
+          </h2>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Jornalismo de Dados
+
+          - **1. Captura**: buscar e baixar
+          - **2. Normalização**: converter a um formato melhor (ex: HTML para CSV)
+          - **3. Análise**: ver o que te serve
+          - **4. Visualização**: mostrar pro mundo!
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Jornalismo de Dados [2]
+
+          - **4. Visualização**: cereja do bolo
+          - **3. Análise**: desafiador
+          - **2. Normalização**: chato pra caralho
+          - **1. Captura**: chato, de vez em quando desafiador
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>Captura + Normalização</h3>
+          <img width="45%" src="images/gato-pulando.gif" alt="">
+          <img width="45%" src="images/code-07.gif" alt="">
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Normalização
+
+          - `pip uninstall beaufitulsoup4`
+          - `pip uninstall lxml`
+          - `pip install rows`
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>CSV</h3>
+          <img src="images/data-csv.png" alt="">
+        </section>
+
+        <section>
+          <h1>csv em Python</h1>
+
+<pre><code>import csv
+
+reader = csv.DictReader(open('tesouro-direto.csv'))
+# TODO: identificar dialecto CSV
+
+for row in reader:
+    print row  # todo es string =/
+    # TODO: crear conversión de datetime
+    # TODO: crear conversión de date
+    # TODO: crear conversión decimal
+    # TODO: crear conversión percent
+</code></pre>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>HTML</h3>
+          <img src="images/tesouro-direto.png" alt="">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>HTML</h3>
+          <img src="images/data-html.png" alt="">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>A vida não é tão fácil! :D</h3>
+          <img src="images/tesouro-direto-html.png" alt="">
+        </section>
+
+        <section>
+          <h1>html em Python + lxml</h1>
+<pre><code>pip install lxml</code></pre>
+<pre><code>import lxml.etree
+
+filename = 'tesouro-direto.html'
+html = open(filename).read()
+tree = lxml.etree.fromstring(html)
+table = tree.xpath('//table')[0]
+
+# ... aburrido aburrido aburrido ...
+# tentativa
+# error
+# tentativa
+# error
+# error
+# error
+</code></pre>
+</section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>...</h3>
+          <img width="45%" src="images/code-07.gif" alt="">
+          <br>
+          :-/
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>XLS</h3>
+          <img src="images/data-xls.png" alt="">
+        </section>
+
+        <section>
+          <h3>xls em Python + xlrd</h3>
+
+<pre><code>pip install xlrd</code></pre>
+<pre><code>import xlrd
+
+filename = 'tesouro-direto.xls'
+book = xlrd.open_workbook(filename, formatting_info=True)
+sheet = book.sheet_by_index(0)
+NUMERO_DE_COLUNAS = 7 # WTF?
+header = [sheet.cell(0, col).value for col in range(NUMERO_DE_COLUNAS)]
+NUMERO_DE_LINEAS = 19 # WTF?
+data = [[sheet.cell(row, col).value for col in range(NUMERO_DE_COLUNAS)]
+        for row in range(1, NUMERO_DE_LINEAS + 1)]
+for row_data in data:
+    row = dict(zip(header, row_data))
+    print row
+    # TODO: crear conversión de date y datetime
+    # TODO: crear conversión de decimal
+    # TODO: crear conversión de percent
+</code></pre>
+        </section>
+
+        <section>
+          <h1>Resultado...</h1>
+          <pre><code>{u'preco_compra': 0.0, u'timestamp': 42314.73819444444, u'vencimento': 42801.0, u'taxa_venda': 0.0002, u'taxa_compra': 0.0702, u'preco_venda': 7259.64, u'titulo': u'Tesouro Selic 2017 (LFT)'}</code></pre>
+        </section>
+
+        <section>
+          <pre><code>..., u'timestamp': 42314.73819444444, ...</code></pre>
+          Que porra é essa?
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Por que csv, lxml, xlrd etc. são ruins?
+
+          - Aprender sobre o formato (mesmo que você só queira os dados)
+          - Aprender uma biblioteca por formato (APIs diferentes)
+          - Converter os dados (nem sempre as bibliotecas convertem)
+          - Testar as funções de conversão (você usa TDD, certo?)
+          - Exemplos só de leitura (escrita pode ser pior!)
+        </section>
+
+        <section>
+          <h1>rows to the rescue!</h1>
+          <h3><pre>pip install rows # Python Package Index</pre></h3>
+          <h3><pre>apt-get install rows # Debian!</pre></h3>
+          <h3><pre>dnf install rows # Fedora</pre></h3>
+          <h2><a
+              href="https://github.com/turicas/rows">github.com/turicas/rows</a></h2>
+          <h2><img src="images/gplv3.png"></h2>
+        </section>
+
+        <section>
+          <h2>csv com Python + rows</h2>
+<pre><code>import rows
+
+table1 = rows.import_from_csv('tesouro-direto.csv')
+
+for row in table1:
+    print row
+</code></pre>
+        </section>
+
+        <section>
+          <pre><code>
+Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43), titulo=u'Tesouro IPCA+ com Juros Semestrais 2017 (NTNB)', vencimento=datetime.date(2017, 5, 15), taxa_compra=Decimal('0.0702'), taxa_venda=Decimal('0.063'), preco_compra=0.0, preco_venda=2792.97)
+Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43), titulo=u'Tesouro IPCA+ 2019 (NTNB Princ)', vencimento=datetime.date(2019, 5, 15), taxa_compra=Decimal('0.0702'), taxa_venda=Decimal('0.0706'), preco_compra=2150.33, preco_venda=2147.53)
+...</code></pre>
+        </section>
+
+        <section>
+          <h2>xls com Python + rows</h2>
+          <pre><code>import rows
+
+table2 = rows.import_from_xls('tesouro-direto.xls')
+
+for row in table2:
+    print row
+</code></pre>
+        </section>
+
+        <section>
+          <pre><code>
+Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43), titulo=u'Tesouro IPCA+ com Juros Semestrais 2017 (NTNB)', vencimento=datetime.date(2017, 5, 15), taxa_compra=Decimal('0.0702'), taxa_venda=Decimal('0.063'), preco_compra=0.0, preco_venda=2792.97)
+Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43), titulo=u'Tesouro IPCA+ 2019 (NTNB Princ)', vencimento=datetime.date(2019, 5, 15), taxa_compra=Decimal('0.0702'), taxa_venda=Decimal('0.0706'), preco_compra=2150.33, preco_venda=2147.53)
+...</code></pre>
+        </section>
+
+        <section>
+          <h2>html com Python + rows</h2>
+          <pre><code>import rows
+
+table3 = rows.import_from_html('tesouro-direto.html')
+
+for row in table3:
+    print row
+</code></pre>
+        </section>
+
+        <section>
+          <pre><code>
+Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43), titulo=u'Tesouro IPCA+ com Juros Semestrais 2017 (NTNB)', vencimento=datetime.date(2017, 5, 15), taxa_compra=Decimal('0.0702'), taxa_venda=Decimal('0.063'), preco_compra=0.0, preco_venda=2792.97)
+Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43), titulo=u'Tesouro IPCA+ 2019 (NTNB Princ)', vencimento=datetime.date(2019, 5, 15), taxa_compra=Decimal('0.0702'), taxa_venda=Decimal('0.0706'), preco_compra=2150.33, preco_venda=2147.53)
+...</code></pre>
+        </section>
+
+        <section>
+        <pre><code>assert list(table1) == list(table2) == list(table3)</code></pre>
+        </section>
+
+        <section>
+        <pre><code>print table1[0]
+
+Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43),
+    titulo=u'Tesouro IPCA+ com Juros Semestrais 2017 (NTNB)',
+    vencimento=datetime.date(2017, 5, 15),
+    taxa_compra=Decimal('0.0702'),
+    taxa_venda=Decimal('0.063'),
+    preco_compra=0.0,
+    preco_venda=2792.97)
+
+# namedtuple #FTW \o/
+</code></pre>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Funcionalidades
+
+          - API única (não importa o formato)
+          - Escrever é tão fácil quanto ler (*pythonic way*)
+          - CSV, HTML, XLS, XLSX, JSON, TXT, SQLite...
+          - Conversão **automática** de dados
+          - *Command-line interface*! \o/
+          - **Eu já fiz os testes**
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img width="50%" src="images/emoticon.png" alt="">
+        </section>
+
+        <section data-markdown>
+          # Live coding
+
+          - Biblioteca
+          - CLI
+        </section>
+
+        <section class="fragments" data-markdown>
+          # #ajudaluciano
+
+          - Python 3 (WIP)
+          - Site/documentação (Sphinx)
+          - rows as a service (demo site)
+        </section>
+
+        <section class="fragments" data-markdown>
+          # #ajudaluciano [2]
+          ## Outros Plugins
+
+          - PDF (leitura)
+          - ODS (escrita)
+          - DBF
+          - MongoDB
+          - PostgreSQL (WIP)
+          - MariaDB (WIP)
+          - OFX (WIP)
+        </section>
+
+        <section class="fragments" data-markdown>
+          # That's it!
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/pythonnordeste.png">
+          <h2>
+            <a href="http://www.pythonnordeste.org/"><b>pythonnordeste.org</b></a>
+          </h2>
+          <p>
+            9 a 11 de junho
+            <br>
+            Teresina/PI
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/fisl.png">
+          <h2>
+            <a href="http://www.fisl.org.br/"><b>fisl.org.br</b></a>
+          </h2>
+          <p>
+            13 a 16 de julho
+            <br>
+            Porto Alegre/RS <img width="30" style="margin: 0" src="images/heart.png">
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/pythonsudeste.png">
+          <h2>
+            <a href="http://www.pythonsudeste.org/"><b>pythonsudeste.org</b></a>
+          </h2>
+          <p>
+            2 e 3 de setembro
+            <br>
+            Belo Horizonte/MG <img width="30" style="margin: 0" src="images/heart.png">
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/pythonbrasil.png">
+          <h2>
+            <a href="http://www.pythonbrasil.org.br/"><b>pythonbrasil.org.br</b></a>
+          </h2>
+          <p>
+            13 a 18 de outubro
+            <br>
+            Florianópolis/SC
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>Curso de Python Online e Gratuito!</h2>
+          <h2>
+            <a href="http://bit.ly/pyonline"><b>bit.ly/pyonline</b></a>
+          </h2>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1> <b>?</b> </h1>
+        </section>
+
+        <section>
+          <h1>Obrigado! (:</h1>
+          <h2><b>Turicas</b> aka <b>Álvaro Justen</b></h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter.com</a>,
+            <a href="https://github.com/turicas">github.com</a>,
+            <a href="https://youtube.com/turicas">youtube.com</a>,
+            <a href="https://slideshare.net/turicas">slideshare.net</a>}/<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvarojusten@gmail.com">alvarojusten@gmail.com</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+          <h3>
+            <a href="http://bit.ly/pyrio-rows">bit.ly/pyrio-rows</a>
+          </h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
