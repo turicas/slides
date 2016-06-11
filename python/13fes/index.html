@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Python para quem nunca programou na vida, por Álvaro Justen aka Turicas</title>
+
+    <meta name="description" content="Python para quem nunca programou na vida">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h1>Python</h1>
+          <h3>(para quem nunca programou na vida)</h3>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="http://forum.espiritolivre.org/">13º Fórum Espírito Livre</a>, Santa Teresa/ES</h4>
+          <h4>9 de junho de 2016</h4>
+        </section>
+
+        <section>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+        </section>
+
+        <section>
+          <h2>Quem sou eu?</h2>
+          <p>
+            <img height="100%" src="images/alvaro-justen.jpg" alt="Álvaro Justen e sua casa">
+          </p>
+        </section>
+
+        <section>
+          <h2>Quem sou eu?</h2>
+          <p>
+            <img height="100%" src="images/turicas-wordcloud.png" alt="Álvaro Justen e sua casa">
+          </p>
+        </section>
+
+        <section>
+          <h2>Quem sou eu?</h2>
+          <ul>
+            <li>Não tenho graduação</li>
+            <li>Não trabalho em empresa</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Software Livre</h1>
+          <p>
+            <a href="http://www.gnu.org/">
+              <img width="50%" src="images/gnu.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h1>Python</h1>
+          <p>
+            <a href="http://www.python.org/">
+              <img width="50%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h1>Arduino</h1>
+          <p>
+            <a href="http://www.arduino.cc/">
+              <img width="70%" src="images/arduino-uno.jpg">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2><a
+              href="http://www.CursoDeArduino.com.br/">CursoDeArduino.com.br</a></h2>
+          <p>
+            <a href="http://www.CursoDeArduino.com.br/">
+              <img width="80%" src="images/logo_curso-de-arduino.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <a href="http://2012.pythonbrasil.org.br/">
+              <img width="80%" src="images/pythonbrasil8.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <a href="http://www.pythonquito.tk/">
+              <img width="80%" src="images/pythonquito.png">
+            </a>
+          </p>
+          <p>
+            <a href="http://www.pythonquito.tk/">pythonquito.tk</a>
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # E vocês?
+
+          - Quem sabe programar?
+          - Quem já conhece Python?
+          - Quem trabalha com Python?
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>Slides:</h2>
+          <h2>
+            <a href="http://bit.ly/python-13fes"><b>bit.ly/python-13fes</b></a>
+          </h2>
+        </section>
+
+      <section class="fragments">
+      <h1> Python </h1>
+
+      <ul>
+        <li> Linguagem de programação de <b>uso geral</b>
+          <ul> <li>O que é uma linguagem de programação? </li> </ul>
+        </li>
+        <li> <i>Very High Level Language</i> </li>
+        <li> <b>Multiplataforma</b> </li>
+        <li> Sintaxe <b>simples e clara</b>
+          <ul> <li> <b>Fácil</b> de aprender </li> </ul>
+        </li>
+        <li> Altamente extensível </li>
+        <li> <b>Software livre</b> </li>
+        <li> Criada por Guido van Rossum em <b>1989</b> </li>
+        <li> <b>Comunidade maravilhosa!</b> </li>
+        <li> (me apaixono cada dia mais
+             <img width="30" style="margin: 0" src="images/heart.png">) </li>
+      </ul>
+      </section>
+
+      <section>
+        <h3>Guido van Rossum</h3>
+        <p>
+          <img height="100%" src="images/guido-van-rossum.png" alt="Guido van Rossum">
+        </p>
+      </section>
+
+      <section>
+        <h1>Monty Python</h1>
+        <p>
+          <img height="100%" src="images/monty-python.png" alt="Monty Python">
+        </p>
+      </section>
+
+      <section class="fragments" data-markdown>
+        # Aplicações
+
+        - Interfaces de linha-de-comando (CLI)
+        - Interfaces gráficas de usuários (GUI)
+        - Computação científica
+        - Computação gráfica
+        - Jogos
+        - Web
+        - Robótica
+        - *(coloque sua área aqui)*
+      </section>
+
+      <section data-markdown>
+        # Onde roda?
+
+        - GNU/Linux
+        - Mac OS X
+        - Outros UNIX (FreeBSD etc.)
+        - Windows
+        - Android
+        - Microcontroladores
+        - ...
+      </section>
+
+      <section class="fragments" data-markdown>
+        # Como instalar?
+
+        - GNU/Linux e Mac OS X: **não precisa**!
+        - Windows: [python.org](python.org)
+      </section>
+
+      <section class="fragments" data-markdown>
+        # Quem usa?
+
+        - Google
+        - YouTube
+        - NASA
+        - Industrial Light &amp; Magic
+        - Canonical
+        - Fundação Getúlio Vargas
+        - SERPRO
+        - Globo.com
+        - ...
+      </section>
+
+      <section>
+        <p>
+          <img height="100%" src="images/google-1998.png" alt="Google usa Python desde 1998">
+        </p>
+      </section>
+
+      <section>
+        <h2>Tipos básicos</h2>
+        <h3>(bora codar)</h3>
+<pre><code>i = 42 # inteiro
+
+f = 3.14 # ponto flutuante
+
+c = 1.5 + 5.3j # complexo!
+
+s = "Arduino" # string
+
+t = (1, "python") # tupla
+
+l = [1, 2.3, "ab", [1, "b"]] # lista
+
+d = {'a': 1, 2: 'b',
+     (1, 2): [3, 4]} # dicionário
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Nada de parênteses, nada de chaves!</h2>
+<pre><code>if expressao1:
+    comando1
+    if expressao2:
+        comando2
+    elif expressao3:
+        comando3
+elif expressao4:
+    comando4
+else:
+    comando5
+</code></pre>
+      </section>
+
+      <section>
+        <h2> <i>Slices</i> em listas e strings </h2>
+<pre><code>lista = [1, 3, 4, 'Arduino', 'Python']
+print lista[1]
+print lista[1:4]
+
+for elemento in lista:
+    print elemento
+
+arquivo = 'nome.txt'
+print arquivo[-3:]
+print arquivo[5:]
+
+novo_arquivo = 'nome.do.arquivo.txt'
+print novo_arquivo.split('.')
+print novo_arquivo.split('.')[-1]
+extensao = 'nome.do.arquivo.py'.split('.')[-1]
+print extensao
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Trabalhando com arquivos</h2>
+<pre><code>arquivo_1 = open('nome.txt')
+for linha in arquivo_1:
+    print linha
+arquivo_1.close()
+
+arquivo_2 = open('nome-2.txt', 'w')
+arquivo_2.write('Python rules!')
+arquivo_2.close()
+</code></pre>
+      </section>
+
+      <section data-markdown>
+        ## Baterias incluídas!
+
+        - `sys`, `os`, `re`, `string`, `zlib`
+        - `socket`, `urrlib`, `httplib`, `imaplib`
+        - `time`, `datetime`, `math`, `random`
+        - `doctest`, `unittest`, `xml`, `xmlrpclib`
+        - `struct`, `pickle`, `cPickle`, `threading`
+        - `logging`, `decimal`
+        - E muito mais!
+      </section>
+
+      <section>
+        <h2>Navegando com Python</h2>
+        <pre><code>import urllib
+
+url = 'http://CursoDeArduino.com.br/'
+
+pagina = urllib.urlopen(url)
+print pagina.read()
+</code></pre>
+      </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>HTML</h3>
+          <img src="images/cidades-ibge.png" alt="">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/cidades-ibge-html.png" alt="">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>XLS</h3>
+          <img src="images/data-xls.png" alt="">
+        </section>
+
+        <section>
+<pre><code>import rows
+
+tabela = rows.import_from_xls('tesouro-direto.xls')</code></pre>
+        </section>
+
+        <section data-markdown>
+          # Python e Arduino!
+          ## Dá tempo?
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img width="50%" src="images/emoticon.png" alt="">
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Onde Aprender?
+
+          - [docs.python.org/tutorial](http://docs.python.org/tutorial)
+          - [python.org.br](http://python.org.br/)
+          - Listas de discussão locais
+          - Eventos (...)
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/pythonnordeste.png">
+          <h2>
+            <a href="http://www.pythonnordeste.org/"><b>pythonnordeste.org</b></a>
+          </h2>
+          <p>
+            9 a 11 de junho
+            <br>
+            Teresina/PI
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/fisl.png">
+          <h2>
+            <a href="http://www.fisl.org.br/"><b>fisl.org.br</b></a>
+          </h2>
+          <p>
+            13 a 16 de julho
+            <br>
+            Porto Alegre/RS <img width="30" style="margin: 0" src="images/heart.png">
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/pythonsudeste.png">
+          <h2>
+            <a href="http://www.pythonsudeste.org/"><b>pythonsudeste.org</b></a>
+          </h2>
+          <p>
+            2 e 3 de setembro
+            <br>
+            Belo Horizonte/MG <img width="30" style="margin: 0" src="images/heart.png">
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/pythonbrasil.png">
+          <h2>
+            <a href="http://www.pythonbrasil.org.br/"><b>pythonbrasil.org.br</b></a>
+          </h2>
+          <p>
+            13 a 18 de outubro
+            <br>
+            Florianópolis/SC
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>Curso de Python Online e Gratuito!</h2>
+          <h2>
+            <a href="http://bit.ly/pyonline"><b>bit.ly/pyonline</b></a>
+          </h2>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1> <b>?</b> </h1>
+        </section>
+
+        <section>
+          <h2>Obrigado! (:</h2>
+          <h2><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3><a href="http://turicas.info/">turicas.info</a></h3>
+          <h3><a href="http://bit.ly/python-13fes">bit.ly/python-13fes</a></h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
