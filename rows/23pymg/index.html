@@ -196,6 +196,7 @@
           - XLSX
           - HTML
           - ODS
+          - JSON
           - ... ?
         </section>
 
@@ -215,6 +216,28 @@ reader = csv.DictReader(open('tesouro-direto.csv'))
 
 for row in reader:
     print row  # todo es string =/
+    # TODO: crear conversión de datetime
+    # TODO: crear conversión de date
+    # TODO: crear conversión decimal
+    # TODO: crear conversión percent
+</code></pre>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>JSON</h3>
+          <img src="images/json.png" alt="">
+        </section>
+
+        <section>
+          <h1>json em Python</h1>
+
+<pre><code>import json
+
+reader = json.load(open('tesouro-direto.csv'))
+
+for row in reader:
+    print row  # nem todo convertido =/
     # TODO: crear conversión de datetime
     # TODO: crear conversión de date
     # TODO: crear conversión decimal
