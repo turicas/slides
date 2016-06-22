@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Arduino (para fazedores), com Álvaro Justen</title>
+
+    <meta name="description" content="Arduino (para fazedores)">
+    <meta name="author" content="Álvaro Justen">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h1>Arduino</h1>
+          <h3>(para fazedores)</h3>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="http://www.fazbh.com.br/">4º Encontro FAZ-BH</a>, Belo Horizonte/MG</h4>
+          <h4>22 de junho de 2016</h4>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>Slides disponíveis em:</h2>
+          <h2>
+            <a href="http://bit.ly/arduino-fazbh"><b>bit.ly/arduino-fazbh</b></a>
+          </h2>
+        </section>
+
+        <section>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+        </section>
+
+        <section>
+          <h2>Quem sou eu?</h2>
+          <p>
+            <img height="100%" src="images/alvaro-justen.jpg" alt="Álvaro Justen e sua casa">
+          </p>
+        </section>
+
+        <section>
+          <h3>(não é só Arduino...)</h3>
+          <p>
+            <img height="100%" src="images/turicas-wordcloud.png" alt="Álvaro Justen e sua casa">
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # E vocês?
+
+          - Quem já conhece Arduino?
+          - Quais linguagens de programação vocês conhecem?
+          - Quem conhece eletrônica?
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Por que usar um microcontrolador?
+
+          - É mais uma **ferramenta**
+          - "Get to know your tools" (Massimo Banzi)
+          - É um **computador** (programável)
+          - General Purpose Input Output (GPIO) ports
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-uno.jpg" alt="Placa Arduino Uno" />
+          <br />
+          <a href="http://arduino.cc/">arduino.cc</a>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## O que é?
+
+          - Projeto de *software* e *hardware* **livres**
+          - Objetivo: **facilitar** a criação de projetos envolvendo eletrônica e
+          programação
+          - Microcontrolador:
+            - 16MHz
+            - 32kB de memória flash
+            - 2kB de memória RAM
+            - 1kB de memória EEPROM
+            - Conversores AD, entradas e saídas digitais
+            - ...
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Por que o Arduino?
+          - **Fácil** e rápido de usar
+          - Ecossistema muito rico:
+            - Muitas bibliotecas (*software*) e *shields* (*hardware*)
+            disponíveis
+            - Tutoriais e mais tutoriais
+          - *Software* e *hardware* **livres**
+        </section>
+
+        <section>
+          <h2>Owner's Manifesto</h2>
+          <q>If you can't open it, you don't own it.</q>
+        </section>
+
+        <section data-markdown>
+          ## Licenças
+
+          - Design files (Eagle CAD): [CC-BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+          - IDE: [GPL](https://www.gnu.org/licenses/gpl-3.0.en.html)
+          - Libraries: [LGPL](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+        </section>
+
+        <section class="fragments">
+          <h1>Colaboração <i>versus</i> Competição</h1>
+          <h2> Software <b>Livre</b> </h2>
+          <h2> Hardware <b>Livre</b> </h2>
+          <h2> Usuários <b>Livres</b> </h2>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Software?
+          ## Arduino IDE
+
+          - ### GNU/Linux: `aptitude install arduino`
+          - ### Download em [arduino.cc](http://arduino.cc/)
+        </section>
+
+        <section>
+          <h1>Hardware</h1>
+          <img src="images/placa_arduino-uno.jpg" alt="Arduino Uno" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardUno">Arduino Uno</a>
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-leonardo.jpg" alt="Arduino Leonardo" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardLeonardo">Arduino Leonardo</a>
+        </section>
+
+        <section>
+          <img src="images/placa_brasuino.jpg" alt="Brasuino" />
+          <br />
+          <a href="http://brasuino.holoscopio.com/">Brasuíno</a> (da <a href="http://holoscopio.com/">Holoscópio</a>)
+        </section>
+
+        <section>
+          <img src="images/placa_blackboard.jpg" alt="Blackboard" />
+          <br />
+          <a
+            href="https://www.robocore.net/modules.php?name=GR_LojaVirtual&prod=530">BlackBoard</a> (da <a href="http://robocore.net/">RoboCore</a>)
+        </section>
+
+        <section>
+          <img src="images/placa_garagino.jpg" alt="Garagino" />
+          <br />
+          <a
+            href="http://www.labdegaragem.org/loja/garagino-4.html">Garagino</a> (do <a href="http://loja.labdegaragem.com.br/">Lab de Garagem</a>)
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-lilypad.png" alt="Arduino Lilypad" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardLilyPad">Arduino Lilypad</a>
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-nano.jpg" alt="Arduino Nano" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardNano">Arduino Nano</a>
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-pro-mini.jpg" alt="Arduino Pro Mini" />
+          <br />
+          <a href="http://arduino.cc/en/Main/arduinoBoardProMini">Arduino Pro Mini</a>
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-due.jpg" alt="Arduino Due" />
+          <br />
+          <a href="http://www.arduino.cc/en/Main/ArduinoBoardDue">Arduino Due</a>
+        </section>
+
+        <section>
+          <img src="images/placa_arduino-yun.jpg" alt="Arduino Yún" />
+          <br />
+          <a href="http://www.arduino.cc/en/Main/ArduinoBoardYun">Arduino Yún</a>
+        </section>
+
+        <section>
+          <img src="images/placa_intel-edson.jpg" alt="Intel Edson" width="80%" />
+          <br />
+          <a href="http://www.arduino.cc/en/ArduinoCertified/IntelEdison">Intel Edson</a>
+          <br />
+          (Arduino Certified)
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1>Módulos e <i>Shields</i></h1>
+        </section>
+
+        <section>
+          <img src="images/arduino-bluetooth-shield.png"
+          alt="Arduino Bluetooth Shield" />
+          <br />
+          <a
+            href="http://www.labdegaragem.org/loja/bluetooth-shield.html">Bluetooth
+          Shield</a>
+        </section>
+
+        <section>
+          <img src="images/arduino-ethernet-shield.jpg"
+          alt="Arduino Ethernet Shield" width="600" />
+          <br />
+          <a
+            href="http://arduino.cc/en/pmwiki.php?n=Main/ArduinoEthernetShield">Ethernet
+          Shield</a>
+      </section>
+
+        <section>
+          <img src="images/modulo-rele.png"
+          alt="Módulo Relé" width="600" />
+          <br />
+          <a
+            href="images/modulo-rele.png">Módulo Relé</a>
+        </section>
+
+        <section>
+          <q>Talk is cheap, show me the code!</q>
+          <p class="centered">
+            <img src="images/linus-torvalds.jpg">
+          </p>
+          <div class="author"> <a href="http://en.wikiquote.org/wiki/Linus_Torvalds#2000-04">Linus Torvalds</a> </div>
+        </section>
+
+        <section data-markdown>
+          ## Exemplos
+
+          - `digitalWrite`
+          - `analogRead`
+          - Python + Arduino
+        </section>
+
+        <section>
+          <h3>Faça-você-mesmo!</h3>
+          <img src="images/arduino-protoboard.png" alt="Arduino na Protoboard" />
+          <br />
+          <a href="http://youtu.be/eJg3yuAAawA">youtu.be/eJg3yuAAawA</a>
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## Onde e Como usar?
+
+        - *Display* de sensores
+        - Controle de motores (impressoras 3D, CNCs, corte a laser etc.)
+        - Controle de potência
+        - Geradores de frequência
+        - Engenharia reversa
+        - Teste de circuitos
+        - Ensinar/aprender
+        - ...
+        - Na necessidade **você cria uma aplicação**
+        </section>
+
+        <section>
+          <h3>Arduino com LCD</h3>
+          <img src="images/arduino-lcd.jpg"
+          alt="Arduino com módulo LCD" width="600" />
+          <br />
+          <a href="http://fb.com/cursodearduino">fb.com/cursodearduino</a>
+        </section>
+
+        <section>
+          <h3>Drawing Machine</h3>
+          <img src="images/arduino-drawing-machine.png" alt="Arduino Drawing Machine" />
+          <br />
+          <a href="http://youtu.be/eJg3yuAAawA">youtu.be/eJg3yuAAawA</a>
+        </section>
+
+        <section>
+          <h3>RepRap: Impressora 3D</h3>
+          <img src="images/reprap.png" alt="RepRap" width="500" />
+          <br />
+          <a href="http://vimeo.com/5202148">vimeo.com/5202148</a>
+        </section>
+
+        <section>
+          <h3>CNC com Arduino</h3>
+          <img src="images/arduino-cnc.png" alt="Arduino CNC" />
+          <br />
+          <a href="http://youtu.be/pIUgYdAds30">youtu.be/pIUgYdAds30</a>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Onde Aprender?
+
+          - [arduino.cc](http://arduino.cc/)
+          - Congressos ([FISL](http://www.fisl.org.br/),
+          [ArduInRio](http://arduinrio.com/), [BH
+          Arduiners](https://www.facebook.com/groups/meetuparduiners/) etc.)
+          - [Curso de Arduino](http://www.CursoDeArduino.com.br) - com [Turicas](https://twitter.com/turicas)! \o/
+        </section>
+
+        <section>
+          <img src="images/arduino-bh.png" alt="Curso de Arduino em BH!" />
+          <br />
+          <a href="http://bit.ly/arduino-bh/">bit.ly/arduino-bh</a>
+          <br />
+          CUPOM DE DESCONTO: <b>GUAJAMAKER</b>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1> <b>?</b> </h1>
+        </section>
+
+        <section>
+          <h3>Obrigado! (:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3><a href="http://turicas.info/">turicas.info</a></h3>
+          <h3>Slides: <a href="http://bit.ly/arduino-fazbh">bit.ly/arduino-fazbh</a></h3>
+          <h3>Curso: <a href="http://bit.ly/arduino-bh">bit.ly/arduino-bh</a></h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
