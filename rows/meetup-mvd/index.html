@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Datos Tabulares: La manera Pythónica, con Álvaro Justen aka Turicas</title>
+
+    <meta name="description" content="Datos Tabulares: La Manera Pythónica">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>Datos Tabulares:</h2>
+          <h2>La Manera Pythónica</h2>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="http://www.meetup.com/py-mvd/">Meetup de Python Montevideo</a></h4>
+          <h4>17 de agosto de 2016 - Montevideo, Uruguay</h4>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>
+            <a href="http://bit.ly/rows-mvd"><b>bit.ly/rows-mvd</b></a>
+          </h2>
+        </section>
+
+        <section>
+          <h2><b>Turicas</b>, un gusto! =)</h2>
+          <h3>¡Síganme los buenos!</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+        </section>
+
+        <section>
+          <h2>Nómada Digital</h2>
+          <p>
+            <img width="60%" src="images/alvaro-justen.jpg" alt="Álvaro Justen e sua casa">
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_curso-de-arduino.png">
+            <br>
+            <h2>
+              <a href="http://cursodearduino.com.br/">cursodearduino.com.br</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/python24h.png">
+            <br>
+            <h2>
+              <a href="http://pythonic.cafe/">pythonic.cafe</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_genero-e-numero.png" width="30%">
+            <br>
+            <h2>
+              <a href="http://generonumero.media">generonumero.media</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_escola-de-dados.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://escoladedados.org/">escoladedados.org</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <img height="100%" src="images/turicas-wordcloud.png" alt="Álvaro Justen wordcloud">
+          </p>
+        </section>
+
+        <section>
+          <h2>Software Libre</h2>
+          <h3>Desde 2003-2004</h3>
+          <p>
+            <a href="http://www.gnu.org/">
+              <img width="50%" src="images/gnu.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Python</h2>
+          <h3>Desde 2005</h3>
+          <p>
+            <a href="http://www.python.org/">
+              <img width="50%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Arduino</h2>
+          <h3>Desde 2009</h3>
+          <p>
+            <a href="http://www.arduino.cc/">
+              <img width="70%" src="images/arduino-uno.jpg">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Organización de Conferencia</h2>
+          <p>
+            <a href="http://2012.pythonbrasil.org.br/">
+              <img width="80%" src="images/pythonbrasil8.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Organización de Conferencia</h2>
+          <p>
+            <a href="http://www.pythonquito.tk/">
+              <img width="80%" src="images/pythonquito.png">
+            </a>
+          </p>
+          <h2>
+            <a href="http://www.pythonquito.tk/">pythonquito.tk</a>
+          </h2>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Agenda
+
+          - Datos tabulares: que es?
+          - Librerías en Python
+          - La librería `rows`
+          - La CLI de `rows`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Datos Tabulares?
+
+          - Columnas: nombre y tipo (int, float, str etc.)
+          - Filas: valores para cada columna
+          - Formatos:
+            - CSV, TSV
+            - JSON (array de objects)
+            - XLS
+            - XLSX
+            - ODS
+            - HTML (con `table`)
+            - SQLite y otros bancos de datos
+            - Parquet (de Spark)
+            - ...
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Librerías en Python
+
+          - CSV, TSV: `csv` o `unicodecsv`
+          - JSON: `json`
+          - XLS: `xlrd` y `xlwt`
+          - XLSX: `openpyxl`
+          - ODS: `odfpy` o `zip` y `lxml`
+          - HTML: `lxml`
+          - SQLite: `sqlite3` o `SQLAlchemy`
+          - Parquet: `parquet`
+        </section>
+
+        <section>
+          <h2>CSV - Codigo</h2>
+
+<pre><code>
+import csv
+
+
+filename = 'examples/data/tesouro-direto.csv'
+reader = csv.DictReader(open(filename))
+for row in reader:
+    print(row)
+
+</code></pre>
+        </section>
+
+        <section>
+          <h2>CSV - Resultado</h2>
+
+<pre><code>
+{
+  'preco_compra': '7261.57',
+  'preco_venda': '7246.25',
+  'taxa_compra': '0%',
+  'taxa_venda': '0.04%',
+  'timestamp': '2015-11-06T17:43:00',
+  'titulo': 'Tesouro Selic 2021 (LFT)',
+  'vencimento': '2021-03-01'
+}
+</code></pre>
+        </section>
+
+        <section>
+          <h2>CSV - Cómo deberia ser</h2>
+
+<pre><code>
+{
+  'preco_compra': 7261.57,
+  'preco_venda': 7246.25,
+  'taxa_compra': 0.0,
+  'taxa_venda': 0.0004,
+  'timestamp': datetime.datetime(2015, 11, 6, 17, 43),
+  'titulo': 'Tesouro Selic 2021 (LFT)',
+  'vencimento': datetime.date(2021, 3, 1)
+}
+
+</code></pre>
+        </section>
+
+        <section>
+          <h2>CSV - Conversiones</h2>
+
+<pre><code>
+def convert_row(row):
+    row['preco_compra'] = _convert_float(row['preco_compra'])
+    row['preco_venda'] = _convert_float(row['preco_venda'])
+    row['taxa_compra'] = _convert_percent(row['taxa_compra'])
+    row['taxa_venda'] = _convert_percent(row['taxa_venda'])
+    row['vencimento'] = _convert_date(row['vencimento'])
+    row['timestamp'] = _convert_datetime(row['timestamp'])
+
+for row in reader:
+    convert_row(row)
+    print(row)
+    # TODO: crear _convert_float
+    # TODO: crear _convert_percent
+    # TODO: crear _convert_date
+    # TODO: crear _convert_datetime
+</code></pre>
+          (ver <code>02_csv.py</code>)
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>Conversiones</h2>
+          <img width="70%" src="images/quebrando.gif" alt="">
+        </section>
+
+        <section>
+          <h2>XLS - Codigo</h2>
+
+<pre><code>
+import xlrd
+
+def _convert_row(row):
+    return [cell.value for cell in row]
+
+def my_xls_reader(filename):
+    workbook = xlrd.open_workbook(filename)
+    sheet = workbook.sheet_by_index(0)
+    header = _convert_row(sheet.row(0))
+    for row_number in range(1, sheet.nrows):
+        data = _convert_row(sheet.row(row_number))
+        yield dict(zip(header, data))
+
+filename = 'examples/data/tesouro-direto.xls'
+for row in my_xls_reader(filename):
+    print(row)
+</code></pre>
+        </section>
+
+        <section>
+          <h2>XLS - Resultado</h2>
+
+<pre><code>
+{
+  u'preco_compra': 7261.57,  # bueno!
+  u'preco_venda': 7246.25,  # bueno!
+  u'taxa_compra': 0.0,  # bueno!
+  u'taxa_venda': 0.0004,  # bueno!
+  u'timestamp': 42314.73819444444,  # ???
+  u'titulo': u'Tesouro Selic 2021 (LFT)',  # bueno!
+  u'vencimento': 44256.0  # ???
+}
+</code></pre>
+        </section>
+
+        <section>
+          <h2>WTF?</h2>
+
+<pre><code>
+  u'timestamp': 42314.73819444444,
+  u'vencimento': 44256.0
+
+</code></pre>
+        </section>
+
+        <section>
+          <h2>XLS - Conversiones</h2>
+
+<pre><code>def _convert_date(data, sheet):
+    time_tuple = xlrd.xldate_as_tuple(data, sheet.book.datemode)
+    date = datetime.datetime(*time_tuple)
+    return datetime.date(date.year, date.month, date.day)
+
+def _convert_datetime(data, sheet):
+    time_tuple = xlrd.xldate_as_tuple(data, sheet.book.datemode)
+    return datetime.datetime(*time_tuple)
+
+def my_xls_reader(filename):
+    (...)
+        data = _convert_row(sheet.row(row_number))
+        row = dict(zip(header, data))
+        row['vencimento'] = _convert_date(row['vencimento'], sheet)
+        row['timestamp'] = _convert_datetime(row['timestamp'], sheet)
+        yield row</code></pre>
+          (ver <code>04_xls.py</code>)
+        </section>
+
+        <section>
+          <h2>HTML - Codigo</h2>
+
+<pre><code>from lxml.html import document_fromstring
+
+def _convert_row(row):
+    values = row.xpath('.//th/text()') + \
+             row.xpath('.//td/text()')
+    return [text.strip() for text in values]
+
+def my_html_reader(filename):
+    with open(filename) as fobj:
+        tree = document_fromstring(fobj.read())
+    tables = tree.xpath('//table')
+    table = tables[0]
+    rows = table.xpath('.//tr')
+    header = _convert_row(rows[0])
+    for row in rows[1:]:
+        yield dict(zip(header, _convert_row(row)))
+
+filename = 'examples/data/tesouro-direto.html'
+for row in my_html_reader(filename):
+    print(row)
+</code></pre>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>XPath</h2>
+          <img width="70%" src="images/gato-pulando.gif" alt="">
+        </section>
+
+        <section>
+          <h2>HTML - Resultado</h2>
+
+<pre><code>
+{
+  'preco_compra': '7261.57',  # TODO: convertir
+  'preco_venda': '7246.25',  # TODO: convertir
+  'taxa_compra': '0.00%',  # TODO: convertir
+  'taxa_venda': '0.04%',  # TODO: convertir
+  'timestamp': '2015-11-06T17:43:00',  # TODO: convertir
+  'titulo': 'Tesouro Selic 2021 (LFT)',
+  'vencimento': '2021-03-01'  # TODO: convertir
+}
+
+</code></pre>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas
+
+          - Ni todos os formatos tienen información de tipos
+          - Conversión puede tener muchos errores
+          - APIs son muy diferentes
+        </section>
+
+        <section>
+          <h2>rows to the rescue!</h2>
+          <br>
+          <h3><pre>pip install rows # Python Package Index</pre></h3>
+          <h3><pre>apt-get install rows # Debian</pre></h3>
+          <h3><pre>dnf install rows # Fedora</pre></h3>
+          <br>
+          <h2><a href="https://github.com/turicas/rows">github.com/turicas/rows</a></h2>
+          <h2><img src="images/gplv3.png"></h2>
+        </section>
+
+        <section>
+          <h2>CSV con rows - Codigo</h2>
+<pre><code>import rows
+
+filename = 'examples/data/tesouro-direto.csv'
+table1 = rows.import_from_csv(filename)
+
+for row in table1:
+    print(row)
+</code></pre>
+        </section>
+
+        <section>
+          <h2>CSV con rows - Resultado</h2>
+        <pre><code>
+
+Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43),
+    titulo=u'Tesouro IPCA+ com Juros Semestrais 2017 (NTNB)',
+    vencimento=datetime.date(2017, 5, 15),
+    taxa_compra=Decimal('0.0702'),
+    taxa_venda=Decimal('0.063'),
+    preco_compra=0.0,
+    preco_venda=2792.97)
+
+# namedtuple #FTW \o/
+</code></pre>
+        </section>
+
+        <section>
+          <h2>XLS con rows - Codigo</h2>
+          <pre><code>import rows
+
+filename = 'examples/data/tesouro-direto.xls'
+table2 = rows.import_from_xls(filename)
+
+for row in table2:
+    print(row)
+</code></pre>
+        </section>
+
+        <section>
+          <h2>XLS con rows - Resultado</h2>
+        <pre><code>
+
+Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43),
+    titulo=u'Tesouro IPCA+ com Juros Semestrais 2017 (NTNB)',
+    vencimento=datetime.date(2017, 5, 15),
+    taxa_compra=Decimal('0.0702'),
+    taxa_venda=Decimal('0.063'),
+    preco_compra=0.0,
+    preco_venda=2792.97)
+
+# namedtuple #FTW \o/
+</code></pre>
+        </section>
+
+        <section>
+          <h2>HTML con rows - Codigo</h2>
+          <pre><code>import rows
+
+filename = 'examples/data/tesouro-direto.html'
+table3 = rows.import_from_html(filename)
+
+for row in table3:
+    print(row)
+</code></pre>
+        </section>
+
+        <section>
+          <h2>HTML con rows - Resultado</h2>
+        <pre><code>
+
+Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43),
+    titulo=u'Tesouro IPCA+ com Juros Semestrais 2017 (NTNB)',
+    vencimento=datetime.date(2017, 5, 15),
+    taxa_compra=Decimal('0.0702'),
+    taxa_venda=Decimal('0.063'),
+    preco_compra=0.0,
+    preco_venda=2792.97)
+
+# namedtuple #FTW \o/
+</code></pre>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## rows
+
+          - Interfaz única (independiente de formato)
+          - Escrebir es tan facil cuanto leer
+          - Muchos plugins
+          - Command-line interface! o/
+          - Conversión **automática** de datos
+            - **Yo he heco las pruebas**
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## rows - Plugins
+
+          - CSV
+          - JSON
+          - HTML (+ XPath)
+          - TXT
+          - XLS
+          - XLSX
+          - SQLite
+          - ODS
+          - Parquet (de Spark)
+          - (y otros en desarrolo)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Command-Line Interface
+
+          - `print`
+          - `convert`
+          - `sum`
+          - `join`
+          - `query` (sí, SQL!)
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Live coding (CLI)
+        </section>
+
+        <section>
+          <h2><a href="https://github.com/turicas/rows">github.com/turicas/rows</a></h2>
+          <img width="80%" src="images/rows-github.png" alt="">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/pythonbrasil.png">
+          <h2>
+            <a href="http://www.pythonbrasil.org.br/"><b>pythonbrasil.org.br</b></a>
+          </h2>
+          <p>
+            13 a 18 de outubro
+            <br>
+            Florianópolis/SC
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1> <b>?</b> </h1>
+        </section>
+
+        <section>
+          <h2>Gracias! (:</h2>
+          <h2><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3><a href="http://turicas.info/">turicas.info</a></h3>
+          <h3><a href="http://bit.ly/rows-mvd">bit.ly/rows-mvd</a></h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
