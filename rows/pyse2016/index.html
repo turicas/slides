@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>rows: do UaiPython à PythonSudeste, com Álvaro Justen aka Turicas</title>
+
+    <meta name="description" content="rows: do UaiPython à PythonSudeste">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>rows: do UaiPython à PythonSudeste</h2>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="http://www.pythonsudeste.org/">PythonSudeste[0]</a></h4>
+          <h4>2 de setembro de 2016</h4>
+          <h4>Belo Horizonte/MG <img width="30" style="margin: 0" src="images/heart.png"></h4>
+        </section>
+
+        <section>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons!</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+        </section>
+
+        <section>
+          <h3>29 de agosto de 2015</h3>
+          <h3>Belo Horizonte/MG</h3>
+          <img src="images/uaipython-turicas.png">
+        </section>
+
+        <section>
+          <h1><pre>tesouro-direto.csv</pre></h1>
+          <img src="images/tesouro-direto-csv.png">
+        </section>
+
+        <section>
+          <h2>CSV - sem rows</h2>
+
+<pre><code>import csv
+
+def convert_row(row):
+    # TODO: criar funções de conversão
+    row['preco_compra'] = _convert_float(row['preco_compra'])
+    row['preco_venda'] = _convert_float(row['preco_venda'])
+    row['taxa_compra'] = _convert_percent(row['taxa_compra'])
+    row['taxa_venda'] = _convert_percent(row['taxa_venda'])
+    row['vencimento'] = _convert_date(row['vencimento'])
+    row['timestamp'] = _convert_datetime(row['timestamp'])
+
+filename = 'examples/data/tesouro-direto.csv'
+reader = csv.DictReader(open(filename))
+for row in reader:
+    print(convert_row(row))
+
+</code></pre>
+        </section>
+
+        <section>
+          <h2>XLS - sem rows</h2>
+
+<pre><code>import xlrd
+
+def _convert_row(row):
+    return [cell.value for cell in row]
+
+def my_xls_reader(filename):
+    workbook = xlrd.open_workbook(filename)
+    sheet = workbook.sheet_by_index(0)
+    header = _convert_row(sheet.row(0))
+    for row_number in range(1, sheet.nrows):
+        data = _convert_row(sheet.row(row_number))
+        yield dict(zip(header, data))
+
+filename = 'examples/data/tesouro-direto.xls'
+for row in my_xls_reader(filename):
+    print(row)
+</code></pre>
+        </section>
+
+        <section>
+          <h2>HTML - sem rows</h2>
+
+<pre><code>from lxml.html import document_fromstring
+
+def _convert_row(row):
+    values = row.xpath('.//th/text()') + \
+             row.xpath('.//td/text()')
+    return [text.strip() for text in values]
+
+def my_html_reader(filename):
+    with open(filename) as fobj:
+        tree = document_fromstring(fobj.read())
+    tables = tree.xpath('//table')
+    table = tables[0]
+    rows = table.xpath('.//tr')
+    header = _convert_row(rows[0])
+    for row in rows[1:]:
+        yield dict(zip(header, _convert_row(row)))
+
+filename = 'examples/data/tesouro-direto.html'
+for row in my_html_reader(filename):
+    print(row)
+</code></pre>
+          </section>
+
+        <section>
+          <h2>com rows</h2>
+<pre><code>import rows
+
+filename = 'examples/data/tesouro-direto.csv'
+table1 = rows.import_from_csv(filename)
+
+for row in table1:
+    print(row)
+</code></pre>
+          </section>
+
+        <section>
+          <h2>com rows [2]</h2>
+<pre><code>import rows
+
+filename = 'examples/data/tesouro-direto.xls'
+table2 = rows.import_from_xls(filename)
+
+for row in table2:
+    print(row)
+</code></pre>
+          </section>
+
+        <section>
+          <h2>com rows[3]</h2>
+<pre><code>import rows
+
+filename = 'examples/data/tesouro-direto.html'
+table3 = rows.import_from_html(filename)
+
+for row in table3:
+    print(row)
+</code></pre>
+          </section>
+
+        <section>
+          <h2>Resultado</h2>
+        <pre><code>Row(timestamp=datetime.datetime(2015, 11, 6, 17, 43),
+    titulo=u'Tesouro IPCA+ com Juros Semestrais 2017 (NTNB)',
+    vencimento=datetime.date(2017, 5, 15),
+    taxa_compra=Decimal('0.0702'),
+    taxa_venda=Decimal('0.063'),
+    preco_compra=0.0,
+    preco_venda=2792.97)
+
+# namedtuple #FTW \o/
+</code></pre>
+            <img src="images/carlton-dance.gif">
+          </section>
+
+          <section>
+            <h2>Command-line Interface</h2>
+<pre><code>URL=http://www.sports-reference.com/olympics/countries/BRA/summer/2012/
+rows convert $URL 2012-bra.csv
+</code></pre>
+            <img src="images/rows-olimpiadas.png">
+        </section>
+
+        <section>
+          <h3><pre>pip install rows # Python Package Index</pre></h3>
+          <h3><pre>apt-get install rows # Debian</pre></h3>
+          <h3><pre>dnf install rows # Fedora</pre></h3>
+          <br>
+          <h2><a href="https://github.com/turicas/rows">github.com/turicas/rows</a></h2>
+          <h2><img src="images/gplv3.png"></h2>
+          <h2>Versão 0.3.0 <b>lançada hoje</b> (especialmente pra vcs &lt;3)</h2>
+        </section>
+
+        <section data-markdown>
+          ## Versões de Python Suportadas (0.1.0)
+
+          - Python 2.7
+        </section>
+
+        <section data-markdown>
+          ## Versões de Python Suportadas (0.3.0)
+
+          - Python 2.7
+          - Python 3.5
+        </section>
+
+        <section data-markdown>
+          ## Plugins (0.1.0)
+
+          - CSV
+          - HTML
+          - TXT
+          - XLS
+        </section>
+
+        <section data-markdown>
+          ## Plugins (0.3.0)
+
+          - CSV
+          - dicts
+          - JSON
+          - HTML (tag "table")
+          - HTML com XPath (read-only)
+          - TXT
+          - XLS
+          - XLSX
+          - SQLite
+          - ODS (read-only)
+          - Parquet (read-only)
+          - (e outros em desenvolvimento)
+        </section>
+
+        <section data-markdown>
+          ## Command-Line Interface (0.1.0)
+
+          - `convert`
+          - `join`
+          - `sort`
+          - `sum`
+        </section>
+
+        <section data-markdown>
+          ## Command-Line Interface (0.3.0)
+
+          - `print`
+          - `convert`
+          - `sum`
+          - `join`
+          - `query` (sim, dá pra rodar SQL num CSV!)
+        </section>
+
+        <section data-markdown>
+          ## E Também...
+
+          - Novos `rows.fields`
+          - Empacotamento Debian e Fedora
+          - Dezenas de bugs corrigidos
+          - Dezenas de melhorias/otimizações
+          - Vários exemplos de código adicionados
+          - Sendo utilizada em muitos projetos! \o/
+        </section>
+
+        <section>
+          <img src="images/logo_genero-e-numero.png">
+          <br>
+          <a href="http://generonumero.media/">generonumero.media</a>
+        </section>
+
+        <section>
+          <h3>Um Monte de Palestras!</h3>
+          <h4>Rio, Porto Alegre, Quito, Montevidéu...</h4>
+          <img src="images/rows-pelo-mundo.jpg">
+        </section>
+
+        <section>
+          <h3>Contribua (:</h3>
+          <h3><a href="https://github.com/turicas/rows">github.com/turicas/rows</a></h3>
+          <img width="80%" src="images/rows-github.png" alt="">
+        </section>
+
+        <section>
+          <img src="images/rows-contributors.jpg">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1>Tutorial amanhã! o/</h1>
+          <h2> 13:00-17:00 </h2>
+        </section>
+
+        <section data-transition="slide">
+          <h2>Curso de Arduino em BH!</h2>
+          <img src="images/logo_curso-de-arduino.png">
+          <h3>
+            <a href="http://cursodearduino.com.br/belo-horizonte"><b>cursodearduino.com.br/belo-horizonte</b></a>
+          </h3>
+          <p>
+            5 a 9 de setembro de 2016, <a href="http://guaja.cc/">Guaja Casa</a>
+          </p>
+        </section>
+
+        <section data-transition="slide">
+          <h2>Curso de Python</h2>
+          <h2>ONLINE E GRATUITO</h2>
+          <img src="images/python24h.png">
+          <h3>
+            <a href="http://pythonic.cafe"><b>pythonic.cafe</b></a>
+          </h3>
+        </section>
+
+        <section data-transition="slide">
+          <img src="images/pythonbrasil.png">
+          <h3>
+            <a href="http://pythonbrasil.com.br"><b>pythonbrasil.com.br</b></a>
+          </h3>
+          <p> 13 a 18 de outubro de 2016 </p>
+          <p> Florianópolis/SC </p>
+        </section>
+
+        <section>
+          <h2>Obrigado! (:</h2>
+          <h2><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3><a href="http://turicas.info/">turicas.info</a></h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
