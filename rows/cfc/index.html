@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Capturando e Convertendo Dados de Maneira Fácil com Python, por Álvaro Justen aka Turicas</title>
+
+    <meta name="description" content="Capturando e Convertendo Dados de Maneira Fácil com Python">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>Capturando e Convertendo Dados de Maneira Fácil com Python</h2>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4>Encontro <a href="https://github.com/codeforcuritiba">Code for Curitiba</a></h4>
+          <h4>29 de março de 2017 - Curitiba/PR</h4>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>
+            <a href="http://bit.ly/rows-cfc"><b>bit.ly/rows-cfc</b></a>
+          </h2>
+        </section>
+
+        <section>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_curso-de-arduino.png">
+            <br>
+            <h2>
+              <a href="http://cursodearduino.com.br/">cursodearduino.com.br</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/python24h.png">
+            <br>
+            <h2>
+              <a href="http://pythonic.cafe/">pythonic.cafe</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_genero-e-numero.png" width="30%">
+            <br>
+            <h2>
+              <a href="http://generonumero.media">generonumero.media</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_escola-de-dados.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://escoladedados.org/">escoladedados.org</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_simplefractal.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://simplefractal.com/">simplefractal.com</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <img height="100%" src="images/turicas-wordcloud.png" alt="Álvaro Justen wordcloud">
+          </p>
+        </section>
+
+        <section>
+          <h1>Software Livre</h1>
+          <p>
+            <a href="http://www.gnu.org/">
+              <img width="50%" src="images/gnu.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h1>Python</h1>
+          <p>
+            <a href="http://www.python.org/">
+              <img width="50%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h1>Arduino</h1>
+          <p>
+            <a href="http://www.arduino.cc/">
+              <img width="70%" src="images/arduino-uno.jpg">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <a href="http://2012.pythonbrasil.org.br/">
+              <img width="80%" src="images/pythonbrasil8.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <a href="http://www.pythonquito.tk/">
+              <img width="80%" src="images/pythonquito.png">
+            </a>
+          </p>
+          <h2>
+            <a href="http://www.pythonquito.tk/">pythonquito.tk</a>
+          </h2>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # E vocês?
+
+          - Quem sabe programar?
+          - Quem conhece e usa Python?
+            - Para quê?
+          - Quem trabalha com conversão de dados, *scraping*, *data science*, ...? (mesmo que não programando)
+        </section>
+
+        <section>
+          <h2>Como tudo começou...</h2>
+          <p>
+            <img width="60%" src="images/alvaro-justen.jpg" alt="Álvaro Justen e sua casa">
+          </p>
+        </section>
+
+        <section>
+          <h2>A Jornada</h2>
+          <p align="center">
+            <img src="images/funil-de-dados.png">
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/ibge-cidades.png">
+          </p>
+        </section>
+
+        <section>
+          <h2>Dados Presos</h2>
+          <p align="center">
+            <img src="images/html-ibge-cidades.png">
+          </p>
+        </section>
+
+        <section>
+          <h2>"Quanto mais inacessível um dado está (mesmo que aberto), menos aberto ele é"</h2>
+          <h3>Álvaro Justen</h3>
+        </section>
+
+        <section data-markdown>
+          # 5 Stars Data
+
+          ## [5stardata.info](http://5stardata.info/)
+
+          ![](images/5-stars-data.png)
+        </section>
+
+        <section>
+          <h2>O Que Eu Já Fiz</h2>
+          <p align="center">
+            <img src="images/funil-de-dados-3.png">
+          </p>
+        </section>
+
+        <section>
+          <h2>O Que Eu Quero</h2>
+          <p align="center">
+            <img src="images/funil-de-dados-2.png">
+          </p>
+        </section>
+
+        <section>
+          <h2>O Que Tenho Que Fazer</h2>
+          <p align="center">
+            <img src="images/funil-de-dados-4.png">
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>Obtendo...</h2>
+          <img width="70%" src="images/gato-pulando.gif" alt="">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>Verificando...</h2>
+          <img width="70%" src="images/quebrando.gif" alt="">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>Limpando...</h2>
+          <img width="70%" src="images/limpando.gif" alt="">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>E Se Fosse CSV?</h3>
+          <img src="images/csv.png" alt="">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>JSON</h3>
+          <img src="images/json.png" alt="">
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h3>XLS, XLSX</h3>
+          <img src="images/xls.png" alt="">
+        </section>
+
+        <section>
+          <h2>rows to the rescue!</h2>
+          <br>
+          <h3><pre>pip install rows # Python Package Index</pre></h3>
+          <h3><pre>apt-get install rows # Debian</pre></h3>
+          <h3><pre>dnf install rows # Fedora</pre></h3>
+          <br>
+          <h2><a href="https://github.com/turicas/rows">github.com/turicas/rows</a></h2>
+          <h2><img src="images/gplv3.png"></h2>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img width="70%" src="images/automate-all-the-things.jpg" alt="">
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## rows
+
+          - Biblioteca Python
+          - Command-Line Interface
+          - Plugins:
+            - CSV
+            - JSON
+            - HTML (+ XPath)
+            - TXT
+            - XLS
+            - XLSX
+            - SQLite
+            - ODS
+            - Parquet
+            - (+ outros em desenvolvimento)
+        </section>
+
+        <section>
+          <h2>csv em Python</h2>
+          <h3>live coding</h3>
+        </section>
+
+        <section>
+          <h2>csv com Python + rows</h2>
+<pre><code>import rows
+
+table1 = rows.import_from_csv('data/brazilian-cities.csv')
+
+for row in table1:
+    print(row)
+</code></pre>
+        </section>
+
+        <section>
+        <pre><code>
+
+Row(state='PR',
+    city='Curitiba',
+    inhabitants=1751907,
+    area=435.04)
+
+# namedtuple #FTW \o/
+</code></pre>
+        </section>
+
+        <section>
+          <h2>xls com Python + rows</h2>
+          <pre><code>import rows
+
+table2 = rows.import_from_xls('data/brazilian-cities.xls')
+
+for row in table2:
+    print(row)
+</code></pre>
+        </section>
+
+        <section>
+          <h2>html com Python + rows</h2>
+          <pre><code>import rows
+
+table3 = rows.import_from_html('data/brazilian-cities.html')
+
+for row in table3:
+    print(row)
+</code></pre>
+        </section>
+
+        <section>
+          <h2>import rows</h2>
+          <img width="60%" src="images/carlton-dance.gif" alt="Carlton dance">
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## rows: Funcionalidades
+
+          - Interface única (não importa o formato)
+          - Escrever é tão fácil quanto ler (*pythonic way*)
+          - Vários plugins
+          - CLI
+          - Conversão **automática** de dados
+          - **Eu já fiz os testes**
+          - Test-driven development
+          - Semantic versioning
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Command-Line Interface
+          ### live coding
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Command-Line Interface
+
+          - `print`: mostra a tabela em formato texto
+          - `convert`: converte entre os formatos suportados
+          - `sum`: agrega tabelas
+          - `join`: cruza dados
+          - `query`: SQL!
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Alguns Casos de Uso
+
+          - CLI:
+            - Download, conversão e limpeza
+            - Análises preliminares
+          - Biblioteca:
+            - Conversão e limpeza (exemplo: Interlegis)
+            - Conversão e análise (exemplos: scifi, fisl_talks)
+        </section>
+
+        <section>
+          <h2><a href="https://github.com/turicas/rows">github.com/turicas/rows</a></h2>
+          <img width="80%" src="images/rows-github.png" alt="">
+        </section>
+
+        <section>
+          <h2>Colaboradores</h2>
+          <img width="75%" src="images/rows-contributors.jpg" alt="">
+        </section>
+
+        <section>
+          <h1>#fikdik</h1>
+        </section>
+
+        <section data-markdown>
+          # GruPy-PR
+
+          ## [grupypr.github.io](grupypr.github.io)
+          ## [t.me/grupy_pr](https://t.me/grupy_pr)
+          ## Encontros mensais (próximo: 8 de abril durante o FLISOL)
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/pythonsudeste.png">
+          <h2>
+            <a href="http://www.pythonsudeste.org/"><b>pythonsudeste.org</b></a>
+          </h2>
+          <p>
+            5 a 7 de maio de 2017
+            <br>
+            Rio de Janeiro/RJ
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <img src="images/pythonbrasil.png">
+          <h2>
+            <a href="http://www.pythonbrasil.org.br/"><b>pythonbrasil.org.br</b></a>
+          </h2>
+          <p>
+            06 a 08 de outubro de 2017
+            <br>
+            Belo Horizonte/MG <img width="30" style="margin: 0" src="images/heart.png">
+          </p>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h2>Curso de Python Online (em breve)</h2>
+          <h2>
+            <a href="pythonic.cafe"><b>pythonic.cafe</b></a>
+          </h2>
+        </section>
+
+        <section data-transition="slide" data-background="#FFFFFF"
+          data-background-transition="slide">
+          <h1> <b>?</b> </h1>
+        </section>
+
+        <section>
+          <h2>Obrigado! (:</h2>
+          <h2><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@CursoDeArduino.com.br">alvaro@CursoDeArduino.com.br</a></h3>
+          <h3><a href="http://turicas.info/">turicas.info</a></h3>
+          <h3><a href="http://bit.ly/rows-cfc">bit.ly/rows-cfc</a></h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
