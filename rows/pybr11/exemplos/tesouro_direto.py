@@ -34,7 +34,7 @@ def formata_valor(valor):
 def resultado_calculadora(codigo_titulo, data_compra, data_vencimento,
                           valor_investido, taxa_compra, taxa_administracao,
                           taxa_generica):
-    browser = Browser('chrome')
+    browser = Browser('firefox')
     browser.visit(URL_CALCULADORA)
     browser.select('cbTitulo', codigo_titulo)
     while not browser.find_by_name('txtDtCompra'):
