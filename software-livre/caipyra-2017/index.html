@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Software Livre - Caipyra 2017, por Álvaro Justen aka Turicas</title>
+
+    <meta name="description" content="Software Livre - Caipyra 2017">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>Software Livre</h2>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="http://caipyra.python.org.br/">Caipyra 2017</a></h4>
+          <h4>2017-06-24 - Ribeirão Preto/SP, Brasil</h4>
+        </section>
+
+        <section>
+          <h2>Hello, world!</h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@pythonic.cafe">turicas@pythonic.cafe</a></h3>
+          <h3>
+            <a href="http://turicas.info/">turicas.info</a>
+          </h3>
+        </section>
+
+        <section>
+          <p>
+            <img src="images/logo_pythonic-cafe.jpg" width="35%">
+            <br>
+            <h2>
+              <a href="http://pythonic.cafe/">pythonic.cafe</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <img src="images/logo_genero-e-numero.png" width="30%">
+            <br>
+            <h2>
+              <a href="http://generonumero.media">generonumero.media</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <img src="images/logo_escola-de-dados.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://escoladedados.org/">escoladedados.org</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <img src="images/logo_simplefractal.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://simplefractal.com/">simplefractal.com</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <img src="images/logo_mentis-institute.jpeg">
+            <br>
+            <h2>
+              <a href="http://mentis.institute/">mentis.institute</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <h2>Software Livre (~2004)</h2>
+          <p>
+            <a href="http://www.gnu.org/">
+              <img width="50%" src="images/gnu.png">
+            </a>
+          </p>
+          <p>
+            Tema da minha primeira palestra!
+          </p>
+        </section>
+
+        <section>
+          <h2>Python (2005)</h2>
+          <p>
+            <a href="http://www.python.org/">
+              <img width="50%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## Entrevistei Guido van Rossum!
+
+        ![Álvaro Justen entrevista Guido van Rossum](images/entrevista-guido.jpg)
+
+        Em breve em **[youtube.com/c/PythonicCafe](https://youtube.com/c/PythonicCafe)**
+        </section>
+
+        <section>
+          <h2>
+            <a href="http://bit.ly/turicas-caipyra-sl"><b>bit.ly/turicas-caipyra-sl</b></a>
+          </h2>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Enquete
+
+          - Quem gosta de usar projetos open source?
+          - (continue com a mão levantada)
+          - Quem colabora/desenvolve projetos open source?
+          - Quem de vocês sabe o que é **copyleft**?
+          - Quem de vocês sabe que software livre **não** é open source e conhece as diferenças?
+          - Quem de vocês sabe que software livre **não** é sinônimo de "software gratuito" ou "software de código aberto"?
+        </section>
+
+        <section data-markdown>
+          ### Free Software != Freeware (gratis)
+          ### Free Software != Shareware
+          ### **Free Software != Open Source Software**
+        </section>
+
+        <!-- ############################################################## -->
+        <!-- # Part 1: Copyright laws                                     # -->
+        <!-- ############################################################## -->
+
+        <section>
+          <h2>Part 1:</h2>
+          <h2>Copyright Laws</h2>
+          <p>
+            <img width="50%" src="images/definition-dictionary.jpg">
+            <br>
+            (Picture by <a
+              href="http://maxpixel.freegreatpicture.com/Book-Page-Definition-Paper-Dictionary-Word-Text-390785">Max
+            Pixel</a>, CC-0)
+          </p>
+        </section>
+
+        <section data-markdown>
+          ## Did you read it?
+
+          ![](images/copyright-law-brazil-software-license.png)
+
+          [planalto.gov.br/ccivil_03/LEIS/L9610.htm](http://www.planalto.gov.br/ccivil_03/LEIS/L9610.htm)
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;<b>Software license</b> is a legal instrument (usually by
+            way of contract law, with or without printed material) governing
+            the use or redistribution of software&rdquo;
+          </blockquote>
+          -- <a href="https://en.wikipedia.org/wiki/Software_license">Wikipedia</a>
+        </section>
+
+        <section data-markdown>
+          ![](images/copyright-law-brazil.png)
+
+          [planalto.gov.br/ccivil_03/LEIS/L9610.htm](http://www.planalto.gov.br/ccivil_03/LEIS/L9610.htm)
+        </section>
+
+        <section data-markdown>
+          ![](images/copyright-law-brazil-2.png)
+
+          [planalto.gov.br/ccivil_03/leis/L9609.htm](http://www.planalto.gov.br/ccivil_03/leis/L9609.htm)
+        </section>
+
+        <section data-markdown>
+          ## Copyright Laws in Brazil:
+          ## Some Highlights
+        </section>
+
+        <section data-markdown>
+          ## You're probably not the owner
+
+          ![](images/copyright-law-brazil-software-owner.png)
+        </section>
+
+        <section data-markdown>
+          ## Ask for permission by default
+
+          ![](images/copyright-law-brazil-software-owner-rights.png)
+        </section>
+
+        <section data-markdown>
+          ## Piracy Punishments
+
+          ![](images/copyright-law-brazil-rights-violation.png)
+        </section>
+
+        <section data-markdown>
+          ## (Almost) Never ends
+
+          ![](images/copyright-law-brazil-public-domain.png)
+        </section>
+
+        <section data-markdown>
+          ## That's the default contract
+        </section>
+
+        <section data-markdown>
+          ## Software Licenses
+          ### TL;DR
+
+          ![](images/i-agree.png)
+        </section>
+
+        <section data-markdown>
+          ## Rights in copyright
+
+          ![](images/rights-in-copyright.png)
+
+          (from [Wikipedia](https://en.wikipedia.org/wiki/Software_license#/media/File:Software-license-classification-mark-webbink.svg))
+        </section>
+
+        <section data-markdown>
+          ## Examples of FLOSS Licenses
+          ### FLOSS = Free/Libre and Open Source Software
+
+          - [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html)
+          - [GNU Lesser General Public License](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+          - [GNU Affero General Public License](https://www.gnu.org/licenses/agpl-3.0.en.html)
+          - [Berkeley Software Distribution License](https://opensource.org/licenses/BSD-3-Clause)
+          - [MIT License](https://opensource.org/licenses/MIT)
+          - [Apache License](https://www.apache.org/licenses/LICENSE-2.0)
+          - ...
+        </section>
+
+
+        <!-- ############################################################## -->
+        <!-- # Part 2: Free Software and its history                      # -->
+        <!-- ############################################################## -->
+
+        <section data-markdown>
+          ## Part 2:
+          ## Free Software and its history
+        </section>
+
+        <section data-markdown>
+          ## Richard M. Stallman
+
+          ![Richard Stallman photo](images/richard-stallman.jpg)
+
+          (photo by
+          [Wikipedia](https://en.wikipedia.org/wiki/Richard_Stallman#/media/File:Richard_Stallman_-_F%C3%AAte_de_l%27Humanit%C3%A9_2014_-_010.jpg))
+        </section>
+
+        <section data-markdown>
+          ![Free Software Foundation logo](images/fsf.png)
+
+          [fsf.org](http://www.fsf.org)
+        </section>
+
+        <section data-markdown>
+          ## The four essential freedoms
+
+          (from [gnu.org](https://www.gnu.org/philosophy/free-sw.en.html))
+
+          - (0) To run the program as you wish
+          - (1) To study how the program works
+          - (2) To redistribute copies
+          - (3) To distribute copies of your modified versions
+        </section>
+
+        <section data-markdown>
+          # LIVRE != GRÁTIS
+          ## Free as in "freedom", not as in "free beer"
+        </section>
+
+        <section data-markdown>
+          ## &ldquo;**G**NU's **N**ot **U**nix&rdquo;
+
+          ![](images/gnu.png)
+
+          [gnu.org](http://www.gnu.org)
+
+          Who here knows what UNIX is?
+        </section>
+
+        <section data-markdown>
+          ## Free Software Benefits
+
+          - User freedom and privacy
+          - Improve local economy
+            - No vendor lock-in
+            - Creating monopolies is not easy
+          - More knowledge spread to everybody
+          - ...
+        </section>
+
+        <section>
+          <h2>What about Open Source?</h2>
+          <blockquote>
+            &ldquo;The term <b>open source</b> was first proposed by a group of
+            people who were critical of the political agenda and moral
+            philosophy implied in the term <b>free software</b> and sought to
+            reframe the discourse to reflect a more commercially minded
+            position.&rdquo;
+          </blockquote>
+          -- <a href="https://en.wikipedia.org/wiki/Open-source_model">Wikipedia</a>
+        </section>
+
+        <section>
+          <blockquote>
+          &ldquo;Open source is a development methodology; free software is a
+          social movement.&rdquo;
+          </blockquote>
+          -- <a href="https://rms.org/">Richard Stallman</a>
+          on
+          <a href="https://www.gnu.org/philosophy/open-source-misses-the-point.html">Why Open Source misses the point of Free Software</a>
+        </section>
+
+        <section data-markdown>
+          ## What's the difference
+
+          - Not the definitions
+          - The **goals**
+        </section>
+
+        <section data-markdown>
+          ![](images/software-licenses.png)
+        </section>
+
+
+        <!-- ############################################################## -->
+        <!-- # Part 3: Licenses and Copyleft                              # -->
+        <!-- ############################################################## -->
+
+        <section data-markdown>
+          ## Part 3:
+          ## Licenses and Copyleft
+        </section>
+
+        <section data-markdown>
+          ![](images/copyleft.png)
+
+          (from [Google Search](https://www.google.com.br/search?q=copyleft))
+        </section>
+
+        <section>
+          <blockquote>
+          &ldquo;Stallman worked a few years earlier on a Lisp interpreter.
+          Symbolics asked to use the Lisp interpreter, and Stallman agreed to
+          supply them with a public domain version of his work. Symbolics
+          extended and improved the Lisp interpreter, but when Stallman wanted
+          access to the improvements that Symbolics had made to his
+          interpreter, Symbolics refused.&rdquo;
+          </blockquote>
+          -- <a href="https://en.wikipedia.org/wiki/Copyleft">Wikipedia</a>
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;GNU is not in the public domain. Everyone will be permitted
+            to modify and redistribute GNU, but no distributor will be allowed
+            to restrict its further redistribution. That is to say, proprietary
+            modifications will not be allowed. I want to make sure that all
+            versions of GNU remain free.&rdquo;
+          </blockquote>
+          -- <a href="http://rms.org/">Richard Stallman</a> on <a
+            href="https://en.wikipedia.org/wiki/GNU_Manifesto">GNU Manifesto</a>, 1985
+        </section>
+        <section data-markdown>
+          ## General Public License
+
+          ![](images/gplv3.png)
+
+          [gnu.org/licenses/gpl-3.0.en.html](https://www.gnu.org/licenses/gpl-3.0.en.html)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Copyleft
+
+          - License feature
+          - Forces the software to be **always free/libre**
+            - **Guarantees user freedom**
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problems of non-copylefted software
+
+          - Symbolics and the Lisp interpreter
+          - Microsoft Visual Studio Code (spyware)
+          - Apple (darwin)
+          - *Put your cool non-copylefted open-source software here*
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## If you don't know the differences you may be helping your enimies
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Licensing tips
+
+          - As a developer: read the major FLOSS licenses
+            - If you'd like to support the ecosystem, go with copyleft
+          - As a user: read carefully the terms (eg: Microsoft Visual Studio Code)
+        </section>
+
+
+        <!-- ############################################################## -->
+        <!-- # Part 4: Other Movements                                    # -->
+        <!-- ############################################################## -->
+
+        <section>
+          <h2>Part 4:</h2>
+          <h2>Other Movements</h2>
+          <p>
+            <img src="images/community.png">
+            <br>
+            (Image by <a
+              href="https://en.wikipedia.org/wiki/File:Social_Network_Diagram_(segment).svg">DarwinPeacock,
+              Maklaan</a>, CC-BY-SA)
+          </p>
+        </section>
+
+        <section data-markdown>
+        ## Open Hardware
+
+        ![OSH](images/osh.png) ![Arduino](images/arduino-uno.jpg)
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## Creative Commons
+
+        ![Creative Commons logo](images/creative-commons.png)
+
+        [creativecommons.org](https://creativecommons.org/)
+
+        - "Copyright laws are turning our kids into criminals" -- Lawrence Lessig
+        - "Expanding the range of creative works available for others to build upon legally and to share."
+        - CC Licenses: pick the features you like
+          - BY: Attribution
+          - SA: Share-Alike
+          - NC: Non-Commercial
+          - ND: No Derivatives
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## Open Science
+
+        - "The movement to make scientific research, data and dissemination accessible to all levels of an inquiring society, amateur or professional." ([Wikipedia](https://en.wikipedia.org/wiki/Open_science))
+        - "Ciência aberta é pleonasmo"
+          - René Descartes likes it
+          - [Discourse on the Method](https://en.wikipedia.org/wiki/Discourse_on_the_Method), René Descartes, **1637**
+        - Back to the origins
+        </section>
+
+
+        <!-- ############################################################## -->
+        <!-- # Part 5: What to do?                                        # -->
+        <!-- ############################################################## -->
+
+        <section data-markdown>
+          ## Part 5:
+          ## How can I help?
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## The Free Software Movement is dying!
+
+        - ...and so your freedom!
+        - Let's back to the origins
+        - You can help by:
+          - Understanding the history
+          - Creating a blog post about it
+          - Giving a lightning talk on the subject
+          - Donating to Free Software Foundation
+          - Licensing your free/libre software using copylefted licenses
+        </section>
+
+        <section data-markdown>
+          ## Use "GNU/Linux" instead of "LinuX"
+
+          ![Linus Torvalds photo](images/linus-torvalds.jpg)
+
+          Linus Torvalds, Linux creator and maintainer
+
+          (Picture from [Wikipedia](https://en.wikipedia.org/wiki/Linus_Torvalds))
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## Learn About It!
+
+        - Read about it on [gnu.org](http://gnu.org), [fsf.org](http://fsf.org), [Wikipedia](http://en.wikipedia.org/) etc.
+        - Watch the talks:
+          - [A História do GNU - 30 anos de criação de software livre](http://hemingway.softwarelivre.org/fisl15/high/41b/sala41b-high-201405091403.ogv), by [Aracele Torres](https://twitter.com/araceletorres) ([FISL15](http://softwarelivre.org/fisl15/), 2014)
+          - [copyleft: e eu com isso?](http://hemingway.softwarelivre.org/fisl17/41a/sala41a-high-201607151003.ogv), by [Thadeu Cascardo](http://cascardo.eti.br/) ([FISL17](http://softwarelivre.org/fisl17), 2016)
+          - [Free Software, Free Society](https://www.youtube.com/watch?v=Ag1AKIl_2GM), by Richard M. Stallman
+          - [Inproprietário - O Mundo de Software Livre](https://vimeo.com/4999054)
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## Fórum Internacional de Software Livre
+
+        ![FISL18](images/fisl.png)
+
+        [fisl.org.br](http://www.fisl.org.br/)
+
+        (já fui em 10 deles!)
+        </section>
+
+
+        <!-- ############################################################## -->
+        <!-- # The end                                                    # -->
+        <!-- ############################################################## -->
+
+        <section>
+          <h1> <b>?</b> </h1>
+        </section>
+
+        <section>
+          <h2>Thanks! (:</h2>
+          <h2><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@pythonic.cafe">turicas@pythonic.cafe</a>
+          <h3><a href="http://turicas.info/">turicas.info</a></h3>
+          <h3><a href="http://bit.ly/turicas-caipyra-sl">bit.ly/turicas-caipyra-sl</a></h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'fade',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
