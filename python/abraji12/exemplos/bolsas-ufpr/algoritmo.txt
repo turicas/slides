@@ -1,0 +1,6 @@
+- Ler lista de beneficiários
+- Ler lista de ordens bancárias
+- Para cada ordem bancária:
+  - Ler nome do favorecido
+  - Se nome não está na lista de beneficiários, então:
+    - Mostrar o nome na tela

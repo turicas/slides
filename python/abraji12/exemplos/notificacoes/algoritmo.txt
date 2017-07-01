@@ -1,0 +1,6 @@
+- Ler lista de notificações
+- Para cada notificação na lista de notificações:
+  - Ler o link da notificação
+  - Baixar a página através do link
+  - Se o termo "bala perdida" estiver contido no HTML da página, então:
+    - Mostrar link na tela

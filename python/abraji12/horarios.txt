@@ -1,0 +1,33 @@
+Parte1 (1h): Contextualização
+ - Apresentar instrutores
+ - Apresentar alunos
+ - Scripts que viraram histórias
+ - O que é programação
+ - O que é Python
+
+Parte2 (30min): Lógica de Programação
+ - Algoritmos
+ - Exercício escovar os dentes
+
+Parte3 (2h - 9 exercícios, +-13min por exercício): Intro a Python
+ - 1: print("hello, world")
+ - 2: variavel = input("qual seu nome?")
+ - 3: Operações em variáveis: variavel1 + variavel2
+ - 4: Conversão de texto para número: int(v1) + int(v2)
+ - 5: Controle de fluxo com if/else (verificar valores negativos)
+ - 6: Calcular média
+ - 7: Calcular média de float
+ - 8: Usar lista
+ - 9: Usar "for" para repetir comandos
+ - 10: Lendo dados de um CSV
+
+== ALMOÇO ==
+
+Parte4 (1h30min): Análise de dados
+- Exercícios
+- Exemplos
+
+Parte5 (30min): Conclusão
+- Como faz pra aprender mais? Dicas/links/etc.
+- Dúvidas
+- Feedback

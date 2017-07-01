@@ -1,0 +1,5 @@
+- Abrir arquivo CSV com municípios
+- Para cada registro (município):
+  - Se o estado for RJ:
+    - Calcula densidade
+    - Mostra densidade
