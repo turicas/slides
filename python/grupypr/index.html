@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>O Fantástico Mundo de Python, por Álvaro Justen aka Turicas</title>
+
+    <meta name="description" content="O Fantástico Mundo de Python">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>O Fantástico Mundo de Python</h2>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="">Encontro do GruPy-PR + OpenDevCommunity</a></h4>
+          <h4>22 de julho de 2017 - Curitiba/PR</h4>
+        </section>
+
+        <section>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@pythonic.cafe">turicas@pythonic.cafe</a></h3>
+          <h3>Blog: <a href="http://turicas.info/">turicas.info</a> </h3>
+          <h3> +55 41 999 311 221 </h3>
+          <h4> (Signal, Telegram, WhatsApp) </h4>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_escola-de-dados.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://escoladedados.org/">escoladedados.org</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_genero-e-numero.png" width="30%">
+            <br>
+            <h2>
+              <a href="http://generonumero.media">generonumero.media</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_simplefractal.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://simplefractal.com/">simplefractal.com</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/pythonic-cafe.jpg" height="300">
+            <img src="images/python24h.png">
+            <br>
+            <h2>
+              <a href="http://pythonic.cafe/">pythonic.cafe</a>
+            </h2>
+            <h3>
+              <a href="http://pythonic.cafe/youtube">youtube.com/c/PythonicCafe</a>
+            </h3>
+          </p>
+        </section>
+
+        <section>
+          <h1>Python</h1>
+          <p>
+            <a href="http://www.python.org/">
+              <img width="50%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # E vocês?
+
+          - Já programa?
+          - Já ouviu falar de Python?
+          - Já programa em Python?
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Roteiro
+
+          - Conceitos básicos
+          - Vamos codar!
+          - Ecossistema
+          - Comunidade
+        </section>
+
+
+
+<!-- ###################################################################### -->
+<!-- # Parte 1: Conceitos Básicos                                         # -->
+<!-- ###################################################################### -->
+
+        <section data-markdown>
+        ## Parte 1:
+        ## Conceitos Básicos
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Python - Características
+
+          - Linguagem de **propósito geral**
+          - Criada por Guido Van Rossum em 1989
+          - Software **livre**
+          - Multiplataforma
+          - Fácil de aprender
+            - Sintaxe simples e clara
+            - Very High Level Language
+            - Baterias incluídas
+          - Altamente extensível
+          - Largamente utilizada
+          - Comunidade incrível
+        </section>
+
+      <section>
+        <h3>Guido van Rossum</h3>
+        <p>
+          <img height="100%" src="images/guido-van-rossum.png" alt="Guido van Rossum">
+        </p>
+      </section>
+
+        <section class="fragments" data-markdown>
+        ## Entrevistei Guido van Rossum!
+
+        ![Álvaro Justen entrevista Guido van Rossum](images/entrevista-guido.jpg)
+
+        Em breve em **[youtube.com/c/PythonicCafe](https://youtube.com/c/PythonicCafe)**
+        </section>
+
+      <section>
+        <h1>Monty Python</h1>
+        <p>
+          <img height="100%" src="images/monty-python.png" alt="Monty Python">
+        </p>
+      </section>
+
+      <section class="fragments" data-markdown>
+        # Aplicações
+
+        - Interfaces de linha-de-comando (CLI)
+        - Interfaces gráficas de usuários (GUI)
+        - Computação científica
+        - Computação gráfica
+        - Jogos
+        - Web
+        - Robótica
+        - *(coloque sua área aqui)*
+      </section>
+
+      <section data-markdown>
+        # Onde roda?
+
+        - GNU/Linux
+        - Mac OS X
+        - Outros UNIX (FreeBSD etc.)
+        - Windows
+        - Android
+        - Microcontroladores
+        - ...
+      </section>
+
+      <section class="fragments" data-markdown>
+        # Como instalar?
+
+        - GNU/Linux e Mac OS X: **não precisa**!
+        - Windows: [python.org](python.org)
+      </section>
+
+        <section class="fragments" data-markdown>
+          ## Python - Quem usa?
+
+          - Canonical
+          - Dropbox
+          - Fundação Getúlio Vargas
+          - Globo.com
+          - Google
+          - Industrial Light &amp; Magic
+          - Mozilla Foundation
+          - NASA
+          - SERPRO
+          - YouTube
+          - ... (dá pra ficar até amanhã falando) ...
+        </section>
+
+      <section>
+        <p>
+          <img height="100%" src="images/google-1998.png" alt="Google usa Python desde 1998">
+        </p>
+      </section>
+
+<!-- ###################################################################### -->
+<!-- # Parte 2: Vamos codar!                                              # -->
+<!-- ###################################################################### -->
+
+        <section data-markdown>
+        ## Parte 2:
+        ## Vamos codar!
+        </section>
+
+        <section>
+          <h2>Primeiro Programa</h2>
+          <pre><code>print("Olá, OpenDevCommunity!")</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Tipos de Dados
+
+        - Strings (`str`)
+          - Exemplo: `"Álvaro"`
+        - Números inteiros (`int`)
+          - Exemplo: `42`
+        - Números racionais (`float`)
+          - Exemplo: `3.14`
+        - Números complexos (`complex`)
+          - Exemplo: `1 + 2j`
+        - Listas (`list`)
+           - Exemplo: `[1, 2, 3]`
+        - Dicionários (`dict`)
+          - Exemplo: `{"linguagem": "python", "resposta": 42}`
+        - ...
+        </section>
+
+      <section>
+        <h2>Nada de parênteses, nada de chaves!</h2>
+<pre><code>if expressao1:
+    comando1
+    if expressao2:
+        comando2
+    elif expressao3:
+        comando3
+elif expressao4:
+    comando4
+else:
+    comando5
+</code></pre>
+      </section>
+
+        <section data-markdown>
+        ## Operadores Lógicos
+        ### Resultam em verdadeiro/falso
+
+        - `<` menor que
+        - `>` maior que
+        - `<=` menor ou igual que
+        - `>=` maior ou igual que
+        - `==` igual
+        - `!=` diferente
+        - `or`
+        - `and`
+        - `not`
+        </section>
+
+      <section>
+        <h2> <i>Slices</i> em listas e strings </h2>
+<pre><code>lista = [1, 3, 4, 'Arduino', 'Python']
+print(lista[1])
+print(lista[1:4])
+
+for elemento in lista:
+    print(elemento)
+
+arquivo = 'nome.txt'
+print(arquivo[-3:])
+print(arquivo[5:])
+
+novo_arquivo = 'nome.do.arquivo.txt'
+print(novo_arquivo.split('.'))
+print(novo_arquivo.split('.')[-1])
+extensao = 'nome.do.arquivo.py'.split('.')[-1]
+print(extensao)
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Trabalhando com arquivos</h2>
+<pre><code>arquivo_1 = open('nome.txt')
+for linha in arquivo_1:
+    print(linha)
+arquivo_1.close()
+
+arquivo_2 = open('nome-2.txt', 'w')
+arquivo_2.write('Python rules!')
+arquivo_2.close()
+</code></pre>
+      </section>
+
+<!-- ###################################################################### -->
+<!-- # Parte 3: Ecossistema                                               # -->
+<!-- ###################################################################### -->
+
+        <section data-markdown>
+        ## Parte 3:
+        ## Ecossistema
+        </section>
+
+      <section data-markdown>
+        ## Baterias incluídas!
+
+        - `sys`, `os`, `re`, `string`, `zlib`
+        - `socket`, `urrlib`, `httplib`, `imaplib`
+        - `time`, `datetime`, `math`, `random`
+        - `doctest`, `unittest`, `xml`, `xmlrpclib`
+        - `struct`, `pickle`, `cPickle`, `threading`
+        - `logging`, `decimal`
+        - E muito mais!
+      </section>
+
+        <section>
+          <img src="images/xkcd-python.png" width="60%">
+
+          <br>
+          Fonte: <a href="https://xkcd.com/353/">xkcd.com/353</a>
+        </section>
+
+        <section>
+        <h2>Lendo CSVs</h2>
+
+<pre><code>import csv
+
+municipios = csv.DictReader(open('brasil.csv'))
+for municipio in municipios:
+    if municipio['estado'] == 'PR':
+        densidade = int(municipio['habitantes']) / float(municipio['area'])
+        print(municipio['nome'] + '/PR' + ': ' + str(densidade) + ' hab/km²')
+</code></pre>
+        </section>
+
+      <section>
+        <h2>Navegando com Python</h2>
+        <pre><code>import urllib
+
+url = 'http://pythonic.cafe/'
+
+pagina = urllib.urlopen(url)
+print(pagina.read())
+</code></pre>
+      </section>
+
+
+
+        <section class="fragments" data-markdown>
+        ## Pacotes
+
+        - Python Package Index (PyPI): [pypi.python.org](http://pypi.python.org/)
+        - `pyenv`
+        - `pip`
+        - `virtualenv`
+        </section>
+
+        <section>
+        <h3>Lendo CSV (com outra biblioteca)</h3>
+
+<pre><code>import rows
+
+municipios = rows.import_from_csv('municipios-brasil.csv')
+for municipio in municipios:
+    if municipio.estado == 'PR':
+        densidade = municipio.habitantes / municipio.area
+        print(municipio.nome + '/PR' + ': ' + str(densidade) + ' hab/km²')
+</code></pre>
+        </section>
+
+      <section>
+        <h2>Navegando com Python (com outra biblioteca)</h2>
+        <pre><code>import requests
+
+url = 'http://pythonic.cafe/'
+
+pagina = requests.get(url)
+print(pagina.content)
+</code></pre>
+      </section>
+
+      <section>
+        <h2>Navegando [2]</h2>
+        <pre><code>from splinter import Browser
+
+browser = Browser('firefox')
+
+browser.visit('http://www.google.com.br/')
+browser.fill('q', 'GruPy-PR meetup')
+button = browser.find_by_name('btnG')
+button.click()
+
+if browser.is_text_present('https://www.meetup.com/pt-BR/GruPy-PR/'):
+    print('Estamos na primeira página')
+else:
+    print('Err... efeito demonstração')
+
+browser.quit()
+</code></pre>
+      </section>
+
+        <section class="fragments" data-markdown>
+          # Onde Aprender?
+
+          - [docs.python.org/tutorial](http://docs.python.org/tutorial)
+          - [python.org.br](http://python.org.br/)
+          - Listas de discussão locais
+          - Eventos (...)
+          - Vídeos, livros etc.
+        </section>
+
+
+<!-- ###################################################################### -->
+<!-- # Parte 4: Comunidade                                                # -->
+<!-- ###################################################################### -->
+
+        <section data-markdown>
+        ## Parte 4:
+        ## Comunidade
+        </section>
+
+        <section>
+          <h2>Programming Language?</h2>
+
+          <img src="images/programming-languages.png" width="70%">
+
+          <br>
+          Fonte: <a href="https://github.com/stereobooster/programming-languages-genealogical-tree">github.com/stereobooster/programming-languages-genealogical-tree</a>
+        </section>
+
+        <section>
+          <h2>Top Programming Languages</h2>
+
+          <img src="images/top-programming-languages.jpg" width="70%">
+
+          <br>
+          Fonte: <a href="http://spectrum.ieee.org/computing/software/the-2017-top-programming-languages">spectrum.ieee.org/computing/software/the-2017-top-programming-languages</a>
+        </section>
+
+        <section>
+          <h2>Diversidade</h2>
+
+          <img src="images/django-girls-cwb.jpg" width="70%">
+
+          <br>
+          Django Girls, Curitiba (janeiro de 2017)
+        </section>
+
+        <section>
+          <h2>Um monte de gente linda</h2>
+
+          <img src="images/pybr12-foto-oficial.jpg" width="90%">
+
+          <br>
+          PythonBrasil[12], Florianópolis (outubro de 2016)
+        </section>
+
+        <section>
+          <h2>Muita cerveja</h2>
+
+          <img src="images/cerveja-ramiro.jpg" width="70%">
+
+          <br>
+          PythonBrasil[12], Florianópolis (outubro de 2016)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Grupos
+
+          - [Associação Python Brasil (APyB)](http://associacao.python.org.br/)
+          - [python-brasil no Google Groups](https://groups.google.com/forum/#!forum/python-brasil)
+          - Grupos no Telegram:
+            - [pybr - roda de conversa](https://t.me/pythonbr)
+            - [PyCoding pt_BR](https://t.me/PyCoding)
+            - [Data science e Python](https://t.me/datasciencepython)
+            - Diversos grupos locais
+          - No Facebook:
+            - [Página PythonBrasil](https://www.facebook.com/pythonbrasil/) (oficial da APyB)
+            - [Grupo Python Brasil - Programadores](https://www.facebook.com/groups/python.brasil/?ref=br_rs)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## GruPy-PR
+
+          - [t.me/grupy_pr](http://t.me/grupy_pr/)
+          - [GruPy-PR no Meetup.com](https://)
+          - [grupypr.github.io](https://grupypr.github.io)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Eventos
+
+          - Nível regional:
+            - [Caipyra](http://caipyra.python.org.br/) (Ribeirão Preto/SP - já foi)
+            - [Python Nordeste](http://pythonnordeste.org/) (2017: São Luís/MA - já foi)
+            - [Python Sudeste](http://pythonsudeste.org/) (2017: Rio de Janeiro/RJ - já foi)
+            - [PyCon Amazônia](http://amazonia.python.org.br/) (2017: Manaus)
+            - [Python Sul](http://pythonsul.org/) (2017: Caxias do Sul/RS)
+          - Nível nacional:
+            - [Python Brasil](http://www.pythonbrasil.com.br/) (2017: Belo Horizonte/MG)
+            - [PyConUS](https://us.pycon.org/2017/)
+            - [PyConAr](http://ar.pycon.org/)
+            - ...
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Extra [1]: Açúcar sintático
+
+          - `@decorators`
+          - `a, b = b, a`
+          - `big_number = 1_000_000_000`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Extra [2]: Python Enhancement Proposals (PEPs)
+
+          - [python.org/dev/peps](https://www.python.org/dev/peps/)
+          - [PEP-0008: Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/)
+          - [PEP-0020: The Zen of Python](https://www.python.org/dev/peps/pep-0020/)
+          - [PEP-0405: Python Virtual Environments](https://www.python.org/dev/peps/pep-0405/)
+          - [PEP-3000: Python 3000](https://www.python.org/dev/peps/pep-3000/)
+        </section>
+
+        <section>
+          <pre><code>>>> import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+print("Olá, OpenDevCommunity!")
+</code></pre>
+        </section>
+
+        <section>
+          <h2>?</h2>
+          <br>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <a href="https://github.com/turicas">github</a>,
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <a href="https://instagram.com/turicas">instagram</a>}/<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@pythonic.cafe">turicas@pythonic.cafe</a></h3>
+          <h3>Blog: <a href="http://turicas.info/">turicas.info</a> </h3>
+          <h3> +55 41 999 311 221 </h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
