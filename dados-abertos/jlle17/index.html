@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Introdução aos Dados Abertos, por Álvaro Justen aka Turicas</title>
+
+    <meta name="description" content="Introdução aos Dados Abertos">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+<!-- *** APRESENTAÇÃO *** -->
+
+        <section>
+          <h2>Introdução aos Dados Abertos</h2>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="https://www.sympla.com.br/encontro-de-dados-abertos-de-joinville__174066">Encontro de Dados Abertos de
+          Joinville</a></h4>
+          <h4>26 de agosto de 2017 - Joinville/SC</h4>
+        </section>
+
+        <section>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@pythonic.cafe">turicas@pythonic.cafe</a></h3>
+          <h3>Blog: <a href="http://turicas.info/">turicas.info</a> </h3>
+          <h3> +55 41 999 311 221 </h3>
+          <h4> (Signal, Telegram, WhatsApp) </h4>
+        </section>
+
+        <section>
+          <h2>
+            <a href="http://bit.ly/jlle-dados-abertos">bit.ly/jlle-dados-abertos</a>
+          </h2>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_escola-de-dados.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://escoladedados.org/">escoladedados.org</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_genero-e-numero.png" width="30%">
+            <br>
+            <h2>
+              <a href="http://generonumero.media">generonumero.media</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_impacto.png" width="100%">
+            <br>
+            <h2>
+              <a href="http://impacto.jor.br">impacto.jor.br</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/pythonic-cafe.jpg" height="300">
+            <img src="images/python24h.png">
+            <br>
+            <h2>
+              <a href="http://pythonic.cafe/">pythonic.cafe</a>
+            </h2>
+            <h3>
+              <a href="http://pythonic.cafe/youtube">youtube.com/c/PythonicCafe</a>
+            </h3>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_simplefractal.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://simplefractal.com/">simplefractal.com</a>
+            </h2>
+          </p>
+        </section>
+
+        <section data-markdown>
+         ## Roteiro
+
+         - Introdução
+         - Exemplos de uso
+         - Problemas
+           - Possíveis soluções
+        </section>
+
+
+<!-- *** INTRODUÇÃO *** -->
+
+        <section>
+          <p>
+            <img width="75%" src="images/definition-dictionary.jpg">
+            <br>
+            (Picture by <a
+              href="http://maxpixel.freegreatpicture.com/Book-Page-Definition-Paper-Dictionary-Word-Text-390785">Max
+            Pixel</a>, CC-0)
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## A Jornada
+
+          ![Funil de Dados](images/funil-de-dados.png)
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            Dados abertos são dados que podem ser <b>livremente usados,
+              reutilizados e redistribuídos</b> por qualquer pessoa -
+            <b>sujeitos, no máximo, à exigência de atribuição da fonte e
+              compartilhamento pelas mesmas regras</b>.
+            &rdquo;
+          </blockquote>
+          -- <a href="http://opendatahandbook.org/guide/pt_BR/what-is-open-data/">OpenData
+            Handbook</a> (definição de <a
+            href="http://opendefinition.org/">Open Definition</a>)
+        </section>
+
+        <section data-markdown>
+          ## Lei de Acesso à Informação
+
+          - [Lei 12.527/2011](http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm)
+          - Em vigor desde 16 de maio de 2012
+        </section>
+
+        <section data-markdown>
+          # 5-Star Data
+
+          ## [5stardata.info](http://5stardata.info/)
+
+          ![](images/5-star-steps.png)
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            Quanto menos acessível está um dado, mais fechado ele está.
+            &rdquo;
+          </blockquote>
+        </section>
+
+        <section data-markdown>
+          ## Para Saber Mais
+
+          - [opendatahandbook.org](http://opendatahandbook.org/)
+          - [kit.dados.gov.br](http://kit.dados.gov.br/)
+          - [escoladedados.org](https://escoladedados.org/)
+        </section>
+
+
+
+<!-- *** EXEMPLOS DE USO *** -->
+
+        <section>
+          <p align="center">
+            <img src="images/logo_genero-e-numero.png" width="30%">
+            <blockquote>
+              Investigar as <b>questões de gênero</b> no Brasil e América Latina,
+              com <b>dados abertos</b> e técnicas de <b>jornalismo de dados</b>.
+            </blockquote>
+          </p>
+        </section>
+
+        <section> <img width="80%" src="images/edicao-1.png"> </section>
+        <section> <img width="80%" src="images/edicao-2.png"> </section>
+        <section> <img width="80%" src="images/edicao-3.png"> </section>
+        <section> <img width="80%" src="images/edicao-4.png"> </section>
+        <section> <img width="80%" src="images/edicao-5.png"> </section>
+
+        <section> <img width="70%" src="images/dadodebolso-01.png"> </section>
+        <section> <img width="70%" src="images/dadodebolso-02.png"> </section>
+        <section> <img width="70%" src="images/dadodebolso-03.png"> </section>
+        <section> <img width="70%" src="images/dadodebolso-06.png"> </section>
+        <section> <img width="70%" src="images/dadodebolso-05.png"> </section>
+
+        <section>
+          <img width="80%" src="images/video-espaco-publico.png">
+          <br>
+          <a href="https://youtu.be/7yQ8U2tFFq4">youtu.be/7yQ8U2tFFq4</a>
+        </section>
+
+        <section data-markdown>
+          ## Outros Usos
+
+          - Todos as redações
+          - Ativistas
+          - Empresas
+        </section>
+
+
+<!-- *** SOFTWARE/ROWS *** -->
+
+<!-- ROWS -->
+        <section>
+          <h2>Problemas</h2>
+          <p align="center">
+            <img src="images/funil-de-dados-4.png">
+          </p>
+
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            O nível de acessibilidade de um dado é um filtro sobre quem
+            conseguirá utilizá-lo.
+            &rdquo;
+          </blockquote>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/ibge-cidades.png">
+          </p>
+        </section>
+
+        <section>
+          <h2>Dados Presos</h2>
+          <p align="center">
+            <img src="images/html-ibge-cidades.png">
+          </p>
+        </section>
+
+        <section>
+          <h2>Análise?</h2>
+          <img src="images/censo-eua.jpg" alt="Máquina Hollerith">
+        </section>
+
+        <section>
+          <img src="images/automate-all-the-things.jpg" alt="Let's automate ALL the things">
+        </section>
+
+        <section>
+          <h2>Programming Language?</h2>
+
+          <img src="images/programming-languages.png" width="70%">
+
+          <br>
+          Fonte: <a href="https://github.com/stereobooster/programming-languages-genealogical-tree">github.com/stereobooster/programming-languages-genealogical-tree</a>
+        </section>
+
+        <section>
+          <h1>Python</h1>
+          <p>
+            <a href="http://www.python.org/">
+              <img width="30%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Python - Características
+
+          - Software livre
+          - **Fácil de aprender**
+          - **Largamente utilizada**
+          - **Comunidade incrível**
+          - Main info: [python.org](http://www.python.org/) e [python.org.br](http://www.python.org.br/)
+        </section>
+
+        <section>
+          <h2>rows</h2>
+          <h3>Facilita conversão, limpeza e análise</h3>
+          <br>
+          <h3><pre>pip install rows # Python Package Index</pre></h3>
+          <h3><pre>apt-get install rows # Debian</pre></h3>
+          <h3><pre>dnf install rows # Fedora</pre></h3>
+          <br>
+          <h2><a href="https://github.com/turicas/rows">github.com/turicas/rows</a></h2>
+          <h2><img src="images/gplv3.png"></h2>
+        </section>
+
+        <section>
+          <h2>csv com Python + rows</h2>
+<pre><code>import rows
+
+table1 = rows.import_from_csv('data/brazilian-cities.csv')
+
+for row in table1:
+    print(row)
+</code></pre>
+        </section>
+
+        <section>
+        <pre><code>
+
+Row(state='PR',
+    city='Curitiba',
+    inhabitants=1751907,
+    area=435.04)
+
+# namedtuple #FTW \o/
+</code></pre>
+        </section>
+
+        <section>
+          <h2>xls com Python + rows</h2>
+          <pre><code>import rows
+
+table2 = rows.import_from_xls('data/brazilian-cities.xls')
+
+for row in table2:
+    print(row)
+</code></pre>
+        </section>
+
+        <section>
+          <h2>html com Python + rows</h2>
+          <pre><code>import rows
+
+table3 = rows.import_from_html('data/brazilian-cities.html')
+
+for row in table3:
+    print(row)
+</code></pre>
+        </section>
+
+
+        <section class="fragments" data-markdown>
+          ## Command-Line Interface
+
+          - `print`: mostra a tabela em formato texto
+          - `convert`: converte entre os formatos suportados
+          - `sum`: agrega tabelas
+          - `join`: cruza dados
+          - `query`: SQL!
+        </section>
+
+
+<!-- *** FIM *** -->
+
+        <section class="fragments" data-markdown>
+          ## Considerações Finais
+
+          - Brasil possui mecanismo legal para dados públicos
+            - Movimento forte
+            - Algumas questões (como privacidade) precisam melhorar
+          - Qualidade dos dados ainda é ruim
+          - Ferramentas (softwares) são necessárias para automatizar os processos
+        </section>
+
+        <section>
+          <img src="images/logo_pythonsul.png">
+          <h2>
+            <a href="http://www.pythonsul.org/"><b>pythonsul.org</b></a>
+          </h2>
+          <p>
+            08 a 10 de setembro de 2017
+            <br>
+            Caxias do Sul/RS
+          </p>
+        </section>
+
+        <section>
+          <img src="images/pythonbrasil.png">
+          <h2>
+            <a href="http://www.pythonbrasil.org.br/"><b>pythonbrasil.org.br</b></a>
+          </h2>
+          <p>
+            06 a 11 de outubro de 2017
+            <br>
+            Belo Horizonte/MG <img width="30" style="margin: 0" src="images/heart.png">
+          </p>
+        </section>
+
+        <section>
+          <img src="images/codabr.png">
+          <h2>
+            <a href="http://coda.escoladedados.org/"><b>coda.escoladedados.org</b></a>
+          </h2>
+          <p>
+            25 e 26 de novembro de 2017
+            <br>
+            São Paulo/SP
+          </p>
+        </section>
+
+        <section>
+          <h2>?</h2>
+          <br>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <a href="https://github.com/turicas">github</a>,
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <a href="https://instagram.com/turicas">instagram</a>}/<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@pythonic.cafe">turicas@pythonic.cafe</a></h3>
+          <h3>Blog: <a href="http://turicas.info/">turicas.info</a> </h3>
+          <h3> +55 41 999 311 221 </h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
