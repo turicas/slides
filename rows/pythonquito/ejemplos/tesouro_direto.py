@@ -14,7 +14,7 @@ import rows
 from splinter import Browser
 
 
-URL_CALCULADORA = 'http://www3.tesouro.gov.br/tesouro_direto/calculadora/calculadora_novosite.aspx'
+URL_CALCULADORA = 'http://www.tesouro.gov.br/tesouro_direto/calculadora/calculadora_novosite.aspx'
 CODIGOS_TITULOS = ('LTN', 'LFT', 'NTN-C', 'NTN-B', 'NTN-F', 'NTN-B Principal')
 TITULOS_TAXA_GENERICA = ('LFT', 'NTN-C', 'NTN-B')
 
@@ -34,7 +34,7 @@ def formata_valor(valor):
 def resultado_calculadora(codigo_titulo, data_compra, data_vencimento,
                           valor_investido, taxa_compra, taxa_administracao,
                           taxa_generica):
-    browser = Browser('chrome')
+    browser = Browser('firefox')
     browser.visit(URL_CALCULADORA)
     browser.select('cbTitulo', codigo_titulo)
     while not browser.find_by_name('txtDtCompra'):
