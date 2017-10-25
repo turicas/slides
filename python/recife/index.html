@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Introdução a Jornalismo de Dados com Python, por Álvaro Justen aka Turicas</title>
+
+    <meta name="description" content="Introdução a Jornalismo de Dados com Python">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>Introdução a Jornalismo de Dados com Python</h2>
+          <br>
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+          <h4>24-25 de outubro de 2017 - Recife/PE</h4>
+        </section>
+
+        <section>
+          <h2>Prazer! =)</h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@pythonic.cafe">turicas@pythonic.cafe</a></h3>
+          <h3>Blog: <a href="http://turicas.info/">turicas.info</a> </h3>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_escola-de-dados.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://escoladedados.org/">escoladedados.org</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_genero-e-numero.png" width="30%">
+            <br>
+            <h2>
+              <a href="http://generonumero.media">generonumero.media</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_impacto.png" width="100%">
+            <br>
+            <h2>
+              <a href="http://impacto.jor.br">impacto.jor.br</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_simplefractal.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://simplefractal.com/">simplefractal.com</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/pythonic-cafe.jpg" height="300">
+            <img src="images/python24h.png">
+            <br>
+            <h2>
+              <a href="http://pythonic.cafe/">pythonic.cafe</a>
+            </h2>
+            <h3>
+              <a href="http://pythonic.cafe/youtube">youtube.com/c/PythonicCafe</a>
+            </h3>
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # E vocês?
+
+          - Quem já programa?
+          - Quem linguagens?
+          - Troca de lugares
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Roteiro
+
+          - Objetivo: introdução à programação no jornalismo usando Python
+          - **1) Introdução e Contextualização**
+            - Programação no jornalismo, Lógica e conceitos básicos de Python
+          - **2) Acessando bases de dados**
+            - Formatos de dados, acessando arquivos CSV, criando estatísticas e gerando arquivos CSV
+          - **3) Capturando dados da Web**
+            - Como a Web funciona, processos de captura de dados e extração de dados
+        </section>
+
+
+<!-- ###################################################################### -->
+<!-- # Parte 1: Introdução e Contextualização                             # -->
+<!-- ###################################################################### -->
+
+        <section class="fragments" data-markdown>
+        ## Parte 1:
+        ## Introdução e Contextualização
+
+        - Programação no jornalismo
+        - Editor de texto
+        - Introdução à lógica de programação
+        - Por que Python?
+        - Instalação do Python
+        - Primeiro programa em Python
+        - Entrada e saída de dados e variáveis
+        - Tomando decisões com `if` e `else`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Jornalismo de dados
+          ### Data pipeline / Funil de dados
+
+          ![Funil de Dados](images/funil-de-dados.png)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Programação: quando usar?
+
+          - Captura de dados
+          - Quando o Excel/Spreadsheet/etc. não dá conta
+            - Muitos dados
+            - Filtros muito complexos
+          - Quando tem **muita** repetição de tarefas chatas
+          - Visualização e Interatividade
+          - ...
+        </section>
+
+        <section>
+          <h2>Programação!</h2>
+
+          <img src="images/automate-all-the-things.jpg" alt="Let's automate ALL the things">
+        </section>
+
+        <section> <img width="70%" src="images/dadodebolso-01.png"> </section>
+        <section> <img width="70%" src="images/dadodebolso-03.png"> </section>
+        <section> <img width="70%" src="images/dadodebolso-05.png"> </section>
+
+        <section class="fragments" data-markdown>
+          # Lógica de programação
+
+          - Programas são conjuntos de algoritmos
+          - Algoritmos são receitas de bolo
+            - Compostos por instruções
+            - "Modo de preparo" da receita
+            - Lógica + controle
+            - Exemplo: data pipeline
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Instruções
+
+          - Começam com verbo
+          - Simples, passo-a-passo (imagine ensinar a uma criança)
+          - Não ambíguas
+          - Exemplos:
+            - `Inspirar por 5 segundos`
+            - `Fechar os olhos`
+            - `Expirar lentamente`
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Editor de código
+
+          - Onde programadores escrevem os programas
+          - Baixar editor de códigos
+            - [Atom](http://flight-manual.atom.io/) (Windows, Mac OS X, GNU/Linux)
+          - Outros exemplos:
+            - [Notepad++](https://notepad-plus-plus.org/) (Windows)
+            - [gedit](https://wiki.gnome.org/Apps/Gedit), [kwrite](https://www.kde.org/applications/utilities/kwrite/), [vim](http://www.vim.org/) (GNU/Linux)
+            - [MacVim](http://macvim-dev.github.io/macvim/) (livre e grátis) e outros (não livres e pagos) (Mac OS X)
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Exercício
+
+          - Criar um algoritmo para escovar os dentes
+          - Um verbo por frase/instrução
+          - Instruções simples
+        </section>
+
+        <section>
+          <h2> Resolução </h2>
+<pre><code>Se o tubo de pasta de dentes estiver vazio:
+	Pegar um tubo novo na dispensa
+Senão:
+	Pegar o tubo de pasta de dentes no armário
+Abrir o tubo
+Pegar a escova de dentes
+Colocar pasta na escova
+Fechar o tubo
+Abrir a torneira
+Molhar a escova por 2 segundos
+Fechar a torneira
+Levar a escova à boca
+Repetir para cada dente:
+	Movimentar a escova de maneira circular
+	Ir para o próximo dente
+Escovar a língua
+Abrir a torneira
+Enquanto a boca estiver com pasta de dentes:
+	Enxaguar a boca
+Limpar a escova
+Fechar a torneira
+</code></pre>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Observações
+
+          - Linguagem formal (?)
+          - Variáveis (nomes)
+          - Boas práticas
+          - Granularidade ("nível")
+          - Estruturas de controle de fluxo:
+            - Enquanto ...
+            - E se ...
+        </section>
+
+        <section data-markdown>
+        ## Fluxo de Criação de Programas
+
+        - Entender o problema
+        - Sistematizar o algoritmo
+        - Escrever o código
+        - Executar o programa
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Como instruir um computador?
+
+          - Computador:
+            - Processador
+            - Memória RAM
+            - HD/SSD
+            - Entrada/saída (rede etc.)
+          - Linguagens de programação: **abstrações**
+        </section>
+
+        <section>
+          <h2>Genealogia das Linguagens de Programação</h2>
+
+          <img src="images/programming-languages.png" width="70%">
+
+          <br>
+          Fonte: <a href="https://github.com/stereobooster/programming-languages-genealogical-tree">github.com/stereobooster/programming-languages-genealogical-tree</a>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # O que é Python?
+
+          - Linguagem de programação
+          - Criada por Guido Van Rossum no fim da década de 80
+          - [python.org](http://www.python.org/) (entrar e baixar versão > 3)
+          - GNU/Linux e Mac OS X: já vem instalado (mas em geral é v2)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Python - Características
+
+          - Software livre
+          - Fácil de aprender
+          - Propósito geral
+          - Largamente utilizada
+          - Comunidade incrível
+          - Baterias incluídas
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Python - Quem usa?
+
+          - Google
+          - NASA
+          - Mozilla Foundation
+          - Globo.com
+          - Dropbox
+          - ...
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Python - Comunidade
+
+          - [Associação Python Brasil (APyB)](http://associacao.python.org.br/)
+          - [python-brasil no Google Groups](https://groups.google.com/forum/#!forum/python-brasil)
+          - Grupos no Telegram:
+            - [pybr - roda de conversa](https://t.me/pythonbr)
+            - [PyCoding pt_BR](https://t.me/PyCoding)
+            - [Data science e Python](https://t.me/datasciencepython)
+            - Diversos grupos locais
+          - No Facebook:
+            - [Página PythonBrasil](https://www.facebook.com/pythonbrasil/) (oficial da APyB)
+            - [Grupo Python Brasil - Programadores](https://www.facebook.com/groups/python.brasil/?ref=br_rs)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Python - Eventos
+
+          - Nível regional:
+          - [Caipyra](http://caipyra.python.org.br/) (Ribeirão Preto/SP)
+            - [Python Nordeste](http://pythonnordeste.org/) (2017: São Luís/MA)
+            - [Python Sudeste](http://pythonsudeste.org/) (2017: Rio de Janeiro/RJ)
+            - [PyCon Amazônia](http://amazonia.python.org.br/) (2017: Manaus)
+            - [Python Sul](http://pythonsul.org/) (2017: Caxias do Sul/RS)
+          - Nível nacional:
+            - [Python Brasil](http://www.pythonbrasil.com.br/) (2017: BH/MG, 2018: Natal/RN)
+            - [PyConUS](https://us.pycon.org/2017/)
+            - [PyConAr](http://ar.pycon.org/)
+            - ...
+        </section>
+
+        <section>
+          <h2>Primeiro Verbo em Python</h2>
+          <h3><code>print</code></h3>
+          <h3>Arquivo: <code>hello.py</code></h3>
+          <pre><code>print("Olá, Recife!")</code></pre>
+        </section>
+
+        <section>
+          <h2>print?</h2>
+          <img src="images/computer-printer.jpg" width="90%">
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Estrutura dos Programas
+
+          - Entrada
+          - (...algo acontece...)
+          - Saída
+          - Código + dados
+        </section>
+
+        <section>
+          <h2>Saudando pelo nome</h2>
+          <h3>Arquivo: <code>hello2.py</code></h3>
+<pre><code>nome = input('Qual seu nome?')
+print('Olá, ' + nome) # o "+" junta duas strings
+# isso é um comentário e o Python vai ignorá-lo
+</code></pre>
+        </section>
+
+        <section>
+          <h2>Computando</h2>
+          <h3>Arquivo: <code>soma.py</code></h3>
+<pre><code>valor1 = input('Digite um número:')
+valor2 = input('Digite outro número:')
+print(valor1 + valor2)
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Alguns Tipos de Dados
+
+        - Strings (`str`)
+          - Exemplo: `"Álvaro"` (ou `'Álvaro'`)
+        - Números inteiros (`int`)
+          - Exemplo: `42`
+        </section>
+
+        <section>
+          <h2>Computando - Corrigido</h2>
+          <h3>Arquivo: <code>soma_corrigido.py</code></h3>
+<pre><code># lembra de f(g(x))?
+valor1 = int(input('Digite um número:'))
+valor2 = int(input('Digite outro número:'))
+print(valor1 + valor2)
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Outros Tipos de Dados
+
+        - Números racionais (`float`)
+          - Exemplo: `3.14`
+        - Números complexos (`complex`)
+          - Exemplo: `1 + 2j`
+        </section>
+
+        <section>
+          <h2>Computando - Números reais</h2>
+          <h3>Arquivo: <code>soma_reais.py</code></h3>
+<pre><code>valor1 = float(input('Digite um número:'))
+valor2 = float(input('Digite outro número:'))
+print(valor1 + valor2)
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Operadores Matemáticos
+        ### Válidos para tipos de dados numéricos
+
+        - `+` soma
+        - `-` subtração
+        - `*` multiplicação
+        - `/` divisão
+        - `**` exponenciação
+        - `%` resto da divisão
+        - `//` divisão inteira
+        - `(` e `)` mudam precedência
+          - Exemplo: `(2 + 5) * 6`
+        </section>
+
+        <section data-markdown>
+        ## Exercício
+        ## Arquivo: `media.py`
+
+        - Ler 2 números racionais (`float`)
+        - Mostrar a média
+        </section>
+
+        <section>
+          <h2>Resolução - Média</h2>
+          <h3>Arquivo: <code>media.py</code></h3>
+<pre><code>valor1 = float(input('Digite um número:'))
+valor2 = float(input('Digite outro número:'))
+media = (valor1 + valor2) / 2
+print('A média é: ' + str(media))
+</code></pre>
+        </section>
+
+        <section>
+          <h2>E se... ?</h2>
+          <h3>Arquivo: <code>condicao.py</code></h3>
+<pre><code>valor1 = float(input("Digite um número:"))
+valor2 = float(input("Digite outro número:"))
+
+if valor1 > 9000 and valor2 > 9000:
+    print("OVER 9K!")
+else:
+    print("Valores baixos =/")
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Operadores Lógicos
+        ### Resultam em verdadeiro/falso
+
+        - `<` menor que
+        - `>` maior que
+        - `<=` menor ou igual que
+        - `>=` maior ou igual que
+        - `==` igual
+        - `!=` diferente
+        - `or`
+        - `and`
+        - `not`
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Exercício
+
+          - Modificar `media.py` para que ele se recuse a utilizar números negativos
+        </section>
+
+        <section>
+          <h2>Resolução - Média Positivos</h2>
+          <h3>Arquivo: <code>media_positivos.py</code></h3>
+<pre><code>valor1 = float(input("Digite um número:"))
+valor2 = float(input("Digite outro número:"))
+
+if valor1 < 0 or valor2 < 0:
+    print("Só faço com positivos.")
+else:
+    print((valor1 + valor2) / 2)
+</code></pre>
+        </section>
+
+<!-- ###################################################################### -->
+<!-- # Parte 2: Acessando Bases de Dados                                  # -->
+<!-- ###################################################################### -->
+
+        <section class="fragments" data-markdown>
+        ## Parte 2:
+        ## Acessando Bases de Dados
+
+        - Formatos de Dados
+        - Acessando arquivos CSV
+        - Criando estatísticas
+        - Gerando arquivos CSV
+        - Exemplo: bases GN
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## Formato de Dados
+
+        - Formatos mais conhecidos:
+          - CSV (comma-separated values)
+          - XLS (Microsoft Excel - antigo)
+          - XLSX (Microsoft Excel - novo)
+          - ODS (LibreOffice Calc)
+          - JSON (utilizado na Web)
+          - ...
+        - Cada formato é "lido" de uma maneira
+          - Ler/escrever
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## Baterias Incluídas!
+
+        - Python já vem com diversas bibliotecas
+        - Evitam retrabalho
+        - `import biblioteca`
+      </section>
+
+        <section>
+          <img width="65%" src="images/xkcd-python.png" alt="">
+        </section>
+
+        <section>
+          <h2>Lendo CSVs</h2>
+          <h3>Arquivo: <code>brasil.py</code></h3>
+          <ul>
+            <li>
+              Download em: <a href="http://bit.ly/brasil-csv">bit.ly/brasil-csv</a>
+            </li>
+          </ul>
+<pre><code>import csv
+
+arquivo = open('brasil.csv', encoding='utf8')
+for registro in csv.reader(arquivo):
+    print(registro)
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Mais Tipos de Dados
+
+        - Listas (`list`)
+           - estado: `registro[0]`
+           - municipio: `registro[1]`
+           - habitantes: `registro[2]`
+           - area: `registro[3]`
+        - Programadores começam a contar do zero :)
+        </section>
+
+        <section>
+          <h3>Somando habitantes</h3>
+          <h3>Arquivo: <code>brasil2.py</code></h3>
+<pre><code>import csv
+
+arquivo = open('brasil.csv', encoding='utf8')
+populacao = 0
+for registro in csv.reader(arquivo):
+    valor = registro[2]
+    if valor != 'habitantes':  # pula primeira linha
+        #populacao = populacao + int(valor)
+        populacao += int(valor)
+        print(populacao)  # mostra o acumulado a cada município
+print(populacao)  # mostra o acumulado final
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Exercício
+
+        - Somar habitantes somente dos municípios de Pernambuco
+        - Mostrar total de habitantes do estado
+        </section>
+
+        <section>
+          <h3>Somando habitantes de Pernambuco</h3>
+          <h3>Arquivo: <code>pernambuco.py</code></h3>
+<pre><code>import csv
+
+arquivo = open('brasil.csv', encoding='utf8')
+populacao = 0
+for registro in csv.reader(arquivo):
+    if registro[0] == 'PE':  # engloba o filtro da primeira linha
+        populacao += int(registro[2])
+print(populacao)
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Exercício
+
+        - Receber a sigla de um estado (`input`)
+        - Somar habitantes dos municípios desse estado
+        - Mostrar total de habitantes do estado
+        </section>
+
+        <section>
+          <h3>Resolução</h3>
+          <h3>Arquivo: <code>habitantes_estado.py</code></h3>
+<pre><code>import csv
+
+estado = input('Por qual estado gostaria de filtrar? ')
+populacao = 0
+arquivo = open('brasil.csv', encoding='utf8')
+for registro in csv.reader(arquivo):
+    if registro[0] == estado.upper():
+        populacao += int(registro[2])
+print(populacao)
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Mais Tipos de Dados
+
+        - Dicionários (`dict`)
+          - Cada chave possui um valor
+            - Chaves podem ser (quase) qualquer coisa
+              - Nas lista são sempre números e não temos controle
+            - Valores podem ser qualquer coisa
+              - Como nas listas
+          - Exemplo:
+            - `d = {"linguagem": "python", 42: "número"}`
+            - `d["linguagem"]` devolve `"python"`
+            - `d[42]` devolve `"número"`
+        </section>
+
+        <section>
+          <h3>Arquivo: <code>habitantes_estado_dicionario.py</code></h3>
+<pre><code>import csv
+
+arquivo = open('brasil.csv', encoding='utf8')
+for registro in csv.DictReader(arquivo):
+    print(registro)
+</code></pre>
+        </section>
+
+        <section>
+          <h3>Arquivo: <code>habitantes_estado_dicionario.py</code></h3>
+<pre><code>import csv
+
+estado = input('Por qual estado gostaria de filtrar? ')
+populacao = 0
+arquivo = open('brasil.csv', encoding='utf8')
+for registro in csv.DictReader(arquivo):
+    if registro['estado'] == estado.upper():
+        populacao += int(registro['habitantes'])
+print(populacao)
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Formatação de strings
+
+        - `f'modelo com {variavel}'`
+          - Em vez de `'modelo com' + str(variavel)`
+          - `numero = 42`
+          - `f'O valor é: {numero}'` devolve `'O valor é: 42'`
+        </section>
+
+        <section>
+          <h3>Arquivo: <code>habitantes_estado_fstr.py</code></h3>
+<pre><code>import csv
+
+estado = input('Digite a sigla: ').upper()
+total = 0
+arquivo = open('brasil.csv', encoding='utf8')
+for registro in csv.DictReader(arquivo):
+    if registro['estado'] == estado:
+        total += int(registro['habitantes'])
+print(f'Total p/ {estado}: {total} hab.')
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Exercício
+
+        - Receber a sigla de um estado (`input`)
+        - **Para cada município**, calcular e mostrar a densidade demográfica
+        - Algoritmo:
+          - Abrir arquivo CSV com municípios
+          - Para cada registro (município):
+            - Se o estado for o estado digitado:
+              - Calcula densidade (`habitantes / area`)
+              - Mostra **nome** do município e a **densidade** calculada
+        </section>
+
+        <section>
+          <h3>Arquivo: <code>densidade_pe.py</code></h3>
+<pre><code>import csv
+
+estado = input('Digite a sigla: ').upper()
+arquivo = open('brasil.csv', encoding='utf8')
+for registro in csv.DictReader(arquivo):
+    if registro['estado'] == estado:
+        municipio = registro['municipio']
+        habitantes = int(registro['habitantes'])
+        area = float(registro['area'])
+        densidade = habitantes / area
+        print(f'{municipio}/{estado}: {densidade:.2f} hab/km².')
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Exercício
+
+        - E se eu quisesse para o nordeste inteiro?
+        </section>
+
+        <section>
+          <h3>Arquivo: <code>nordeste.py</code></h3>
+<pre><code>import csv
+
+arquivo = open('brasil.csv', encoding='utf8')
+populacao = 0
+for registro in csv.DictReader(arquivo):
+    estado = registro['estado']
+    if estado == 'AL' or estado == 'BA' or estado == 'CE' or \
+            estado == 'MA' or estado == 'PB' or estado == 'PE' or \
+            estado == 'PI' or estado == 'RN' or estado == 'SE':
+        populacao += int(registro['habitantes'])
+
+print(f'O nordeste possui {populacao} habitantes.')
+</code></pre>
+        </section>
+
+        <section>
+          <h3>Arquivo: <code>nordeste.py</code></h3>
+          <ul>
+            <li> Melhoria: <code>elemento in lista</code> </li>
+          </ul>
+<pre><code>import csv
+
+nordeste = ['AL', 'BA', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE']
+arquivo = open('brasil.csv', encoding='utf8')
+populacao = 0
+for registro in csv.DictReader(arquivo):
+    if registro['estado'] in nordeste:
+        populacao += int(registro['habitantes'])
+
+print(f'O nordeste possui {populacao} habitantes.')
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Exercício
+
+        - E se eu quisesse para cada estado do Brasil?
+          - Tipo de dado para contar: `collections.Counter`
+            - `contador.most_common(5)`
+        </section>
+
+        <section data-markdown>
+        ## Exercício
+
+        - Criar um contador
+        - Contar total de habitantes por estado
+        - Mostrar os 5 estados com mais habitantes
+        </section>
+
+        <section>
+          <h3>Arquivo: <code>habitantes_por_estado.py</code></h3>
+<pre><code>import csv
+from collections import Counter
+
+contador = Counter()
+arquivo = open('brasil.csv', encoding='utf8')
+for registro in csv.DictReader(arquivo):
+    contador[registro['estado']] += int(registro['habitantes'])
+
+print(contador.most_common(5))
+</code></pre>
+        </section>
+
+        <section>
+          <h3>Arquivo: <code>habitantes_por_estado_2.py</code></h3>
+          <ul> <li> Resultado: um por linha </li> </ul>
+<pre><code>import csv
+from collections import Counter
+
+contador = Counter()
+arquivo = open('brasil.csv', encoding='utf8')
+for registro in csv.DictReader(arquivo):
+    contador[registro['estado']] += int(registro['habitantes'])
+
+for estado, habitantes in contador.most_common(5):
+    print(f'{estado} possui {habitantes} habitantes.')
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Exercício
+
+        - E se eu quisesse para cada região do Brasil?
+          - `if`/`elif`/`else`
+        </section>
+
+        <section>
+          <h3>Arquivo: <code>habitantes_por_regiao.py</code></h3>
+<pre><code>import csv
+from collections import Counter
+
+norte = ['AC', 'AM', 'AP', 'PA', 'RO', 'RR', 'TO']
+nordeste = ['AL', 'BA', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE']
+centro_oeste = ['DF', 'GO', 'MS', 'MT']
+sudeste = ['ES', 'MG', 'RJ', 'SP']
+sul = ['PR', 'RS', 'SC']
+
+arquivo = open('brasil.csv', encoding='utf8')
+contador = Counter()
+for registro in csv.DictReader(arquivo):
+    estado = registro['estado']
+    habitantes = int(registro['habitantes'])
+
+    if estado in norte:
+        contador['norte'] += habitantes
+    elif estado in nordeste:
+        contador['nordeste'] += habitantes
+    elif estado in centro_oeste:
+        contador['centro oeste'] += habitantes
+    elif estado in sudeste:
+        contador['sudeste'] += habitantes
+    elif estado in sul:
+        contador['sul'] += habitantes
+
+print(f"Norte:        {contador['norte']}")
+print(f"Nordeste:     {contador['nordeste']}")
+print(f"Centro-Oeste: {contador['centro oeste']}")
+print(f"Sudeste:      {contador['sudeste']}")
+print(f"Sul:          {contador['sul']}")
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Exercício
+
+        - E se eu quisesse o resultado por estado em um novo CSV?
+          - `csv.writer`
+        </section>
+
+        <section>
+          <h2>Exemplo: Criando CSV</h2>
+          <h3>Arquivo: <code>habitantes_por_estado_csv.py</code></h3>
+
+<pre><code>import csv
+from collections import Counter
+
+contador = Counter()
+arquivo = open('brasil.csv', encoding='utf-8')
+for registro in csv.DictReader(arquivo):
+    contador[registro['estado']] += int(registro['habitantes'])
+
+saida = csv.writer(
+        open('habitantes.csv', mode='w', encoding='utf8'),
+        lineterminator='\n'
+)
+saida.writerow(['estado', 'habitantes'])
+for estado, habitantes in contador.most_common():
+    saida.writerow([estado, habitantes])
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Exercício
+
+        - E se eu quisesse também a densidade demográfica?
+          - Usar outro `Counter`
+        </section>
+
+        <section>
+          <h2>CSV com Densidade Demográfica</h2>
+          <h3>Arquivo: <code>densidade_por_estado_csv.py</code></h3>
+<pre><code>import csv
+from collections import Counter
+
+# Contando
+contador_populacao = Counter()
+contador_area = Counter()
+arquivo = open('brasil.csv', encoding='utf-8')
+for registro in csv.DictReader(arquivo):
+    estado = registro['estado']
+    habitantes = int(registro['habitantes'])
+    area = float(registro['area'])
+
+    contador_populacao[estado] += habitantes
+    contador_area[estado] += area
+
+# Criando o arquivo de saída
+saida = csv.writer(
+        open('densidade-por-estado.csv', mode='w', encoding='utf8'),
+        lineterminator='\n'
+)
+saida.writerow(['estado', 'habitantes', 'area', 'densidade'])
+for estado, habitantes in contador_populacao.most_common():
+    area = contador_area[estado]
+    densidade = habitantes / area
+    saida.writerow([estado, habitantes, area, densidade])
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Exercício - Consultar bases
+
+        - [`candidatos-2016-PE.csv`](https://gist.github.com/turicas/3ac8c1fbf8e1df7c8491d70b51183260/raw/7149cafae3234b3764637571942d9fabb0bc0ec9/candidatos-2016-PE.csv)
+        - [`votacao-2016-PE.csv`](https://gist.github.com/turicas/c44ec619a374a173ebe2b1fce827c23c/raw/f60e4a3a886b82330abc7e47aba01eb6a75b109f/votacao-2016-PE.csv)
+        - Primeiro, abra os arquivos para conhecer os dados
+        - Faça perguntas como:
+          - Existe diversidade de gênero nas candidaturas à prefeitura?
+          - As etnias no Brasil estão bem representadas?
+          - Quais são as profissões dos eleitos?
+        - Analisar suas próprias bases de dados
+          - Caso esteja em `xls`, `xlsx` ou `ods`, converta para CSV com Microsoft Excel, LibreOffice Calc ou Google Spreadsheets
+        </section>
+
+
+<!-- ###################################################################### -->
+<!-- # Parte 3: Capturando dados da Web                                   # -->
+<!-- ###################################################################### -->
+
+        <section class="fragments" data-markdown>
+        ## Parte 3:
+        ## Capturando dados da Web
+
+        - Dados Públicos/abertos
+        - Como a Web funciona?
+        - Web scraping: crawling + parsing
+        - Exemplos:
+          - Balas perdidas
+          - Dados IBGE
+        </section>
+
+        <section>
+          <h2>Dados Públicos</h2>
+          <h3>Informações de interesse público disponíveis como dados abertos</h3>
+          <p align="center">
+            <img src="images/funil-de-dados-dados-abertos.png">
+          </p>
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            Dados abertos são dados que podem ser <b>livremente usados,
+              reutilizados e redistribuídos</b> por qualquer pessoa -
+            <b>sujeitos, no máximo, à exigência de atribuição da fonte e
+              compartilhamento pelas mesmas regras</b>.
+            &rdquo;
+          </blockquote>
+          -- <a href="http://opendatahandbook.org/guide/pt_BR/what-is-open-data/">OpenData
+            Handbook</a> (definição de <a
+            href="http://opendefinition.org/">Open Definition</a>)
+        </section>
+
+        <section data-markdown>
+          ## Lei de Acesso à Informação
+
+          - [Lei 12.527/2011](http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm)
+          - Em vigor desde 16 de maio de 2012
+        </section>
+
+        <section data-markdown>
+          # 5-Star Data
+
+          ## [5stardata.info](http://5stardata.info/)
+
+          ![](images/5-star-steps.png)
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            Quanto menos acessível está um dado, mais fechado ele está.
+            &rdquo;
+          </blockquote>
+        </section>
+
+        <section data-markdown>
+          ## Para Saber Mais
+
+          - [opendatahandbook.org](http://opendatahandbook.org/)
+          - [kit.dados.gov.br](http://kit.dados.gov.br/)
+          - [escoladedados.org](https://escoladedados.org/)
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## Como a Internet e a Web funcionam?
+
+        - [Submarine cable map](https://www.submarinecablemap.com/)
+        - Protocolos:
+          - [DNS](https://en.wikipedia.org/wiki/DNS)
+          - [HTTP](https://en.wikipedia.org/wiki/HTTP)
+        - Formatos:
+          - [HTML](https://en.wikipedia.org/wiki/HTML)
+          - [JSON](http://www.json.org/)
+        </section>
+
+        <section class="fragments" data-markdown>
+        ## Baterias não incluídas
+
+        - [Python Package Index (PyPI)](https://pypi.python.org/)
+        - `pip`: comando para instalar pacotes
+        - Instalar 3 pacotes disponíveis no PyPI:
+          - `pip install requests lxml rows`
+        </section>
+
+        <section data-markdown>
+        ## Captura e análise
+        ### Balas Perdidas
+
+        - Quais notícias possuem o termo "bala perdida"?
+        - Entrada: [bit.ly/bala-perdida-csv](http://bit.ly/bala-perdida-csv) (salvar como `bala-perdida.csv`)
+        - [Ver código](https://github.com/turicas/slides/blob/gh-pages/python/abraji12/exemplos/notificacoes/bala_perdida.py)
+        </section>
+
+        <section>
+          <h2>Busca por Balas Perdidas</h2>
+          <h3>Arquivo: <code>balas_perdidas.py</code></h3>
+<pre><code>import csv
+import requests
+
+encontrados, nao_encontrados = 0, 0
+materias = csv.DictReader(open('bala-perdida.csv', encoding='utf-8'))
+for materia in materias:
+    link = materia['link']
+    print(f'Baixando {link}...')
+    pagina = requests.get(link)
+
+    if 'bala perdida' in pagina.text:
+        print('Termo encontrado!')
+        encontrados += 1
+    else:
+        print('Termo não encontrado')
+        nao_encontados += 1
+
+print(f'Encontrados: {encontrados}')
+print('Não encontrados: {nao_encontrados}')
+</code></pre>
+        </section>
+
+        <section data-markdown>
+        ## Captura e análise
+        ### IBGE
+
+        - Qual a população e área dos municípios brasileiros?
+        - Entrada: [bit.ly/ibge-habitantes-pe](bit.ly/ibge-habitantes-pe)
+        </section>
+
+        <section>
+          <h2>Baixar a população de um estado</h2>
+          <h3>Arquivo: <code>populacao_estado_ibge.py</code></h3>
+<pre><code>
+</code></pre>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
