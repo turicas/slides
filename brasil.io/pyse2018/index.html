@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jornalismo de Dados: Programando a Democracia no Brasil</title>
+
+    <meta name="description" content="Jornalismo de Dados: Programando a Democracia no Brasil">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Jornalismo de Dados: Programando a Democracia no Brasil
+          </h2>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="http://pythonsudeste.org">PythonSudeste 2018</a></h4>
+          <h4>01 de abril de 2018 - São Paulo/SP</h4>
+        </section>
+
+        <section>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@pythonic.cafe">turicas@pythonic.cafe</a></h3>
+          <h3>Blog: <a href="http://turicas.info/">turicas.info</a> </h3>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_escola-de-dados.png" width="50%">
+            <br>
+            <h2>
+              <a href="http://escoladedados.org/">escoladedados.org</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/logo_impacto.png" width="100%">
+            <br>
+            <h2>
+              <a href="http://impacto.jor.br">impacto.jor.br</a>
+            </h2>
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img src="images/pythonic-cafe.jpg" height="300">
+            <img src="images/python24h.png">
+            <br>
+            <h2>
+              <a href="http://pythonic.cafe/">pythonic.cafe</a>
+            </h2>
+            <h3>
+              <a href="http://pythonic.cafe/youtube">youtube.com/c/PythonicCafe</a>
+            </h3>
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <a href="http://www.gnu.org/">
+              <img width="25%" src="images/gnu.png">
+            </a>
+          </p>
+          <p>
+            <a href="http://www.python.org/">
+              <img width="25%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Agenda
+
+          - Jornalismo de dados
+           - O que é?
+           - Exemplos de produtos jornalísticos
+          - Democracia?
+           - Dados abertos
+           - Python
+           - Como ajudar
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Jornalistas estão chegando!
+
+          - Exemplos de matérias
+        </section>
+        <section> <img width="70%" src="images/dadodebolso-01.png"> </section>
+        <section> <img width="70%" src="images/dadodebolso-02.png"> </section>
+        <section> <img width="70%" src="images/dadodebolso-03.png"> </section>
+        <section> <img width="70%" src="images/dadodebolso-06.png"> </section>
+        <section> <img width="70%" src="images/dadodebolso-05.png"> </section>
+        <section>
+          <h2>Rua: substantivo (ainda) masculino</h3>
+          <img width="80%" src="images/video-espaco-publico.png">
+          <br>
+          <a href="https://youtu.be/7yQ8U2tFFq4">youtu.be/7yQ8U2tFFq4</a>
+        </section>
+
+        <section>
+          <h2>Curso Gratuito para Jornalistas</h2>
+          <h3>Mais de 3.000 alunos!</h3>
+          <img width="60%" src="images/curso-knight-center.png" alt="Foto curso Python Knight Center">
+        </section>
+
+        <section data-markdown>
+          ## Jornalismo Aberto
+
+          - Descrição da **metodologia**
+          - Link para todas as **fontes de dados** utilizados
+          - Código-fonte dos scripts disponível
+            - [github.com/generonumero](https://github.com/generonumero)
+          - Link para planilhas com os **resultados das análises**
+          - Exemplo: [Como classificamos mais de 800 mil logradouros brasileiros por gênero](http://www.generonumero.media/como-classificamos-mais-de-800-mil-logradouros-brasileiros-por-genero/)
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            <b>Democracia</b> é um regime político em que todos os cidadãos
+            elegíveis participam igualmente — diretamente ou através de
+            representantes eleitos — na proposta, no desenvolvimento e na
+            criação de leis, exercendo o poder da governação através do
+            sufrágio universal. Ela abrange as condições sociais, econômicas e
+            culturais que permitem o exercício <b>livre e igual</b> da
+            autodeterminação política.
+            &rdquo;
+          </blockquote>
+          -- <a href="https://pt.wikipedia.org/wiki/Democracia">Wikipedia</a>
+        </a>)
+        </section>
+
+        <section>
+          <h2>Problema: Acessibilidade dos Dados</h2>
+          <h3>Maior parte do tempo dos projetos de análise de dados:</h3>
+          <p align="center">
+            <img src="images/funil-de-dados-4.png">
+          </p>
+        </section>
+        <section>
+          <h3>Trabalhando com Dados Públicos</h3>
+          <img width="35%" src="images/gato-pulando.gif" alt="">
+          <br>
+          <img width="35%" src="images/quebrando.gif" alt="">
+          <br>
+          <img width="35%" src="images/limpando.gif" alt="">
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            O nível de acessibilidade de um dado é um filtro sobre quem
+            conseguirá utilizá-lo.
+            &rdquo;
+          </blockquote>
+        </section>
+
+        <section data-markdown>
+          # Python
+
+          - Fácil de aprender
+          - MUITA biblioteca pronta
+          - Como ajudar?
+            - Ensinando
+            - Libertando dados
+        </section>
+
+        <section>
+          <img width="100%" src="images/balneabilidade.png"
+          alt="Balneabilidade Bahia">
+          <a href="https://github.com/correio24horas/balneabilidade-bahia">
+            https://github.com/correio24horas/balneabilidade-bahia
+          </a>
+        </section>
+
+        <section>
+          <img width="70%" src="images/tweet-contracheques.png" alt="Tweet de Turicas">
+          <a href="https://twitter.com/turicas/status/943176715672711168">
+            twitter.com/turicas/status/943176715672711168
+          </a>
+        </section>
+
+        <section>
+          <img width="70%" src="images/tweet-socios-brasil.png" alt="Tweet de Turicas">
+          <a href="https://twitter.com/turicas/status/959120200976224262">
+            twitter.com/turicas/status/959120200976224262
+          </a>
+        </section>
+
+        <section>
+          <img width="70%" src="images/tweet-prouni.png" alt="Tweet de Turicas">
+          <a href="https://twitter.com/turicas/status/960678777096425472">
+            twitter.com/turicas/status/960678777096425472
+          </a>
+        </section>
+
+        <section data-markdown>
+          # Como?
+
+          - [scrapy](https://scrapy.org), [urllib](https://docs.python.org/3/library/urllib.html), [requests](http://python-requests.org/)
+          - [rows](https://github.com/turicas/rows)
+          - [lxml](http://lxml.de/), [BeautifulSoup](https://pypi.python.org/pypi/beautifulsoup4)
+          - [sqlite3](https://docs.python.org/3/library/sqlite3.html)
+        </section>
+
+        <section>
+          <h2>Brasil.IO</h2>
+          <h3>Só código não resolve</h3>
+          <img width="60%" src="images/logo_brasil.io.png" alt="Logo Brasil.IO">
+          <p>Dados abertos por um Brasil mais ligado</p>
+        </section>
+
+        <section>
+          <h2>?</h2>
+          <br>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3>
+            <a href="mailto:turicas@pythonic.cafe">turicas@pythonic.cafe</a>
+          </h3>
+          <h3> <a href="https://brasil.io">Brasil.IO</a> </h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
