@@ -13,7 +13,7 @@ for materia in materias:
         encontrados += 1
     else:
         print('Termo não encontrado')
-        nao_encontados += 1
+        nao_encontrados += 1
 
 print(f'Encontrados: {encontrados}')
-print('Não encontrados: {nao_encontrados}')
+print(f'Não encontrados: {nao_encontrados}')
