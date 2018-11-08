@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Brasil.IO: Dados Abertos para mais Democracia</title>
+
+    <meta name="description" content="Brasil.IO: Dados Abertos para mais Democracia">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Brasil.IO: Dados Abertos para mais Democracia
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4>
+            <a href="http://www.crie.ufrj.br/seminario-bigdatabrasil">V Seminário Big Data
+              Brasil</a>
+          </h4>
+          <h4>
+            08 de novembro de 2018 - Rio de Janeiro/RJ
+          </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>,
+            <br>
+            <a href="https://t.me/turicas">telegram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+        </section>
+
+        <section>
+          <h2><a href="http://brasil.io/">Brasil.IO</a></h2>
+          <p>O Brasil em dados libertos</p>
+          <img width="60%" src="images/logo_brasil.io.png" alt="Logo Brasil.IO">
+        </section>
+
+        <section>
+          <h2>Dados Abertos</h2>
+          <blockquote>
+            &ldquo;
+            <b>Dados abertos</b> são dados que podem ser <b>livremente usados,
+              reutilizados e redistribuídos</b> por qualquer pessoa -
+            <b>sujeitos, no máximo, à exigência de atribuição da fonte e
+              compartilhamento pelas mesmas regras</b>.
+            &rdquo;
+          </blockquote>
+          -- <a href="http://opendatahandbook.org/guide/pt_BR/what-is-open-data/">OpenData
+            Handbook</a> (definição de <a
+            href="http://opendefinition.org/">Open Definition</a>)
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            [A CGU] acredita que a <b>transparência</b> é o melhor antídoto
+            <b>contra corrupção</b>, dado que ela é mais um mecanismo indutor
+            de que os gestores públicos ajam com responsabilidade.
+            <br>
+            Uma gestão pública transparente permite à sociedade, com
+            informações, <b>colaborar no controle das ações de seus
+              governantes</b>, com intuito de checar se os recursos públicos
+            estão sendo usados como deveriam.
+            &rdquo;
+          </blockquote>
+          -- <a href="http://www.cgu.gov.br/assuntos/transparencia-publica">CGU.gov.br</a>
+        </section>
+
+        <section>
+          <h2>Controle Social</h2>
+          <blockquote>
+            &ldquo;
+            <b>Controle social</b> é a participação da sociedade civil nos
+            processos de <b>planejamento, acompanhamento, monitoramento e
+              avaliação</b> das ações da gestão pública e na execução das
+            políticas e programas públicos.
+            &rdquo;
+          </blockquote>
+          -- <a href="https://pt.wikipedia.org/wiki/Controlo_social">Wikipedia</a>
+        </section>
+
+        <section>
+          <h2>Controle Social: Exemplo</h2>
+          <h3>Operação Serenata de Amor</h3>
+          <img width="100%" src="images/serenata.gif" alt="Operação Serenata de Amor">
+          <br>
+          <a href="https://serenata.ai/">serenata.ai</a>
+        </section>
+
+        <section>
+           <h2>Data Pipeline</h2>
+           <img width="30%" src="images/data-pipeline.png">
+           <br>
+           <a href="https://schoolofdata.org/methodology/">schoolofdata.org/methodology</a>
+         </section>
+
+        <section>
+          <h3>Nem sempre o dado está disponível</h3>
+          <p align="center">
+            <img width="40%" src="images/post-rfb.jpg">
+          </p>
+          <a href="https://twitter.com/turicas/status/1019272233095745537">
+            twitter.com/turicas/status/1019272233095745537
+          </a>
+        </section>
+
+        <section>
+          <h3>Nem sempre o dado está disponível [2]</h3>
+          <img width="50%" src="images/tweet-prouni.png" alt="Tweet de Turicas">
+          <br>
+          <a href="https://twitter.com/turicas/status/960678777096425472">
+            twitter.com/turicas/status/960678777096425472
+          </a>
+        </section>
+
+        <section>
+          <h3>Maior parte do tempo dos projetos de análise de dados:</h3>
+          <p align="center">
+            <img src="images/data-pipeline-hard-steps.png">
+          </p>
+        </section>
+
+        <section data-markdown>
+          ## Houston, we have a problem...
+          ### Qualidade dos Dados
+
+          ![](images/5-star-steps.png)
+
+          [5stardata.info](http://5stardata.info/)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Acessibilidade: Problemas
+
+          - **Formato** (qualidade técnica)
+            - Exemplo: Boletim de balneabilidade em PDF (INEMA/BA)
+          - **Dispersão**
+            - Exemplo: Filiações partidárias em 945 ZIPs com CSVs (TSE)
+          - **Quantidade** de dados
+            - Exemplo: 18 milhões de sócios (RFB)
+          - **Domínio** da área
+            - Exemplo: o que é unidade eleitoral? (TSE)
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            <b>Democracia</b> é um regime político em que <b>todos os cidadãos
+              elegíveis participam igualmente</b> — diretamente ou através de
+            representantes eleitos — na proposta, no desenvolvimento e na
+            criação de leis, [...]
+            <br>
+            Ela abrange as condições sociais, econômicas e culturais que
+            permitem o exercício <b>livre e igual</b> da autodeterminação
+            política.
+            &rdquo;
+          </blockquote>
+          -- <a href="https://pt.wikipedia.org/wiki/Democracia">Wikipedia</a>
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            Restringir acesso a dados públicos é elitizar a democracia.
+            &rdquo;
+          </blockquote>
+            -- <a href="https://brasil.io/manifesto">Manifesto Brasil.IO</a>
+        </section>
+
+        <section data-markdown>
+          ## Libertação de Dados:
+          ### Resolver os problemas de **formato** e **dispersão**
+        </section>
+
+        <section>
+          <img width="100%" src="images/tabela-pdf.png">
+          <br>
+          <a href="http://balneabilidade.inema.ba.gov.br/index.php/relatoriodebalneabilidade/geraBoletim?idcampanha=36381">
+            balneabilidade.inema.ba.gov.br
+          </a>
+        </section>
+
+        <section>
+          <h2><code>rows convert arquivo.pdf arquivo.csv</code></h2>
+          <img width="100%" src="images/rows-pdf.jpg"
+               alt="Biblioteca rows convertendo PDF para CSV" />
+          <br>
+        </section>
+
+        <section data-markdown>
+          ## Acessbilidade: 2/4
+
+          - [x] **Formato**
+          - [x] **Dispersão**
+          - [ ] **Quantidade** de dados
+          - [ ] **Domínio** da área
+        </section>
+
+        <section>
+          <h2><a href="http://brasil.io/">Brasil.IO</a></h2>
+          <p>O Brasil em dados libertos</p>
+          <img width="60%" src="images/logo_brasil.io.png" alt="Logo Brasil.IO">
+        </section>
+        <section>
+          <img width="100%" src="images/brasilio-home.png">
+        </section>
+        <section>
+          <img width="100%" src="images/brasilio-salarios-magistrados.png">
+        </section>
+        <section>
+          <img width="100%" src="images/brasilio-salarios-magistrados-2.png">
+        </section>
+
+        <section data-markdown>
+          ## Acessbilidade: 4/4
+
+          - [x] **Formato**
+          - [x] **Dispersão**
+          - [x] **Quantidade** de dados
+          - [x] **Domínio** da área
+        </section>
+
+        <section>
+          <h3>Brasil.IO: Software Livre</h3>
+          <img width="100%" src="images/github-brasilio.png"
+               alt="Repositório do Brasil.IO no GitHub">
+          <br>
+          <a href="https://github.com/turicas/brasil.io">
+            github/turicas/brasil.io
+          </a>
+        </section>
+
+        <section data-markdown>
+          # Parceiros
+        </section>
+        <section>
+          <img width="100%" src="images/mp-em-mapas.png">
+          <br>
+          <a href="http://mpemmapas.mprj.mp.br">mpemmapas.mprj.mp.br</a>
+        </section>
+        <section>
+          <img width="100%" src="images/praias-bahia.png">
+          <br>
+          <a href="http://www.correio24horas.com.br/noticia/nid/conheca-as-10-praias-mais-sujas-da-bahia/">Acesse a matéria</a>
+        </section>
+        <section>
+          <img width="100%" src="images/gn-2018.png">
+          <br>
+          <a href="http://www.generonumero.media/candidatura-semvoto-eleicoes2018/">Leia a matéria</a>
+        </section>
+        <section>
+          <img width="100%" src="images/sorteio-supremo.png">
+          <br>
+          <a href="https://apublica.org/2018/01/sorteio-do-supremo-e-caixa-preta/">Acesse a matéria</a>
+        </section>
+        <section>
+          <img width="100%" src="images/militares.png">
+          <br>
+          <a href="https://theintercept.com/2018/04/03/exercito-rio-empresa-investigada/">Acesse a matéria</a>
+        </section>
+        <section>
+          <img width="50%" src="images/voltdata.png">
+          <br>
+          <img width="50%" src="images/poder360.png">
+          <br>
+          <a href="https://eleicoes.poder360.com.br/">eleicoes.poder360.com.br</a>
+          <br>
+          <a href="https://voltdata.info">voltdata.info</a>
+        </section>
+        <section>
+          <img width="50%" src="images/voltdata.png">
+          <br>
+          <img width="50%" src="images/transparenciapartidaria.png">
+          <br>
+          <a href="http://www.transparenciapartidaria.org/">transparenciapartidaria.org</a>
+          <br>
+          <a href="https://voltdata.info">voltdata.info</a>
+        </section>
+        <section>
+          <img width="70%" src="images/perfilpolitico.png">
+          <br>
+          <a href="https://perfilpolitico.serenata.ai">perfilpolitico.serenata.ai</a>
+        </section>
+
+        <section data-markdown>
+          ## [Brasil.IO](https://brasil.io/)
+          ### Como Colaborar?
+
+          - Código:
+            - Plataforma
+            - Scripts de captura
+          - Sugerindo novos datasets
+          - **Doando: [apoia.se/brasilio](https://apoia.se/brasilio)**
+        </section>
+
+        <section>
+          <h2>?</h2>
+          <h3>Happy hacking!</h3>
+          <br>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>,
+            <br>
+            <a href="https://t.me/turicas">telegram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3>
+            <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+          </h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
