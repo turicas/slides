@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fatiou, passou: filtrando CSVs de gigabytes no terminal</title>
+
+    <meta name="description" content="Fatiou, passou: filtrando CSVs de gigabytes no terminal">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Fatiou, passou: filtrando CSVs de gigabytes no terminal
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4>
+            <a href="http://coda.escoladedados.org/">Coda.BR
+              2018</a>
+          </h4>
+          <h4>
+            10 de novembro de 2018 - São Paulo/SP
+          </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>,
+            <br>
+            <a href="https://t.me/turicas">telegram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+        </section>
+
+        <section>
+          <h2><a href="http://brasil.io/">Brasil.IO</a></h2>
+          <p>O Brasil em dados libertos</p>
+          <img width="60%" src="images/logo_brasil.io.png" alt="Logo Brasil.IO">
+        </section>
+
+        <section data-markdown>
+          ## Agenda
+
+          - Introdução
+          - Navegação/manipulação de arquivos e diretórios
+          - Acesso e filtragem de arquivos
+          - Combinando comandos
+          - Exemplos avançados
+        </section>
+
+        <section data-markdown>
+          ## Antes de mais nada...
+
+          - Baixar `contracheque.csv` em [bit.ly/contracheque-magistrados](http://bit.ly/contracheque-magistrados)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 1.1 Introdução: Terminal
+
+          - Terminal
+            - ou "linha de comando"
+            - ou "modo texto"
+            - ou "tela preta"
+            - ou "shell"
+          - É um **interpretador de comandos**
+          - Existem diversos:
+            - DOS
+            - **Bash**
+            - Zsh
+            - PowerShell
+            - ...
+          - No Windows: [cygwin](https://www.cygwin.com/) ou [gitbash](https://gitforwindows.org/)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 1.2 Introdução: Comandos e opções
+
+          - Comandos ("verbos")
+            - Exemplo: `ls`
+          - Parâmetros
+            - Exemplo: `echo "olá, mundo!"`
+          - Opções
+            - Exemplo: `ls -l`
+          - Variáveis: armazenam valores
+            - Exemplo:
+            ```
+            mensagem="olá, mundo!"
+            echo $mensagem
+            ```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 2.1 Navegação/manipulação de arquivos e diretórios
+
+          - `ls`: list files
+            - Exemplos: `ls`, `ls /tmp`
+          - `mkdir`: make directory
+            - Exemplo: `mkdir nova-pasta`
+            - Caminhos relativos versus absolutos
+          - `rmdir`: remove directory (apenas vazios)
+            - Exemplo: `rmdir nova-pasta`
+          - `cd`: change directory
+            - Exemplo: `cd /tmp`
+          - `touch`: cria arquivo em branco
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 2.2 Pedindo ajuda
+
+          - `-h`, `--help`
+            - Exemplo: `ls --help`
+          - `man comando`
+            - Exemplo: `man ls`
+            - Use `/palavra` para buscar
+            - Use `q` para sair
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.1 Acesso e filtragem de arquivos
+
+          - `wc`
+            - Exemplo: `wc -l contracheque.csv`
+          - `cat`
+            - Exemplo: `cat contracheque.csv`
+          - `grep`
+            - Exemplo: `grep -i "Sergio Fernando Moro" contracheque.csv`
+          - `cut`
+            - Exemplo: `cut -d',' -f2,15 contracheque.csv`
+          - `head`
+            - Exemplo: `head -1 contracheque.csv`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.2. Redirecionar saída
+
+          - `comando > arquivo.txt`
+            - Exemplo: `head -1 contracheque.csv > cabecalho.csv`
+          - `comando >> arquivo.txt`
+            - Exemplo: `grep -i "Sergio Fernando Moro" contracheque.csv >> cabecalho.csv`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.3. Uso de recursos
+
+          - Filosofia UNIX: um comando faz somente uma tarefa - e o faz bem
+          - Os comandos trabalham de forma preguiçosa (`lazy`)
+            - Rodar `grep` num arquivo de 5GB não exige essa quantidade de
+              memória (diferente do que abrir um arquivo desses no Excel)
+        </section>
+
+        <section data-markdown>
+          ## 3.3 Criando scripts
+
+          - Crie um arquivo e coloque um comando por linha
+          - O comando `history` pode te ajudar, listando os comandos que você
+            digitou recentemente
+          - Execute o script com: `bash nome-do-arquivo.sh`
+        </section>
+
+        <section data-markdown>
+          ## 3.3.2 Script de Exemplo
+
+          ```
+          echo "Número de linhas do arquivo inicial:"
+          wc -l contracheque.csv
+
+          echo "Criando arquivo com Moro e Bruno..."
+          head -1 contracheque.csv > juizes.csv
+          grep --color=no -i "SERGIO FERNANDO MORO" contracheque.csv >> juizes.csv
+          grep --color=no -i "BRUNO SOUZA SAVINO" contracheque.csv >> juizes.csv
+          echo "Arquivo criado. Total de linhas:"
+          wc -l juizes.csv
+          ```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.4 Navegando no histórico de comandos
+
+          - Seta para cima: mostra comandos anteriores
+            - Facilita muito executar comandos parecidos, alterando apenas
+              alguns parâmetros
+          - Ctrl-r: busca no histórico de comandos
+        </section>
+
+        <section data-markdown>
+          ## 4.1. Combinando comandos
+
+          - Pipe (barra vertical): `|`
+          - Redireciona saída de um comando (standard output) para a entrada
+            (standard input) de outro
+          - Pode ser utilizado quantas vezes quiser
+          - Pode ser utilizado em conjunto com `>` e `>>`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 5.1. Exemplos avançados
+
+          - Comandos que nem sempre estão instalados por padrão
+            - Cada um requer uma forma diferente de instalação.
+              - Em sistemas Debian e Ubuntu: `apt install nome-do-programa`
+          - `wget`: baixar arquivos
+            - Exemplo: `wget http://agencia.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2018.zip`
+          - `rows`: converter dados tabulares em diversos formatos
+            - Exemplo:
+              ```
+              url=http://balneabilidade.inema.ba.gov.br/index.php/relatoriodebalneabilidade/geraBoletim?idcampanha=36381
+              rows convert $url balneabilidade.csv
+              ```
+          - `convert` (imagemagick): recorta, edita e converte imagens
+          - `ffmpeg`: converte vídeos
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
