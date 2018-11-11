@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Deu match: limpando dados com expressões regulares</title>
+
+    <meta name="description" content="Deu match: limpando dados com expressões regulares">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Deu match: limpando dados com expressões regulares
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4>
+            <a href="http://coda.escoladedados.org/">Coda.BR
+              2018</a>
+          </h4>
+          <h4>
+            11 de novembro de 2018 - São Paulo/SP
+          </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>,
+            <br>
+            <a href="https://t.me/turicas">telegram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+        </section>
+
+        <section>
+          <h2><a href="http://brasil.io/">Brasil.IO</a></h2>
+          <p>O Brasil em dados libertos</p>
+          <img width="60%" src="images/logo_brasil.io.png" alt="Logo Brasil.IO">
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Regexp: o quê, pra quê?
+
+          - Sequência que representa um **padrão de caracteres**
+          - Busca
+          - Substituição
+            - Limpeza!
+        </section>
+
+        <section>
+           <h2>Data Pipeline</h2>
+           <img width="30%" src="images/data-pipeline.png">
+           <br>
+           <a href="https://schoolofdata.org/methodology/">schoolofdata.org/methodology</a>
+        </section>
+
+        <section>
+          <h3>Maior parte do tempo dos projetos de análise de dados:</h3>
+          <p align="center">
+            <img src="images/data-pipeline-hard-steps.png">
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Regexp: onde usar?
+
+          - Editores de texto (e código)
+          - SQL
+          - Linguagens de programação
+          - Programas para limpeza de dados (exemplo: OpenRefine)
+          - ...
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Regexp: onde NÃO usar?
+
+          - Parsers de linguagens como HTML
+          - Casos complexos demais para entender e manter a expressão
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Material
+
+          - [regexr.com](https://regexr.com/): site para testar
+          - [bit.ly/turicas-regexp](bit.ly/turicas-regexp): esses slides
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Representando padrões simples
+
+          - `a`: letra `a` (aparecendo uma vez)
+          - `2`: número `2` (aparecendo uma vez)
+          - `.`: qualquer caractere (aparecendo uma vez)
+          - `\.`: ponto (`.`)
+          - `[abc]`: `a`, `b` ou `c` (aparecendo uma vez)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Exercício: Extrair data
+
+          - `11/11/2018`
+          - `11/11/18`
+          - `1/1/18`
+          - `01/1/18`
+          - `1/01/18`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Representando padrões mais complexos
+
+          - `[0-9]`: número de `0` a `9` (aparecendo uma vez)
+          - `[a-z]`: letra do alfabeto (minúscula)
+          - `[A-Z]`: letra do alfabeto (maiúscula)
+          - `\[` e `\]`: `[` e `]`
+          - `[^x]`: não `x`
+          - `^exp`: `exp` logo no começo da linha
+          - `exp$`: `exp` logo no fim da linha
+          - Melhorar extrator de data
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Atalhos
+
+          - `\d` ou `\D`: dígito/não dígito
+          - `\w` ou `\W`: palavra/não palavra
+          - `\s` ou `\S`: espaço (vários caracteres)/não espaço
+          - Melhorar extrator de data
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Representando quantidades
+
+          - `?`: zero ou uma vez
+          - `+`: pelo menos uma vez
+          - `*`: qualquer quantidade (inclusive zero)
+          - `{x}`: exatamente x vezes
+          - `{x,y}`: entre x e y vezes (ambos inclusos)
+          - Melhorar extrator de data
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Exercício: data com mês por extenso
+
+          - `11 de novembro de 2018`
+          - `25 de agosto de 1999`
+          - `31 de janeiro de 1980`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Representando agrupamentos
+
+          - `(exp)`: cria um grupo
+          - `(exp1|exp2)`: ocorrência de `exp1` ou `exp2`
+          - `\x` (ou `$x`): referencia o grupo de número `x` (começa de 1)
+            - Usado em substituições
+          - Substituir extrator de data
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Exercício: Extrair CPF
+
+          - `111.111.111-11`
+          - `111 111 111-11`
+          - `111.111.111/11`
+          - `11111111111`
+        </section>
+
+        <section>
+          <h2> Exemplo real: Balneabilidade da costa baiana </h2>
+          <h2> <code>rows convert arquivo.pdf arquivo.csv</code> </h2>
+          <img width="100%" src="images/rows-pdf.jpg"
+               alt="Biblioteca rows convertendo PDF para CSV" />
+          <br>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Exercício: Extrair código da costa
+
+          - `"2ª. Praia de Morro de São Paulo - CDD- SP 200"`: capturar `"CDD"`
+          - `"2ª. Praia de Morro de São Paulo - CDD - SP 200"`: capturar `"CDD"`
+          - `"Costa - Canavieiras - CCA CN 100"`: capturar `"CCA"`
+          - `"Madre de Deus - BTS MD 100"`: capturar `"BTS"`
+          - `"Madre de Deus -BTS MD 100"`: capturar `"BTS"`
+          - `"Nativos - CDES NT 100"`: capturar `"CDES"`
+          - `"NATIVOS - CDES NT 100"`: capturar `"CDES"`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Exemplo em código
+
+          - [github.com/Correio24horas/balneabilidade-bahia](https://github.com/Correio24horas/balneabilidade-bahia)
+          - Resultado: `.*[- ]([A-Z]{3,4})[ -].*`
+        </section>
+
+        <section>
+          <h3>With great power comes great responsibility.</h3>
+          <br>
+          <h3>
+            Obrigado. :)
+            <br>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>,
+            <br>
+            <a href="https://t.me/turicas">telegram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3>
+            <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+          </h3>
+          <br>
+            <a href="http://bit.ly/turicas-regexp">bit.ly/turicas-regexp</a>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
