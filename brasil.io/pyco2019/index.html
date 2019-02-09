@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Brasil.IO: libertación de datos públicos con Python</title>
+
+    <meta name="description" content="Brasil.IO: libertación de datos públicos con Python">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Brasil.IO: libertación de datos públicos con Python
+          </h2>
+          <br>
+
+          <h3><b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b></h3>
+          <br>
+
+          <h4><a href="https://us.pycon.org/2018/hatchery/charlas/">PyCon Colombia 2019</a></h4>
+          <h4>
+            09 de febrero de 2019 - Bogotá, Colombia
+          </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>🇧🇷 Turicas</b>, mucho gusto =)</h2>
+          <h3>¡Síganme los buenos!</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>,
+            <br>
+            <a href="https://t.me/turicas">telegram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+        </section>
+
+        <section>
+          <h2>
+            Diapositivas en:
+            <br>
+            <a href="https://bit.ly/turicas-pyco2019">bit.ly/turicas-pyco2019</a>
+          </h2>
+        </section>
+
+        <section>
+          <h2>Software Libre &amp; Python</h2>
+          <h3>(desde 2004/2005)</h3>
+          <p>
+            <a href="http://www.gnu.org/">
+              <img width="35%" src="images/gnu.png">
+            </a>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            <a href="http://www.python.org/">
+              <img width="35%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Conferencias que organizé</h2>
+          <img src="images/turicas-eventos-1.png" width="100%">
+        </section>
+        <section>
+          <h2>+ Conferencias</h2>
+          <img src="images/turicas-eventos-2.jpg" width="100%">
+          <br>
+          (sí, es Guido van Rossum)
+        </section>
+
+        <section>
+          <table style="text-align:center">
+            <tr>
+              <td style="text-align:center" colspan="2">
+                <img src="images/logo_brasil.io.png" width="400px" alt="Logo Brasil.IO">
+                <br>
+                <a href="http://brasil.io/">brasil.io</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align:center">
+                <img src="images/logo-impacto.png" width="400px">
+                <br>
+                <a href="http://impacto.jor.br">impacto.jor.br</a>
+              </td>
+              <td style="text-align:center">
+                <img src="images/logo-okbr.jpg" width="400px">
+                <br>
+                <a href="https://br.okfn.org">br.okfn.org</a>
+              </td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>✈️ ☕🌱👀 = 💖</h3>
+          <img width="65%" src="images/turicas.png">
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Agenda
+
+          - Datos abiertos
+            - Definición
+            - Problemas
+            - Accesibilidad
+          - Python + Datos
+            - rows
+            - Ejemplos en vivo
+          - [Brasil.IO](https://brasil.io/)
+            - Que es
+            - Como creamos
+            - Quien utiliza
+         </section>
+
+        <section data-markdown class="fragments">
+          ## Encuesta
+
+          - Empezando en Python?
+          - Trabaja con datos?
+          - Experiencia con datos de gobierno?
+        </section>
+
+        <section>
+          <h2>Datos Abiertos</h2>
+          <blockquote>
+            &ldquo;
+            Son datos que pueden ser <b>utilizados, reutilizados y
+              redistribuidos libremente</b> por cualquier persona, y que se
+            encuentran sujetos, cuando más, al <b>requerimiento de atribución y
+              de compartirse de la misma manera</b> en que aparecen.
+            &rdquo;
+          </blockquote>
+          -- <a href="http://opendatahandbook.org/guide/es/what-is-open-data/">OpenData
+            Handbook</a>
+
+          <p align="left">
+            <br>
+            Más detalles:
+            <ul>
+              <li><a
+                  href="http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm">Ley
+                  de Acceso a Información (Brasil)</a></li>
+              <li><a href="http://kit.dados.gov.br/">Guía de datos abiertos
+                  (Brasil)</a></li>
+              <li><a
+                  href="http://estrategia.gobiernoenlinea.gov.co/623/articles-9407_Guia_Apertura.pdf">Guía
+              de datos abiertos en Colombia</a></li>
+              <li><a href="https://escoladedados.org/">escoladedados.org</a>,
+                <a href="https://es.schoolofdata.org/">es.schoolofdata.org</a></li>
+            </ul>
+          </p>
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Importancia de los datos abiertos
+
+          - Transparencia
+          - Lucha contra la corrupción
+          - Control social
+          - Sociedad más democrática
+        </section>
+
+        <section>
+          <h2>Control Social: Ejemplo</h2>
+          <h3>Operação Serenata de Amor</h3>
+          <img width="100%" src="images/serenata.gif" alt="Operação Serenata de Amor">
+          <br>
+          <a href="https://serenata.ai/">serenata.ai</a>
+        </section>
+
+        <section>
+          <h2>Data pipeline</h2>
+          <img width="25%" src="images/data-pipeline.png">
+          <br>
+          <a href="https://schoolofdata.org/methodology/">schoolofdata.org/methodology</a>
+        </section>
+
+        <section>
+          <h3>Ni siempre están disponibles</h3>
+          <p align="center">
+            <img width="40%" src="images/post-rfb.jpg">
+          </p>
+          <a href="https://twitter.com/turicas/status/1019272233095745537">
+            twitter.com/turicas/status/1019272233095745537
+          </a>
+        </section>
+
+        <section>
+          <h2>Mayor parte del trabajo con datos abiertos</h2>
+          <img width="25%" src="images/data-pipeline-hard-steps.png">
+        </section>
+
+        <section>
+          <h3>Obtener, verificar, limpiar</h3>
+          <img width="35%" src="images/gato-pulando.gif" alt="">
+          <br>
+          <img width="40%" src="images/quebrando.gif" alt="">
+          <br>
+          <img width="35%" src="images/limpando.gif" alt="">
+        </section>
+
+        <section data-markdown>
+          ## Houston, we have a problem...
+          ### Calidad de los datos
+
+          ![](images/5-star-steps.png)
+
+          [5stardata.info](http://5stardata.info/)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Accesibilidad: Problemas
+
+          - **Formato** (calidad técnica)
+            - Ejemplo: boletín de balneabilidad (INEMA/BA), en PDF
+          - **Dispersión**
+            - Ejemplo: filiación partidaria (TSE), 945 ZIPs com CSVs (TSE)
+          - **Cantidad** de datos
+            - Ejemplo: 18M socios empresas (RFB)
+          - **Dominio** del área
+            - Ejemplo: que és unidad electoral? (TSE)
+        </section>
+
+        <section>
+          <blockquote>
+            &ldquo;
+            Restringir acesso a dados públicos é elitizar a democracia.
+            &rdquo;
+          </blockquote>
+            -- <a href="https://brasil.io/manifesto">Manifesto Brasil.IO</a>
+        </section>
+
+        <section data-markdown>
+          ## Libertación de Datos:
+          ### Resolver los problemas de **formato** e **dispersión**
+        </section>
+
+        <section>
+          <img width="60%" src="images/tweet-contracheques.png" alt="Tweet de Turicas">
+          <br>
+          <a href="https://twitter.com/turicas/status/943176715672711168">
+            twitter.com/turicas/status/943176715672711168
+          </a>
+        </section>
+
+        <section>
+          <img width="60%" src="images/tweet-socios-brasil.png" alt="Tweet de Turicas">
+          <br>
+          <a href="https://twitter.com/turicas/status/959120200976224262">
+            twitter.com/turicas/status/959120200976224262
+          </a>
+        </section>
+
+        <section>
+          <h2>Cómo?</h2>
+          <code>pip install rows</code>
+          <img width="80%" src="images/rows-github.png"
+               alt="Repositório da biblioteca rows no GitHub">
+          <br>
+          <a href="https://github.com/turicas/rows">
+            github/turicas/rows
+          </a>
+          <br>
+          <b>Versión 0.4.0 lanzada hoy!</b>
+          <br>
+        </section>
+
+        <section>
+          <h3>Ejempo: Tablas en CSV</h3>
+          <code>import rows</code>
+          <br>
+          (codificación en vivo)
+        </section>
+
+        <section>
+          <h3>Ejempo: Tablas en HTML</h3>
+          <img width="80%" src="images/tabela-html.png" />
+          <br>
+          (codificación en vivo)
+        </section>
+
+        <section>
+          <h3>Ejempo: Tablas en PDF</h3>
+          <img width="100%" src="images/tabela-pdf.png" />
+          <br>
+          (codificación en vivo)
+        </section>
+
+        <section>
+          <h2><code>rows convert arquivo.pdf arquivo.csv</code></h2>
+          <img width="100%" src="images/rows-pdf.jpg"
+               alt="Biblioteca rows convertendo PDF para CSV" />
+          <br>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Interfaz de línea de comando
+
+          - `rows print https://www.sports-reference.com/olympics/countries/BRA/summer/2016/`
+          - `rows convert archivo.html archivo.csv`
+          - `rows query 'SELECT * FROM table1 WHERE ...' archivo.pdf`
+        </section>
+
+        <section data-markdown>
+          ## Accesbilidad: 2/4
+
+          - [x] **Formato**
+          - [x] **Dispersión**
+          - [ ] **Cantidad** de datos
+          - [ ] **Dominio** del área
+        </section>
+
+        <section>
+          <h2><a href="http://brasil.io/">Brasil.IO</a></h2>
+          <h3>Datos públicos brasileños accesibles</h3>
+          <img width="100%" src="images/screenshot-brasilio.png" alt="Brasil.IO">
+          <br>
+          <a href="https://github.com/turicas/brasil.io">github/turicas/brasil.io</a>
+          <br>
+          <a href="http://brasil.io/api/datasets">brasil.io/api/datasets</a>
+        </section>
+
+        <section>
+          <img width="100%" src="images/brasilio-home.png">
+        </section>
+        <section>
+          <img width="100%" src="images/brasilio-salarios-magistrados.png">
+        </section>
+        <section>
+          <img width="100%" src="images/brasilio-salarios-magistrados-2.png">
+        </section>
+        <section>
+          <img width="100%" src="images/brasilio-api.png">
+        </section>
+
+        <section data-markdown>
+          ## Accesbilidad: 2/4
+
+          - [x] **Formato**
+          - [x] **Dispersión**
+          - [x] **Cantidad** de datos
+          - [x] **Dominio** del área
+        </section>
+
+        <section data-markdown>
+          ## Cómo?
+
+          - Scripts:
+            - [Python3](https://www.python.org/)
+            - [scrapy](https://scrapy.org)
+            - [rows](https://github.com/turicas/rows)
+          - Análisis:
+            - [sqlite3](https://docs.python.org/3/library/sqlite3.html)
+          - Backend:
+            - [Python3](https://www.python.org/)
+            - [Django](https://www.djangoproject.com/)
+            - [PostgreSQL](https://www.postgresql.org/)
+            - [Neo4J](https://neo4j.com/)
+          - Servidores: DigitalOcean y OVH
+          - PaaS: dokku
+        </section>
+
+        <section data-markdown>
+          # Por qué?
+          ## Ejemplos de utilización
+        </section>
+
+        <section>
+          <img src="images/logo_genero-e-numero.png" width="75%"
+               alt="Logo Gênero &amp; Número" />
+          <br>
+          <a href="http://www.generonumero.media/">generonumero.media</a>
+        </section>
+        <section>
+          <img width="70%" src="images/dadodebolso-01.png">
+          <br>
+          <a href="http://www.generonumero.media/edicao-02/">Vea la edición "Mulheres na Política"</a>
+        </section>
+        <section>
+          <img width="70%" src="images/dadodebolso-03.png">
+          <br>
+          <a href="http://www.generonumero.media/edicao-03/">Vea la edición "Mulheres na Política II"</a>
+        </section>
+        <section>
+          <img width="100%" src="images/gn-2018.png">
+          <br>
+          <a href="http://www.generonumero.media/candidatura-semvoto-eleicoes2018/">Leia a matéria</a>
+        </section>
+        <section>
+          <img width="70%" src="images/dadodebolso-05.png">
+          <br>
+          <a href="http://www.generonumero.media/edicao-05/">Vea la edición "Espaço Público"</a>
+        </section>
+        <section>
+          <h2>Calle: Sustantivo (aún) Masculino</h3>
+          <img width="80%" src="images/video-espaco-publico.png">
+          <br>
+          <a href="https://youtu.be/7yQ8U2tFFq4">youtu.be/7yQ8U2tFFq4</a>
+        </section>
+
+        <section>
+          <img src="images/apublica.png" width="100%"
+               alt="Logo Agência Pública" />
+          <br>
+          <a href="https://apublica.org/">apublica.org</a>
+        </section>
+        <section>
+          <img width="100%" src="images/sorteio-supremo.png">
+          <br>
+          <a href="https://apublica.org/2018/01/sorteio-do-supremo-e-caixa-preta/">Acceda a la materia</a>
+        </section>
+
+        <section>
+          <img src="images/correio24horas.png" width="100%"
+               alt="Logo Correio 24 Horas" />
+          <br>
+          <a href="http://www.correio24horas.com.br/">correio24horas.com.br</a>
+        </section>
+        <section>
+          <img width="100%" src="images/praias-bahia.png">
+          <br>
+          <a href="http://www.correio24horas.com.br/noticia/nid/conheca-as-10-praias-mais-sujas-da-bahia/">Acceda a la materia</a>
+        </section>
+
+        <section>
+          <img src="images/the-intercept-brasil.png" width="100%"
+               alt="Logo The Intercept Brasil" />
+          <br>
+          <a href="https://theintercept.com/brasil/">theintercept.com/brasil</a>
+        </section>
+
+        <section>
+          <img width="100%" src="images/doacoes-1.png">
+          <br>
+          <a href="https://theintercept.com/2017/09/26/mapeamento-inedito-mostra-que-doacoes-legais-da-odebrecht-beneficiaram-1-087-candidatos-desde-2002/">Acceda a la materia</a>
+        </section>
+        <section>
+          <img width="100%" src="images/doacoes-2.png">
+          <br>
+          <a href="https://theintercept.com/2017/09/27/oposicao-recebeu-menos-de-2-de-doacoes-da-odebrecht-para-eleicoes-nacionais-nos-anos-1990/">Acceda a la materia</a>
+        </section>
+        <section>
+          <img width="100%" src="images/doacoes-3.png">
+          <br>
+          <a href="https://theintercept.com/2017/09/28/mesmo-apos-lava-jato-familia-odebrecht-manteve-doacoes-de-campanha-em-2016/">Acceda a la materia</a>
+        </section>
+        <section>
+          <img width="100%" src="images/militares.png">
+          <br>
+          <a href="https://theintercept.com/2018/04/03/exercito-rio-empresa-investigada/">Acceda a la materia</a>
+        </section>
+        <section>
+          <img width="80%" src="images/poder360.png">
+          <br>
+          <a href="https://eleicoes.poder360.com.br/">eleicoes.poder360.com.br</a>
+        </section>
+        <section>
+          <img width="70%" src="images/perfilpolitico.png">
+          <br>
+          <a href="https://perfilpolitico.serenata.ai">perfilpolitico.serenata.ai</a>
+        </section>
+        <section>
+          <img width="100%" src="images/transparenciapartidaria.png">
+          <br>
+          <a href="http://www.transparenciapartidaria.org/">transparenciapartidaria.org</a>
+        </section>
+        <section>
+          <h2>Contribuyentes</h2>
+          <img src="images/brasilio-contribuidores.png">
+        </section>
+
+        <section data-markdown>
+          ## [Brasil.IO](https://brasil.io/)
+          ### Cómo contribuir?
+
+          - [github.com/turicas/brasil.io/issues](https://github.com/turicas/brasil.io/issues)
+          - Creando scrapers
+          - Charlando: [chat.brasil.io](https://chat.brasil.io/)
+          - Donación: [apoia.se/brasilio](https://apoia.se/brasilio)
+        </section>
+
+        <section>
+          <h2>15a Conferencia de Python en Brasil</h2>
+          <img width="100%" src="images/pythonbrasil-logo.png" alt="Logo PythonBrasil">
+          <br>
+          <a
+            href="pythonbrasil.com.br">pythonbrasil.com.br</a>
+          <br>
+          Octubre de 2019, Ribeirão Preto - São Paulo
+        </section>
+
+        <section>
+          <h2>Preguntas?</h2>
+          <h3>Cual bar vamos hoy?</h3>
+          <br>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>,
+            <br>
+            <a href="https://t.me/turicas">telegram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3>
+            <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+          </h3>
+          <h3> <a href="https://bit.ly/turicas-pyco2019">bit.ly/turicas-pyco2019</a> </h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
