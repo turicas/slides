@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Realmente precisamos de big data?</title>
+
+    <meta name="description" content="Realmente precisamos de big data?">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h1>
+            Realmente precisamos de big data?
+          </h1>
+          <br>
+
+          <h2>
+            <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4><a href="https://gedai.com.br/">Encontro GEDAI</a></h4>
+          <h4>
+            15 junho de 2019 - Curitiba/PR <img width="30" style="margin: 0" src="images/heart.png">
+          </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+        </section>
+
+        <section>
+          <h2><a href="http://brasil.io/">Brasil.IO</a></h2>
+          <blockquote>
+            &ldquo;
+            Restringir acesso a dados públicos é elitizar a democracia.
+            &rdquo;
+          </blockquote>
+          <img width="60%" src="images/logo_brasil.io.png" alt="Logo Brasil.IO">
+        </section>
+
+        <section>
+          <h3>Curso para 3.000+ jornalistas</h3>
+          <img src="images/curso-knight-center.png" width="70%"
+               alt="Foto curso Python Knight Center">
+        </section>
+
+        <section>
+          <h2>O que é big data?</h2>
+
+          <blockquote>
+            &ldquo;
+            Big data is a field that treats ways to analyze, systematically
+            extract information from, or otherwise deal with <b>data sets that
+              are too large or complex to be dealt with by traditional
+              data-processing application software</b>.
+            &rdquo;
+          </blockquote>
+          -- <a href="https://en.wikipedia.org/wiki/Big_data">Wikipedia</a>
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Programas tradicionais de processamento de dados
+
+          - Não é só o Excel!
+          - Sistemas de gestão de bancos de dados:
+            - SQLite
+            - PostgreSQL
+            - MySQL
+            - MongoDB
+            - Riak
+            - Oracle
+            - ...
+          - Sistemas "não tradicionais" já conseguem gerenciar gigabytes de dados facilmente
+        </section>
+
+        <section data-markdown>
+          # Não abrir no Excel não significa ser big data!
+        </section>
+
+        <section data-markdown>
+          # Qual o tamanho dos dados?
+        </section>
+
+        <section>
+          <h2>Dados Abertos</h2>
+          <blockquote>
+            &ldquo;
+            <b>Dados abertos</b> são dados que podem ser <b>livremente usados,
+              reutilizados e redistribuídos</b> por qualquer pessoa -
+            <b>sujeitos, no máximo, à exigência de atribuição da fonte e
+              compartilhamento pelas mesmas regras</b>.
+            &rdquo;
+          </blockquote>
+          -- <a href="http://opendatahandbook.org/guide/pt_BR/what-is-open-data/">OpenData
+            Handbook</a> (definição de <a
+            href="http://opendefinition.org/">Open Definition</a>)
+
+          <p align="left">
+            <br>
+            Mais detalhes:
+            <ul>
+              <li><a href="http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm">Lei de Acesso à Informação: 12.527/2011</a></li>
+            </ul>
+          </p>
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Tamanho de alguns datasets
+
+          - Salários dos magistrados
+            - 500k registros
+            - 250 MB
+          - Candidaturas (1996-2018)
+            - 2,9M registros
+            - 2 GB
+          - Filiações partidárias
+            - 23M registros
+            - 7,25 GB
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Tamanho de alguns datasets (2)
+
+          - Empresas brasileiras
+            - 40M registros
+            - 12 GB
+          - Sócios das empresas
+            - 18M registros
+            - 3,7 GB
+          - Gastos diretos Gov Federal
+            - 92M registros
+            - 70 GB
+        </section>
+
+        <section data-markdown class="fragments">
+          ## O que significa, então, big data?
+
+          - Abre no Excel. Definitivamente não!
+          - São 10GB! Não.
+          - Mais de 100GB! Também não.
+          - 1TB! Ainda não!
+          - Mais de 2TB. **Talvez**.
+        </section>
+
+        <section data-markdown>
+          # Mas só falam de big data...
+        </section>
+
+        <section>
+          <h2>Startup Bullshit</h2>
+          <h3>DON'T BELIEVE THE HYPE</h3>
+
+          <img src="images/south-park-collect-underpants.png" width="75%">
+          <br>
+          <a href="http://southpark.cc.com/full-episodes/s02e17-gnomes">southpark.cc.com</a>
+        </section>
+
+        <section>
+          <h2>Companies don't need bigdata</h2>
+          <h3>They need right data</h3>
+
+          <img src="images/hbr.png" width="75%">
+          <br>
+          <a href="https://hbr.org/2013/12/you-may-not-need-big-data-after-all">hbr.org</a>
+        </section>
+
+        <section>
+          <h1>E agora?</h1>
+        </section>
+
+        <section>
+          <h2>LGPD só faz sentido com big data?</h2>
+
+          <img src="images/tweet-serpro.png" width="50%">
+          <br>
+          <a href="https://twitter.com/turicas/status/1139512328590962688">twitter.com/turicas/status/1139512328590962688</a>
+        </section>
+
+        <section data-markdown>
+          ## Preciso de big data para machine learning?
+
+          - Não!
+          - Para deep learning: talvez.
+        </section>
+
+        <section data-markdown>
+          # O que dá pra fazer sem big data?
+        </section>
+
+        <section>
+          <h2>Supremo em Números</h2>
+          <img width="60%" src="images/supremo-em-numeros.png">
+          <br>
+          EMAp/Escola de Direito FGV
+          <br>
+          <a href="http://www.fgv.br/supremoemnumeros/">fgv.br/supremoemnumeros</a>
+        </section>
+
+        <section>
+          <img width="100%" src="images/gn-2018.png">
+          <br>
+          (em conjunto com Giulliana Biaconi, para <a href="http://generonumero.media/">generonumero.media</a>)
+          <br>
+          <a href="http://www.generonumero.media/candidatura-semvoto-eleicoes2018/">Leia a matéria</a>
+        </section>
+
+        <section>
+          <h2>Rua: substantivo (ainda) masculino</h3>
+          <img width="80%" src="images/video-espaco-publico.png">
+          <br>
+          (em conjunto com Natália Mazotte, para <a
+            href="http://generonumero.media/">generonumero.media</a>)
+          <br>
+          <a href="https://youtu.be/7yQ8U2tFFq4">youtu.be/7yQ8U2tFFq4</a>
+        </section>
+
+        <section>
+          <img width="100%" src="images/sorteio-supremo.png">
+          <br>
+          (em conjunto com Adriano Belisário, para <a
+            href="https://apublica.org/">apublica.org</a>)
+          <br>
+          <a href="https://apublica.org/2018/01/sorteio-do-supremo-e-caixa-preta/">Acesse a matéria</a>
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Conclusões
+
+          - Big data **não é** o que muitos pensam
+          - **Poucas empresas** realmente precisam nesse momento
+          - Existem **aplicações incríveis** fora do big data
+          - **Não sou contra** big data
+        </section>
+
+
+        <section>
+          <h3>Obrigado pela atenção (:</h3>
+          <br>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3>
+            <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+          </h3>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
