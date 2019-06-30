@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ciência de dados na linha de comando</title>
+
+    <meta name="description" content="Ciência de dados na linha de comando">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Ciência de dados na linha de comando
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4>
+            <a href="http://congresso.abraji.org.br/">14º Congresso da Abraji</a>
+          </h4>
+          <h4>
+            28 de junho de 2019 - São Paulo/SP
+          </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+        </section>
+
+        <section data-markdown>
+          ## Agenda
+
+          - Introdução
+          - Navegação/manipulação de arquivos e diretórios
+          - Acesso e filtragem de arquivos
+          - Integrando comandos
+          - Análise de Dados
+        </section>
+
+        <section>
+          <h2><a href="http://brasil.io/">Brasil.IO</a></h2>
+          <p>O Brasil em dados libertos</p>
+          <img width="60%" src="images/logo_brasil.io.png" alt="Logo Brasil.IO">
+        </section>
+
+        <section>
+           <h2>Data Pipeline</h2>
+           <img width="30%" src="images/data-pipeline.png">
+           <br>
+           <a href="https://schoolofdata.org/methodology/">schoolofdata.org/methodology</a>
+        </section>
+
+        <section>
+          <h3>Maior parte do tempo dos projetos de análise de dados:</h3>
+          <p align="center">
+            <img src="images/data-pipeline-hard-steps.png">
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Acessibilidade de Dados
+          ### Problemas
+
+          - **Formato** (qualidade técnica)
+            - Exemplo: Boletim de balneabilidade em PDF (INEMA/BA)
+          - **Dispersão**
+            - Exemplo: Filiações partidárias em 945 ZIPs com CSVs (TSE)
+          - **Quantidade** de dados
+            - Exemplo: 18 milhões de sócios (RFB)
+          - **Domínio** da área
+            - Exemplo: o que é unidade eleitoral? (TSE)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 1.1 Introdução: Terminal
+
+          - Terminal: teclado = <3
+            - ou "linha de comando"
+            - ou "modo texto"
+            - ou "tela preta"
+            - ou "shell"
+          - É um **interpretador de comandos**
+          - Existem diversos:
+            - DOS
+            - **Bash**
+            - Zsh
+            - PowerShell
+            - ...
+          - Foco: sistemas UNIX-like (Linux, *BSD, darwin)
+            - No Windows: [cygwin](https://www.cygwin.com/) ou [gitbash](https://gitforwindows.org/)
+          </section>
+
+          <section data-markdown>
+            ## Teclados <3
+
+            ![](images/dicas-digitar-melhor.png)
+
+            [bit.ly/como-digitar-melhor](http://bit.ly/como-digitar-melhor)
+        </section>
+
+        <section data-markdown>
+          ![](images/barrabin-barrabash.png)
+
+          [hacktoon.com/bin/bash](https://hacktoon.com/bin/bash/)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 1.2 Introdução: Comandos e opções
+
+          - Comandos ("verbos")
+            - Exemplo: `ls`
+          - Parâmetros
+            - Exemplo: `echo "olá, mundo!"`
+          - Opções
+            - Exemplo: `ls -l`
+          - Variáveis: armazenam valores
+          - ```
+            mensagem="olá, mundo!"
+            echo $mensagem
+            ```
+          - ```
+            read -p "Qual seu nome? " nome
+            echo $nome
+            ```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 2.1 Navegação/manipulação de arquivos e diretórios
+
+          - `ls`: list files
+            - Exemplos: `ls`, `ls /tmp`, `ls ~/Desktop`
+          - `mkdir`: make directory
+            - Exemplo: `mkdir nova-pasta`
+            - Caminhos relativos versus absolutos
+          - `rmdir`: remove directory (apenas vazios)
+            - Exemplo: `rmdir nova-pasta`
+          - `cd`: change directory
+            - Exemplo: `cd /tmp`
+          - `cp`: copia arquivos
+            - Exemplo: `cp data/*.gz .`
+          - `touch`: cria arquivo em branco
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 2.2 Pedindo ajuda
+
+          - `-h`, `--help`
+            - Exemplo: `ls --help`
+          - `man comando`
+            - Exemplo: `man ls`
+            - Use `/palavra` para buscar
+            - Use `q` para sair
+        </section>
+
+        <section data-markdown>
+          ## Antes de continuar...
+
+          - Baixar `contracheque.csv.gz` de [brasil.io/dataset/salarios-magistrados](https://brasil.io/dataset/salarios-magistrados)
+          - Baixar `nomes.csv.gz` de [brasil.io/dataset/genero-nomes](https://brasil.io/dataset/genero-nomes)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.1 Descompactando arquivos
+
+          - `gunzip arquivo.gz`
+          - `xz -d arquivo.xz`
+          - `tar xfz arquivo.tar.gz`
+          - `unzip arquivo.zip`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.2 Acesso e filtragem de arquivos
+
+          - `wc`: word counter
+            - Exemplo: `wc -l contracheque.csv`
+          - `cat`: concatenate and print files
+            - Exemplo: `cat contracheque.csv`
+          - `grep`: filter
+            - Exemplo: `grep -i "Sergio Fernando Moro" contracheque.csv`
+          - `cut`: split and cut files
+            - Exemplo: `cut -d',' -f2,15 contracheque.csv`
+          - `head`: output the first part of a file
+            - Exemplo: `head -1 contracheque.csv`
+          - `tail`: output the last part of a file
+            - Exemplo: `tail -5 contracheque.csv`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.3. Redirecionar saída
+
+          - `comando > arquivo`: cria novo arquivo (sempre)
+            - Exemplo: `head -1 contracheque.csv > cabecalho.csv`
+          - `comando >> arquivo.txt`: concatena ao arquivo
+            - Exemplo: `grep -i "Sergio Fernando Moro" contracheque.csv >> cabecalho.csv`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.4. Uso de recursos
+
+          - Filosofia UNIX: um comando faz somente uma tarefa - e o faz bem
+          - Os comandos trabalham de forma preguiçosa (`lazy`)
+            - Rodar `grep` num arquivo de 5GB não exige essa quantidade de
+              memória (diferente do que abrir um arquivo desses no Excel)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.4.2 Exemplo
+
+          ```
+          # `arquivo.csv` não cabe em memória!
+          # Será processado linha a linha.
+          grep XXX arquivo.csv > resultado.csv
+          ```
+        </section>
+
+        <section data-markdown class="fragments">
+          ## 3.5 Criando scripts
+
+          - Crie um arquivo e coloque um comando por linha
+          - O comando `history` pode te ajudar, listando os comandos que você
+            digitou recentemente
+          - Execute o script com:
+            - `bash nome-do-arquivo.sh`; ou
+            - Dê permissão de execução (`chmod +x arquivo.sh`) e rode `./arquivo.sh`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.5.2 Navegando no histórico de comandos
+
+          - Seta para cima: mostra comandos anteriores
+            - Facilita muito executar comandos parecidos, alterando apenas
+              alguns parâmetros
+          - Ctrl-r: busca no histórico de comandos
+          - Leia a documentação da [GNU Readline](https://en.wikipedia.org/wiki/GNU_Readline) para outros atalhos
+        </section>
+
+        <section data-markdown>
+          ## 3.5.3 Script de Exemplo
+          ### `juizes.sh`
+
+          ```
+          #!/bin/bash
+
+          echo "Número de linhas do arquivo inicial:"
+          wc -l contracheque.csv
+
+          echo "Criando arquivo com Moro..."
+          head -1 contracheque.csv > moro.csv
+          grep --color=no -i "SERGIO FERNANDO MORO" contracheque.csv >> moro.csv
+          echo "Arquivo criado. Total de linhas: $(wc -l juizes.csv)"
+          ```
+        </section>
+
+        <section data-markdown>
+          ## 3.5.4 Script de Exemplo (2)
+          ### `juiz.sh`
+
+          ```
+          #!/bin/bash
+
+          INPUT="contracheque.csv"
+          head -1 "$INPUT"  # header
+          grep --color=no -i "$1" "$INPUT"
+          ```
+        </section>
+
+        <section data-markdown class="fragments">
+          ## 4.1. Combinando comandos
+
+          - Pipe (barra vertical): `|`
+            - Thanks, Doug McIlroy <3
+          - Redireciona saída de um comando (standard output) para a entrada
+            (standard input) de outro
+          - Pode ser utilizado quantas vezes quiser
+          - Pode ser utilizado em conjunto com `>` e `>>`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 3.2 Acesso e filtragem de arquivos (2)
+          ### `juiz-rendimento.sh`
+
+          ```
+          #!/bin/bash
+
+          INPUT="contracheque.csv"
+          head -1 "$INPUT"
+          grep --color=no -i "$1" "$INPUT" | \
+            cut -d "," -f 2,15,20,22 | \
+            sort
+          ```
+        </section>
+
+        <section data-markdown>
+          ## 4.2. Repetindo comandos
+
+          - `for x in sequence; do commands; done`
+          - `while condition; do commands; done`
+
+          ```
+          cd /home/turicas/projects/balneabilidade-brasil/data/download/BA
+          for filename in ls *.pdf; do
+            echo do something with $filename
+          done
+          ```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 5. Análise de dados
+
+          - Comandos que nem sempre estão instalados por padrão
+            - Cada um requer uma forma diferente de instalação.
+            - Em sistemas Debian e Ubuntu: `apt install nome-do-programa`
+          - Exemplos:
+            - `aria2c`: baixar arquivos
+            - `rows`: converter dados tabulares em diversos formatos
+            - `convert` (imagemagick): recorta, edita e converte imagens
+        </section>
+
+        <!-- Receita Federal (2) -->
+        <section>
+          <h3>Problema: lentidão ao baixar</h3>
+          <h4>Estrelando: <a href="https://receita.economia.gov.br">Receita Federal</a></h4>
+          <img width="40%" src="images/receita-lerdeza.png" alt="">
+          <br>
+          <a
+            href="https://twitter.com/turicas/status/1114185311372873729">twitter.com/turicas/status/1114185311372873729</a>
+        </section>
+        <section data-markdown>
+          ## Solução
+
+          ```
+          URL="http://200.152.38.155/CNPJ/DADOS_ABERTOS_CNPJ.zip"
+          aria2c -s 16 -x 16 $URL
+          ```
+        </section>
+
+        <section>
+          <h3>Problema: Formato não estruturado</h3>
+          <h4>Estrelando: <a
+              href="http://balneabilidade.inema.ba.gov.br">INEMA/BA</a></h4>
+          <img width="80%" src="images/balneabilidade-pdf.png">
+        </section>
+        <section>
+          <h2>Solução</h2>
+          <code>rows convert arquivo.pdf arquivo.csv</code>
+          <img width="100%" src="images/rows-pdf.jpg"
+               alt="Biblioteca rows convertendo PDF para CSV" />
+          <br>
+          <a href="https://github.com/turicas/balneabilidade-brasil">github.com/turicas/balneabilidade-brasil</a>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 5.3. Baixando os palestrantes da ABRAJI
+
+          ```
+          wget --quiet -O - "http://congresso.abraji.org.br/Salas/" \
+              | grep '"label"' \
+              | sed 's/.*&lt;b&gt;//; s/&lt;\/b&gt;.*//' \
+              | grep -v 'A confirmar' \
+              | sort -u \
+              > palestrantes.txt
+          ```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 5.2. SQL
+
+          - `sqlite3` + `rows csv2sqlite`
+          - `psql` + `rows pgimport`
+
+          ```
+          rows csv2sqlite data/contracheque.csv.gz \
+            --schemas=data/schema-contracheque.csv data/db.sqlite
+          rows csv2sqlite data/nomes.csv.gz data/db.sqlite
+          ```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 5.4. Script para SQLite
+          ### `genero.sh`
+
+          ```
+          #!/bin/bash
+
+          echo "name,classification"
+          sort data/palestrantes.txt | \
+            cut -d " " -f 1 | \
+            iconv -f utf8 -t ascii//TRANSLIT | \
+            tr '[:lower:]' '[:upper:]' | \
+            sort | while read nome; do
+            echo -e ".mode csv\nSELECT first_name,classification FROM nomes
+            WHERE first_name = '$nome'" | \
+              sqlite3 db.sqlite
+          done
+          ```
+
+          ```
+          rows print arquivo.csv
+          ```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 5.5. Script para SQLite
+
+          ```
+          echo "SELECT ..." > consulta.sql
+          echo -e ".mode csv\n.headers on\n$(cat consulta.sql)" | \
+            sqlite3 data/db.sqlite | \
+            gzip - > resultado.csv.gz
+          ```
+        </section>
+
+        <section data-markdown>
+          ### `rows query`
+
+          ```
+          QUERY="SELECT classification AS gender, COUNT(*) FROM table1 GROUP BY classification"
+          rows query "$QUERY" genero.csv
+          ```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Resumão
+
+          - Saber digitar é importante
+          - Atalhos de teclado tornam a vida mais fluida
+          - Dá pra fazer **muita** coisa
+            - Existe uma infinidade de comandos
+        </section>
+
+        <section>
+          <h2>Contribua com o Brasil.IO!</h2>
+          <img width="80%" src="images/blog-brasil.io.png" alt="Blog do Brasil.IO">
+          <br>
+          <a href="https://blog.brasil.io/">blog.brasil.io</a>
+          <br>
+          <a href="https://brasil.io/colabore">brasil.io/colabore</a>
+        </section>
+
+        <section>
+          <h3>Dúvidas?</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3>
+            <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+          </h3>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
