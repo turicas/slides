@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> Pós-verdade: a era da desinformação (e como Python pode nos ajudar) </title>
+
+    <meta name="description" content="Pós-verdade: a era da desinformação (e como Python pode nos ajudar)">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Pós-verdade: a era da desinformação
+            <br>
+            (e como Python pode nos ajudar)
+          </h2>
+          <br>
+
+          <h3>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h3>
+          <br>
+
+          <h4><a href="https://pylatam.org/">PythonSul 2019</a></h4>
+          <h4>
+            13 de setembro de 2019
+          </h4>
+          <h4>
+            Curitiba/PR <img width="30" style="margin: 0" src="images/heart.png">
+          </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer =)</h2>
+          <h3>Sigam-me os bons!</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>,
+            <br>
+            <a href="https://t.me/turicas">telegram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+        </section>
+
+        <section data-markdown>
+          ## Reflexões e Crenças
+          ## ou: Provocações para Discussão
+        </section>
+
+        <section>
+          <h2>
+            Slides em:
+            <br>
+            <a href="https://bit.ly/turicas-pysul2019">bit.ly/turicas-pysul2019</a>
+          </h2>
+        </section>
+
+        <section>
+          <h3>✈️ ☕🌱👀 = 💖</h3>
+          <img width="65%" src="images/turicas.png">
+        </section>
+
+        <section>
+          <h2>Software Livre &amp; Python</h2>
+          <h3>(desde 2004/2005)</h3>
+          <p>
+            <a href="http://www.gnu.org/">
+              <img width="35%" src="images/gnu.png">
+            </a>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            <a href="http://www.python.org/">
+              <img width="35%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          # Agenda
+
+          - Pós-verdade
+            - O que é e exemplos
+            - O que podemos fazer?
+          - Jornalismo de dados
+          - Dados abertos
+          - Exemplos (ao vivo)
+            - [rows](https://pypi.org/project/rows)
+            - [Brasil.IO](https://brasil.io/)
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Enquete
+
+          - Conhece o conceito de pós-verdade?
+          - Primero congresso de Python?
+          - Começando com Python?
+          - Trabalha com dados?
+          - Experiência com dados abertos?
+        </section>
+
+        <section>
+          <h2>Era da Pós-verdade</h2>
+
+          <img src="images/post-truth.png" width="50%">
+          <br>
+          <a href="https://twitter.com/martinshovel/status/804968341471457280">
+            por Martin Shovel</a>
+        </section>
+
+        <section>
+          <h2>Pós-verdade</h2>
+          <blockquote>
+            &ldquo;
+            <b>Distorção</b> deliberada de uma realidade, com finalidade de
+            criar e <b>modelar a opinião pública</b> e <b>influenciar as
+              atitudes</b> sociais, em que os fatos objetivos têm menos
+            influência que os <b>apelos às emoções</b> e às <b>crenças
+              pessoais</b>.
+            &rdquo;
+          </blockquote>
+          -- <a href="https://es.wikipedia.org/wiki/Posverdad">Wikipedia</a>
+        </section>
+
+        <section data-markdown>
+          ## MODELAR OPINIÃO PÚBLICA
+          ### Movimento antivacinação
+
+          ![Notícia sobre baixa taxa de vacinação de poliomielite no Brasil](images/vacina-polio.png)
+
+          Fonte: [BBC Brasil](https://www.bbc.com/portuguese/brasil-41045273)
+        </section>
+
+        <section data-markdown>
+          ## CRENÇAS PESSOAIS
+          ### Morte por sarampo (28/08/2019)
+
+          ![Morte de sarampo no Brasil](images/tweet-sarampo.png)
+
+          Fonte: [Twitter de Leilane Neubarth](https://twitter.com/LeilaneNeubarth/status/1166793024942301184)
+        </section>
+
+        <section data-markdown>
+          ## DISTORÇÃO DA REALIDADE
+          ### Declaracões do Presidente do Brasil
+
+          ![Aos Fatos: Declarações de Bolsonaro](images/aos-fatos-declaracoes-bolsonaro.png)
+
+          Fonte: [Aos Fatos](https://aosfatos.org/todas-as-declarações-de-bolsonaro/)
+        </section>
+
+        <section data-markdown>
+          ## INFLUÊNCIA DE ATITUDES
+          ### Queimadas na Amazônia
+
+          ![Queimadas na Amazônia](images/queimadas-amazonia.jpg)
+
+          Fonte: [Globo Rural](https://revistagloborural.globo.com/Noticias/noticia/2019/08/grupo-usou-whatsapp-para-convocar-dia-do-fogo-no-para.html)
+        </section>
+
+        <section data-markdown>
+          ## MAXIMIZANDO DESIGUALDADES
+          ## Vieses Algorítmicos
+
+          ![The New York Times on Algorithmic Biases](images/nyt-algorithimic-biases.png)
+
+          Fonte: [The New York Times](https://www.nytimes.com/2015/07/10/upshot/when-algorithms-discriminate.html)
+        </section>
+
+        <section data-markdown>
+          ## Lembra de Cambridge Analytica?
+
+          ![Cambridge Analytica Scandal](images/cambridge-analytica.png)
+
+          Fonte: [The Guardian](https://www.theguardian.com/news/2018/mar/17/cambridge-analytica-facebook-influence-us-election)
+        </section>
+
+        <section data-markdown>
+          ## VISIBILITY COUNTS
+          ### (ou: histórias que te contam)
+          ### DON'T FOLLOW THE HYPE
+
+          ![Forbes about big data](images/forbes-big-data.png)
+
+          Fonte: [Forbes](https://www.forbes.com/sites/nicolemartin1/2019/08/30/how-healthcare-is-using-big-data-and-ai-to-cure-disease/)
+        </section>
+
+        <section>
+          <h2>MENTIRAS PERSONALIZADAS</h2>
+          <h2>Deep fakes</h2>
+          <video controls>
+          <source src="images/deepfake.mp4" type="video/mp4">
+          </video>
+          <br>
+          <a href="https://www.youtube.com/watch?v=NbedWhzx1rs">
+            Mark Zuckerberg ‘deepfake’ will remain online
+          </a>
+        </section>
+
+        <section data-markdown class="fragments">
+          ### Tava bom, diz que ia mudar pra melhor
+
+          ![Imagem "tava bom, tava ruim"](images/tavabom-tavaruim.png)
+
+          Fonte: [Tava bom, tava ruim](https://www.youtube.com/watch?v=VX3lz5ph8A0)
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Por quê?
+
+          - Estratégia: [Teoria dos jogos](https://es.wikipedia.org/wiki/Teoría_de_juegos)
+          - Interpretacão: [Hermenêutica](https://es.wikipedia.org/wiki/Hermenéutica)
+          - "Brain bugs": [Dissonância cognitiva](https://es.wikipedia.org/wiki/Disonancia_cognitiva)
+          - Alta conectividade (Internet): [3.5 degrees of separation](https://research.fb.com/blog/2016/02/three-and-a-half-degrees-of-separation/)
+        </section>
+
+        <section data-markdown class="fragments">
+          ![Rogerinho do Ingá: "tem que acabar a Internet"](images/acabar-a-internet.png)
+          ### (a culpa **NÃO É** da Internet)
+        </section>
+
+        <section>
+          <h2>Redes Distribuídas</h2>
+          <h3>(não são um problema)</h3>
+          <img src="images/network-topologies.png" width="80%">
+          <br>
+          <a href="http://web.cs.ucla.edu/classes/cs217/Baran64.pdf">
+            On Distributed Communications Networks, Paul Baran (1964)
+          </a>
+        </section>
+
+        <section data-markdown>
+          ## Estratégia
+          ### [Fear, uncertainty and doubt](https://en.wikipedia.org/wiki/Fear,_uncertainty,_and_doubt)
+          ### (2001 / 2016)
+
+          ![Steve Ballmer says Linux is a cancer/Microsoft loves Linux](images/ballmer-microsoft.png)
+
+          Fontes: [The Register](https://www.theregister.co.uk/2001/06/02/ballmer_linux_is_a_cancer/) y [Microsoft Cloud Blogs](https://cloudblogs.microsoft.com/windowsserver/2015/05/06/microsoft-loves-linux/)
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Pós-verdade
+
+          - **Muita informação** (impossível consumir tudo)
+          - **Todos somos ignorantes** sobre alguns temas
+          - **Visiblidade** *versus* **Credibilidade + transparência**
+          - **Vieses** cognitivos
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Cérebro bugado:
+          ## Vieses Cognitivos
+
+          - Efeito adesão
+          - Viés de confirmação
+          - Autoengano
+          - Dissonância cognitiva
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Cérebro: busca de padrões
+          ### Correlação não implica em Causalidade
+          ### Correlação não implica em Causalidade
+          ### Correlação não implica em Causalidade
+
+          ![](images/spurious-correlations.png)
+
+          [Spurious Correlations](https://www.tylervigen.com/spurious-correlations)
+        </section>
+
+        <section data-markdown class="fragments">
+          # pessoas > tecnologia?
+
+          - Comportamento de grupo *versus* coerência aos valores
+            - Fins justificam os meios?
+          - Fanatismo/terapia em grupo
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Cérebro bugado:
+          ## Esquecimento
+
+          - Doenças que matam
+          - Museu do holocausto
+          - Museu da escravidão?
+          - Museu da ditadura?
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Explorar os Defeitos
+          ### Neuromarketing = Brain bugs + Hacking
+
+          ![Bug or feature?](images/bug-feature.jpg)
+        </section>
+
+        <section data-markdown class="fragments">
+          # O que podemos fazer?
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Entendendo que somos parte do problema
+
+          - Produzimos tecnologia: temos **responsabilidade por sua utilização**
+            - Educação tecnológica
+        </section>
+
+        <section>
+          <h2> Programacão para Jornalistas </h2>
+          <h3> 3000+ estudantes! </h3>
+          <img src="images/curso-knight-center.png" width="60%">
+          <br>
+          Fonte: <a href="https://journalismcourses.org/PJ1020.html">Knight
+            Center, Texas University</a>
+        </section>
+
+        <section>
+          <h2> Jornalismo de Dados </h2>
+          <h3> 4200+ estudantes! </h3>
+          <img src="images/curso-knight-center-2.png" width="60%">
+          <br>
+          Fonte: <a href="https://journalismcourses.org/DAD0719.html">Knight
+            Center, Texas University</a>
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Rede de confiança
+
+          - Confiamos **sem verificar**
+          - Necessitamos de educação para os meios:
+            - Vivemos uma **guerra de narrativas**
+            - Verificar, verificar, verificar
+            - Não dar visibilidade às mentiras
+            - Dar visibilidade aos fatos/datos (referências/fontes originais)
+        </section>
+
+        <section>
+          <h2> Maker: indo contra a alienação </h2>
+          <h3> #DIY (do-it-yourself) = curiosidade + ação </h3>
+          <img src="images/maker-documentary.png" width="50%">
+          <br>
+          <a href="http://makerthemovie.com/">A Documentary on the Maker Movement</a>
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Método Científico
+          ### Algoritmo
+
+          - Faça uma **observação** sobre um fenômeno
+          - Cria uma **hipótese** sobre
+          - **Teste** a hipótese
+          - Escreva **conclusões** sobre
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Método Científico [2]
+
+          - Sistematização:
+            - Checagem/reprodução
+            - Previsibilidade/extrapolação
+            - Falseabilidade/contestação
+            - Justiça/parcialidade
+          - Exemplos:
+            - Teoria da Evolução (Charles Darwin)
+            - Teoria da relatividade geral (Albert Einstein)
+        </section>
+
+        <section>
+          <h2>Pseudociência: finge que é ciência, mas não é</h2>
+          <img src="images/terra-plana-dinossauros.gif" width="80%">
+          <ul>
+            <li> O conhecimento humano não precisa ser 100% científico</li>
+            <li> É nociva</li>
+            <li> (tem pelo menos mais 3 bem conhecidas)</li>
+          <ul>
+        </section>
+
+        <section>
+          <h2> A Ciência não busca a verdade </h2>
+          <h3> Busca descrever a nossa relaidade </h3>
+
+          <img src="images/laguna.png" width="100%">
+          <br>
+          <a href="https://www.youtube.com/watch?v=gMfiZms2WHA">A Verdade, por
+            Estêvão Slow</a>
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Furar Bolhas
+
+          - Mais empatia
+          - Menos "não dialogo com X"
+            - Grupos *diferentes* não são *inimigos*
+            - Pragmatismo
+        </section>
+
+        <section>
+          <h2>Dados Abertos</h2>
+          <blockquote>
+            &ldquo;
+            Dados abertos são dados que podem ser <b>livremente usados,
+              reutilizados e redistribuídos</b> por qualquer pessoa -
+            <b>sujeitos, no máximo, à exigência de atribuição da fonte e
+              compartilhamento pelas mesmas regras</b>.
+            &rdquo;
+          </blockquote>
+          -- <a href="http://opendatahandbook.org/guide/pt_BR/what-is-open-data/">OpenData
+            Handbook</a> (definição de <a
+            href="http://opendefinition.org/">Open Definition</a>)
+
+          <p align="left">
+            <br>
+            Mais detalhes:
+            <ul>
+              <li><a
+                  href="http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm">Lei
+                  de Acesso à Informacão</a></li>
+              <li><a href="http://kit.dados.gov.br/">Guia de dados abertos</a></li>
+              <li><a href="https://escoladedados.org">Escola de Dados</a></li>
+            </ul>
+          </p>
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Importância dos dados abertos
+
+          - Transparência
+          - Luta contra a corrupção
+          - Controle social
+        </section>
+
+        <section>
+          <h2>Controle Social: Exemplo</h2>
+          <h3>Rosie, a robô</h3>
+          <img width="45%" src="images/tweet-rosie-almoco-caro.png" alt="Tweet de RosieDaSerenata">
+          <br>
+          R$ 191 em um restaurante cujo almoço custa R$ 40
+          <br>
+          Fonte: <a
+            href="https://twitter.com/tOa_D/status/1058495655184871425">Twitter</a>
+          / Projeto: <a href="https://serenata.ai/">serenata.ai</a>
+        </section>
+
+        <section data-markdown>
+          # Jornalismo de Dados
+        </section>
+
+        <section data-markdown>
+          ## Políticos donos de radiodifusoras
+
+          ![Políticos donos de radiodifusoras](images/donos-de-radio-congresso.png)
+
+          Fonte: [Reino da Desinformação / Gênero e Número](http://www.reinodadesinformacao.com.br)
+        </section>
+        <section data-markdown>
+          ## Ilegalidade
+          ### (lei de inclusão de mulheeres na política)
+
+          ![Gênero e Número - mulheres sem votos](images/gn-2018.png)
+
+          Fonte: [Gênero e Número](http://www.generonumero.media/candidatura-semvoto-eleicoes2018/)
+        </section>
+
+        <section data-markdown>
+          ## Sorteio de Processos STF
+
+          ![Matéria STF](images/sorteio-supremo.png)
+
+          Fonte: [A Pública](https://apublica.org/2018/01/sorteio-do-supremo-e-caixa-preta/)
+        </section>
+        <section data-markdown>
+          ## Odebrecht e Políticos
+
+          ![Odebrecht escândalo](images/doacoes-3.png)
+
+          Fonte: [The Intercept Brasil](https://theintercept.com/2017/09/28/mesmo-apos-lava-jato-familia-odebrecht-manteve-doacoes-de-campanha-em-2016/)
+        </section>
+        <section data-markdown>
+          ## Você não precisa de uma **buzzword** para gerar impacto na sociedade
+
+          - Feitos com Python + SQL
+            - (sem pandas, sem big data, sem ML...)
+          - Palestra ["Você (provavelmente) não precisa de big data"](https://blog.brasil.io/2019/07/02/voce-provavelmente-nao-precisa-de-big-data/)
+        </section>
+
+        <section>
+          <h2>Um pouco de história...</h2>
+          <p>
+            <img width="60%" src="images/alvaro-justen.jpg" alt="Álvaro Justen e suas mochilas">
+          </p>
+        </section>
+
+        <section>
+          <h2>Data pipeline</h2>
+          <h3>Funil de dados</h3>
+          <img width="25%" src="images/data-pipeline.png">
+          <br>
+          Fonte: <a href="https://schoolofdata.org/methodology/">School of
+            Data</a>
+        </section>
+        <section>
+          <h2>Maior parte do trabalho com dados abertos</h2>
+          <img width="25%" src="images/data-pipeline-hard-steps.png">
+        </section>
+        <section>
+          <h3>Obter, verificar, limpar</h3>
+          <img width="35%" src="images/gato-pulando.gif" alt="">
+          <br>
+          <img width="40%" src="images/quebrando.gif" alt="">
+          <br>
+          <img width="35%" src="images/limpando.gif" alt="">
+        </section>
+
+        <section>
+          <h1>Causos da Transparência Brasileira</h1>
+        </section>
+
+        <!-- HTTPS -->
+        <section>
+          <h3>Acesso sem segurança</h3>
+          <h4>Estrelando: (vários)</h4>
+          <img width="80%" src="images/dados-gov-https.png">
+        </section>
+
+        <!-- Receita Federal -->
+        <section>
+          <h3>Nem sempre você consegue BAIXAR</h3>
+          <h4>Estrelando: <a href="https://receita.economia.gov.br">Receita Federal</a></h4>
+          <img width="40%" src="images/receita-lerdeza.png" alt="">
+          <br>
+          <a
+            href="https://twitter.com/turicas/status/1114185311372873729">twitter.com/turicas/status/1114185311372873729</a>
+        </section>
+
+        <!-- Imprensa Oficial do Governo do Rio de Janeiro -->
+        <section>
+          <h3>Nem sempre o dado é aberto</h3>
+          <h4>Estrelando: <a
+              href="http://www.ioerj.com.br/portal/">Imprensa Oficial do Governo do Rio de Janeiro</a></h4>
+          <img width="50%" src="images/tweet-doe-rj.png" alt="Tweet de Turicas sobre Diário Oficial do Rio de Janeiro">
+          <br>
+          <a
+            href="https://twitter.com/turicas/status/1091767340134514690">twitter.com/turicas/status/1091767340134514690</a>
+        </section>
+
+        <!-- INEMA -->
+        <section>
+          <h3>Formato não estruturado</h3>
+          <h4>Estrelando: <a
+              href="http://balneabilidade.inema.ba.gov.br">INEMA/BA</a></h4>
+          <img width="80%" src="images/balneabilidade-pdf.png">
+          <br>
+          <a
+            href="https://github.com/turicas/balneabilidade-brasil">github.com/turicas/balneabilidade-brasil</a>
+        </section>
+
+        <!-- TSE -->
+        <section>
+          <h3>Não respeita o formato</h3>
+          <h4>Estrelando: <a href="http://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1">TSE</a></h4>
+          <img width="80%" src="images/tse-erro-csv.png">
+          <br>
+          <a
+            href="https://github.com/turicas/eleicoes-brasil/blob/master/extractors.py#L187">github.com/turicas/eleicoes-brasil</a>
+        </section>
+
+        <!-- TSE -->
+        <section>
+          <h3>Colunas mudam de nome</h3>
+          <h4>Estrelando: <a href="http://www.tse.jus.br/eleicoes/estatisticas/repositorio-de-dados-eleitorais-1">TSE</a></h4>
+          <img width="80%" src="images/tse-headers.png">
+          <br>
+          <a
+            href="https://github.com/turicas/eleicoes-brasil/tree/master/headers">github.com/turicas/eleicoes-brasil</a>
+        </section>
+
+        <!-- Receita Federal -->
+        <section>
+          <h3>Dado em formato proprietário</h3>
+          <h4>Estrelando: <a href="https://receita.economia.gov.br">Receita Federal</a></h4>
+          <img width="80%" src="images/receita-formato.png" alt="">
+          <br>
+          <a
+            href="https://twitter.com/turicas/status/959120200976224262">twitter.com/turicas/status/959120200976224262</a>
+        </section>
+
+        <!-- CNJ -->
+        <section>
+          <h3>Nem sempre o dado está padronizado</h3>
+          <h4>Estrelando: <a
+              href="http://www.cnj.jus.br/transparencia/remuneracao-dos-magistrados">Conselho
+          Nacional de Justiça</a></h4>
+          <img width="50%" src="images/tweet-contracheques.png" alt="Tweet de Turicas">
+          <br>
+          <a href="https://twitter.com/turicas/status/943176715672711168">
+            twitter.com/turicas/status/943176715672711168
+          </a>
+        </section>
+
+        <!-- Governo de Rondônia -->
+        <section>
+          <h3>Nem sempre o dado está disponível</h3>
+          <h4>Estrelando: <a
+              href="http://www.rondonia.ro.gov.br/">Governo
+          de Rondônia</a></h4>
+          <img width="50%" src="images/tweet-doe-rondonia.png" alt="Tweet de Turicas sobre Diário Oficial de Rondônia">
+          <br>
+          <a
+            href="https://twitter.com/turicas/status/1094069287206248450">twitter.com/turicas/status/1094069287206248450</a>
+        </section>
+
+        <!-- PROUNI -->
+        <section>
+          <h4>Site sai do ar (quando volta, não tem dados antigos)</h4>
+          <h4>Estrelando: <a
+              href="http://mec.gov.br/">Ministério da Educação</a></h4>
+          <img width="50%" src="images/tweet-prouni.png" alt="Tweet de Turicas">
+          <br>
+          <a href="https://twitter.com/turicas/status/960678777096425472">
+            twitter.com/turicas/status/960678777096425472
+          </a>
+        </section>
+
+        <!-- Ministério da Justiça -->
+        <section>
+          <h3>Migram-se os ministérios, sem dados</h3>
+          <h4>Estrelando: <a
+              href="https://www.justica.gov.br/">Ministério da Justiça</a></h4>
+          <img width="40%" src="images/tweet-anistia.png" alt="Tweet de Turicas sobre lista de beneficiados da lei da anistia">
+          <br>
+          <a
+            href="https://twitter.com/turicas/status/1112491956314259457">twitter.com/turicas/status/1112491956314259457</a>
+        </section>
+
+        <!-- Receita Federal -->
+        <section>
+          <h3>Dado ERRADO</h3>
+          <h4>Estrelando: <a href="https://receita.economia.gov.br">Receita Federal</a></h4>
+          <img width="80%" src="images/receita-erros.png" alt="">
+          <br>
+          <a
+            href="https://github.com/turicas/socios-brasil/blob/master/README.md#Erros">github.com/turicas/socios-brasil</a>
+        </section>
+
+        <!-- Receita Federal -->
+        <section>
+          <h3>Nem sempre o dado é grátis (???)</h3>
+          <h4>Estrelando: <a href="https://receita.economia.gov.br">Receita Federal</a></h4>
+          <img width="40%" src="images/tweet-rfb-506k.png" alt="Tweet de Turicas">
+          <br>
+          <a href="https://twitter.com/turicas/status/1019272233095745537">
+            https://twitter.com/turicas/status/1019272233095745537
+          </a>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Usabilidade de Dados: Problemas
+
+          - **Formato** (qualidade técnica)
+            - Exemplo: arquivos em PDF
+          - **Dispersão**
+            - Exemplo: milhares de arquivos para baixar
+          - **Quantidade** de dados
+            - Exemplo: dataset com milhões de registros
+          - **Domínio** da área
+            - Exemplo: dataset sem metadados
+        </section>
+        <section>
+          <h2>Democracia?</h2>
+          <blockquote>
+            &ldquo;
+            Restringir acesso a dados abertos é elitizar a democracia.
+            &rdquo;
+          </blockquote>
+          Fonte: <a href="http://brasil.io/">Manifesto Brasil.IO</a>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Como ajudar?
+
+          - Dando visibilidade ao problema
+          - Usando a LAI (+ recursos)
+          - Criando soluções que contornem os problemas
+        </section>
+
+        <section>
+          <h2>Como ajudar? [2]</h2>
+          <code>pip install rows</code>
+          <img width="80%" src="images/rows-github.png"
+          alt="Repositório da biblioteca rows no GitHub">
+          <br>
+          <a href="https://github.com/turicas/rows">
+            github/turicas/rows
+          </a>
+        </section>
+        <section>
+          <h3>Exempo: CSV</h3>
+          <h3>brasil.csv</h3>
+          <code>import rows</code>
+          <br>
+          (código ao vivo)
+        </section>
+        <section>
+          <h3>Exemplo: HTML</h3>
+          <img width="80%" src="images/tabela-html.png" />
+        </section>
+        <section class="fragments" data-markdown>
+          ## Interface de linha de comando (CLI)
+
+          - `rows print https://www.sports-reference.com/olympics/sports/`
+          - `rows print https://www.sports-reference.com/olympics/countries/BRA/summer/2016/`
+          - `rows convert arquivo.html arquivo.csv`
+        </section>
+        <section data-markdown>
+          ### Exemplo: PDF
+          ### `rows convert arquivo.pdf arquivo.csv`
+
+          ```
+          URL="https://reporterbrasil.org.br/wp-content/uploads/2016/12/listadetransparencia_setembro_2015.pdf"
+          rows convert -i page_numbers=1 $URL trabalho-escravo.csv
+          ```
+        </section>
+        <section data-markdown>
+          ### Exemplo: rows query
+
+          ```
+          URL="https://www.sports-reference.com/olympics/sports/"
+          SQL="SELECT AVG(countries) FROM table1"
+
+          rows query "$SQL" "$URL"
+          ```
+        </section>
+        <section data-markdown>
+          ### Exemplo: `rows pgimport`
+
+          - `rows pgimport (...exemplo mibici...)`
+        </section>
+
+        <section>
+          <img width="60%" src="images/tweet-contracheques.png" alt="Tweet de Turicas">
+          <br>
+          Fonte: <a href="https://twitter.com/turicas/status/943176715672711168">
+            Twitter de turicas
+          </a>
+        </section>
+        <section>
+          <img width="60%" src="images/tweet-socios-brasil.png" alt="Tweet de Turicas">
+          <br>
+          Fonte: <a href="https://twitter.com/turicas/status/959120200976224262">
+            Twitter de turicas
+          </a>
+        </section>
+        <section data-markdown>
+          ## Usabilidade: 2/4
+
+          - [x] **Formato**
+          - [x] **Dispersão**
+          - [ ] **Quantidade** de dados
+          - [ ] **Domínio** da área
+        </section>
+        <section>
+          <h2><a href="http://brasil.io/">Brasil.IO</a></h2>
+          <h3>Dados públicos acessíveis</h3>
+          <img width="100%" src="images/screenshot-brasilio.png" alt="Brasil.IO">
+          <br>
+          <a href="https://github.com/turicas/brasil.io">github/turicas/brasil.io</a>
+          <br>
+          <a href="http://brasil.io/api/datasets">brasil.io/api/datasets</a>
+        </section>
+        <section>
+          <img width="100%" src="images/brasilio-home.png">
+        </section>
+        <section>
+          <img width="100%" src="images/brasilio-salarios-magistrados.png">
+        </section>
+        <section>
+          <img width="100%" src="images/brasilio-salarios-magistrados-2.png">
+        </section>
+        <section>
+          <img width="100%" src="images/brasilio-api.png">
+        </section>
+        <section data-markdown>
+          ## Usabilidade: 4/4
+
+          - [x] **Formato**
+          - [x] **Dispersão**
+          - [x] **Quantidade** de dados
+          - [x] **Domínio** da área
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Como?
+
+          - Scripts:
+            - [Python3](https://www.python.org/)
+            - [scrapy](https://scrapy.org)
+            - [rows](https://github.com/turicas/rows)
+            - [sqlite3](https://docs.python.org/3/library/sqlite3.html)
+          - Backend:
+            - [Python3](https://www.python.org/)
+            - [Django](https://www.djangoproject.com/)
+            - [PostgreSQL](https://www.postgresql.org/)
+            - [Neo4J](https://neo4j.com/)
+          - Servidores:
+            - OVH (Canada)
+            - PaaS: dokku
+            - Doações ([apoia.se/brasilio](https://apoia.se/brasilio))
+        </section>
+
+        <section data-markdown>
+          ## Projeto Colaborativo
+
+          ![Contribuidores do Brasil.IO](images/brasilio-contribuidores.png)
+        </section>
+
+        <section data-markdown>
+          ## [Brasil.IO](https://brasil.io/)
+          ### Maneiras de Contribuir
+
+          - [github.com/turicas/brasil.io/issues](https://github.com/turicas/brasil.io/issues)
+          - Criando scrapers
+          - Trocando ideias: [chat.brasil.io](https://chat.brasil.io/)
+          - Doando: [apoia.se/brasilio](https://apoia.se/brasilio)
+        </section>
+
+        <section data-markdown>
+          ## Sugestões de Conteúdo
+          ### Filmes/Documentários
+
+          - [Die Welle](https://pt.wikipedia.org/wiki/A_Onda_(filme)
+          - [The Stanford Prison Experiment](https://en.wikipedia.org/wiki/The_Stanford_Prison_Experiment_(film)
+          - [A Terra é Plana](https://www.netflix.com/title/81015076)
+          - [TED James Randi](https://www.youtube.com/watch?v=c0Z7KeNCi7g)
+        </section>
+
+        <section data-markdown>
+          ## Sugestões de conteúdo [1]
+          ### Jornalismo
+
+          - [Aos Fatos](https://aosfatos.org/)
+          - [Agência Lupa](https://piaui.folha.uol.com.br/lupa/)
+          - [Fato ou Fake](https://g1.globo.com/fato-ou-fake/)
+          - [Projeto Comprova](https://projetocomprova.com.br/)
+        </section>
+
+        <section data-markdown>
+          ## Sugestões de conteúdo [2]
+          ### Filmes e Documentários
+          - [A Onda - Die Welle](https://pt.wikipedia.org/wiki/A_Onda_(filme)
+          - [The Stanford Prison Experiment](https://en.wikipedia.org/wiki/The_Stanford_Prison_Experiment_(film)
+          - [A Terra é Plana](https://www.netflix.com/title/81015076)
+          - [Hierarquia: Conversas depois do fim de um mundo](https://www.youtube.com/watch?v=9kvtU5kArOI)
+          - [TEDxSP Augusto de Franco](https://www.youtube.com/watch?v=-3bnzmykCiM)
+          - [TED James Randi](https://www.youtube.com/watch?v=c0Z7KeNCi7g)
+        </section>
+
+        <section data-markdown>
+          ## Sugestões de conteúdo [3]
+          - [Science Vlogs Brasil](https://www.youtube.com/channel/UCqiD87j08pe5NYPZ-ncZw2w)
+          - [Mamilos Podcast](https://www.b9.com.br/podcasts/mamilos/)
+          - [Comunicação Não-Violenta](https://pt.wikipedia.org/wiki/Comunica%C3%A7%C3%A3o_n%C3%A3o_violenta)
+          - [Lista de tópicos considerados pseudociência](https://pt.wikipedia.org/wiki/Lista_de_t%C3%B3picos_considerados_pseudoci%C3%AAncias)
+          - [Lista de vieses cognitivos](https://pt.wikipedia.org/wiki/Lista_de_vieses_cognitivos)
+          - [Método 5 Whys](https://en.wikipedia.org/wiki/5_Whys)
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Todos no mesmo barco
+
+          ### Menos bolhas, mais **interações**
+          ### Menos lacração, mais **empatia**
+        </section>
+
+        <section>
+          <h2>Perguntas?</h2>
+          <h3>"Restringir acesso a dados públicos é elitizar a democracia."</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>,
+            <br>
+            <a href="https://t.me/turicas">telegram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3>
+            <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+          </h3>
+          <h3> <a href="https://bit.ly/turicas-pylatam">bit.ly/turicas-pylatam</a> </h3>
+        </section>
+
+        </div>
+      </div>
+
+      <script src="lib/js/head.min.js"></script>
+      <script src="js/reveal.min.js"></script>
+
+      <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+          controls: false,
+          progress: true,
+          history: true,
+          center: true,
+
+          theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+          // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+          transition: 'zoom',
+
+          // Parallax scrolling
+          // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+          // parallaxBackgroundSize: '2100px 900px',
+
+          // Optional libraries used to extend on reveal.js
+          dependencies: [
+          { src: 'lib/js/classList.js',
+            condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js',
+            condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js',
+            condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+            callback: function() {
+              Array.prototype.forEach.call(
+              document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+          } },
+          { src: 'plugin/highlight/highlight.js', async: true,
+            callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true,
+            condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true,
+            condition: function() { return !!document.body.classList; } }
+          ]
+        });
+
+      </script>
+    </body>
+  </html>

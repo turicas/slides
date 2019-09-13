@@ -9,7 +9,7 @@ SQL_FILENAME="mibici-per-day.sql"
 OUTPUT_FILENAME="mibici-per-day.csv"
 
 # Download
-wget -O "$FILENAME" "$URL"
+#wget -O "$FILENAME" "$URL"
 
 # Clean
 sed 's/"NA"/""/g' "$FILENAME" | gzip - > "$CLEAN_FILENAME"
