@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Brasil.IO COVID-19: dados abertos sobre a pandemia
+    </title>
+
+    <meta name="description" content="Brasil.IO COVID-19: dados abertos sobre a pandemia">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Brasil.IO COVID-19: dados abertos sobre a pandemia
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4> 19 de outubro de 2020 </h4>
+          <h4> Encontro de Ciências Exatas e Tecnologia - PUC-SP </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+        </section>
+
+        <section>
+          <h2>Slides em: <a href="http://bit.ly/brasil-io.puc">bit.ly/brasil-io-puc</a></h2>
+        </section>
+
+        <section data-markdown>
+          ## Ciência (aberta!)
+
+          - (Ciência aberta é pleonasmo)
+          - Fonte de dados
+          - Reprodutibilidade
+          - Impacto social
+        </section>
+
+        <section>
+          <h2>Dados Abertos</h2>
+          <blockquote>
+            &ldquo;
+            <b>Dados abertos</b> são dados que podem ser <b>livremente usados,
+              reutilizados e redistribuídos</b> por qualquer pessoa -
+            <b>sujeitos, no máximo, à exigência de atribuição da fonte e
+              compartilhamento pelas mesmas regras</b>.
+            &rdquo;
+          </blockquote>
+          -- <a href="http://opendatahandbook.org/guide/pt_BR/what-is-open-data/">OpenData
+            Handbook</a> (definição de <a
+            href="http://opendefinition.org/">Open Definition</a>)
+
+          <p align="left">
+            <br>
+            Mais detalhes:
+            <ul>
+              <li><a href="http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm">Lei de Acesso à Informação: 12.527/2011</a></li>
+              <li><a href="http://kit.dados.gov.br/">kit.dados.gov.br</a></li>
+              <li><a href="https://escoladedados.org/">escoladedados.org</a></li>
+            </ul>
+          </p>
+        </section>
+
+        <section data-markdown>
+          ## Dados Abertos - Aplicações
+
+          - [Eficiência em gestão pública](https://www.colab.re/tag/gestao-publica)
+          - [Controle social](https://pt.wikipedia.org/wiki/Controlo_social)
+          - [Jornalismo/Combate à desinformação](https://en.wikipedia.org/wiki/Misinformation)
+          - [Negócios/aumento de produtividade](https://en.wikipedia.org/wiki/Data_analysis)
+          - [Ciência - aberta!](https://en.wikipedia.org/wiki/Open_science)
+        </section>
+
+        <section>
+          <h2>Dados: meio para responder perguntas</h2>
+          <h3>Data Pipeline</h3>
+          <img width="30%" src="images/data-pipeline.png">
+          <br>
+          <a href="https://schoolofdata.org/methodology/">schoolofdata.org/methodology</a>
+        </section>
+
+        <section>
+          <h2>Brasil.IO COVID-19</h2>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Dados: Ministério da Saúde
+
+          - Histórico não disponível
+          - Site fora do ar constantemente
+          - Falta de dados locais
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Dados: Secretarias Estaduais de Saúde
+
+          - Formato não estruturado (PDF, imagem etc.)
+          - Local não centralizado (mais de um site, Twitter, Instagram etc.)
+          - Falta de indexação dos boletins diários
+          - Metodologia alterada e sem aviso
+          - Falta de detalhes e padronização (recuperados, faixa etária etc.)
+        </section>
+
+        <section>
+          <p align="center">
+            <img width="80%" src="images/tweet-turicas-covid19.png">
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Processo de coleta de dados
+
+          - **40 voluntários!** ![](images/heart.png)
+            - [brasil.io/covid19/voluntarios](https://brasil.io/covid19/voluntarios/)
+          - Robô que detecta novos boletins
+            - Alinhamentos no [chat.brasil.io](https://chat.brasil.io)
+          - Coleta manual
+            - Planilhas no sistema interno
+            - Checagem manual
+          - Checagem automática
+          - Atualização da base de dados
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Dados: Brasil.IO
+
+          - [boletim](https://brasil.io/dataset/covid19/boletim)
+          - [caso](https://brasil.io/dataset/covid19/caso)
+          - [obito_cartorio](https://brasil.io/dataset/covid19/obito_cartorio)
+        </section>
+
+        <section>
+          <p>
+            <a href="https://brasil.io/covid19/">brasil.io/covid19</a>
+          </p>
+          <p align="center">
+            <img width="80%" src="images/mapa-brasilio-covid19.png">
+          </p>
+        </section>
+
+        <section>
+          <h3>Boletins </h3>
+          <img width="70%" src="https://data.brasil.io/dataset/covid19/boletim/2020-07-07.png" alt="">
+          <br>
+          <a href="https://driva.com.br">brasil.io/covid19/boletins/</a>
+        </section>
+
+        <section>
+          <p>
+            <a href="https://brasil.io/covid19/PR">brasil.io/covid19/PR</a>
+          </p>
+          <p align="center">
+            <img src="images/grafico-excesso-mortes.png">
+          </p>
+        </section>
+
+        <section data-markdown>
+          ## Quem está usando?
+
+          - The New York Times
+          - Jornal Nacional
+          - O Estado de São Paulo
+          - O Globo
+          - FioCruz
+          - MAVE (FGV/FioCruz)
+          - Atila Iamarino
+          - [Veja o clipping](https://github.com/turicas/covid19-br/blob/master/clipping.md)
+        </section>
+
+        <section>
+          <h2>Além dos dados:</h2>
+          <h2>Desinformação</h2>
+          <p align="center">
+            <img src="images/grafico-spurious-correlations.png">
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img width="80%" src="images/grafico-arpen.png">
+          </p>
+          <p>
+            Erro: não considera atualização dos dados
+          </p>
+        </section>
+
+        <section>
+          <p align="center">
+            <img width="80%" src="images/grafico-arpen-2.png">
+          </p>
+          <p>
+            Erro: não considera atualização dos dados
+          </p>
+          <p>
+            Dados em <a href="https://brasil.io/dataset/covid19/obito_cartorio/">brasil.io/dataset/covid19/obito_cartorio</a>
+          </p>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Links
+
+          - Para quem quer usar:
+            - [Dataset covid19](https://brasil.io/dataset/covid19)
+            - [Download dos dados](https://data.brasil.io/dataset/covid19/_meta/list.html)
+            - [Documentação da API](https://github.com/turicas/covid19-br/blob/master/api.md)
+            - [FAQ](https://github.com/turicas/covid19-br/blob/master/faq.md)
+          - Para quem quer colaborar:
+            - [Repositório do Brasil.IO no GitHub](https://github.com/turicas/brasil.io)
+            - [Repositório do Brasil.IO/covid19 no GitHub](https://github.com/turicas/covid19-br)
+            - [Recomendações para Secretarias de Saúde](https://github.com/turicas/covid19-br/blob/master/recomendacoes.md)
+            - Últimas notícias: [t.me/brasil_io](https://t.me/brasil_io) e [twitter.com/brasil_io](https://twitter.com/brasil_io)
+          - **Demonstração**: [brasil.io/covid19](https://brasil.io/covid19/) [brasil.io](https://brasil.io)
+        </section>
+
+        <section>
+          <h3>Dúvidas?</h3>
+          <blockquote>
+            &ldquo;
+            Restringir acesso a dados públicos é elitizar a democracia.
+            &rdquo;
+          </blockquote>
+            -- <a href="https://brasil.io/manifesto">Manifesto Brasil.IO</a>
+          <br>
+          <br>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h4>
+            <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+          </h4>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
