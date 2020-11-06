@@ -1,0 +1,102 @@
+full_name,title,gender,start_datetime,end_datetime
+Leonardo Larsen Rocha,Microsserviço: da ideia à nuvem,M,2020-11-03T15:50:00-03:00,2020-11-03T16:35:00-03:00
+Rafael Ferreira Fontenelle,Automatização da documentação traduzida do Python,M,2020-11-02T18:20:00-03:00,2020-11-02T19:05:00-03:00
+Artur Baruchi,Estruturas de Dados Probabilísticas,M,2020-11-03T15:50:00-03:00,2020-11-03T16:35:00-03:00
+Tiago Bacciotti Moreira,Uso de Python para ensino de POO em um curso de Graduação de Sistemas de Informação,M,2020-11-02T16:40:00-03:00,2020-11-02T17:25:00-03:00
+Alexandre Fernandes dos Santos,FastAPI tão rápido quanto Node?,M,2020-11-03T16:40:00-03:00,2020-11-03T17:25:00-03:00
+Gustavo Voltani von Atzingen,Micropython na Indústria,M,2020-11-03T16:40:00-03:00,2020-11-03T17:25:00-03:00
+José Estevam de Andrade Junior,The black box of the black boxes: Uma introdução a AutoML com Python,M,2020-11-05T19:10:00-03:00,2020-11-05T19:55:00-03:00
+Loyanne Repolho,Como a programação mudou a minha vida - de médica a programadora,F,2020-11-02T15:50:00-03:00,2020-11-02T16:35:00-03:00
+Maria Fernanda Deveza Leitão,"Renda, Python e Covid-19: como avaliar a experiência do cliente e gerar renda durante a pandemia",F,2020-11-05T16:40:00-03:00,2020-11-05T17:25:00-03:00
+Luan Fonseca de Farias,Débito Técnico: Porque isso vai estragar teu software,M,2020-11-05T19:10:00-03:00,2020-11-05T19:55:00-03:00
+Daniele Nazaré Tavares,Como submeter uma PEP pra comunidade : - Python,F,2020-11-04T18:20:00-03:00,2020-11-04T19:05:00-03:00
+,Abertura Oficial da Python Brasil 2020,,2020-11-02T09:30:00-03:00,2020-11-02T10:00:00-03:00
+Bernardo Fontes,Criando Simetrias Pythônicas,M,2020-11-05T15:50:00-03:00,2020-11-05T16:35:00-03:00
+Luis Vinicius Lauriano de França,O que acontece se juntar Spotify & Python & Data Science,M,2020-11-05T16:40:00-03:00,2020-11-05T17:25:00-03:00
+Ana Paula Gomes,Keynote,F,2020-11-06T18:30:00-03:00,2020-11-06T20:00:00-03:00
+Daniel Drumond Augusto,Como e por que automatizar testes de integração da sua API? - ScanAPI,M,2020-11-05T15:00:00-03:00,2020-11-05T15:45:00-03:00
+André Luiz Girol,Desmistificando o git rebase,M,2020-11-05T18:20:00-03:00,2020-11-05T19:05:00-03:00
+Nilo Ney Coutinho Menezes,Integração Continua com Python - Proposta de Stack,M,2020-11-06T15:00:00-03:00,2020-11-06T15:45:00-03:00
+Guilherme Viegas de Faria,Ecossistemas de Colaboração: O que podemos dizer sobre as colaborações em redes sociais a partir da biologia?,M,2020-11-06T16:40:00-03:00,2020-11-06T17:25:00-03:00
+Antonio Terceiro,Como você pode ajudar o Debian programando em Python,M,2020-11-02T15:00:00-03:00,2020-11-02T15:45:00-03:00
+Bruno Ferreira da Paixão,Transformação Digital da Ouvidoria na pandemia COVID-19,M,2020-11-05T15:00:00-03:00,2020-11-05T15:45:00-03:00
+Rafael Calixto Ferreira de Araújo,O Python fofoqueiro: Utilizando Spacy e outras bibliotecas Python para ler conteúdos da Internet,M,2020-11-04T18:20:00-03:00,2020-11-04T19:05:00-03:00
+Juliany Raiol,I know what you heard last summer: utilizando python para entender estilos musicais,F,2020-11-05T18:20:00-03:00,2020-11-05T19:05:00-03:00
+Natalia Raythz,Qualidade vai além - Molecule,F,2020-11-03T15:00:00-03:00,2020-11-03T15:45:00-03:00
+Joab Leite da Silva Neto,Como a Hand Talk torna o mundo mais acessível utilizando Python?,M,2020-11-04T15:50:00-03:00,2020-11-04T16:35:00-03:00
+Felipe Cabrera Ribeiro dos Santos,O Python e o Mercado de Trabalho,M,2020-11-02T15:00:00-03:00,2020-11-02T15:45:00-03:00
+"Mario Sérgio, Maria Vitória Ramos, Luis Kimaid, Márcio Coimbra",Os desafios da transformação digital nos municípios brasileiros,M,2020-11-03T10:00:00-03:00,2020-11-03T12:00:00-03:00
+Pedro Lealdino Filho,Python Aplicado ao Mercado Financeiro - Automação de Investimentos,M,2020-11-03T19:10:00-03:00,2020-11-03T19:55:00-03:00
+Andreza Rocha,Cara Gente Branca...da TI:,F,2020-11-05T18:20:00-03:00,2020-11-05T19:05:00-03:00
+Dandara Maria Costa de Sousa,"Análise de Dados e Forró - Dois amores, duas paixões",F,2020-11-06T16:40:00-03:00,2020-11-06T17:25:00-03:00
+Patrícia do Nascimento,Mercado de Trabalho em Dados - rotina de uma analista,F,2020-11-05T15:00:00-03:00,2020-11-05T15:45:00-03:00
+Pâmella Araújo Balcaçar,Inovação e Tecnologia na educação: python como objeto de aprendizagem multidisciplinar,F,2020-11-03T15:00:00-03:00,2020-11-03T15:45:00-03:00
+Ricardo Cappellano,Lidando com sistemas legados,M,2020-11-06T15:00:00-03:00,2020-11-06T15:45:00-03:00
+Rafael Capaci Pereira,Utilizando Dataloaders para melhorar o desempenho das suas queries no GraphQL,M,2020-11-04T15:00:00-03:00,2020-11-04T15:45:00-03:00
+"Patrícia Morimoto, Eduardo Mendes, Fabrícia Diniz e Fernando Masanori",Transmissão de conhecimento dentro da comunidade,F,2020-11-06T10:00:00-03:00,2020-11-06T12:00:00-03:00
+Arthur Fortes da Costa,Como encontrar o Wally utilizando Deep Learning e Python,M,2020-11-04T19:10:00-03:00,2020-11-04T19:55:00-03:00
+Thais Viana,Keynote,F,2020-11-04T20:00:00-03:00,2020-11-04T21:30:00-03:00
+Gabriela Cavalcante da Silva,"WebScraping, Python e Ordem da Câmara dos Vereadores",F,2020-11-02T19:10:00-03:00,2020-11-02T19:55:00-03:00
+Lidiane de Souza Monteiro,"Dev, Ops!",F,2020-11-05T19:10:00-03:00,2020-11-05T19:55:00-03:00
+Werberth Vinícius Souza Gomes,Scrapy 101: raspando dados na web com Python,M,2020-11-05T18:20:00-03:00,2020-11-05T19:05:00-03:00
+Giovana Vieira de Morais,Introdução à recuperação de informação musical,F,2020-11-03T16:40:00-03:00,2020-11-03T17:25:00-03:00
+Carla Vieira,"Empatia, ética, algoritmos e o futuro",F,2020-11-02T19:10:00-03:00,2020-11-02T19:55:00-03:00
+Bruna Nayara Moreira Lima,Usando RASA Boilerplate para criar um chatbot mais rápido que maratonar senhor dos anéis,F,2020-11-04T15:50:00-03:00,2020-11-04T16:35:00-03:00
+Vinicius Hartmann Ferreira,“Pensam que a gente é secretária”: trajetórias femininas em cursos técnicos de informática,M,2020-11-05T15:50:00-03:00,2020-11-05T16:35:00-03:00
+Robson Luis Monteiro Junior,Desmitificando pipeline de dados com python: o que aprendi em 6 anos.,M,2020-11-04T18:20:00-03:00,2020-11-04T19:05:00-03:00
+Leticia Portella,Impulsionando sua carreira em tecnologia,F,2020-11-02T16:40:00-03:00,2020-11-02T17:25:00-03:00
+Jessica dos Santos de Oliveira,Como usamos IA para auxiliar médicos a lerem ECGs,F,2020-11-05T15:50:00-03:00,2020-11-05T16:35:00-03:00
+Danilo de Nadai Sícari,Empoderamento Intergalático do Radioamadorismo utilizando Python,M,2020-11-02T15:50:00-03:00,2020-11-02T16:35:00-03:00
+Diego Moreira Guimarães,FoxDot: fazendo a pista dançar com Python,M,2020-11-02T18:20:00-03:00,2020-11-02T19:05:00-03:00
+"Letícia Portella, Jessica Temporal, Carla Vieira, Mila Laranjeira e Vivi Mota",Pizza de Dados Ao Vivo: Divulgação Científica,F,2020-11-04T10:30:00-03:00,2020-11-04T12:30:00-03:00
+Andryw Marques Ramos,Melhorando o desenvolvimento de Machine Learning utilizando MLFlow,M,2020-11-03T15:00:00-03:00,2020-11-03T15:45:00-03:00
+Otavio Gomes,Open3D para Reconstrução 3D em Python,M,2020-11-02T16:40:00-03:00,2020-11-02T17:25:00-03:00
+,"PyLadies pelo Brasil: construção coletiva, diversidade e inclusão",,2020-11-02T10:00:00-03:00,2020-11-02T12:00:00-03:00
+Jéssica Pauli de Castro Bonson,Uma Black Friday sem Catástrofes,F,2020-11-02T15:00:00-03:00,2020-11-02T15:45:00-03:00
+Michael de Mattos Ortiz,Interface gráfica para seu script Python com Gtk e o Glade,M,2020-11-03T19:10:00-03:00,2020-11-03T19:55:00-03:00
+Paulo Henrique Silva,Django como um detalhe de implementação,M,2020-11-03T19:10:00-03:00,2020-11-03T19:55:00-03:00
+Fabíola Mariana Aguiar Ribeiro,Uma proposta para introdução de programação no ensino de engenharias,F,2020-11-05T16:40:00-03:00,2020-11-05T17:25:00-03:00
+Guilherme Vierno,Observabilidade de sistemas distribuídos em Python,M,2020-11-05T15:50:00-03:00,2020-11-05T16:35:00-03:00
+Naomi Ceder,Iteração: A história secreta,F,2020-11-05T15:00:00-03:00,2020-11-05T15:45:00-03:00
+João Sebastião de Oliveira Bueno,"Design Patterns, Orientação a Objetos por Fora dos Frameworks",M,2020-11-04T16:40:00-03:00,2020-11-04T17:25:00-03:00
+Camilla Martins,Reconhecimento de texto e imagem com Python e CloudFunctions automatizando processos de TV :),F,2020-11-04T18:20:00-03:00,2020-11-04T19:05:00-03:00
+Érico Andrei,Construindo uma plataforma colaborativa de notícias com Python e código aberto,M,2020-11-04T15:00:00-03:00,2020-11-04T15:45:00-03:00
+Patrick Mazulo e Gustavo Carvalho,Associação Python Brasil (APyB),M,2020-11-05T10:00:00-03:00,2020-11-05T12:00:00-03:00
+Ana Paula da Silva Mendes,Dados categóricos em árvore de decisão utilizando libs Python,F,2020-11-02T15:50:00-03:00,2020-11-02T16:35:00-03:00
+Walter Silva Martins Filho,Processamento de Laudos Médicos usando BERT e Hugginface/Pytorch,M,2020-11-06T15:50:00-03:00,2020-11-06T16:35:00-03:00
+Amanda Fonseca Savluchinske,"Essa documentação só falta falar - Escrevendo, revisando e testando (isso mesmo!) documentação para usuários finais",F,2020-11-04T16:40:00-03:00,2020-11-04T17:25:00-03:00
+Mirlla Marques Santana Alves,Human Learning: Por que ensinar e aprender Python?,F,2020-11-04T15:50:00-03:00,2020-11-04T16:35:00-03:00
+Diana Rodriguez,Keynote,F,2020-11-03T20:00:00-03:00,2020-11-03T21:30:00-03:00
+Allana Dabia Cardoso Teixeira de Paula,PyBR 2019: o impacto das comunidades na transição de carreira de uma mulher preta e a criação de novas perspectivas,F,2020-11-04T19:10:00-03:00,2020-11-04T19:55:00-03:00
+Paula Grangeiro,Construindo aplicações orientada a eventos utilizando serverless com Python,F,2020-11-06T15:00:00-03:00,2020-11-06T15:45:00-03:00
+Igor dos Santos Montagner,Mas não dá pra aprender tudo na internet? Entenda o por que fazer faculdade ainda vale a pena,M,2020-11-03T18:20:00-03:00,2020-11-03T19:05:00-03:00
+Carolina Fernanda da Silva,Deep Learning com Python,F,2020-11-04T19:10:00-03:00,2020-11-04T19:55:00-03:00
+Fernando Masanori,Ensino Remoto Emergencial de Python,M,2020-11-04T15:00:00-03:00,2020-11-04T15:45:00-03:00
+Nivaldo Gomes da Silva Filho,Como Gerenciar Trocas de Contexto em tempo de Pandemia: Um Guia para melhorar a sua saúde mental no trabalho,M,2020-11-06T15:00:00-03:00,2020-11-06T15:45:00-03:00
+Alejandro Mesias André Nebra Perez,Ganhando performance no Python com Numba em projetos não científicos,M,2020-11-03T18:20:00-03:00,2020-11-03T19:05:00-03:00
+Victor Maricato,Reprodutibilidade e Produtização de Modelos Preditivos em Jupyter Notebook ,M,2020-11-02T18:20:00-03:00,2020-11-02T19:05:00-03:00
+Melissa Weber Mendonça,Keynote,F,2020-11-02T20:00:00-03:00,2020-11-02T21:30:00-03:00
+Henrique Gabriel Gularte Pereira,É Python isso?,M,2020-11-02T18:20:00-03:00,2020-11-02T19:05:00-03:00
+Victor Paiva Torres,Separando a lógica de extração da lógica de navegação com Scrapy,M,2020-11-04T15:50:00-03:00,2020-11-04T16:35:00-03:00
+Matheus Queiroz,Colocando Modelos de Machine Learning em Produção com o Amazon Sagemaker,M,2020-11-02T16:40:00-03:00,2020-11-02T17:25:00-03:00
+William Lino Oliveira,Entregando Infraestrutura Automatizada com Serverlesse Python,M,2020-11-02T19:10:00-03:00,2020-11-02T19:55:00-03:00
+Giulio Carvalho Cavalcante,"Querido Diário, hoje raspei dados usando... método científico?!",M,2020-11-04T19:10:00-03:00,2020-11-04T19:55:00-03:00
+Giovana Oliveira de Lucca,Reconhecimento Facial em 5 passos,F,2020-11-02T15:50:00-03:00,2020-11-02T16:35:00-03:00
+Artur Vieira de Sousa,Tornando os Jupyter Notebooks mais legíveis para quem não é cientista de dados,M,2020-11-03T15:00:00-03:00,2020-11-03T15:45:00-03:00
+Maria Fernanda Souza Andrade,"Ambientes Virtuais, o que são e para que servem?",F,2020-11-03T18:20:00-03:00,2020-11-03T19:05:00-03:00
+Luciano Ramalho,Protocolos: duck-typing estático FTW,M,2020-11-02T15:00:00-03:00,2020-11-02T15:45:00-03:00
+Lis Ramos Barreto de Almeida,Análise Numérica com Python: O Poder da Linguagem que Conquistou o Coração de Cientistas e Engenheiros,F,2020-11-03T18:20:00-03:00,2020-11-03T19:05:00-03:00
+Sarah Tuyani Araújo Soares,Utilizando Análise de Sentimentos para identificar comportamentos de consumo nas redes sociais,F,2020-11-06T16:40:00-03:00,2020-11-06T17:25:00-03:00
+David Pierre Alves,Driblando Redes Neurais: uma introdução a ataques adversários,M,2020-11-06T16:40:00-03:00,2020-11-06T17:25:00-03:00
+Ronald Rodrigues Farias,Introdução a automação de processos robóticos com Python,M,2020-11-04T16:40:00-03:00,2020-11-04T17:25:00-03:00
+Débora Karoline Silva de Azevedo,Software educativo: o que é? como faz?,F,2020-11-06T15:50:00-03:00,2020-11-06T16:35:00-03:00
+Salete Silva Farias,"SUB-REPRESENTAÇÃO E INVISIBILIDADE FEMININA NA STEM (SCIENCE, TECHNOLOGY, ENGINEERING AND MATHEMATICS): uma análise de estereótipos, educação e plataformas de carreira",F,2020-11-03T16:40:00-03:00,2020-11-03T17:25:00-03:00
+Lucas Grassano Lattari,Detecção e Reconhecimento de Faces usando Python e DLib,M,2020-11-06T15:50:00-03:00,2020-11-06T16:35:00-03:00
+Nelson de Campos Nolasco,O Uso da Análise do Comportamento para a Melhoria da Qualidade de Vida do Desenvolvedor Python.,M,2020-11-06T15:50:00-03:00,2020-11-06T16:35:00-03:00
+Ingrid Murielem Sebastiana,Como sobreviver a um time que fala um idioma que você não é fluente,F,2020-11-05T19:10:00-03:00,2020-11-05T19:55:00-03:00
+Álvaro Justen (Turicas),Keynote,M,2020-11-05T20:00:00-03:00,2020-11-05T21:30:00-03:00
+Mariana Dias Guilardi e Beatriz Milz,Ensino de programação: Como fazer parte da comunidade global The Carpentries?,F,2020-11-04T15:00:00-03:00,2020-11-04T15:45:00-03:00
+Daniel Henrique da Silva,Construindo chatbots com Rasa Framework,M,2020-11-03T15:50:00-03:00,2020-11-03T16:35:00-03:00
+Bruno Casella,"Django, kubernetes e deadlocks - qual a solução ?",M,2020-11-05T16:40:00-03:00,2020-11-05T17:25:00-03:00
+Pablo Henrique Aguilar,Tipos de tipos?,M,2020-11-04T16:40:00-03:00,2020-11-04T17:25:00-03:00
+Jerônimo Medina Madruga,Muito além de Bhaskara: Como utilizar Python para ensinar matemática,M,2020-11-03T15:50:00-03:00,2020-11-03T16:35:00-03:00

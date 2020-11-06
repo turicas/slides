@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      (Keynote) Sobre os Ombos de Gigantes
+    </title>
+
+    <meta name="description" content="(Keynote) Sobre os Ombos de Gigantes">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Keynote:
+            <br>
+            <br>
+            Sobre os Ombos de Gigantes
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4> 05 de novembro de 2020 </h4>
+          <h4> <a href="https://2020.pythonbrasil.org.br/">Python Brasil 2020</a> <img src="images/heart.png"> </h4>
+          <h4> (remotamente) </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+        </section>
+
+        <section>
+          <img width="80%" src="images/logos_pycafe-brio.png" alt="Logos Pythonic Café e Brasil.IO">
+
+          <br><br>
+          <a href="https://pythonic.cafe/">pythonic.cafe</a> /
+          <a href="https://brasil.io/">brasil.io</a>
+        </section>
+
+        <section>
+          <h2>Software Livre &amp; Python</h2>
+          <h3>(desde 2004/2005)</h3>
+          <p>
+            <a href="http://www.gnu.org/">
+              <img width="35%" src="images/gnu.png">
+            </a>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            <a href="http://www.python.org/">
+              <img width="35%" src="images/logo_python.png">
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2>
+            Slides (em instantes) em:
+            <a href="http://bit.ly/pybr2020-keynote-turicas">bit.ly/pybr2020-keynote-turicas</a>
+          </h2>
+        </section>
+
+        <section>
+          <h2>
+            Bora conversar? :)
+          </h2>
+        </section>
+
+        <section>
+          <blockquote>
+            <img width="50%" src="images/GodfreyKneller-IsaacNewton-1689.jpg">
+            <br>
+            &ldquo;
+            If I have seen further it is by standing on ye sholders of Giants.
+            &rdquo;
+            <br>
+            &mdash; Isaac Newton (<a href="https://en.wikiquote.org/wiki/Isaac_Newton#:~:text=I%20do%20not%20know%20what,lay%20all%20undiscovered%20before%20me.">Wikiquote</a>)
+          </blockquote>
+        </section>
+
+        <section>
+          <blockquote>
+            <img width="50%" src="images/440px-Library_of_Congress,_Rosenwald_4,_Bl._5r.jpg">
+            <br>
+            &ldquo;
+            A referência desta ilustração em um manuscrito medieval é derivada
+            da mitologia grega: o gigante cego Órion carregando seu servo
+            Cedálion nos ombros para agir como seus olhos.
+            &rdquo;
+            <br>
+            &mdash; <a href="https://pt.wikipedia.org/wiki/Sobre_os_ombros_de_gigantes">Sobre os ombros de gigantes, Wikipedia</a>
+          </blockquote>
+        </section>
+
+        <section>
+          <h3>Colaboração, Iniciativa, Poder Distribuído</h3>
+          <blockquote>
+            <img width="50%" src="images/entrevista-guido.jpg">
+            <br>
+            &ldquo;
+            I've always given people power over “build the community the way
+            you want it”.  Never occurred to me that we should have Python
+            conferences, but someone told me “I would like to convene a small
+            workshop of Python users, would you be willing to show up and sort
+            of help me organize it”? and I said “oh sure, that sounds like a
+            fun thing to do”.
+            &rdquo;
+            <br>
+            &mdash; Guido Van Rossum
+          </blockquote>
+        </section>
+
+        <section data-markdown>
+          ## `rows convert`
+
+          ![Boletim INEMA](images/balneabilidade-pdf.png)
+
+          [Link para o boletim](http://www.inema.ba.gov.br/wp-content/uploads/2020/03/Boletim-N11-Balneabilidade-para-Litoral-de-Salvador-emitido-em-13-03-2020.pdf)
+        </section>
+
+        <section data-markdown>
+          ## Brasil.IO
+
+          ![Brasil.IO](images/logo_brasil.io.png)
+
+          [brasil.io](https://brasil.io/)
+        </section>
+
+        <section data-markdown>
+          ## [localhost:8000](http://localhost:8000/)
+        </section>
+
+        <section data-markdown>
+          ## `cd palestras-pybr2020`
+        </section>
+
+        <section data-markdown>
+          ## Rede da rows
+
+          ![Rede/grafo de colaboração da rows](images/rows-network-zoom-out.png)
+
+          [github.com/PythonicCafe/contributor-network](https://github.com/PythonicCafe/contributor-network/)
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Além da Tecnologia
+
+          - [Lei de Acesso à Informação](http://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm)
+          - Movimento de dados abertos
+          - Comunidade de jornalismo de dados
+          - ...
+        </section>
+
+        <section data-markdown class="fragments">
+          ## (MUITO) Além da Tecnologia
+          ### Mais interdependentes do que imaginamos
+
+          - Internet (redes de dados/cabos submarinos/satélites)
+          - Rede elétrica nacional
+          - Agricultura
+          - Terra
+        </section>
+
+        <section data-markdown>
+          ## Mapa Submarino de Cabos
+
+          ![Mapa Submarino de Cabos](images/submarine-cable-map.png)
+
+          [submarinecablemap.com](https://www.submarinecablemap.com/)
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Houston, temos um problema:
+          ### Os gigantes são seres humanos!
+
+          - Interdependência também é um problema
+          - Mutualismo é necessário
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Simbiose (lembra?)
+
+          - **Mutualismo**: ganha/ganha
+            - "Positive-sum game, in game theory, a term that refers to situations in which the total of gains and losses is greater than zero"
+            - É aqui que devemos focar!
+            - Fomentar o **ecossistema**
+          - Comensalismo: ganha/nada
+          - Parasitismo: ganha/perde
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Trolls
+
+          - Uso abusivo da API do Brasil.IO
+            - Detalhes em [t.me/brasil_io](https://t.me/brasil_io)
+          - "Se eu não posso fazer o que quero, não é aberto"
+        </section>
+
+        <section data-markdown>
+          ## leftpad, lembra?
+
+          ![](images/leftpad.png)
+
+          [Ler matéria](https://qz.com/646467/how-one-programmer-broke-the-internet-by-deleting-a-tiny-piece-of-code/)
+        </section>
+
+        <section data-markdown>
+          ## Com grandes poderes...
+
+          - E o [PyPI](https://pypi.org/)?
+          - Como funciona no Debian?
+        </section>
+
+        <section>
+          <h2>Heartbleed - OpenSSL (2014)</h2>
+
+          <blockquote>
+            <img width="30%" src="images/heartbleed.png">
+            <br>
+            &ldquo;
+            When Heartbleed was discovered, OpenSSL was maintained by a handful
+            of volunteers, only one of whom worked full-time.[188] Yearly
+            donations to the OpenSSL project were about US$2,000.
+            &rdquo;
+            <br>
+            &mdash; <a href="https://en.wikipedia.org/wiki/Heartbleed#Root_causes,_possible_lessons,_and_reactions">Wikipedia</a>
+          </blockquote>
+        </section>
+
+        <section data-markdown>
+          ## Até quando? :(
+
+          ![Tirinha do XKCD](images/xkcd-dependency.png)
+
+          [Veja a tirinha](https://xkcd.com/2347/)
+        </section>
+
+        <section data-markdown>
+          ## Tecnologia afeta muita gente
+          ### Sem passagem pro **Á**lvaro
+
+          ![Erro de codificação de caracteres](images/unicode-error-traveler-info.png)
+        </section>
+
+        <section data-markdown>
+          ## A Era da Pós-Verdade
+          ### Keynote na Python Nordeste 2019
+
+          ![Foto de Álvaro como Keynote da Python Nordeste 2019](images/keynote-pyne2019.png)
+
+          [Veja o vídeo](https://twitter.com/PyLatam/status/1320019016946245633)
+        </section>
+
+        <section data-markdown>
+          ## Ajudando ou atrapalhando?
+
+          ![Tweet sobre discurso de ódio/PayPal/Sleeping Giants](images/discurso-odio.png)
+
+          [Ler tweet](https://twitter.com/ddoneda/status/1291724787476246528) / [@slpng_giants_pt](https://twitter.com/slpng_giants_pt)
+        </section>
+
+        <section data-markdown>
+          ## FakeNews - Motivação
+
+          ![Matéria do Estadão sobre fakenews](images/fakenews-saude.png)
+
+          [Leia a matéria](https://saude.estadao.com.br/noticias/geral,maiores-divulgadores-de-fake-news-de-saude-tem-por-tras-loja-de-produtos-naturais,70003107445)
+        </section>
+
+        <section data-markdown>
+          ## "Plataformização"
+          ### *Everything as a service*
+
+          ![Tweet de @turicas](images/fio-entregadores.png)
+
+          [Leia o tweet](https://twitter.com/turicas/status/1278414474622500864)
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Quem resolve?
+
+          - Mercado!
+            - Lembra de 2008? (para entender: [The Big Short](https://en.wikipedia.org/wiki/The_Big_Short_%28film%29))
+          - Governo!
+            - Soube da pandemia?
+          - Organizações sociais
+            - Greve dos entregadores
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Dados COVID-19
+
+          - Ministério da Saúde
+            - Histórico não disponível
+            - Site fora do ar
+            - Falta de dados locais
+          - Secretarias Estaduais de Saúde
+            - Formato não estruturado (PDF, imagem etc.)
+            - Local não centralizado (mais de um site, Twitter, Instagram etc.)
+            - Falta de indexação dos boletins diários
+            - Metodologia alterada e sem aviso
+        </section>
+
+        <section>
+          <p align="center">
+            <img width="80%" src="images/tweet-turicas-covid19.png">
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <a href="https://brasil.io/covid19/">brasil.io/covid19</a>
+          </p>
+          <p align="center">
+            <img width="80%" src="images/mapa-brasilio-covid19.png">
+          </p>
+        </section>
+
+        <section>
+          <h3>Boletins </h3>
+          <img width="70%" src="https://data.brasil.io/dataset/covid19/boletim/2020-07-07.png" alt="">
+          <br>
+          <a href="https://driva.com.br">brasil.io/covid19/boletins/</a>
+        </section>
+
+        <section>
+          <p>
+            <a href="https://brasil.io/covid19/PR">brasil.io/covid19/PR</a>
+          </p>
+          <p align="center">
+            <img src="images/grafico-excesso-mortes.png">
+          </p>
+        </section>
+
+        <section data-markdown>
+          ## Quem está usando?
+
+          - The New York Times
+          - Jornal Nacional
+          - O Estado de São Paulo
+          - O Globo
+          - FioCruz
+          - IBGE
+          - MAVE (FGV/FioCruz)
+          - Divulgadores científicos
+          - ...
+          - [Veja o clipping](https://github.com/turicas/covid19-br/blob/master/clipping.md)
+        </section>
+
+        <section data-markdown>
+          ## Para Aprender Mais (1)
+
+          - Dados abertos:
+            - dadosabertos.social
+            - [t.me/dadosabertos](https://t.me/dadosabertos)
+          - LPGD:
+            - [direitodigital.io](https://direitodigital.io/)
+            - [t.me/grupoLGPD](https://t.me/grupoLGPD)
+          - Vieses de algoritmos:
+            - [Palestra da Carla Vieira](https://youtu.be/JM2BSgSDmi8?t=15460)
+            - [Keynote da Thais Viana](https://www.youtube.com/watch?v=ufYGPyanDoA)
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Para Aprender Mais (2)
+
+          - [The Big Short](https://en.wikipedia.org/wiki/The_Big_Short_%28film%29)
+          - [Podcast Tecnocracia](https://manualdousuario.net/feed/podcast/tecnocracia)
+          - [Redecentralize](https://redecentralize.org/)
+          - [youtube.com/c/PythonicCafe](https://youtube.com/c/PythonicCafe)
+        </section>
+
+        <section data-markdown class="fragments">
+          ## Como Ajudar (1)
+
+          - Nem sempre o melhor para o ecossistema vai ser o mais confortável
+            - Trabalhar para que fazer o melhor para o ecossistema **seja o mais confortável**
+          - **Não faltam problemas**! :)
+            - Open Access ([Aaron Swartz](https://pt.wikipedia.org/wiki/Aaron_Swartz), [Alexandra Elbakyan](https://pt.wikipedia.org/wiki/Alexandra_Elbakyan)/[Sci Hub](https://pt.wikipedia.org/wiki/Sci-Hub))
+            - Fraudes ([eleições](http://www.generonumero.media/candidatura-semvoto-eleicoes2018/), [gastos públicos](https://twitter.com/RosieDaSerenata/status/1058342991956467712) etc.)
+          </section>
+
+        <section data-markdown class="fragments">
+          ## Como Ajudar (2)
+
+          - Preferir padrões abertos (evitar *lock-in*)
+          - Contribuir com o ecossistema
+            - Inclusão, diversidade (**palestras PyBr2020**! \o/)
+            - [copyleft](https://en.wikipedia.org/wiki/Copyleft)
+          - Atue **localmente**
+          - Interdisciplinaridade: uso da tecnologia em outras áreas
+          - Se puder, considere [doar](https://apoia.se/brasilio)
+          - Programando: sprint Brasil.IO no **domingo (manhã e tarde)**
+        </section>
+
+        <section>
+          <h3>Dúvidas?</h3>
+          <blockquote>
+            &ldquo;
+            Com grandes poderes vêm grandes responsabilidades
+            &rdquo;
+            <br>
+            &mdash; Stan Lee (Tio Ben)
+          </blockquote>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h4>
+            <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+          </h4>
+          <h4>
+            <a href="http://bit.ly/pybr2020-keynote-turicas">bit.ly/pybr2020-keynote-turicas</a>
+          </h4>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
