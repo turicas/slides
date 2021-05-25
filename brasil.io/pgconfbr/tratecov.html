@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>TrateCov NÃO FOI HACKEADO: entenda.</title>
+
+    <meta name="description" content="Trabalhando com dados abertos com Python">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    	if( window.location.search.match( /print-pdf/gi ) ) {
+    		var link = document.createElement( 'link' );
+    		link.rel = 'stylesheet';
+    		link.type = 'text/css';
+    		link.href = 'css/print/pdf.css';
+    		document.getElementsByTagName( 'head' )[0].appendChild( link );
+    	}
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+      <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            TrateCov NÃO FOI HACKEADO: entenda.
+          </h2>
+          <br>
+
+          <h2>
+            <b>Álvaro Justen</b> (<b>Turicas</b>)
+          </h2>
+          <br>
+
+          <h4>
+            25 de maio de 2021
+          </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Introdução
+
+          - O que é (foi?) o TraveCov
+            - Como sites funcionam
+          - A análise de Rodrigo Menegat
+          - O que foi falado na CPI - [vídeo](https://www.youtube.com/watch?v=K0CMrZMgM2s)
+            - Acusações indevidas
+            - [AndroCov](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7793341/)
+          - O que deveria ser investigado
+            - Falta de transparência
+            - Vazamento de dados pessoais
+            - Anonimização REAL dos dados
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## TrateCov?
+
+          - [AndroCov](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7793341/)
+          - Calculadora médica? Score?
+          - TrateCov implementou o AndroCov?
+            - Não sei.
+          - É UM SITE!
+          - [TrateCov na Wayback Machine do Internet Archive](http://web.archive.org/web/20210114201701/https://redcap.saude.gov.br/surveys/?s=7M3XF79KFL)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Backend versus frontend
+
+          - (20/05) [Pazuello afirma que TrateCov era protótipo e ataque hacker deixou o aplicativo disponível; senadores contestam](https://www12.senado.leg.br/radio/1/noticia/2021/05/20/pazuello-afirma-que-tratecov-era-prototipo-e-ataque-hacker-deixou-o-aplicativo-disponivel-senadores-contestam)
+            - "o ex-ministro afirmou que tratava-se de um protótipo e que um ataque hacker fez com que a plataforma ficasse disponível"
+          - Backend: fica no servidor
+          - Frontend: vai para seu navegador
+          - QUALQUER usuário do site tem acesso ao frontend (com exceção de áreas que necessitem de autenticação)
+          - Exemplo: [Verbete na Wikipedia](https://pt.wikipedia.org/wiki/A_Vida_de_Brian)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## A análise de Rodrigo Menegat
+
+          - [Fio no Twitter](https://twitter.com/RodrigoMenegat/status/1351762490942754819)
+          - [Repositório no GitHub](https://github.com/RodrigoMenegat/autopsia-do-tratecov)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Depoimento de Mayra Pinheiro
+
+          - [Vídeo no YouTube (~2h30min)](https://www.youtube.com/watch?v=K0CMrZMgM2s)
+          - Estava online SIM
+          - NÃO foi invadido
+          - Qual o interesse em "hackear"?
+          - Termo de leigos?
+          - Simulações indevidas?
+          - NÃO HOUVE ALTERAÇÃO!
+          - NENHUM USUÁRIO TIROU O SITE DO AR.
+          - Tiraram do ar porque pegou mal
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## O que deveria ser investigado
+
+          - Falta de transparência:
+            - Dados por município (desde o começo) - [Brasil.IO COVID-19](https://brasil.io/covid19)
+            - Histórico dos dados desde sempre
+            - [e outros problemas de coordenação](http://turicas.info/slides/brasil.io/pgconfbr/mapbiomas.html)
+          - Vazamento de dados pessoais
+            - [Vazamento de senha do Ministério da Saúde expõe dados de 16 milhões de pacientes de covid](https://saude.estadao.com.br/noticias/geral,vazamento-de-senha-do-ministerio-da-saude-expoe-dados-de-16-milhoes-de-pacientes-de-covid,70003528583)
+            - [Nova falha do Ministério da Saúde expõe dados pessoais de mais de 200 milhões de brasileiros](https://saude.estadao.com.br/noticias/geral,nova-falha-do-ministerio-da-saude-expoe-dados-pessoais-de-mais-de-200-milhoes,70003536340)
+          - Anonimização REAL dos dados
+            - [Os problemas nos microdados de vacinação](https://blog.brasil.io/2021/05/24/os-problemas-nos-microdados-de-vacinacao/)
+        </section>
+
+        <section class="fragments" data-markdown>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
