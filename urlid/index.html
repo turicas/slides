@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Conciliação de datasets públicos com URLid
+    </title>
+
+    <meta name="description" content="Conciliação de datasets públicos com URLid">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <style type="text/css">
+      code.sql, code.python {
+        font-size: 2em !important;
+        line-height: 1.25em !important;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+      .reveal pre {
+        width: 150%;
+        margin-left: -25%;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Conciliação de datasets públicos com URLid
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4> 26 de agosto de 2022 </h4>
+          <a href="https://www.pgconf.com.br/2022">pgconfbr 2022 - São José dos Campos/SP</a>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+        <h2><b>Turicas</b>, prazer! =)</h2>
+        <h3>Sigam-me os bons:</h3>
+        <h3>
+          {<a href="https://twitter.com/turicas">twitter</a>,
+          <br>
+          <a href="https://github.com/turicas">github</a>,
+          <br>
+          <a href="https://youtube.com/turicas">youtube</a>,
+          <br>
+          <a href="https://slideshare.net/turicas">slideshare</a>,
+          <br>
+          <a href="https://instagram.com/turicas">instagram</a>}
+          <br>
+          /<b>turicas</b>
+        </h3>
+        <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+      </section>
+
+      <section>
+        <img src="images/pycafe_qrcode.png" width="100%">
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Agenda
+
+        - Exemplos de problemas ao cruzar bases de dados abertas
+          - (também acontecem com dados privados)
+        - Métodos para resolver alguns desses problemas
+        - URLid
+      </section>
+
+      <section>
+        <h2>Software Livre &amp; Python</h2>
+        <h3>(desde 2004/2005)</h3>
+        <p>
+          <a href="http://www.gnu.org/">
+            <img width="35%" src="images/gnu.png">
+          </a>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <a href="http://www.python.org/">
+            <img width="35%" src="images/logo_python.png">
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <h2> Brasil.IO </h2>
+
+        <img src="images/logo_brasil.io.png" width="75%">
+
+        <blockquote>
+          &ldquo;
+          Restringir acesso a dados públicos é elitizar a democracia.
+          &rdquo;
+        </blockquote>
+        -- <a href="https://brasil.io/manifesto">Manifesto Brasil.IO</a>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Brasil.IO - Bases de dados disponíveis
+
+        - Receita Federal
+          - Empresas
+          - Sócios
+          - CNAE
+        - Tribunal Superior Eleitoral
+          - Candidaturas
+          - Doadores
+          - Gastos de campanha
+        - Portal da Transparência do Governo Federal
+          - Acordos de Leniência
+          - Empresas inidôneas
+          - ...
+        - IBAMA
+        - ...
+      </section>
+
+      <section>
+        <h2> Grafos </h2>
+        <h4> Diversas aplicações, como em investigações </h4>
+        <p align="center">
+          <img width="80%" src="images/grafo-odebrecht.jpg">
+        </p>
+      </section>
+
+      <section>
+        <h2> Grafos no postgres </h2>
+        <h3> AgensGraph + Apache AGE </h3>
+        <p align="center">
+          <img width="100%" src="images/agensgraph.png">
+        </p>
+      </section>
+
+      <section>
+        <h2> Como cruzar esses dados? </h2>
+        <h3> Ex: inidôneas com doadores eleitorais </h3>
+        <p align="center">
+          <img width="80%" src="images/db1-db2-company.png">
+        </p>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## INNER JOIN
+        ### Com alguma transformação
+
+        ```sql
+        SELECT
+          ...
+
+        FROM t1
+          INNER JOIN t2
+            ON hash(t1.*) = hash(t2.*)
+        ```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## INNER JOIN + REGEXP_REPLACE
+
+        ```sql
+        SELECT
+          ...
+
+        FROM t1
+          INNER JOIN t2
+          ON REGEXP_REPLACE(t1.cpf_cnpj, '[./-]', '', 'g')
+           = REGEXP_REPLACE(t2.CNPJ,     '[./-]', '', 'g')
+        ```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## INNER JOIN + clean
+
+```sql
+CREATE OR REPLACE FUNCTION clean(value TEXT)
+RETURNS TEXT AS $$
+BEGIN
+  RETURN REGEXP_REPLACE(value, '[./-]+', '', 'g');
+END; $$ LANGUAGE 'plpgsql' IMMUTABLE;
+```
+
+```sql
+SELECT
+  ...
+
+FROM t1
+  INNER JOIN t2
+    ON clean(t1.cpf_cnpj) = clean(t2.CNPJ)
+```
+      </section>
+
+      <section>
+        <h2> Como cruzar esses dados? </h2>
+        <h3> Ex: candidatos e sócios de empresas </h3>
+        <p align="center">
+          <img width="80%" src="images/db1-db2-person.png">
+        </p>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## slug
+
+```sql
+CREATE EXTENSION IF NOT EXISTS "unaccent";
+
+CREATE OR REPLACE FUNCTION slug(value TEXT)
+RETURNS TEXT AS $$
+BEGIN
+  RETURN REGEXP_REPLACE(
+    REGEXP_REPLACE(
+      REGEXP_REPLACE(
+        REGEXP_REPLACE(
+          lower(unaccent(value)),
+          '[^a-z0-9_-]+', '-', 'g'
+        ),
+        '-+', '-', 'g'
+      ),
+      '^-', ''
+    ),
+    '-$', ''
+  );
+END; $$ LANGUAGE 'plpgsql' IMMUTABLE;
+```
+```sql
+SELECT slug('ALVARO JUSTEN'), slug('Álvaro Justen');
+
+     slug      |     slug
+---------------+---------------
+ alvaro-justen | alvaro-justen
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## INNER JOIN + slug
+
+        ```sql
+        SELECT
+          t1.id, t1.nome, t1.xxx,
+          t2.yyy
+
+        FROM t1
+          INNER JOIN t2
+            ON slug(t1.nome) = slug(t2.Nome)
+        ```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Problema de colisão: Homônimos
+
+```sql
+SELECT COUNT(DISTINCT cpf_cnpj)
+FROM socio
+WHERE nome = 'JOSE CARLOS DA SILVA';
+
+-- Resposta: 1781
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Voltando à função de hash
+        ### Mínimo múltiplo comum que seja único
+
+```sql
+SELECT
+  ...
+
+FROM t1
+  INNER JOIN t2
+    ON hash(t1.*) = hash(t2.*)
+```
+      </section>
+
+      <section>
+        <h2> CPF + Nome </h2>
+        <p align="center">
+          <img width="80%" src="images/db1-db2-person-highlight.png">
+        </p>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## CPF (parcial) + slug(nome)
+
+```sql
+SELECT
+  ...
+
+FROM t1
+  INNER JOIN t2
+  ON SUBSTR(clean(t1.cpf), 4, 6) || '-' || slug(t1.nome)
+   = SUBSTR(clean(t2.CPF), 4, 6) || '-' || slug(t2.Nome)
+```
+      </section>
+
+      <section>
+        <h2> raw_id: unique MMC </h2>
+        <p align="center">
+          <img width="80%" src="images/db1-db2-person-raw-id.png">
+        </p>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Método para cruzamento
+
+        - Identificar a **menor quantidade de colunas em comum** entre as bases que, combinadas, **gerem um valor único** para determinado registro
+        - Criar função que recebe as colunas e gera o `raw_id`
+        - Usar `raw_id` para cruzamento
+        - Otimização: pré-calcular e indexar
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Problema
+
+        - `raw_id` de objetos diferentes estão em formatos diferentes
+          - Pessoa física: `VARCHAR`
+          - Pessoa jurídica: `BIGINT` (?)
+          - ...
+        - Solução: passar `raw_id` por uma função de hash que devolva um resultado consistente (mesmo tipo, tamanho etc.)
+      </section>
+
+        <section class="fragments" data-markdown>
+          ## Solução: URLid
+
+          - Defina uma URL base, como `https://id.brasil.io/`
+          - Defina o slug da entidade, como `person`
+          - Defina como o `raw_id` será criado, como:
+            - `SUBSTR(clean(cpf), 4, 6) || '-' || UPPER(slug(nome))`
+          - Gere uma string com a URL: `base-url/entity/vversion/raw-id`
+            - Ex: `https://id.brasil.io/person/v1/456789-JOSE-CARLOS-DA-SILVA`
+          - Gere o UUID5 (namespace URL) com a URL acima
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## URLid no PostgreSQL
+
+```sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+SELECT uuid_generate_v5(
+  uuid_ns_url(),
+  'https://id.brasil.io/person/v1/456789-JOSE-CARLOS-DA-SILVA'
+);
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## URLid em Python
+
+```python
+import uuid
+
+object_uuid = uuid.uuid5(
+    uuid.NAMESPACE_URL,
+    "https://id.brasil.io/person/v1/456789-JOSE-CARLOS-DA-SILVA"
+)
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## URLid: características
+
+          - Metodologia para gerar identificadores universais
+          - Formato final independente do tipo de objeto
+            - Vários tipos de objetos diferentes podem estar referenciados na mesma coluna
+          - Geração de identificadores *offline*
+            - Sem JOIN com "base central", API etc.
+            - Basta usar as mesmas definições de entidades
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Entidades disponíveis no Brasil.IO
+
+          - Person:
+            - `https://id.brasil.io/person/v1/raw-id/`
+            - raw-id = `SUBSTR(RIGHT('00000000000' || clean(cpf), 11), 4, 6) || '-' || UPPER(slug(nome))`
+          - Company:
+            - `https://id.brasil.io/company/v1/raw-id/`
+            - raw-id = `SUBSTR(RIGHT('00000000000000' || clean(cnpj), 14), 1, 8)`
+          - Company branch:
+            - `https://id.brasil.io/company-branch/v1/raw-id/`
+            - raw-id = `RIGHT('00000000000000' || clean(cnpj), 14)`
+          - Candidacy:
+            - `https://id.brasil.io/candidacy/v1/raw-id/`
+            - raw-id = `ano_eleicao || '-' || numero_sequencial`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ### URLid Brasil.IO/Person
+
+          ```sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE OR REPLACE FUNCTION person_uuid(cpf TEXT, nome TEXT)
+RETURNS UUID AS $$
+BEGIN
+  RETURN uuid_generate_v5(
+    uuid_ns_url(),
+      'https://id.brasil.io/person/v1/'
+      || SUBSTR(RIGHT('00000000000' || REGEXP_REPLACE(cpf, '[^0-9*]+', '', 'g'), 11), 4, 6)
+      || '-'
+      || UPPER(slug(nome))
+      || '/'
+    );
+END; $$ LANGUAGE 'plpgsql' IMMUTABLE;
+          ```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Exemplo: URLid Brasil.IO/Person
+
+```sql
+SELECT person_uuid('12345678901', 'JOSE CARLOS DA SILVA') AS id1;
+SELECT person_uuid('***.456.789-**', 'José Carlos da Silva') AS id2;
+
+                 id1
+--------------------------------------
+ 2b816b79-316e-5383-ab66-621b102702bb
+
+                 id2
+--------------------------------------
+ 2b816b79-316e-5383-ab66-621b102702bb
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Exemplo real (preparação)
+
+```sql
+-- Importar e tratar dados da Receita Federal
+--   https://github.com/turicas/socios-brasil/
+-- Importar e tratar dados do Tribunal Superior Eleitoral
+--   https://github.com/turicas/eleicoes-brasil/
+
+CREATE TABLE candidatura_uuid AS
+  SELECT person_uuid(cpf, nome) AS pessoa_uuid, *
+  FROM candidatura;
+CREATE INDEX ON candidatura_uuid (pessoa_uuid);
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Exemplo real
+```sql
+SELECT
+  s.*,
+  c.*
+FROM candidatura_uuid AS c
+  INNER JOIN socio_uuid AS s
+    ON s.socio_uuid = c.pessoa_uuid
+WHERE
+  c.ano = 2020
+  AND c.sigla_unidade_federativa = 'SP'
+  AND c.unidade_eleitoral = 'SAO JOSE DOS CAMPOS'
+  AND c.totalizacao_turno LIKE 'ELEITO%';
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Futuro
+
+          - Bibliotecas
+            - Padronizar [urlid.sql](https://github.com/turicas/socios-brasil/blob/novo-formato/sql/urlid.sql)
+            - Python
+          - Especificação estruturada (arquivo de definição de entidades para um determinado domínio)
+          - Ferramentas para facilitar o armazenamento de dados
+            - Ex: criar tabela que centraliza informações de um determinado objeto
+          - Maior integração entre os datasets do [Brasil.IO](https://brasil.io/)
+        </section>
+
+        <section>
+          <h3>Dúvidas?</h3>
+          <br>
+          <br>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h4>
+            <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+          </h4>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
