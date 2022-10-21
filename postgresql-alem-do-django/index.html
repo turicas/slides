@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      PostgreSQL além do Django: desempenho máximo
+    </title>
+
+    <meta name="description" content="PostgreSQL além do Django: desempenho máximo">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <style type="text/css">
+      code.sql, code.python {
+        font-size: 2em !important;
+        line-height: 1.25em !important;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+      .reveal pre {
+        width: 150%;
+        margin-left: -25%;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            PostgreSQL além do Django: desempenho máximo
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4> 21 de outubro de 2022 </h4>
+          <a href="https://2022.pythonbrasil.org.br/">PythonBrasil 2022 - Manaus/AM</a>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+      </section>
+
+      <section>
+        <img src="images/pycafe_qrcode.png" width="100%">
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Agenda
+        ### Exemplos de código em Django
+
+        - Dataset: empresas (Receita Federal)
+        - Importação e exportação de grandes quantidades de dados
+        - Modelagem
+        - Métricas
+        - Índices
+        - Busca por texto completo
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## [bit.ly/turicas-pybr22](http://bit.ly/turicas-pybr22)
+      </section>
+
+      <section>
+        <h2>Software Livre &amp; Python</h2>
+        <h3>(desde 2004/2005)</h3>
+        <p>
+          <a href="http://www.gnu.org/">
+            <img width="35%" src="images/gnu.png">
+          </a>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <a href="http://www.python.org/">
+            <img width="35%" src="images/logo_python.png">
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <h2> Brasil.IO </h2>
+
+        <img src="images/logo_brasil.io.png" width="75%">
+
+        <blockquote>
+          &ldquo;
+          Restringir acesso a dados públicos é elitizar a democracia.
+          &rdquo;
+        </blockquote>
+        -- <a href="https://brasil.io/manifesto">Manifesto Brasil.IO</a>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Brasil.IO - Bases de dados disponíveis
+
+        - **Receita Federal**
+          - **Empresas**
+          - Sócios
+          - CNAE
+        - Tribunal Superior Eleitoral
+          - Candidaturas
+          - Doadores
+          - Gastos de campanha
+        - Portal da Transparência do Governo Federal
+          - Acordos de Leniência
+          - Empresas inidôneas
+          - ...
+        - IBAMA e ICMBio (autos de infração e embargos)
+        - ...
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Por quê?
+
+        - PostgreSQL é o mais avançado SGDB software livre
+          - E tem uma comunidade forte
+        - O banco de dados impacta muito o desempenho da sua aplicação
+        - Você pode estar deixando de usar funcionalidades desconhecidas
+        - Economia de recursos e diminuição da complexidade da infra
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Nosso setup
+
+        - Python 3.10.6
+        - Django 4.1.2
+        - psycopg2 2.9.4
+        - rows @ develop
+        - PostgreSQL 14
+        - ```
+django-admin startproject project .
+django-admin startapp dataset
+vim .env
+vim project/settings.py
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Nosso dataset
+
+        - Registro de empresas da **região norte do Brasil**
+        - Baseado na dataset [socios-brasil @ Brasil.IO](https://brasil.io/dataset/socios-brasil/) (2022-09-11)
+        - 37 colunas, 2.779.230 registros
+        - `empresa-norte.csv.gz`: 368MB (826MB descompactado)
+        - ```
+SELECT uf, COUNT(*)
+FROM dataset_empresa1
+GROUP BY 1
+ORDER BY 2 DESC;
+
+ uf |  count
+----+---------
+ PA | 1100586
+ AM |  569084
+ RO |  385253
+ TO |  364322
+ AC |  129951
+ AP |  124862
+ RR |  105172
+(7 rows)
+```
+        - Código: `dataset/model_empresa1.py`
+          - Tipos: `Text`, `Integer`, `Decimal`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Importando dados (1)
+        ### `Model.objects.create()`
+
+        - ```
+python manage.py import_data single Empresa1 ../data/empresa_norte.csv.gz
+20071it [00:30, 653.24it/s]^C
+```
+        - Nessa velocidade demoraria ~1h10min54s
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Importando dados (2)
+        ### `Model.objects.bulk_create()`
+
+        - ```
+python manage.py import_data bulk Empresa1 ../data/empresa_norte.csv.gz
+81000it [00:30, 2684.54it/s]^C
+```
+        - Nessa velocidade demoraria ~17min15s
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Importando dados (3)
+        ### `rows.plugins.postgresql.pgimport()`
+
+        - ```
+python manage.py import_data pgimport Empresa1 ../data/empresa_norte.csv.gz
+2779230 rows imported: 866Mbytes [00:28, 30.1Mbytes/s]
+```
+        - ~99.2k registros/s
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## pgimport, pgexport
+
+        - Código: `dataset/management/commands/import_data.py`
+        - ```
+time rows pgexport \
+    --is-query \
+    $DATABASE_URL \
+    "SELECT * FROM dataset_empresa1 WHERE uf = 'AM'" \
+    empresas-amazonas.csv.gz
+```
+        - 19.9s, 175MB (75MB compactado)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Modelagem (1)
+
+        - Guardar os dados nos tipos mais adequados nos ajuda a:
+          - Ocupar menos espaço (menor custo)
+          - Retornar consultas mais rapidamente
+          - Usar funcionalidades que simplificam nossa vida
+        - `./column_size.sh | grep dataset_empresa1`
+        - `./table_size.sh`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Modelagem (2)
+        ### Melhores tipos de dados
+
+        - Aprenda sobre seus dados e use os tipos mais adequados
+        - `SELECT MIN(codigo_natureza_juridica), MAX(codigo_natureza_juridica) FROM dataset_empresa1`
+          - Min: 1015, Max: 8885
+        - Tipos inteiros:
+          - `SmallIntegerField`: -32.768 a 32.767
+          - `IntegerField`: -2.147.483.648 a 2.147.483.647
+          - `BigIntegerField`: -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807
+        - Código: `diff dataset/model_empresa{1,2}.py`
+        - Novo tipo: `SmallInteger`
+        - `./table_size.sh`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Modelagem (3)
+        ### Qual o tamanho do ID?
+
+        - Antes do Django 3.2, o ID de cada registro ocupava 4 bytes (`AutoField`)
+          - Para cada 1M de registros = 4MB (+ índice)
+        - A partir do Django 3.2 (2021-04-06), ocupa 8 bytes (`BigAutoField`)
+          - Para cada 1M de registros = 8MB
+          - Para cada 1G de registros = 4GB **a mais** (+ índice)
+        - ```
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# ou: AppConfig.default_auto_field
+```
+        - Você precisa de um ID sequencial?
+        - Quem sabia disso?
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Modelagem (4)
+        ### Alinhamento
+
+        - Cada valor de uma tupla (registro) é lido usando um alinhamento (8 bytes)
+        - Se o primeiro valor de uma tupla ocupa 1 byte, precisaremos de um preenchimento de 7 bytes antes de armazenar o segundo
+        - Ou seja: **a ordem das colunas impacta o tamanho ocupado pela tabela**
+        - Veja os artigos:
+          - [Data alignment in PostgreSQL (EDB)](https://www.enterprisedb.com/postgres-tutorials/data-alignment-postgresql)
+          - [On rocks and sand (2nd quadrant)](https://www.2ndquadrant.com/en/blog/on-rocks-and-sand/)
+        - Código: `diff dataset/model_empresa{2,3}.py`
+        - `./table_size.sh`
+        - Quem sabia disso?
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Modelagem (5)
+        ### O poder do PostgreSQL
+
+        - Tipos:
+          - `ArrayField`, `HStoreField`, `JSONField`, `IntegerRangeField`, `DateTimeRangeField`, ...
+        - Índices:
+          - `BloomIndex`, `BrinIndex`, `BTreeIndex`, `GinIndex`, `GistIndex`, `HashIndex`, `SpGistIndex`
+        - Busca por texto completo:
+          - `SearchVector`, `SearchQuery`, `SearchRank`, `SearchHeadline`
+        - Veja mais [na documentação do Django](https://docs.djangoproject.com/en/4.1/ref/contrib/postgres/)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Métricas
+        - Meça antes de otimizar
+        - `EXPLAIN SELECT ...`
+        - [sqlprint](https://djangosnippets.org/snippets/290/)
+        - [Django debug toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/)
+        - [pghero](https://github.com/ankane/pghero)
+        - Saber SQL é fundamental (o ORM não te ajudará sempre)
+          - Nem sempre consultas são otimizadas (principalmente analíticas)
+          - Cuidado com SQL injection :)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## JOINs
+
+        - Evite tabelas de mapeamento que não mudam
+          - Use `choices=...`
+        - Prefira IDs globais (se possível, gerados *offline*)
+        - Palestra na [pgconfbr22](https://www.youtube.com/channel/UC75_sI4_2gZF76L6BIX9Lew/videos): Conciliação de datasets públicos com URLid
+        - Selecione apenas o necessário: `.values`
+          - A rede entre sua aplicação e o banco agradece :)
+        - Execute menos consultas com o `.select_related`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Índices
+        - "Resumo" dos valores de uma ou mais colunas (com ou sem condições) que aponta
+          para os registros que a possuem (como o índice remissivo dos livros)
+        - Prós: fica mais fácil encontrar os registros e recuperar os valores
+        - Contras: espaço ocupado e escrita mais lenta
+        - Índices compostos (armazenam mais de uma coluna)
+          - `index_together = (("uf", "codigo_municipio"), ("uf", "cnpj"))`
+        - [Índices
+        parciais](https://docs.djangoproject.com/en/4.1/ref/models/indexes/#condition) (incide apenas sobre alguns registros)
+          - `Index("codigo_municipio", condition=Q(uf="AM"))`
+        - Existem tipos diferentes de índice
+          - Cada um será melhor para um caso diferente
+        - Nem sempre o postgres vai usar o índice!
+          - Dependerá dos dados, da disposição deles no disco e das estatísticas
+        - [use-the-index-luke.com](https://use-the-index-luke.com/)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Busca por texto completo
+        ### *Full-text search*
+
+        - Construir um vetor de busca com as colunas desejadas
+        - Fazer uma consulta com o termo de busca desejado
+          - `[...] WHERE to_tsvector(razao_social || nome_fantasia) @@ to_tsquery('restaurante')`
+        - Opção: armazenar o vetor pré-calculado numa coluna do tipo `tsvector`
+          - No Django: `SearchVectorField`
+          - Não se esqueça de indexar essa coluna com `GinIndex`
+        - Exemplo de implementação (tela de busca)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Gatilhos
+        ### *Triggers*
+
+        - Formas do banco de dados fazer tarefas automaticamente
+          - MUITO mais rápido que fazer na aplicação
+        - Exemplo: preencher o vetor de busca quando um registro for INSERIDO
+        - ```
+CREATE TRIGGER tgr_empresa4_search
+  BEFORE INSERT OR UPDATE
+  ON dataset_empresa4
+  FOR EACH ROW EXECUTE PROCEDURE
+  tsvector_update_trigger(search_data, 'pg_catalog.portuguese', razao_social, nome_fantasia)
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Outros cuidados
+
+        - Qual a versão do PostgreSQL?
+        - Entenda os parâmetros do [postgresql.conf](https://postgresqlco.nf/)
+        - Aprenda sobre auto vacuum e estatísticas
+          - `COUNT(*)` com dead tuples: 4.045s
+          - `COUNT(*)` sem dead tuples: 0.296s
+        - A rede/conexão entre o Django e o PostgreSQL também influencia
+      </section>
+
+      <section>
+        <img src="images/pgconfbr.png" width="100%">
+        <br>
+        <a href="https://twitter.com/pgconfbr">twitter.com/pgconfbr</a>
+        <br>
+        <a href="https://www.pgconf.com.br/">pgconf.com.br</a>
+      </section>
+
+      <section>
+        <h3>Dúvidas?</h3>
+        <br>
+        <br>
+        <h3>
+          {<a href="https://twitter.com/turicas">twitter</a>,
+          <br>
+          <a href="https://github.com/turicas">github</a>,
+          <br>
+          <a href="https://youtube.com/turicas">youtube</a>,
+          <br>
+          <a href="https://slideshare.net/turicas">slideshare</a>,
+          <br>
+          <a href="https://instagram.com/turicas">instagram</a>}
+          <br>
+          /<b>turicas</b>
+        </h3>
+        <h4>
+          <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+        </h4>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
