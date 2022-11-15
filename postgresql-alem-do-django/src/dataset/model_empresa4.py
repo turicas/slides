@@ -9,12 +9,23 @@ from . import choices
 class EmpresaQuerySet(models.QuerySet):
     def search(self, term):
         qs = self
+
         if term:
             query = SearchQuery(term, config="pg_catalog.portuguese", search_type="websearch")
             qs = qs.annotate(search_rank=SearchRank(models.F("search_data"), query)).filter(search_data=query)
-            # Using `qs.query.add_ordering` will APPEND ordering fields instead
-            # of OVERWRITTING (as in `qs.order_by`).
-            qs.query.add_ordering("-search_rank")
+            # Overwriting `qs.query.order_by` to APPEND ordering field
+            # instead of OVERWRITTING (as in `qs.order_by`). We append directly
+            # (instead of using `qs.query.add_ordering` because the search rank
+            # must have precedence over the other ordering.
+            qs.query.order_by = tuple(["-search_rank"] + list(qs.query.order_by))
+        return qs
+
+    def order_by(self, *args, **kwargs):
+        # We must force search_rank ordering, since some operations will add
+        # ordering after calling `.search` (like in Django Admin)
+        qs = super().order_by(*args, **kwargs)
+        if "-search_rank" in qs.query.order_by and qs.query.order_by[0] != "-search_rank":
+            qs.query.order_by = tuple(["-search_rank"] + [item for item in qs.query.order_by if item != "-search_rank"])
         return qs
 
 

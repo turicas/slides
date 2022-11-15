@@ -370,7 +370,7 @@ FROM t1
           - Defina como o `raw_id` será criado, como:
             - `SUBSTR(clean(cpf), 4, 6) || '-' || UPPER(slug(nome))`
           - Gere uma string com a URL: `base-url/entity/vversion/raw-id`
-            - Ex: `https://id.brasil.io/person/v1/456789-JOSE-CARLOS-DA-SILVA`
+            - Ex: `https://id.brasil.io/person/v1/456789-JOSE-CARLOS-DA-SILVA/`
           - Gere o UUID5 (namespace URL) com a URL acima
         </section>
 
@@ -382,7 +382,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 SELECT uuid_generate_v5(
   uuid_ns_url(),
-  'https://id.brasil.io/person/v1/456789-JOSE-CARLOS-DA-SILVA'
+  'https://id.brasil.io/person/v1/456789-JOSE-CARLOS-DA-SILVA/'
 );
 ```
         </section>
@@ -395,7 +395,7 @@ import uuid
 
 object_uuid = uuid.uuid5(
     uuid.NAMESPACE_URL,
-    "https://id.brasil.io/person/v1/456789-JOSE-CARLOS-DA-SILVA"
+    "https://id.brasil.io/person/v1/456789-JOSE-CARLOS-DA-SILVA/"
 )
 ```
         </section>
