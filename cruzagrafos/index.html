@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      CruzaGrafos
+    </title>
+
+    <meta name="description" content="CruzaGrafos">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <style type="text/css">
+      code.sql, code.python {
+        font-size: 2em !important;
+        line-height: 1.25em !important;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+      .reveal pre {
+        width: 150%;
+        margin-left: -25%;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2> CruzaGrafos </h2>
+          <br>
+
+          <h2>
+            <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4> 01 de julho de 2023 </h4>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:turicas@brasil.io">turicas@brasil.io</a></h3>
+      </section>
+
+      <section>
+        <img src="images/pycafe_qrcode.png" width="100%">
+      </section>
+
+      <section>
+        <h2> Brasil.IO </h2>
+
+        <img src="images/logo_brasil.io.png" width="75%">
+
+        <blockquote>
+          &ldquo;
+          Restringir acesso a dados públicos é elitizar a democracia.
+          &rdquo;
+        </blockquote>
+        -- <a href="https://brasil.io/manifesto">Manifesto Brasil.IO</a>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## CruzaGrafos
+
+        - Ideia + protótipo em 2019
+        - Google News Initiative
+        - Dados do Brasil.IO
+        - URLid
+        - Interface
+      </section>
+
+      <section>
+        <h2> Protótipo </h2>
+        <img src="images/grafo-odebrecht.jpg" width="75%">
+      </section>
+
+      <section>
+        <h2> Dados disponíveis </h2>
+        <img src="images/cg-dados.png" width="75%">
+      </section>
+
+      <section>
+        <h2> Busca </h2>
+        <ul>
+          <li> Nome (social, urna, fantasia), razão social </li>
+          <li> CPF/CNPJ </li>
+        </ul>
+        <img src="images/cg-busca.png" width="75%">
+      </section>
+
+      <section>
+        <h2> Relações diretas + dados do objeto </h2>
+        <img src="images/cg-grafo.png" width="100%">
+      </section>
+
+      <section>
+        <h2> Detalhes + links (pessoa física) </h2>
+        <img src="images/cg-links-1.png" width="50%">
+      </section>
+
+      <section>
+        <h2> Detalhes + links (candidatura) </h2>
+        <img src="images/cg-links-2.png" width="50%">
+      </section>
+
+      <section>
+        <h2> Detalhes + links (empresa) </h2>
+        <img src="images/cg-links-3.png" width="40%">
+      </section>
+
+      <section>
+        <h2> Bens declarados </h2>
+        <img src="images/cg-bens-declarados.png" width="100%">
+      </section>
+
+      <section>
+        <h2> Navegação nas relações </h2>
+        <img src="images/cg-relacoes.png" width="100%">
+      </section>
+
+      <section>
+        <h2> Exportar dados </h2>
+        <img src="images/cg-exportar-planilha.png" width="50%">
+      </section>
+
+      <section>
+        <h2> Busca de caminhos </h2>
+        <img src="images/cg-caminho-1.png" width="50%">
+      </section>
+
+      <section>
+        <h2> Busca de caminhos (2) </h2>
+        <img src="images/cg-caminho-2.png" width="100%">
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Futuro
+
+        - Novas funcionalidades
+          - Busca avançada
+          - Colaboração
+        - Novas bases de dados
+          - Dívida ativa da União
+          - Doadores de campanha
+          - Gastos de campanha
+      </section>
+
+      <section>
+        <h3>Dúvidas?</h3>
+        <br>
+        <br>
+        <h3>
+          {<a href="https://twitter.com/turicas">twitter</a>,
+          <br>
+          <a href="https://github.com/turicas">github</a>,
+          <br>
+          <a href="https://youtube.com/turicas">youtube</a>,
+          <br>
+          <a href="https://slideshare.net/turicas">slideshare</a>,
+          <br>
+          <a href="https://instagram.com/turicas">instagram</a>}
+          <br>
+          /<b>turicas</b>
+        </h3>
+        <h4>
+          <a href="mailto:turicas@brasil.io">turicas@brasil.io</a>
+        </h4>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
