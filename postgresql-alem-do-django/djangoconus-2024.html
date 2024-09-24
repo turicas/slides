@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      PostgreSQL Beyond Django: Strategies to Get Max Performance
+    </title>
+
+    <meta name="description" content="PostgreSQL Beyond Django: Strategies to Get Max Performance">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <style type="text/css">
+      code.sql, code.python {
+        font-size: 2em !important;
+        line-height: 1.25em !important;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+      .reveal pre {
+        width: 150%;
+        margin-left: -25%;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            PostgreSQL Beyond Django: Strategies to Get Max Performance
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4> Septembeer 24, 2024 </h4>
+          <a href="https://2024.djangocon.us/">DjangoCon US 2024 - Durham, NC</a>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, nice to meet you! =)</h2>
+          <h3>Follow me:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a></h3>
+      </section>
+
+      <section>
+        <h2>Free Software &amp; Python</h2>
+        <h3>(since 2004/2005)</h3>
+        <p>
+          <a href="http://www.gnu.org/">
+            <img width="35%" src="images/gnu.png">
+          </a>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <a href="http://www.python.org/">
+            <img width="35%" src="images/logo_python.png">
+          </a>
+        </p>
+      </section>
+
+      <section>
+        <img src="images/pycafe_qrcode.png" width="100%">
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Agenda
+
+        - Our setup and dataset
+        - General advice
+        - How data modeling affects performance
+        - Full-text search
+        - Best way to ingest data
+          - `bulk_insert` is slow
+      </section>
+
+      <section data-markdown>
+        ## Content
+        ### Take a picture :)
+        - Slides: [bit.ly/turicas-dcus24](https://bit.ly/turicas-dcus24)
+        - Code: [github.com/PythonicCafe/djpg-example](https://github.com/PythonicCafe/djpg-example)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Our setup
+
+        - Docker compose (`web` and `db` services)
+        - Python 3.11
+        - Django 4.2
+        - psycopg2 2.9.9
+        - PostgreSQL 16
+        - [rows](https://github.com/turicas/rows/) @ develop
+        - Template: [gh:PythonicCafe/cookiecutter-dokku-django](https://github.com/PythonicCafe/cookiecutter-dokku-django)
+      </section>
+
+      <section>
+        <h2> Brasil.IO </h2>
+        <img src="images/logo_brasil.io.png" width="75%">
+        <blockquote>
+          &ldquo;
+          Restricting access to public data is elitizing democracy.
+          &rdquo;
+        </blockquote>
+        -- <a href="https://brasil.io/manifesto">Brasil.IO Manifesto</a>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## The dataset
+
+        - [Brazilian company registry](https://dados.gov.br/dados/conjuntos-dados/cadastro-nacional-da-pessoa-juridica---cnpj)
+          - Only the "company" table
+          - Data already cleaned by [this script](https://github.com/turicas/socios-brasil/)
+        - 69+ million rows
+        - 43 columns
+        - `empresa.csv.gz`: 17.3GB uncompressed, 6.7GB compressed
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## General advice (1)
+
+        - Know the problem
+          - Identify the bottleneck before any change
+          - Learn how to use `EXPLAIN` and `psql`
+        - Write better queries
+          - Do not load all the data every time - use `.defer()` + `.values()`
+          - Use JOINs to avoid 1 + N queries - use `.select_related()`
+        - Create indexes when needed - check tools:
+          - [use-the-index-luke.com](https://use-the-index-luke.com/)
+          - Use [partial](https://docs.djangoproject.com/en/4.1/ref/models/indexes/#condition) and compound
+          - [sqlprint](https://djangosnippets.org/snippets/290/)
+          - [Django debug toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/)
+          - [pghero](https://github.com/ankane/pghero)
+        - Avoid mapping tables that don't change often (use `choices=...`)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## General advice (2)
+
+        - Use the same software, regardless of the environment
+          - Use postgres for testing
+            - DO NOT use SQLite for "speeding up tests"
+          - Develop using the same version as in staging/production
+        - Upgrade to the latest stable version!
+          - If your provider doesn't support it, consider migrating to another one
+        - Know and control your infrastructure and data flow:
+          - Understand the parameters of [postgresql.conf](https://postgresqlco.nf/) - [pgtune](https://pgtune.leopard.in.ua/)
+          - Use postgres's full-text search instead of other solutions
+          - Use [procrastinate](https://procrastinate.readthedocs.io/en/stable/howto/django.html) (instead of Celery + Redis) if possible
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Difference between versions
+        ### Save on infrastructure using fewer bytes
+
+        - postgres 12:
+          - table size: 13 GB
+          - index size: 5140 MB
+        - postgres 13:
+          - table size: 13 GB
+          - index size: 4262 MB
+        - Save 5%
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## The `dataset` app
+
+        - 1 table, 5 different models (each one with a little improvement)
+        - 1 view to filter/search rows
+        - 1 management command to import data
+          - `python manage.py import_data`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## The 1st implementation: lazy
+
+        - Uses Django primary key
+        - Types: `UUID`, `Date`, `Text`, `Integer`, `Decimal`, `Boolean`
+        - No indexes
+        - Space used:
+          - Table: 14 GB
+          - Index: 1342 MB
+          - Total: 16 GB
+        - Code: `dataset/model_empresa1.py`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## What's the size of the ID?
+
+        - Do you need a sequential ID?
+        - Before Django 3.2, the ID of each record used 4 bytes (`AutoField`)
+          - For every 1M rows = 4MB (+ index)
+        - From Django 3.2 (2021-04-06), it uses 8 bytes (`BigAutoField`)
+          - For every 100M rows = 400MB **more** (+ index)
+        - ```
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# or: AppConfig.default_auto_field
+```
+        - Example
+        - Are your IDs actually yours?
+          - Prefer offline-generated IDs
+          - [urlid.org](https://urlid.org/)
+        - Who knew about this already?
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## The 2nd implementation: compact
+
+        - Doesn't use Django's PK (there's a PK column already)
+        - Using `SmallIntegerField` instead of `IntegerField`:
+          - Save space: 2B vs 4B (`2 * number_of_int_columns * n_rows`)
+          - Queries return faster
+          - For each 100M rows, saving 10 bytes per row = 1GB saved!
+        - Integer types:
+          - `SmallIntegerField`: -32,768 to 32,767
+          - `IntegerField`: -2,147,483,648 to 2,147,483,647
+          - `BigIntegerField`: -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+        - Space used:
+          - Table: 13 GB
+          - Index: 2409 MB
+          - Total: 15 GB
+          - Saved ~2.8%
+        - Code: `dataset/model_empresa2.py`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## The 3rd implementation: aligned
+
+        - Column order can affect used space!
+          - First: fixed-size columns (bigger to smaller), then variable-size
+          - Read about [data alignment in postgres](https://www.enterprisedb.com/postgres-tutorials/data-alignment-postgresql)
+        - Space used:
+          - Table: 12 GB
+          - Index: 2409 MB
+          - Total: 15 GB
+          - Saved ~3%
+        - Code: `dataset/model_empresa3.py`
+        - Who knew about this already?
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## The 4th implementation: Full-Text Search
+
+        - Added `search_data` search vector field
+        - `GinIndex`
+        - Added a trigger (migration)
+          - Way for the database to perform tasks automatically
+          - MUCH faster than doing it in the application
+        - Space used:
+          - Table: 17 GB
+          - Index: 4311 MB
+          - Total: 21 GB
+          - Used more space, but **there's a new feature**
+        - Code: `dataset/model_empresa4.py`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## The 5th implementation: no SearchVectorField
+
+        - No trigger
+        - No `search_data` field (less space used)
+        - Compound `GinIndex` (result of an expression instead of a column value)
+        - Space used:
+          - Table: 13 GB
+          - Index: 4262 MB
+          - Total: 17 GB
+          - Same feature, ~20% less space than 4th impl.
+        - Code: `dataset/model_empresa5.py`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## More postgres-specific features
+
+        - Types:
+          - `ArrayField`, `HStoreField`, `JSONField`, `IntegerRangeField`, `DateTimeRangeField`, ...
+        - Indexes:
+          - `BloomIndex`, `BrinIndex`, `BTreeIndex`, `GinIndex`, `GistIndex`, `HashIndex`, `SpGistIndex`
+        - Full-text search:
+          - `SearchVector`, `SearchQuery`, `SearchRank`, `SearchHeadline`
+        - See more in the [Django documentation](https://docs.djangoproject.com/en/4.2/ref/contrib/postgres/)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Importing data (1)
+        ### `Model.objects.create()`
+
+        - ```
+python manage.py import_data single Empresa1 /data/empresa.csv.gz
+9840it [00:14, 688.10it/s]^C
+```
+        - At this speed, it would take 1d 1h 17min
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Importing data (2)
+        ### `Model.objects.bulk_create()`
+
+        - ```
+python manage.py import_data bulk Empresa1 /data/empresa.csv.gz
+203999it [00:30, 6739.46it/s]^C
+```
+        - At this speed, it would take 2h 35min
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Importing data (3)
+        ### `rows.plugins.postgresql.pgimport()`
+
+        - Calls `psql` as a subprocess and executes `COPY`
+        - ```
+python manage.py import_data pgimport Empresa1 /data/empresa.csv.gz
+62634863 rows imported: 17.3Gbytes [08:29, 33.9Mbytes/s]
+```
+        - 8min 20s, ~123054 rows/s
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## pgimport, pgexport
+
+        - ```
+time rows pgexport \
+    --is-query \
+    $DATABASE_URL \
+    "SELECT * FROM dataset_empresa1 WHERE uf = 'AM'" \
+    empresas-amazonas.csv.gz
+```
+        - 19.9s, 175MB (75MB compressed)
+      </section>
+
+      <section>
+        <h3>Questions?</h3>
+        <br>
+        <br>
+        <h3>
+          {<a href="https://twitter.com/turicas">twitter</a>,
+          <br>
+          <a href="https://github.com/turicas">github</a>,
+          <br>
+          <a href="https://youtube.com/turicas">youtube</a>,
+          <br>
+          <a href="https://slideshare.net/turicas">slideshare</a>,
+          <br>
+          <a href="https://instagram.com/turicas">instagram</a>}
+          <br>
+          /<b>turicas</b>
+        </h3>
+        <h4>
+          <a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a>
+        </h4>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
