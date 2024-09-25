@@ -28,8 +28,8 @@ CREATE VIEW size_report AS
     , pg_size_pretty(index_bytes) AS index_size
     , pg_size_pretty(toast_bytes) AS toast_size
     , pg_size_pretty(table_bytes) AS table_size
-    , ROUND(table_bytes::numeric / total_bytes::numeric, 2) AS table_size_ratio
-    , ROUND(total_bytes::numeric / row_estimate::numeric, 2) AS avg_row_size
+    , CASE WHEN total_bytes > 0 THEN ROUND(table_bytes::numeric / total_bytes::numeric, 2) ELSE 0 END AS table_size_ratio
+    , CASE WHEN row_estimate > 0 THEN ROUND(total_bytes::numeric / row_estimate::numeric, 2) ELSE 0 END AS avg_row_size
     , total_bytes
     , index_bytes
     , toast_bytes
