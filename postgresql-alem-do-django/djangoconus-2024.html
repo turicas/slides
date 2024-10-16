@@ -201,6 +201,7 @@
           - If your provider doesn't support it, consider migrating to another one
         - Know and control your infrastructure and data flow:
           - Understand the parameters of [postgresql.conf](https://postgresqlco.nf/) - [pgtune](https://pgtune.leopard.in.ua/)
+            - Local config also matter!
           - Use postgres's full-text search instead of other solutions
           - Use [procrastinate](https://procrastinate.readthedocs.io/en/stable/howto/django.html) (instead of Celery + Redis) if possible
       </section>
@@ -370,6 +371,8 @@ python manage.py import_data pgimport Empresa1 /data/empresa.csv.gz
 62634863 rows imported: 17.3Gbytes [08:29, 33.9Mbytes/s]
 ```
         - 8min 20s, ~123054 rows/s
+        - Sometimes it's useful to disable a table's indexes, ingest data and then reindex the table
+        - (live demo, if have time)
       </section>
 
       <section class="fragments" data-markdown>
