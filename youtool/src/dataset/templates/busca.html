@@ -1,0 +1,85 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Álvaro Justen">
+    <title>Busca de empresas</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="col-lg-8 mx-auto p-3 py-md-5">
+      <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+      <h1>Busca</h1>
+      </header>
+
+      <main>
+      <div class="row">
+        {% if error %}
+        <p>{{ error }}</p>
+        {% endif %}
+        <form method="GET" action="">
+          <div class="form-group">
+            <label for="model">Model</label>
+            <select name="model">
+              {% for option in models %}
+              <option value="{{ option }}"{% if model and option == model %} selected{% endif %}> {{ option }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="uf">UF</label>
+            <select name="uf">
+              {% for option in ufs %}
+              <option value="{{ option }}"{% if uf and option == uf %} selected{% endif %}> {{ option }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="busca">Busca (razão social/nome fantasia)</label>
+            <input type="text" class="form-control" name="termo"
+            {% if termo %} value="{{ termo }}"{% endif %}>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </div>
+
+      {% if resultados %}
+      <div>
+        Total de resultados (empresas ativas): {{ resultados|length }}
+        {% if total_time %} em {{ total_time }}s {% endif %}
+
+        <table>
+          <tr>
+            <th> CNPJ </th>
+            <th> Razão social </th>
+            <th> Nome fantasia </th>
+            <th> Município/UF </th>
+            <th> Atividade principal </th>
+          </tr>
+          {% for resultado in resultados %}
+          <tr>
+            <td>
+              <a target="_blank"
+                href="http://localhost:8000/admin/dataset/empresa4/{{ resultado.uuid }}/change">
+                {{ resultado.cnpj }}
+              </a>
+            </td>
+            <td> {{ resultado.razao_social }} </td>
+            <td> {{ resultado.nome_fantasia|default_if_none:"" }} </td>
+            <td> {{ resultado.get_codigo_municipio_display }}/{{ resultado.uf }} </td>
+            <td> {{ resultado.get_cnae_principal_display }} </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      {% endif %}
+      </main>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>
