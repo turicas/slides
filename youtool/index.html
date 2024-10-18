@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      youtool: dados do YouTube fáceis p/ combater a desinformação
+    </title>
+
+    <meta name="description" content="youtool: dados do YouTube fáceis p/ combater a desinformação ">
+    <meta name="author" content="Álvaro Justen aka Turicas e Ana Paula Sales">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <style type="text/css">
+code.sql, code.python {
+  font-size: 2em !important;
+  line-height: 1.25em !important;
+}
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+      text-transform: none !important;
+    }
+    .reveal section img {
+      border: none !important;
+      box-shadow: none !important;
+    }
+    .reveal .progress span {
+      background: #FF0000 !important;
+    }
+    code { font-size: 25px !important; }
+    .reveal blockquote {
+      font-size: 1.2em;
+    }
+    .reveal pre {
+      width: 150%;
+      margin-left: -25%;
+    }
+    </style>
+
+    <!--[if lt IE 9]>
+      <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            youtool: dados do YouTube fáceis p/ combater a desinformação
+          </h2>
+          <br>
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+            <br>&amp;<br>
+            <b>Ana Paula Sales</b>
+          </h2>
+          <br>
+          <h4> 19 de outubro de 2024 </h4>
+          <a href="https://2024.pythonbrasil.org.br/">PythonBrasil 2024 - Rio de Janeiro/RJ</a>
+        </section>
+
+        <section>
+          <h2><pre>$ id turicas</pre></h2>
+            <h2><b>Turicas</b>, prazer! =)</h2>
+            <h3>
+              {<a href="https://linkedin.com/in/turicas">linkedin/in</a>,
+              <br>
+              <a href="https://twitter.com/turicas">xuítter</a>,
+              <br>
+              <a href="https://github.com/turicas">github</a>,
+              <br>
+              <a href="https://youtube.com/turicas">youtube</a>,
+              <br>
+              <a href="https://instagram.com/turicas">instagram</a>}
+              <br>
+              /<b>turicas</b>
+            </h3>
+            <h3><a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a></h3>
+        </section>
+
+        <section>
+          <h2>Álvaro Justen</h2>
+          <h3>Software Livre &amp; Python</h3>
+          <h3>(desde 2004/2005)</h3>
+          <h3>16ª PythonBrasil</h3>
+          <p>
+          <a href="http://www.gnu.org/">
+            <img width="35%" src="images/gnu.png">
+          </a>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <a href="http://www.python.org/">
+            <img width="35%" src="images/logo_python.png">
+          </a>
+          </p>
+        </section>
+
+        <section>
+          <h2><pre>$ id aninhasalesp</pre></h2>
+            <h2><b>Ana Paula</b>, prazer! =)</h2>
+            <h3>
+              {<a href="https://linkedin.com/in/aninhasalesp">linkedin/in</a>,
+              <br>
+              <a href="https://github.com/aninhasalesp">github</a>,
+              <br>
+              <a href="https://instagram.com/aninhasalesp">instagram</a>}
+              <br>
+              /<b>aninhasalesp</b>
+            </h3>
+            <h3><a href="mailto:ana@pythonic.cafe">ana@pythonic.cafe</a></h3>
+        </section>
+
+        <section data-markdown>
+          ![](images/pycafe_qrcode.png)
+
+          - [Brasil.IO](https://brasil.io/)
+          - [CruzaGrafos](https://cruzagrafos.abraji.org./br), com [Abraji](https://abraji.org.br/)
+          - [VacinaBR](https://vacinabr.org.br/), com [IQC](https://iqc.org.br/)
+          - [LupaScan](https://scan.lupa.news/), com [Agência Lupa](https://lupa.news/)
+          - [Monitor da Fiscalização do Desmatamento](https://plataforma.alerta.mapbiomas.org/monitor-da-fiscalizacao), com [Mapbiomas](https://mapbiomas.org/)
+          - [pythonic.cafe](https://pythonic.cafe)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Agenda
+
+          - Investigações jornalísticas
+          - Aplicações dos dados
+          - YouTool: funções básicas
+          - YouTool pela linha de comando
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## [bit.ly/youtool-pybr2024](http://bit.ly/youtool-pybr2024)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Jornalismo investigativo
+
+          - Monitoramento de vídeos deletados do YouTube, por Guilherme Felitti
+          - [Disarming Disinformation](https://www.icfj.org/our-work/disarming-disinformation-empowering-truth), do [ICFJ](https://www.icfj.org/) em parceria com [Instituto Serrapilheira](https://serrapilheira.org/)
+            - Trabalhos resultaram em 9 matérias em veículos brasileiros e internacionais
+            - Análise de milhares de horas de vídeos e podcasts
+            - Fevereiro a julho de 2023
+          - Conteúdos publicados por pessoas eleitas, no LupaScan
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Projetos
+
+          - Médicos Negacionistas
+            - Liderado por **Fabiana Cambricoli** ([Estadão](https://estadao.com.br/))
+            - Em conjunto com [Ciência Suja](https://www.cienciasuja.com.br/)
+          - Venda de curas milagrosas pela Internet
+            - Liderado por **Jaqueline Sordi** ([Instituto Questão de Ciência](https://iqc.org.br/))
+            - Em conjunto com [Veja Saúde](https://saude.abril.com.br/)
+          - Agronegócio e a negação do aquecimento global
+            - Liderado por **Giovana Girardi** ([Agência Pública](https://apublica.org/))
+            - Em conjunto com [Climainfo](https://climainfo.org.br/)
+        </section>
+
+        <section data-markdown>
+          ## Matérias
+
+          - [Associação de médicos condenada por propaganda pró-cloroquina agora aposta em discurso antivacina (Estadão)](https://www.estadao.com.br/saude/associacao-de-medicos-condenada-por-propaganda-pro-cloroquina-agora-aposta-em-discurso-antivacina/)
+          - [O Rei Lair (Ciência Suja)](https://www.cienciasuja.com.br/temporada-3/o-rei-lair)
+          - [Jolivi: o lucrativo e obscuro mercado das falsas curas (Revista Questão de Ciência)](https://revistaquestaodeciencia.com.br/dossie-questao/2023/06/30/jolivi-o-lucrativo-e-obscuro-mercado-das-falsas-curas)
+          - [Empresas lucram vendendo falsas curas naturais na internet (Veja)](https://veja.abril.com.br/saude/empresas-lucram-vendendo-falsas-curas-naturais-na-internet)
+          - [Mercadores da cura (Veja Saúde)](https://saude.abril.com.br/medicina/mercadores-da-cura)
+          - [Jolivi: The shady and highly profitable online market for false cures in Brazil (The Skeptic)](https://www.skeptic.org.uk/2023/11/jolivi-the-shady-and-highly-profitable-online-market-for-false-cures-in-brazil/)
+          - [Agronegócio e extrema direita impulsionam máquina de fake news sobre aquecimento global (Agência Pública)](https://apublica.org/2023/06/agronegocio-e-extrema-direita-impulsionam-maquina-de-fake-news-sobre-aquecimento-global/)
+          - [Máquina da desinformação climática é patrocinada pelo agronegócio e a extrema-direita (Climainfo)](https://climainfo.org.br/2023/07/02/maquina-da-desinformacao-climatica-e-patrocinada-pelo-agronegocio-e-a-extrema-direita/)
+          - [In Brazil, Agribusiness Lobby and Far-Right Politicians Sow Climate Disinformation (Nacla)](https://nacla.org/brazil-agribusiness-lobby-and-far-right-politicians-sow-climate-disinformation)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Técnicas utilizadas
+
+          - Coleta de dados ([youtool](https://github.com/PythonicCafe/youtool))
+            - **Encontrar vídeos a serem baixados**
+            - **Baixar transcrições automáticas do YouTube (se o vídeo estiver no YouTube)**
+            - **Baixar áudios dos vídeos**
+          - Uso de modelo de IA para transcrição de áudio ([OpenAI Whisper](https://github.com/openai/whisper))
+            - [Veja notebook de exemplo](https://gist.github.com/turicas/da12b3c8e67a27e088d12d9c41be65d9)
+          - Técnicas de LLM para resumo de transcrições (usando o GPT 3.5 Turbo)
+            - [Veja *prompts*](https://colab.research.google.com/drive/1BTbW1ttT6_R2n0SrQDoNRLgktUtDoB2w?usp=sharing#scrollTo=BCTi4Br5z9jA)
+          - Banco de dados para sistema de busca ([postgres *full-text search*](https://www.postgresql.org/docs/current/textsearch.html))
+            - [Veja palestra na PythonBrasil 2022](https://www.youtube.com/watch?v=tS5f7Mo6lTA)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## youtool
+
+          - Facilita acesso a API e scraping do YouTube:
+            - Requisições em lote
+            - Utilização de diversas chaves de API
+            - Informações de canais, playlists e vídeos
+            - Baixar vídeo, áudio e transcrições automáticas
+            - Comentários e live chat
+            - API de Busca e top vídeos
+          - *Command-line interface* (CLI):
+            - Desfaio técnico
+            - Subcomandos: `youtool --help`
+            - Lançaremos hoje!
+          - [github.com/PythonicCafe/youtool](https://github.com/PythonicCafe/youtool)
+          - `pip install youtool`
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Descobrindo IDs de canais
+
+```python
+# Não precisa de chave da API!
+import os
+from youtool import YouTube
+# Você pode passar mais de uma chave
+yt = YouTube(api_keys=[os.environ.get("YOUTUBE_API_KEY")])
+url = "https://www.youtube.com/@pythonbrasiloficial"
+channel_id = yt.channel_id_from_url(url)  # Scraping
+print(f"ID do canal: {channel_id}")
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Descobrindo IDs de canais (CLI)
+
+```shell
+# Não precisa de chave da API!
+youtool channel-id \
+  https://www.youtube.com/@pythonbrasiloficial \
+  https://www.youtube.com/c/PythonicCafe
+
+# Outros parâmetros:
+# - Especificar o caminho para salvar como CSV
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Listando playlists de um canal
+
+```python
+# Necessita de uma chave de API do YouTube (gratuita)
+from pprint import pprint
+info = list(yt.channels_infos([channel_id]))[0]
+print("Channel info:")
+pprint(info)
+playlist_id = info["playlist_id"]
+print(f"Playlist ID: {playlist_id}")
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Listando playlists de um canal (CLI)
+
+```shell
+export YOUTUBE_API_KEY=...
+
+youtool channel-info \
+  UCiCQrFh8ckR_LXQyOAsOZiw \
+  UC9rtYzWLlYRfbYjDUDsVmUg
+
+# Outros parâmetros:
+# --api-key
+# --output-file-path
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Listando vídeos de uma playlist
+
+```python
+import datetime
+video_ids = []
+total_videos = 0
+momento_inicial = datetime.datetime(2024, 1, 1, 3, 0, 0, tzinfo=datetime.timezone.utc)
+for video in yt.playlist_videos(playlist_id):
+    if video["published_at"] >= momento_inicial:
+        video_ids.append(video["id"])
+    total_videos += 1
+print(f"Identificados {len(video_ids)} vídeos de um total de {total_videos} nessa playlist")
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Detalhes de um vídeo
+
+```python
+# O método `playlist_videos` não nos fornece todas as informações sobre o vídeo
+videos = list(yt.videos_infos(video_ids))
+print("Informações do primeiro vídeo:")
+pprint(videos[0])
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Detalhes de um vídeo (CLI)
+
+```shell
+export YOUTUBE_API_KEY=...
+
+youtool video-info NtZY3AmsBSk
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Baixando transcrição/áudio/vídeo
+
+```python
+video_ids = ["NtZY3AmsBSk"]
+for status in yt.download_transcriptions(
+    videos_ids=video_ids, language_code="pt", path="transcricoes", batch_size=3,
+):
+    print(status)
+# Troque por `download_audios` ou `download_videos`
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Trabalhando com as transcrições
+
+```python
+from youtool.utils import simplify_vtt
+
+filename = f"transcricoes/{video_ids[0]}.pt.vtt"
+with open(filename) as fobj:
+    vtt = fobj.read()
+simplified = simplify_vtt(vtt)
+for index, line in enumerate(simplified.splitlines()):
+    print(index, line.strip())
+    if index == 20:
+        break
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Baixando transcrição/áudio/vídeo (CLI)
+
+```shell
+# Não precisa de chave de API
+
+youtool video-transcription pt --ids NtZY3AmsBSk
+```
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Colabore!
+
+          ![](images/github-youtool.png)
+          [github.com/PythonicCafe/youtool](https://github.com/PythonicCafe/youtool)
+        </section>
+
+        <section>
+          <h3>Dúvidas?</h3>
+          <br>
+          <h3> <b>*/turicas</b> </h3>
+          <h3> <a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a> </h3>
+          <br>
+          <h3> <b>*/aninhasalesp</b> </h3>
+          <h3> <a href="mailto:ana@pythonic.cafe">ana@pythonic.cafe</a> </h3>
+          <br>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js',
+            condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js',
+            condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js',
+            condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+            callback: function() {
+              Array.prototype.forEach.call(
+                document.querySelectorAll('section.fragments > ul > li'),
+                function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+          { src: 'plugin/highlight/highlight.js', async: true,
+            callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true,
+            condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true,
+            condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
