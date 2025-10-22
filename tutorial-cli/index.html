@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Criando aplicações de linha de comando amáveis
+    </title>
+
+    <meta name="description" content="Criando aplicações de linha de comando amáveis">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <style type="text/css">
+      code.sql, code.python {
+        font-size: 2em !important;
+        line-height: 1.25em !important;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+      .reveal pre {
+        width: 150%;
+        margin-left: -25%;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            Criando aplicações de linha de comando amáveis
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4> 22 de outubro de 2025 </h4>
+          <a href="https://2025.pythonbrasil.org.br/">PythonBrasil 2025 - São Paulo/SP</a>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://bsky.app/profile/turicas.bsky.social">bsky.social</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a></h3>
+      </section>
+
+      <section>
+        <img src="images/pycafe_qrcode.png" width="100%">
+      </section>
+
+      <section>
+        <h2>Software Livre &amp; Python</h2>
+        <h3>(desde 2004/2005)</h3>
+        <p>
+          <a href="http://www.gnu.org/">
+            <img width="35%" src="images/gnu.png">
+          </a>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <a href="http://www.python.org/">
+            <img width="35%" src="images/logo_python.png">
+          </a>
+        </p>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Agenda
+
+        - Definições e contexto histórico
+        - CLI como Usuário(a)
+        - Características amáveis
+        - Características detestáveis
+        - O módulo `argparse` (+ exercícios)
+        - Resumo: Boas Práticas
+        - Sugestões pós-tutorial
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Alinhamento de Expectativas
+
+        - Esse **não é um tutorial para iniciantes em programação**
+        - É necessário:
+          - Saber lógica de programação
+          - Saber programar em Python
+          - Saber usar o terminal de sistemas Unix-like (`cd`, `ls`, `grep` etc.)
+          - Ter Python (3.9+) e um editor de código instalados
+          - Sistema operacional: Unix-like (GNU/Linux, *BSD, Mac OS X) ou Windows com WSL
+            - "Terminal" do Windows não será o foco
+        - Todos(as) são bem-vindos(as), mas o foco para dúvidas será nas pessoas que já sabem os conceitos acima
+        - Os exercícios exigirão muita atenção, digitação e serão cumulativos. Esteja focado(a)
+        - Por conta do tempo, não conseguiremos ir muito profundamente em todos os assuntos, mas existem sugestões com links
+      </section>
+
+      <section data-markdown>
+        # Definições e Contexto Histórico
+      </section>
+
+      <section>
+        <h2>Graphical User Interface (GUI)</h2>
+        <img src="images/gnome-files.png" alt="htop">
+        <br>
+        Exemplo: Gnome Files
+      </section>
+
+      <section>
+        <h2>Terminal User Interface (TUI)</h2>
+        <img src="images/htop.png" alt="htop">
+        <br>
+        Exemplo: <code>htop</code>
+        <br>
+        Quais outros exemplos de TUI vocês conhecem?
+      </section>
+
+      <section>
+        <h2>Command-Line Interface (CLI)</h2>
+        <img src="images/cli-cat.png" alt="Comando cat">
+        <br>
+        Exemplo: <code>cat</code>
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Command-Line Interface (2)
+
+        - CLI não tem "user"
+          - Crie o seu programa para que ele seja usado por outros programas!
+          - "_Human first, machine friendly_"
+        - CLI não é TUI
+        - TUI não é só "janela no terminal": existem programas interativos, como o shell do Python
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Inspirações
+
+        - [The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/html/), por Eric S. Raymond
+        - [Portable Operating System Interface (POSIX)](https://pt.wikipedia.org/wiki/POSIX)
+        - [Command Line Interface Guidelines (CLIG)](https://clig.dev/)
+        - [Programação Shell Linux](https://www.amazon.com.br/Programa%C3%A7%C3%A3o-Shell-Linux-Julio-Cezar/dp/8574528331), por Julio Cezar Neves
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Unix
+        ### O SO mais influente das últimas décadas
+
+        - Criado em 1969 por Ken Thompson e Dennis Ritchie
+        - A linguagem C foi criada para escrever o Unix!
+        - Portável par várias máquinas
+        - Conexão lenta entre terminais e computadores
+        - GNU, por Richard Stallman: o sistema compatível
+        - [Terminal under the hood](https://yakout.io/blog/terminal-under-the-hood/)
+      </section>
+
+      <section data-markdown>
+        # CLI como Usuário(a)
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Pedindo ajuda
+
+        - Alguém **não conhece** o comando `ls`?
+        - `ls --help`
+        - `ls -h`
+        - Quem conhece mais de 5 opções?
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Manuais ❤️
+
+        - `man [seção] comando`
+        - `help comando_embutido`
+        - Busca: `man -k termo`
+        - Convenções:
+          - **bold text**: digite exatamente como está
+          - _italic text_: troque com o valor apropriado
+          - `[-abc]`: argumentos entre `[` e `]` são opcionais
+          - `-a|-b`: opções que não podem ser usadas juntas
+          - `argument ...`: argumento pode ser especificado N vezes
+        - Exemplo: `man ls` (`q` para sair)
+        - Exemplo: `man grep` (`/` para buscar)
+          - `/EXIT` + ENTER
+        - [Mastering Linux Man Pages](https://youtu.be/RzAkjX_9B7E?si=HlkR29qRqOybRcdy) (vídeo, Inglês)
+      </section>
+
+      <section data-markdown>
+        ## Códigos de erro
+
+        - `0` = deu tudo certo!
+        - `1-255` = algum erro aconteceu
+        - Cada número representa algo específico **apenas para aquele programa**!
+
+```
+# Encontrado
+$ grep pythonic index.html
+          <h3><a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a></h3>
+        <h4><a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a></h4>
+$ echo $?
+0
+
+# Não encontrado
+$ grep zig index.html
+$ echo $?
+1
+```
+      </section>
+
+      <section>
+        <h2>Quem não lê manual</h2>
+        <img src="images/cachorro-lab.jpg" alt="Cachorro no laboratório de química">
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Parâmetros e opções
+
+        - Ordem não importa: `ls -lh` = `ls -l -h` = `ls -h -l` = `ls -hl`
+        - Forma longa: `ls --width=60` = `ls --width 60`
+        - Forma curta: `ls -w 60` = `ls -w60`
+      </section>
+
+      <section data-markdown>
+        ## Exemplos na stdlib
+        ```
+$ echo '{"a":123,"b":"aaa"}' > test.json
+$ cat test.json
+{"a":123,"b":"aaa"}
+
+$ python -m json.tool test.json
+{
+    "a": 123,
+    "b": "aaa"
+}
+$ cat test.json | python -m json.tool
+{
+    "a": 123,
+    "b": "aaa"
+}
+
+$ python -m mimetypes test.json
+type: application/json encoding: None
+```
+      </section>
+
+      <section data-markdown>
+        # Características amáveis
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Rules of Unix (1/3)
+
+        - 1- Rule of Modularity: Write simple parts connected by clean interfaces.
+        - 2- Rule of Clarity: Clarity is better than cleverness.
+        - 3- Rule of Composition: Design programs to be connected to other programs.
+        - 4- Rule of Separation: Separate policy from mechanism; separate interfaces from engines.
+        - 5- Rule of Simplicity: Design for simplicity; add complexity only where you must.
+        - 6- Rule of Parsimony: Write a big program only when it is clear by demonstration that nothing else will do.
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Rules of Unix (2/3)
+
+        - 7- Rule of Transparency: Design for visibility to make inspection and debugging easier.
+        - 8- Rule of Robustness: Robustness is the child of transparency and simplicity.
+        - 9- Rule of Representation: Fold knowledge into data so program logic can be stupid and robust.
+        - 10- Rule of Least Surprise: In interface design, always do the least surprising thing.
+        - 11- Rule of Silence: When a program has nothing surprising to say, it should say nothing.
+        - 12- Rule of Repair: When you must fail, fail noisily and as soon as possible.
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Rules of Unix (3/3)
+
+        - 13- Rule of Economy: Programmer time is expensive; conserve it in preference to machine time.
+        - 14- Rule of Generation: Avoid hand-hacking; write programs to write programs when you can.
+        - 15- Rule of Optimization: Prototype before polishing. Get it working before you optimize it.
+        - 16- Rule of Diversity: Distrust all claims for “one true way”.
+        - 17- Rule of Extensibility: Design for the future, because it will be here sooner than you think.
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Rules of Unix
+
+        - "_If you're new to Unix, these principles are worth some meditation_"
+        - "_Software-engineering texts recommend most of them_"
+        - "_Most other operating systems lack the right tools and traditions to turn them into practice_"
+        - Retirado de [The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/html/), por Eric S. Raymond
+          - Inspirado em Ken Thompson, Doug McIlroy, Rob Pike e na filosofia Unix (Usenet)
+      </section>
+
+      <section>
+        <blockquote cite="https://en.wikipedia.org/wiki/Henry_Spencer">
+          &ldquo;
+          Those who do not understand Unix are condemned to reinvent it, poorly.
+          &rdquo;
+        </blockquote>
+          -- <a href="https://en.wikipedia.org/wiki/Henry_Spencer">Henry Spencer</a> (Usenet signature, 1987-11-15)
+      </section>
+
+      <section>
+        <blockquote cite="https://turicas.info/">
+          &ldquo;
+          Those who do not understand Python stdlib are condemned to reinvent it, poorly (and waste Internet traffic
+          and disk space).
+          &rdquo;
+        </blockquote>
+          -- <a href="https://turicas.info">Álvaro Justen</a> (Python Brasil, 2025-10-22)
+      </section>
+
+      <section data-markdown>
+        # Características detestáveis
+      </section>
+
+      <section>
+        <h2>CLI também é UI</h2>
+        <img src="images/cancel-transaction.png" alt="Bad UI">
+      </section>
+
+      <section data-markdown>
+        ## Cria serviço com o nome `--help`
+        ```
+$ dokku postgres:create --help
+       Waiting for container to be ready
+       Creating container database
+       Securing connection to database
+=====> Postgres container created: --help
+=====> --help postgres service information
+       Config dir:          /var/lib/dokku/services/postgres/--help/data
+       Config options:
+       Data dir:            /var/lib/dokku/services/postgres/--help/data
+       Dsn:                 postgres://postgres:6272ceeb9b57335182ad6aef639df714@dokku-postgres---help:5432/__help
+       Exposed ports:       -
+       Id:                  343581fde373f4bb3c22e68b5d6ab4d4f4d5668b953d4c32275caddc967704aa
+       Internal ip:         172.17.0.8
+       Initial network:
+       Links:               -
+       Post create network:
+       Post start network:
+       Service root:        /var/lib/dokku/services/postgres/--help
+       Status:              running
+       Version:             postgres:17.5
+```
+      </section>
+
+      <section data-markdown>
+        ## Ignora parâmetro, sem mostrar erro
+        ```
+dokku plugin:install https://github.com/dokku/dokku-postgres.git blablabla
+[...]
+```
+      </section>
+
+      <section data-markdown>
+        ## Parâmetro obrigatório como opção (--)
+        ```
+$ tree-sitter complete
+error: the following required arguments were not provided:
+  --shell <SHELL>
+
+Usage: tree-sitter complete --shell <SHELL>
+
+For more information, try '--help'.
+(system) turicas@thinkpad:~
+$ tree-sitter complete --help
+Generate shell completions
+
+Usage: tree-sitter complete --shell <SHELL>
+
+Options:
+  -s, --shell <SHELL>  The shell to generate completions for [possible values: bash, elvish, fish, power-shell, zsh, nushell]
+  -h, --help           Print help
+```
+      </section>
+
+      <section data-markdown>
+        ## Ordem das opções influencia
+        ## Não segue padrão de opções longas (--)
+        ```
+
+find . -name '*.pdf' # Funciona
+find -name '*.pdf' . # NÃO FUNCIONA!
+```
+      </section>
+
+      <section data-markdown>
+        ## Erro de documentação
+
+        Pode ser especificada várias vezes, mas é apresentada como "stringArray":
+        ```
+$ docker build --help | grep build-arg
+      --build-arg stringArray         Set build-time variables
+```
+      </section>
+
+      <section data-markdown>
+        ## Inconsistência entre opções curtas e longas
+
+        ```
+mariadb --help | grep -A 2 '\--password'
+  -p, --password[=name]
+                      Password to use when connecting to server. If password is
+                      not given it's asked from the tty.
+
+$ mariadb -u $MARIADB_USER -p $MARIADB_PASSWORD
+Enter password:
+ERROR 1045 (28000): Access denied for user 'mariadb'@'localhost' (using password: YES)
+
+$ mariadb -u $MARIADB_USER -p=$MARIADB_PASSWORD
+ERROR 1045 (28000): Access denied for user 'mariadb'@'localhost' (using password: YES)
+
+$ mariadb -u $MARIADB_USER --password $MARIADB_PASSWORD
+Enter password: ERROR 1045 (28000): Access denied for user 'mariadb'@'localhost' (using password: NO)
+
+$ mariadb -u $MARIADB_USER --password=$MARIADB_PASSWORD
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 41
+Server version: 11.7.2-MariaDB-ubu2404 mariadb.org binary distribution
+```
+      </section>
+
+      <section data-markdown>
+        ## Inconsistência na posição de parâmetro que não existe
+        ```
+# Erro
+$ dokku postgres:logs -f pg17_brasil-io-prd
+ !     Postgres service -f does not exist
+
+# Sem erro, mas não funciona como o esperado
+$ dokku postgres:logs pg17_brasil-io-prd -f
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+[...]
+(não atualiza)
+
+# Funciona como o esperado (equivalente ao `tail -f`)
+$ dokku postgres:logs pg17_brasil-io-prd -t
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+[...]
+(atualiza)
+```
+      </section>
+
+      <section data-markdown>
+        # O módulo `argparse`
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Por que `argparse` e não `X`?
+
+        - Dar vida (facilmente) a funções/classes que já você tem
+        - É uma evolução de soluções anteriores (`getopt` e `optparse`)
+          - Possui funcionalidades suficientes para uma boa interface
+        - Não adiciona dependências no projeto
+        - Pode usar para criar _management commands_ do Django (que ajudam bastante!)
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Por que a insistência em usar stdlib?
+
+        - Dependência implica **responsabilidade** sobre algo que você não tem controle!
+        - Módulos da stdlib do Python são **MUITO mais testados** do que bibliotecas de terceiros
+        - Evitar _hypes_ (quem trabalha com tecnologia adora uma)
+        - Evita ataques de _supply chain_ e problemas que você não pode resolver
+          - Heartbleed (2014) - OpenSSL
+          - Leftpad (2016) - npm
+      </section>
+
+      <section>
+        <h2>Processo POSIX</h2>
+        <h3>CLI: stdin + stdout + stderr</h3>
+
+        <img width="100%" src="images/modelo-processo-posix.jpg" alt="Processo CLI">
+        <br>
+        <a
+          href="https://archive.fosdem.org/2024/schedule/event/fosdem-2024-1934-introducing-ratatui-a-rust-library-to-cook-up-terminal-user-interfaces/">Orhun
+          Parmaksız - Introducing Ratatui: A Rust library to cook up terminal user interfaces - FOSDEM 2024</a>
+      </section>
+
+      <section>
+        <h2>Processo POSIX (2)</h2>
+
+        <img width="100%" src="images/processo-cli.png" alt="Processo CLI">
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Exercícios
+
+        - Exemplos inspirados na CLI da biblioteca [mercados](https://pypi.org/project/mercados)
+          - Palestra domingo às 9h
+        - Baseados no arquivo `banco_central.py` (simplificação de `mercados.bcb`)
+        - Passos de bebê
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `banco_central.py`
+
+        - Entendendo o arquivo
+        - Baixando
+        - Como vocês desenhariam uma CLI? O que é importante para o usuário?
+        - Começo: desenho das funcionalidades e forma de uso
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Usando `sys.argv`
+
+        - Arquivo: `00_sys_argv.py`
+        - Quais são os pontos negativos dessa solução?
+          - Em termos de usabilidade
+          - Em termos de robustez
+        - Respostas:
+          - Mensagem de erro não intuitiva quando usuário(a) não passa parâmetros
+          - Sem `--help`
+          - ⬆️  Divisão em _model_, _view_ e _controller_
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Usando `argparse`
+
+        - Arquivo: `01_argparse.py`
+          - `git diff --no-index 00_sys_argv.py 01_argparse.py`
+        - O que melhoramos com relação à anterior?
+        - Quais são os pontos negativos dessa solução?
+        - Respostas:
+          - ⬆️  `argparse` vai PARAR o programa se os argumentos não forem extraídos com sucesso
+          - ⬆️  `-h` e `--help`
+            - Usuário(a) agora sabe os nomes do parâmetros
+          - ⬆️  Código de saída
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Usando `choices`
+
+        - Arquivo: `02_choices.py`
+          - `git diff --no-index 01_argparse.py 02_choices.py`
+        - O que melhoramos com relação à anterior?
+        - Quais são os pontos negativos dessa solução?
+        - Refatoração: `02_choices_2.py`
+        - `git diff --no-index 02_choices.py 02_choices_2.py`
+        - Respostas:
+          - ⬆️  Validação de dados (programa sempre executará de forma "segura")
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Usando opções
+
+        - Arquivo: `03_opcoes.py`
+        - `git diff --no-index 02_choices.py 03_opcoes.py`
+        - O que melhoramos com relação à anterior?
+        - Quais são os pontos negativos dessa solução?
+        - Melhoria (`os.environ`): `03_opcoes_2.py`
+          - `FORMATO_BC=csv python 03_opcoes_2.py IPCA`
+        - `git diff --no-index 03_opcoes.py 03_opcoes_2.py`
+        - Respostas:
+          - ⬆️  Exige menos parâmetros
+          - ⬆️  _Sane defaults_
+      </section>
+
+      <section data-markdown>
+        ## Opções: use _kebab-case_
+
+        Separe palavras com hífens (e não com _underscore_)
+        ```
+parser = argparse.ArgumentParser()
+parser.add_argument("--codigo-negociacao")
+args = parser.parse_args()
+print(args.codigo_negociacao)
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Usando `type`
+
+        - Arquivo: `04_type.py`
+        - `git diff --no-index 03_opcoes.py 04_type.py`
+        - Execute:
+          - `python 04_type.py -m 5 IPCA`
+          - `python 04_type.py IPCA -m 5`
+          - `python 04_type.py IPCA -m teste`
+        - O que melhoramos com relação à anterior?
+        - Quais são os pontos negativos dessa solução?
+        - Respostas:
+          - ⬆️  Flexibilidade no controle dos resultados
+          - ⬇️  Não possui controle pela data (início/fim)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Usando `help`, `description`, `metavar` e `version`
+
+        - Arquivo: `05_help.py`
+        - `git diff --no-index 04_type.py 05_help.py`
+        - O que melhoramos com relação à anterior?
+        - Quais são os pontos negativos dessa solução?
+        - Respostas:
+          - ⬆️  Flexibilidade no controle dos resultados
+          - ⬇️  Não possui controle pela data (início/fim)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `stdout` vs `stderr`
+
+        - Toda saída que pode ir para outros programas (ou arquivos) vai no `stdout`
+        - Mensagens de erro e/ou status vão no `stderr`
+        - Arquivo: `06_stderr.py`
+        - `git diff --no-index 05_help.py 06_stderr.py
+        - Qual a diferença entre:
+          - `python 06_stderr.py IPCA`
+          - e `python 06_stderr.py IPCA > ipca.md`?
+        - O que melhoramos com relação à anterior?
+        - Quais são os pontos negativos dessa solução?
+        - Respostas:
+          - ⬆️  Mensagem no `stderr` dá mais transparência
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `action="store_true"`
+
+        - Guarda _flags_
+        - Arquivo: `07_store_true.py`
+        - `git diff --no-index 06_stderr.py 07_store_true.py`
+        - Qual a diferença entre:
+          - `python 07_store_true.py IPCA`
+          - e `python 07_store_true.py --quiet IPCA`
+          - (ou `python 07_store_true.py -q IPCA`)?
+        - O que melhoramos com relação à anterior?
+        - Quais são os pontos negativos dessa solução?
+        - Respostas:
+          - ⬆️  Flexibilidade em poder não ver a mensagem de status
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Opções conflitantes
+
+        - Arquivo: `08_mutual_exclusion.py`
+        - `git diff --no-index 07_store_true.py 08_mutual_exclusion.py`
+        - Tente executar:
+          - `python 08_mutual_exclusion.py --verbose IPCA -m 10`
+          - `python 08_mutual_exclusion.py --quiet IPCA -m 10`
+          - `python 08_mutual_exclusion.py --verbose --quiet IPCA -m 10`
+        - `git diff --no-index 08_mutual_exclusion.py 08_mutual_exclusion_2.py`
+        - Tente executar:
+          - `python 08_mutual_exclusion_2.py --quiet --verbose -m 10 IPCA`
+        - O que melhoramos com relação à anterior?
+        - Quais são os pontos negativos dessa solução?
+        - Respostas:
+          - ⬆️  Validação de regra de negócio não permite que o usuário entre com informações conflitantes
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Usando tipo personalizável
+
+        - Arquivo: `09_custom_type.py`
+        - `git diff --no-index 08_mutual_exclusion_2.py 09_custom_type.py`
+        - Tente executar:
+          - `python 09_custom_type IPCA -i xxxx`
+          - Logo depois: `echo $?`
+        - O que melhoramos com relação à anterior?
+        - Quais são os pontos negativos dessa solução?
+        - Respostas:
+          - ⬆️  Mais flexibilidade no controle dos resultados
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## yyy
+
+        - xxx
+      </section>
+
+      <section data-markdown>
+        # Resumo: Boas Práticas
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Boas Práticas (1)
+
+        - Não mostre mensagens em caso de sucesso
+        - Se encontrar algum problema, exiba um erro imediatamente
+        - Retorne 0 se o programa executou com sucesso e 1-255 se falhou
+          - Seja consistente com os números
+        - Crie diretórios pais antes de salvar arquivos:
+          - `Path(arquivo).parent.mkdir(exist_ok=True, parents=True)`
+      </section>
+
+      <section>
+        <h2>Evite</h2>
+
+        <img width="100%" src="images/chatgpt-cli-emojis.png" alt="Coisas a evitar">
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Boas Práticas (2)
+
+        - Separe _model_, _view_ e _controller_:
+          - _Model_: dataclasses representando seus dados
+          - _View_: interface com o usuário (argparse, parâmetros, stdin/stdout/stderr etc.)
+          - _Controller_: funções/classes/módulos que executam a tarefa de fato
+        - **ATENÇÃO**: NUNCA execute um `print` ou `input` no _controller_
+      </section>
+
+      <section data-markdown class="fragments">
+        ## Boas Práticas (3)
+        ### Importe somente o necessário
+
+        - Esqueça a PEP8 por um instante
+        - Exemplo: rows 0.4.1 (~700ms) vs 0.5.0+dev0 (~100ms)
+        - `time ls --help` executa em 3ms!
+        - `touch empty.py; time python empty.py` executa em ~20ms
+      </section>
+
+      <section data-markdown>
+        # Sugestões pós-tutorial
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Além do `action="store_true"` e Mutual Exclusion
+
+        - `action="append"`
+        - `action="count"`
+        - `nargs="?"`
+        - `nargs="*"`
+        - `nargs="+"` (diferente de `action="append"`
+        - `parser.add_subparsers()`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Exercícios pós tutorial
+
+        - Altere o programa para aceitar atalhos para as mesmas séries, como "ipca", "ipca15", "ipca-15" e "selic"
+        - Como você implementaria cache (para evitar múltiplas requisições)?
+          - Dica: existem pastas padrão para cache em cada sistema operacional
+      </section>
+
+      <section data-markdown>
+        ## Outras Bibliotecas e Conteúdos
+
+        - [curses (stdlib)](https://docs.python.org/3/howto/curses.html) (não funciona em Windows)
+        - [tqdm](http://pypi.python.org/project/tqdm)
+        - [click](https://pypi.org/project/click/)
+        - [typer](https://pypi.org/project/typer/)
+        - [cmd (stdlib)](https://docs.python.org/3/library/cmd.html)
+        - [blessed](https://blessed.readthedocs.io/en/latest/terminal.html)
+        - [textual](https://github.com/Textualize/textual)
+        - [rich](https://github.com/Textualize/rich)
+        - [PyTermGUI](https://ptg.bczsalba.com/)
+        - [prompt-toolkit](https://github.com/prompt-toolkit/python-prompt-toolkit) (ex: pytmux, pyvim)
+        - [urwid](https://urwid.org/index.html)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## [bit.ly/turicas-cli-pybr25](http://bit.ly/turicas-cli-pybr25)
+      </section>
+
+      <section>
+        <h3>Dúvidas?</h3>
+        <br>
+        <br>
+        <h3>
+          {<a href="https://twitter.com/turicas">twitter</a>,
+          <br>
+          <a href="https://bsky.app/profile/turicas.bsky.social">bsky.social</a>,
+          <br>
+          <a href="https://github.com/turicas">github</a>,
+          <br>
+          <a href="https://youtube.com/turicas">youtube</a>,
+          <br>
+          <a href="https://slideshare.net/turicas">slideshare</a>,
+          <br>
+          <a href="https://instagram.com/turicas">instagram</a>}
+          <br>
+          /<b>turicas</b>
+        </h3>
+        <h4><a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a></h4>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
