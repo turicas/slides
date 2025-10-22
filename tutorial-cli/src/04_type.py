@@ -22,7 +22,7 @@ parser.add_argument("serie", choices=SERIES_CODIGOS)
 args = parser.parse_args()
 
 dados = serie_temporal(args.serie)
-if args.maximo:
+if args.maximo is not None:
     print(f"Tipo de `args.maximo`: {type(args.maximo)}")
     dados = dados[-args.maximo :]
 resultado = EXPORTACAO_FORMATOS[args.formato](dados)

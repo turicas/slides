@@ -51,7 +51,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 dados = serie_temporal(args.serie)
-print(f"Capturados dados de {dados[-1].data} a {dados[-1].data}.", file=sys.stderr)
+print(f"Capturados dados de {dados[0].data} a {dados[-1].data}.", file=sys.stderr)
 if args.maximo:
     dados = dados[-args.maximo :]
 resultado = EXPORTACAO_FORMATOS[args.formato](dados)

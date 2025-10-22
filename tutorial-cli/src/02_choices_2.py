@@ -19,4 +19,4 @@ args = parser.parse_args()
 
 dados = serie_temporal(args.serie)
 resultado = EXPORTACAO_FORMATOS[args.formato](dados)
-pritn(resultado)
+print(resultado)

@@ -29,11 +29,11 @@ class Taxa:
         return {"data": self.data.isoformat(), "valor": str(self.valor)}
 
 
-def serie_temporal(nome: str) -> list[Taxa]:
+def serie_temporal(nome: str, timeout: float = 5.0) -> list[Taxa]:
     "Baixa histórico de algum indicador do Sistema de Gestão de Séries Temporais (SGS) do Banco Central"
     codigo = SERIES_CODIGOS[nome]
     url = f"https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados?formato=json&dataInicial=01/01/2024"
-    resposta = urlopen(url, timeout=10)
+    resposta = urlopen(url, timeout=timeout)
     dados_json = resposta.read()
     return [Taxa.carrega(registro) for registro in json.loads(dados_json)]
 

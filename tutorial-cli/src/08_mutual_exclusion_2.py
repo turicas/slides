@@ -65,7 +65,7 @@ args = parser.parse_args()
 if args.verbose:
     print(f"Baixando dados de para {args.serie}")
 dados = serie_temporal(args.serie)
-if not args.quiet or args.verbose:
+if args.verbose:
     print(f"Capturados dados de {dados[-1].data} a {dados[-1].data}.", file=sys.stderr)
 if args.maximo:
     qtd_antes = len(dados)
