@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      mercados: Acessando Dados do Mercado Financeiro com Python
+    </title>
+
+    <meta name="description" content="mercados: Acessando Dados do Mercado Financeiro com Python">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <style type="text/css">
+      code.sql, code.python {
+        font-size: 2em !important;
+        line-height: 1.25em !important;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { color: #505050; }
+      .reveal blockquote {
+        font-size: 1.2em;
+      }
+      .reveal pre {
+        width: 150%;
+        margin-left: -25%;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <!-- Any section element inside of this container is displayed as a slide -->
+
+        <section>
+          <h2>
+            <code>mercados</code>: Acessando Dados do Mercado Financeiro com Python
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4> 26 de outubro de 2025 </h4>
+          <a href="https://2025.pythonbrasil.org.br/">PythonBrasil 2025 - São Paulo/SP</a>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://bsky.app/profile/turicas.bsky.social">bsky.social</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a></h3>
+      </section>
+
+      <section>
+        <img src="images/pycafe_qrcode.png" width="100%">
+        <br>
+        Acesse: <a href="https://pythonic.cafe/">pythonic.cafe</a>
+      </section>
+
+      <section>
+        <h2>Software Livre &amp; Python</h2>
+        <h3>(desde 2004/2005)</h3>
+        <p>
+          <a href="http://www.gnu.org/">
+            <img width="35%" src="images/gnu.png">
+          </a>
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <a href="http://www.python.org/">
+            <img width="35%" src="images/logo_python.png">
+          </a>
+        </p>
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Agenda
+
+        - O projeto
+          - O que é
+          - Características
+          - Instalação
+        - A jornada financeira
+          - Inflação (IPCA)
+          - Poupança (Selic + TR)
+          - Cofrinhos e caixinhas (CDI)
+          - Tesouro Direto (Selic, IPCA)
+          - Fundos imobiliários
+          - Ações
+          - Índices
+        - Como contribuir
+      </section>
+
+      <section data-markdown>
+        # mercados: O Projeto
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## O projeto
+
+        - 🌟 [github.com/PythonicCafe/mercados](https://github.com/PythonicCafe/mercados)
+        - Biblioteca Python e interface de linha de comando (CLI)
+        - Baixa, extrai e limpa dados do mercado financeiro brasileiro
+        - Objetivo: ser a melhor, mais robusta e fácil opção para acessar dados do mercado financeiro e
+          macroeconômicos, facilitando o controle social do mercado financeiro
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Características
+
+        - Software livre
+        - Dados somente de fontes **originais ou oficiais** (ex: IPCA - IBGE vs Banco Central)
+        - Dados abertos e gratuitos
+        - Mínimo de dependências possível (sem `pandas`)
+        - Pythônica
+        - Em Português (!)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Fontes suportadas
+
+        - [Comissão de Valores Mobiliários (CVM)](https://www.gov.br/cvm/pt-br)
+        - [Banco Central do Brasil (BCB)](https://www.bcb.gov.br/)
+        - [Secretaria do Tesouro Nacional (STN)](https://www.gov.br/tesouronacional/pt-br)
+        - [B3](https://www.b3.com.br/pt_br/para-voce) (bolsa de valores do Brasil)
+        - [Instituto Brasileiro de Geografia e Estatística (IBGE)](https://www.ibge.gov.br/)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Versões
+
+        - Primeiro commit: 2022-06-20
+          - Uso interno
+        - 0.1.0: 2024-12-09
+        - 0.2.0: 2025-05-19
+        - 0.3.0: ?
+        - Usada em produção em projetos de 2 clientes na [Pythonic Café](https://pythonic.cafe/):
+          - [Ártica](https://artica.capital/)
+          - [GDI Invest](https://app.gdiinvest.com.br/)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Licença
+
+        - [Licença Pública Geral Menor GNU versão 3 (LGPLv3)](https://www.gnu.org/licenses/lgpl-3.0.pt-br.html)
+        - Código aberto (_open source_) **não é a mesma coisa** que software livre - **[_copyleft_](https://pt.wikipedia.org/wiki/Copyleft) importa!**
+        - ✅ Usar a biblioteca em projetos proprietários ou livres
+        - ✅ Modificar o código-fonte da biblioteca
+        - ✅ Distribuí-la original ou modificada, desde que:
+          - Notifique seu(ua) usuário(a) de que a biblioteca é usada no seu programa e que ela está sob LGPLv3
+          - Forneça uma cópia da LGPLv3
+        - 🚫 Restringir a liberdade do usuário do seu programa de modificar a biblioteca
+        - 🚫 Distribuí-la (original ou modificada) sem fornecer o código-fonte
+        - 🚫 Incorporar partes significativas da biblioteca no seu código sem informar e fornecer a licença
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Instalação
+
+        - `pip install mercados`
+        - `pip install mercados[ibge]`
+        - `pip install https://github.com/PythonicCafe/mercados/archive/develop.zip`
+      </section>
+
+      <section data-markdown>
+        # A Jornada Financeira
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## ATENÇÃO!
+
+        - Os ativos apresentados **não são recomendação** de compra/venda
+          - O objetivo é meramente educacional/ilustrativo
+          - Seus investimentos são sua responsabilidade: só invista no que você analisou, entende e confia
+        - Rentabilidade passada não é garantia de rentabilidade futura
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Inflação
+
+        - Dinheiro perde valor no tempo
+        - Nossos gastos aumentam e para isso precisamos nos programar
+        - O aumento médio de preços é chamado de inflação
+          - Existem vários índices (por ex, por setor)!
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Índice de Preços ao Consumidor - Amplo
+        ### (também conhecido como IPCA)
+
+        - Fonte: IBGE
+        - Principal indicador oficial da inflação no Brasil
+        - Baseado numa cesta de produtos e serviços consumidos por famílias com renda entre 1 e 40 SM
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `mercados.ibge`
+
+```python
+import datetime
+from mercados.ibge import IBGE
+
+ibge = IBGE()
+inflacao = {}
+for taxa in ibge.historico("IPCA"):
+    inflacao[taxa.data] = taxa.valor
+    print(f"IPCA em {taxa.data}: {taxa.valor}")
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Cálculo da variação
+
+```
+valor = 1000
+inicio = datetime.date(2020, 1, 15)
+fim = datetime.date(2025, 9, 15)
+variacao = inflacao[fim] / inflacao[inicio]
+valor_ajustado = variacao * valor
+print(f"R$ {valor} em {inicio} = R$ {valor_ajustado:.2f} em {fim}")
+print(f"R$ {valor} em {fim} = R$ {valor / variacao:.2f} em {inicio}")
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Cálculo da variação (resultado)
+
+```
+IPCA em 1993-12-15: 100.00
+[...]
+IPCA em 2020-01-15: 5331.42
+[...]
+IPCA em 2025-09-15: 7359.06
+R$ 1000 em 2020-01-15 = R$ 1380.32 em 2025-09-15
+R$ 1000 em 2025-09-15 = R$ 724.47 em 2020-01-15
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `mercados.ibge`: CLI
+
+        - `python -m mercados.ibge historico IPCA`
+        - `python -m mercados.ibge historico IPCA -i 2025-01-01 -F csv > ipca.csv`
+        - `python -m mercados.ibge --help`
+        - `python -m mercados.ibge historico --help`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Poupança
+
+        - Primeiro investimento de muitos brasileiros
+        - Você empresta dinheiro para o banco, que te paga um rendimento mensal
+        - O dinheiro é usado para financiamento imobiliário (majoritariamente)
+        - Só rende no aniversário (dia do mês do depósito)
+          - Se tirar antes, não rende nada!
+        - Isenta de IRPF desde que a pessoa não ultrapasse R$ 200k/ano em qualquer rendimento isento
+        - Cobertura do [Fundo Garantidor de Crédito (FGC)](https://www.fgc.org.br/) para até R$ 250k/pessoa/instituição
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Quanto rende a Poupança
+
+        - Definido pela [Lei 12.703, de 7 de agosto de 2012](https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12703.htm)
+        - Se Selic é maior que 8,5% ao ano:
+          - Poupança = 0,5% + Taxa Referencial mensalizada
+        - Senão:
+          - Poupança = 70% da Selic mensalizada
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Selic? TR? Anualizada? Mensalizada?
+
+        - Selic é a taxa básica de juros
+          - Definida/ajustada pelo [Comitê de Política Monetária (Copom)](https://www.bcb.gov.br/controleinflacao/copom)
+            a cada 45 dias
+        - TR é a Taxa Referencial
+        - Ambas expressas em valores percentuais ao ano
+        - 15% ao ano = `15% / 12` ao mês?
+        - Não! São **juros compostos**
+        - `tx_ao_mes = (1 + tx_ao_ano) ** (1 / 12) -1`
+        - 15% ao ano ~= 1,17% ao mês
+          - `15 / 12 = 1.25`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Cálculo da Poupança
+
+```python
+if selic_ao_ano > 0.085:
+    tr_ao_mes = ...
+    poupanca_ao_mes = 0.005 + tr_ao_mes
+else:
+    selic_ao_mes = ...
+    poupanca_ao_mes = 0.70 * selic_ao_mes
+# oops, precisamos dos valores da TR e Selic!
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Cálculo do rendimento da Poupança
+
+        - `python src/poupanca.py`
+        - `python src/grafico.py --percent src/data/poupanca.csv images/poupanca.png`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Poupança vs Selic vs TR
+
+        ![](images/poupanca.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## BCB: Séries disponíveis
+
+        - Selic
+        - CDI
+        - Taxa Referencial (TR)
+        - Dólar e outras moedas
+        - IPCA
+        - ...
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `mercados.bcb`: CLI
+
+        - `python -m mercados.bcb historico Selic`
+        - `python -m mercados.bcb historico CDI -i 2025-01-01 ipca.csv`
+        - `python -m mercados.bcb --help`
+        - `python -m mercados.bcb historico --help`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## "Poupança não rende nada"
+        ### Cofrinhos e caixinhas
+
+        - CDBs ou RDBs (você empresta para o banco)
+        - Em geral, pagam um percentual do CDI (ex: 100% do CDI)
+        - Imposto: IOF (nos 30 primeiros dias) + IRPF regressivo
+        - Boa opção se você ainda não sabe onde/em que investir
+          - Seguro se for de banco grande
+        - CDI = Selic - 0,10% (ao ano)
+          - Atual = 14,9% a.a.
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Por que não emprestar para o Governo?
+        ### Tesouro Direto!
+
+        - Você compra um título do Tesouro Nacional
+        - O Tesouro te paga o valor do título com a correção acordada no vencimento
+        - Modalidades:
+          - Tesouro Selic
+          - Tesouro Pré-fixado
+          - Tesouro IPCA+
+        - Investimento feito por meio de corretora. Exemplos: BTG, XP (Rico, Clear), Genial etc.
+      </section>
+
+      <section data-markdown>
+        ## `mercados.stn`
+        ### (STN = Secretaria do Tesouro Nacional)
+
+        - `python src/titulos_tesouro.py`
+
+```
+import datetime
+
+from mercados.stn import Tesouro
+
+tesouro = Tesouro()
+hoje = datetime.datetime.now().date()
+semana_passada = hoje - datetime.timedelta(days=7)
+historico = []
+for titulo in tesouro.historico_titulos():
+    if semana_passada <= titulo.data <= hoje:
+        print(f"{titulo.data}\t{titulo.nome} ({titulo.vencimento})\tR$ {titulo.preco:,}")
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Títulos do Tesouro: Resultado
+
+```
+[...]
+2025-10-20	Tesouro IPCA+ (2026-08-15)	R$ 4,212.24
+2025-10-20	Tesouro IPCA+ (2050-08-15)	R$ 818.87
+2025-10-20	Tesouro Prefixado (2026-01-01)	R$ 972.26
+2025-10-20	Tesouro Selic (2027-03-01)	R$ 17,586.33
+```
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Renda fixa vs Renda variável
+
+        - Renda fixa: dívida (você empresta)
+          - Risco: calote
+        - Renda variável: empreendimento (você "arrisca")
+          - Risco: do negócio
+          - Só invista se você já tiver uma **reserva de emergência** e não for precisar do valor no curto/médio prazo!
+          - Negociado na bolsa de valores por meio de códigos, exemplo: `ITSA4`, `VALE3`, `XPML11`, `IFRA11`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## ANTES DE INVESTIR: Aprenda e analise
+
+        - Risco (qual a chance de perder dinheiro?)
+        - Retorno (quanto deve dar de lucro?)
+        - Liquidez (quando vou poder sacar?)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Fundos de Investimento Imobiliário (FII)
+
+        - Conjunto de cotistas que se une para investir em imóveis
+        - Geridos por empresas certificadas
+        - Pagam "aluguel" recorrente (em geral, mensalmente)
+        - Negociados na bolsa de valores
+        - Cotas a partir de ~R$ 10,00
+        - Diversos setores:
+          - Shopping centers
+          - Escritórios (lajes corporativas)
+          - Galpões logísticos/centros de distruição
+          - Residencial
+          - ...
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## FundosNET
+
+        - Fundos são obrigados a publicar documentos nesse sistema
+        - Documentos em XML 🤢
+          - E vários possuem inconsistências!
+        - `python src/cotistas_xpml11.py`
+        - `python grafico.py src/data/cotistas-xpml11.csv images/cotistas-xpml11.png`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Cotistas XPML11
+
+        ![](images/cotistas-xpml11.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Informe de Rendimentos
+
+        - Publicado sempre que o fundo anuncia rendimentos
+        - Também em XML
+        - [Exemplo](https://fnet.bmfbovespa.com.br/fnet/publico/visualizarDocumento?id=1016857&cvm=true)
+        - `python src/rendimentos_xpml11.py`
+        - `python grafico.py src/data/rendimentos-xpml11.csv images/rendimentos-xpml11.png`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Rendimentos XPML11
+
+        ![](images/rendimentos-xpml11.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Pregão eletrônico (B3)
+
+        - Negociação de ativos listados na bolsa
+          - Ações
+          - Fundos de Investimento Imobiliário (FII)
+          - Fundos de Investimento no Agronegócio (FI-Agro)
+          - Fundos de Investimento em Infraestrutura (FI-Infra)
+          - Fundos de Investimento em Participações (FIP)
+          - Opções
+          - ...
+        - `python -m mercados.b3 --help`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Negociações históricas em bolsa
+
+        - Preços: abertura, máximo, mínimo, médio e fechamento
+        - Volume: quantidade de transações e valor total
+          - Daqui se calcula a liquidez
+        - `python src/preco_xpml11.py`
+        - `python src/grafico.py src/data/precos-xpml11.csv images/precos-xpml11.png`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Preços históricos XPML11
+        ### (fechamento)
+
+        ![](images/precos-xpml11.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## B3: Dados disponíveis
+
+        - Negociação:
+          - Negociação diária (bolsa e balcão)
+          - Negociação intradiária (bolsa)
+          - Preços a cada 5min do último pregão (atraso de 15min)
+        - Informações cadastrais:
+          - Empresas listadas
+          - Fundos listados (FII, FI-Infra, FI-Agro, FIP, FIDC e ETF)
+            - Não são fundos de ações
+          - Debêntures ativas
+          - BDRs listados
+          - CRAs e CRIs
+        - Carteira e valor histórico de índices
+        - Documentos (CRA, CRI, FII, FI-Infra, FI-Agro e FIP)
+        - Dividendos (FI-Infra e FI-Agro)
+        - Clearing (diversas informações)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Índices
+
+        - Cesta de ações, montada a partir de regras objetivas
+          - Por exemplo: "empresas mais negociadas nos últimos dias e que não estejam em recuperação judicial"
+        - Exemplos:
+          - IBovespa/Ibov (maiores e mais negociadas empresas da bolsa brasileira)
+          - IDIV (empresas pagadoras de dividendos)
+          - IFIX (maiores e mais negociados fundos imobiliários)
+          - UTIL (empresas de utilidade pública)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `mercados.b3`: Índices
+
+        - `python src/b3_indice.py`
+        - `python src/grafico.py src/data/IFIX.csv images/ifix.png`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## IFIX - Histórico
+
+        ![](images/ifix.png)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Exchange Traded Funds (ETFs)
+
+        - Fundos listados em bolsa que acompanham índices
+        - Índices são somente teóricos
+          - ETFs compram as ações de acordo com os pesos do índice
+        - Exemplos:
+          - `BOVA11` acompanha o Ibovespa (maiores empresas)
+          - `DIVO11` acompanha o Idiv (empresas que pagam dividendos)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## `mercados.cvm`
+
+        - RAD/EmpresasNET: "FundosNET" das empresas listas
+        - Fatos relevantes, comunicados ao mercado, informes trimestrais etc.
+        - Balancetes de fundos de investimento
+        - Informes diários de fundos (de ações)
+        - `python -m mercados.cvm --help`
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Como contribuir
+
+        - `git clone git@github.com:PythonicCafe/mercados.git`
+        - `cd mercados`
+        - `vim CONTRIBUTING.md`
+        - `git grep '# TODO'`
+        - [t.me/pycafe_mercados](https://t.me/pycafe_mercados)
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## [bit.ly/turicas-pybr25](http://bit.ly/turicas-pybr25)
+      </section>
+
+      <section>
+        <h3>Dúvidas?</h3>
+        <br>
+        <br>
+        <h3>
+          {<a href="https://twitter.com/turicas">twitter</a>,
+          <br>
+          <a href="https://bsky.app/profile/turicas.bsky.social">bsky.social</a>,
+          <br>
+          <a href="https://github.com/turicas">github</a>,
+          <br>
+          <a href="https://youtube.com/turicas">youtube</a>,
+          <br>
+          <a href="https://slideshare.net/turicas">slideshare</a>,
+          <br>
+          <a href="https://instagram.com/turicas">instagram</a>}
+          <br>
+          /<b>turicas</b>
+        </h3>
+        <h4><a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a></h4>
+      </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        // transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: 'zoom',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
