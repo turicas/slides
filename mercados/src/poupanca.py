@@ -8,7 +8,10 @@ bc = BancoCentral()
 inicio = "2020-01-01"
 
 # Baixa dados da TR por dia
-tr_por_data = {taxa.data: taxa.valor for taxa in bc.serie_temporal("TR", inicio=inicio)}
+tr_por_data = {
+    taxa.data: taxa.valor
+    for taxa in bc.serie_temporal("TR", inicio=inicio)
+}
 
 # Baixa dados da Selic por dia e calcula rentabilidade da poupança
 dados = []
