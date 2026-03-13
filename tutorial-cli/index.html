@@ -765,6 +765,7 @@ print(args.codigo_negociacao)
           - `nargs="*"`
           - `nargs="+"` (diferente de `action="append"`)
           - `parser.add_subparsers()` (para subcomandos, como o `git`)
+            - Dica: `subparsers.help = f"Options: {', '.join(subparsers.choices.keys())}"`
       </section>
 
       <section data-markdown>
