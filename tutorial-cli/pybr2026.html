@@ -551,28 +551,11 @@ PostgreSQL Database directory appears to contain a database; Skipping initializa
           -- <a href="https://turicas.info">Álvaro Justen</a> (Python Brasil, 2025-10-22)
       </section>
 
-      <section>
-        <h2>Processo POSIX</h2>
-        <h3>CLI: stdin + stdout + stderr</h3>
-
-        <img width="100%" src="images/modelo-processo-posix.jpg" alt="Processo CLI">
-        <br>
-        <a
-          href="https://archive.fosdem.org/2024/schedule/event/fosdem-2024-1934-introducing-ratatui-a-rust-library-to-cook-up-terminal-user-interfaces/">Orhun
-          Parmaksız - Introducing Ratatui: A Rust library to cook up terminal user interfaces - FOSDEM 2024</a>
-      </section>
-
-      <section>
-        <h2>Processo POSIX (2)</h2>
-
-        <img width="100%" src="images/processo-cli.png" alt="Processo CLI">
-      </section>
-
       <section class="fragments" data-markdown>
         ## Exercícios
 
         - Exemplos inspirados na CLI da biblioteca [mercados](https://pypi.org/project/mercados)
-          - Palestra domingo às 9h
+          - [mercados: Acessando Dados do Mercado Financeiro com Python (PythonBrasil2025)](https://www.youtube.com/watch?v=Q0yCgh8uZO8)
         - Baseados no arquivo `banco_central.py` (simplificação de `mercados.bcb`)
         - Passos de bebê
       </section>
@@ -580,7 +563,8 @@ PostgreSQL Database directory appears to contain a database; Skipping initializa
       <section class="fragments" data-markdown>
         ## `banco_central.py`
 
-        - Baixe-o em [`banco_central.py`](https://github.com/turicas/slides/blob/gh-pages/tutorial-cli/src/banco_central.py)
+        - Baixe-o em [github.com/turicas/slides](https://github.com/turicas/slides/)
+          - → `tutorial-cli/src/banco_central.py`
         - Entenda as funções e a `dataclass` implementadas no arquivo:
           - Baixa séries temporais da API, extrai e guarda em uma lista de dataclasses
           - Converte a lista para CSV
@@ -636,12 +620,36 @@ PostgreSQL Database directory appears to contain a database; Skipping initializa
         - Arquivo: [`03_opcoes.py`](https://github.com/turicas/slides/blob/gh-pages/tutorial-cli/src/03_opcoes.py)
         - `git diff --no-index 02_choices.py 03_opcoes.py`
         - O que melhoramos com relação à anterior? Quais são os pontos negativos dessa solução?
-        - Melhoria (`os.environ`): [`03_opcoes_2.py`](https://github.com/turicas/slides/blob/gh-pages/tutorial-cli/src/03_opcoes_2.py)
-          - `FORMATO_BC=csv python 03_opcoes_2.py IPCA`
-        - `git diff --no-index 03_opcoes.py 03_opcoes_2.py`
         - Respostas:
           - ⬆️  Exige menos parâmetros
           - ⬆️  _Sane defaults_
+      </section>
+
+      <section>
+        <h2>Processo POSIX</h2>
+        <h3>CLI: stdin + stdout + stderr</h3>
+
+        <img width="100%" src="images/modelo-processo-posix.jpg" alt="Processo CLI">
+        <br>
+        <a
+          href="https://archive.fosdem.org/2024/schedule/event/fosdem-2024-1934-introducing-ratatui-a-rust-library-to-cook-up-terminal-user-interfaces/">Orhun
+          Parmaksız - Introducing Ratatui: A Rust library to cook up terminal user interfaces - FOSDEM 2024</a>
+      </section>
+
+      <section>
+        <h2>Processo POSIX (2)</h2>
+
+        <img width="100%" src="images/processo-cli.png" alt="Processo CLI">
+      </section>
+
+      <section class="fragments" data-markdown>
+        ## Usando opções (2)
+
+        - Melhoria (`os.environ`): [`03_opcoes_2.py`](https://github.com/turicas/slides/blob/gh-pages/tutorial-cli/src/03_opcoes_2.py)
+          - `FORMATO_BC=csv python 03_opcoes_2.py IPCA`
+        - `git diff --no-index 03_opcoes.py 03_opcoes_2.py`
+        - O que melhoramos com relação à anterior? Quais são os pontos negativos dessa solução?
+        - Respostas:
           - ⬆️  Integra-se ao restante do sistema (env vars)
       </section>
 

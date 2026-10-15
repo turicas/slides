@@ -1,6 +1,6 @@
 import argparse
-import sys
 import os
+import sys
 
 from banco_central import (
     SERIES_CODIGOS,
@@ -23,7 +23,7 @@ parser.add_argument(
     "-f",
     "--formato",
     choices=formatos_choices,
-    metavar="fmt",
+    metavar="FMT",
     default=formato_padrao,
     help=f"Formato de arquivo de saída. Opções: {', '.join(formatos_choices)}.",
 )
@@ -31,7 +31,7 @@ parser.add_argument(
     "-m",
     "--maximo",
     type=int,
-    metavar="n",
+    metavar="N",
     help="Máximo de registros a exibir (começa a partir do último)",
 )
 parser.add_argument(
@@ -51,7 +51,7 @@ parser.add_argument(
 parser.add_argument(
     "serie",
     choices=choices_series,
-    metavar="serie",
+    metavar="SERIE",
     help=f"Código da série. Opções: {', '.join(choices_series)}.",
 )
 args = parser.parse_args()

@@ -35,7 +35,7 @@ parser.add_argument(
     "-F",
     "--formato",
     choices=formatos_choices,
-    metavar="fmt",
+    metavar="FMT",
     default=formato_padrao,
     help=f"Formato de arquivo de saída. Opções: {', '.join(formatos_choices)}.",
 )
@@ -44,20 +44,20 @@ parser.add_argument(
     "--final",
     type=extrai_data,
     metavar="data",
-    help=f"Data de corte final (exclusive)",
+    help="Data de corte final (exclusive)",
 )
 parser.add_argument(
     "-i",
     "--inicio",
     type=extrai_data,
     metavar="data",
-    help=f"Data de corte inicial (inclusive)",
+    help="Data de corte inicial (inclusive)",
 )
 parser.add_argument(
     "-m",
     "--maximo",
     type=int,
-    metavar="n",
+    metavar="N",
     help="Máximo de registros a exibir (começa a partir do último)",
 )
 stderr_group = parser.add_mutually_exclusive_group()
@@ -83,7 +83,7 @@ parser.add_argument(
 parser.add_argument(
     "serie",
     choices=choices_series,
-    metavar="serie",
+    metavar="SERIE",
     help=f"Código da série. Opções: {', '.join(choices_series)}.",
 )
 args = parser.parse_args()
