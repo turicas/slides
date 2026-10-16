@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 450" width="960" height="450" font-family="Lato, 'Helvetica Neue', Arial, sans-serif">
+<rect width="960" height="450" fill="#ffffff"/>
+<text x="480.0" y="36" font-size="28" fill="#222222" text-anchor="middle">Gravações com voz feminina declarada</text>
+<text x="216" y="88.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">Espanhol</text>
+<rect x="230" y="64" width="600.0" height="34" rx="3" fill="#B4B4B4"><title>Espanhol: 31,2%</title></rect>
+<text x="840.0" y="88.0" font-size="20" font-weight="normal" fill="#666666">31,2%</text>
+<text x="216" y="130.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">Galego</text>
+<rect x="230" y="106" width="462.9" height="34" rx="3" fill="#B4B4B4"><title>Galego: 24,1%</title></rect>
+<text x="702.9" y="130.0" font-size="20" font-weight="normal" fill="#666666">24,1%</text>
+<text x="216" y="172.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">Catalão</text>
+<rect x="230" y="148" width="401.8" height="34" rx="3" fill="#B4B4B4"><title>Catalão: 20,9%</title></rect>
+<text x="641.8" y="172.0" font-size="20" font-weight="normal" fill="#666666">20,9%</text>
+<text x="216" y="214.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">Inglês</text>
+<rect x="230" y="190" width="341.4" height="34" rx="3" fill="#B4B4B4"><title>Inglês: 17,8%</title></rect>
+<text x="581.4" y="214.0" font-size="20" font-weight="normal" fill="#666666">17,8%</text>
+<text x="216" y="256.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">Francês</text>
+<rect x="230" y="232" width="205.1" height="34" rx="3" fill="#B4B4B4"><title>Francês: 10,7%</title></rect>
+<text x="445.1" y="256.0" font-size="20" font-weight="normal" fill="#666666">10,7%</text>
+<text x="216" y="298.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">Italiano</text>
+<rect x="230" y="274" width="193.0" height="34" rx="3" fill="#B4B4B4"><title>Italiano: 10,0%</title></rect>
+<text x="433.0" y="298.0" font-size="20" font-weight="normal" fill="#666666">10,0%</text>
+<text x="216" y="340.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">Alemão</text>
+<rect x="230" y="316" width="157.3" height="34" rx="3" fill="#B4B4B4"><title>Alemão: 8,2%</title></rect>
+<text x="397.3" y="340.0" font-size="20" font-weight="normal" fill="#666666">8,2%</text>
+<text x="216" y="382.0" font-size="21" font-weight="bold" fill="#222222" text-anchor="end">Português</text>
+<rect x="230" y="358" width="111.5" height="34" rx="3" fill="#E00000"><title>Português: 5,8%</title></rect>
+<text x="351.5" y="382.0" font-size="20" font-weight="bold" fill="#222222">5,8%</text>
+<text x="480.0" y="434" font-size="15" fill="#666666" text-anchor="middle">Fonte: Common Voice Scripted Speech 27.0 (github.com/common-voice/cv-dataset)</text>
+</svg>

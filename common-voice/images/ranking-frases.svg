@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 618" width="960" height="618" font-family="Lato, 'Helvetica Neue', Arial, sans-serif">
+<rect width="960" height="618" fill="#ffffff"/>
+<text x="480.0" y="36" font-size="28" fill="#222222" text-anchor="middle">Frases disponíveis para gravar</text>
+<text x="216" y="88.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">1º Alemão</text>
+<rect x="230" y="64" width="600.0" height="34" rx="3" fill="#B4B4B4"><title>1º Alemão: 2.033.359</title></rect>
+<text x="840.0" y="88.0" font-size="20" font-weight="normal" fill="#666666">2.033.359</text>
+<text x="216" y="130.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">2º Francês</text>
+<rect x="230" y="106" width="477.3" height="34" rx="3" fill="#B4B4B4"><title>2º Francês: 1.617.638</title></rect>
+<text x="717.3" y="130.0" font-size="20" font-weight="normal" fill="#666666">1.617.638</text>
+<text x="216" y="172.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">3º Inglês</text>
+<rect x="230" y="148" width="473.9" height="34" rx="3" fill="#B4B4B4"><title>3º Inglês: 1.606.088</title></rect>
+<text x="713.9" y="172.0" font-size="20" font-weight="normal" fill="#666666">1.606.088</text>
+<text x="216" y="214.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">4º Kinyarwanda</text>
+<rect x="230" y="190" width="414.5" height="34" rx="3" fill="#B4B4B4"><title>4º Kinyarwanda: 1.404.868</title></rect>
+<text x="654.5" y="214.0" font-size="20" font-weight="normal" fill="#666666">1.404.868</text>
+<text x="216" y="256.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">5º Pachto</text>
+<rect x="230" y="232" width="361.8" height="34" rx="3" fill="#B4B4B4"><title>5º Pachto: 1.225.968</title></rect>
+<text x="601.8" y="256.0" font-size="20" font-weight="normal" fill="#666666">1.225.968</text>
+<text x="216" y="298.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">6º Catalão</text>
+<rect x="230" y="274" width="344.4" height="34" rx="3" fill="#B4B4B4"><title>6º Catalão: 1.167.037</title></rect>
+<text x="584.4" y="298.0" font-size="20" font-weight="normal" fill="#666666">1.167.037</text>
+<text x="216" y="340.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">7º Espanhol</text>
+<rect x="230" y="316" width="318.3" height="34" rx="3" fill="#B4B4B4"><title>7º Espanhol: 1.078.677</title></rect>
+<text x="558.3" y="340.0" font-size="20" font-weight="normal" fill="#666666">1.078.677</text>
+<text x="216" y="382.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">8º Abcázio</text>
+<rect x="230" y="358" width="308.9" height="34" rx="3" fill="#B4B4B4"><title>8º Abcázio: 1.046.830</title></rect>
+<text x="548.9" y="382.0" font-size="20" font-weight="normal" fill="#666666">1.046.830</text>
+<text x="216" y="424.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">9º Basco</text>
+<rect x="230" y="400" width="300.4" height="34" rx="3" fill="#B4B4B4"><title>9º Basco: 1.018.163</title></rect>
+<text x="540.4" y="424.0" font-size="20" font-weight="normal" fill="#666666">1.018.163</text>
+<text x="216" y="466.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">10º Galego</text>
+<rect x="230" y="442" width="296.3" height="34" rx="3" fill="#B4B4B4"><title>10º Galego: 1.004.026</title></rect>
+<text x="536.3" y="466.0" font-size="20" font-weight="normal" fill="#666666">1.004.026</text>
+<text x="216" y="508.0" font-size="22" fill="#666666" text-anchor="end">...</text>
+<text x="216" y="550.0" font-size="21" font-weight="bold" fill="#222222" text-anchor="end">44º Português</text>
+<rect x="230" y="526" width="12.9" height="34" rx="3" fill="#E00000"><title>44º Português: 43.711</title></rect>
+<text x="252.9" y="550.0" font-size="20" font-weight="bold" fill="#222222">43.711</text>
+<text x="480.0" y="602" font-size="15" fill="#666666" text-anchor="middle">Fonte: API do Common Voice (commonvoice.mozilla.org), coletado em 2026-10-16</text>
+</svg>

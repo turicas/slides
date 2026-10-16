@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 618" width="960" height="618" font-family="Lato, 'Helvetica Neue', Arial, sans-serif">
+<rect width="960" height="618" fill="#ffffff"/>
+<text x="480.0" y="36" font-size="28" fill="#222222" text-anchor="middle">Horas validadas</text>
+<text x="216" y="88.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">1º Pachto</text>
+<rect x="230" y="64" width="600.0" height="34" rx="3" fill="#B4B4B4"><title>1º Pachto: 3.754</title></rect>
+<text x="840.0" y="88.0" font-size="20" font-weight="normal" fill="#666666">3.754</text>
+<text x="216" y="130.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">2º Catalão</text>
+<rect x="230" y="106" width="482.4" height="34" rx="3" fill="#B4B4B4"><title>2º Catalão: 3.018</title></rect>
+<text x="722.4" y="130.0" font-size="20" font-weight="normal" fill="#666666">3.018</text>
+<text x="216" y="172.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">3º Inglês</text>
+<rect x="230" y="148" width="447.4" height="34" rx="3" fill="#B4B4B4"><title>3º Inglês: 2.799</title></rect>
+<text x="687.4" y="172.0" font-size="20" font-weight="normal" fill="#666666">2.799</text>
+<text x="216" y="214.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">4º Kinyarwanda</text>
+<rect x="230" y="190" width="320.1" height="34" rx="3" fill="#B4B4B4"><title>4º Kinyarwanda: 2.003</title></rect>
+<text x="560.1" y="214.0" font-size="20" font-weight="normal" fill="#666666">2.003</text>
+<text x="216" y="256.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">5º Bielorrusso</text>
+<rect x="230" y="232" width="291.4" height="34" rx="3" fill="#B4B4B4"><title>5º Bielorrusso: 1.823</title></rect>
+<text x="531.4" y="256.0" font-size="20" font-weight="normal" fill="#666666">1.823</text>
+<text x="216" y="298.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">6º Esperanto</text>
+<rect x="230" y="274" width="231.0" height="34" rx="3" fill="#B4B4B4"><title>6º Esperanto: 1.445</title></rect>
+<text x="471.0" y="298.0" font-size="20" font-weight="normal" fill="#666666">1.445</text>
+<text x="216" y="340.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">7º Alemão</text>
+<rect x="230" y="316" width="223.4" height="34" rx="3" fill="#B4B4B4"><title>7º Alemão: 1.398</title></rect>
+<text x="463.4" y="340.0" font-size="20" font-weight="normal" fill="#666666">1.398</text>
+<text x="216" y="382.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">8º Francês</text>
+<rect x="230" y="358" width="177.7" height="34" rx="3" fill="#B4B4B4"><title>8º Francês: 1.112</title></rect>
+<text x="417.7" y="382.0" font-size="20" font-weight="normal" fill="#666666">1.112</text>
+<text x="216" y="424.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">9º Cabila</text>
+<rect x="230" y="400" width="91.4" height="34" rx="3" fill="#B4B4B4"><title>9º Cabila: 572</title></rect>
+<text x="331.4" y="424.0" font-size="20" font-weight="normal" fill="#666666">572</text>
+<text x="216" y="466.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">10º Uigur</text>
+<rect x="230" y="442" width="75.0" height="34" rx="3" fill="#B4B4B4"><title>10º Uigur: 469</title></rect>
+<text x="315.0" y="466.0" font-size="20" font-weight="normal" fill="#666666">469</text>
+<text x="216" y="508.0" font-size="22" fill="#666666" text-anchor="end">...</text>
+<text x="216" y="550.0" font-size="21" font-weight="bold" fill="#222222" text-anchor="end">29º Português</text>
+<rect x="230" y="526" width="29.6" height="34" rx="3" fill="#E00000"><title>29º Português: 185</title></rect>
+<text x="269.6" y="550.0" font-size="20" font-weight="bold" fill="#222222">185</text>
+<text x="480.0" y="602" font-size="15" fill="#666666" text-anchor="middle">Fonte: API do Common Voice (commonvoice.mozilla.org), coletado em 2026-10-16</text>
+</svg>
