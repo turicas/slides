@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 618" width="960" height="618" font-family="Lato, 'Helvetica Neue', Arial, sans-serif">
+<rect width="960" height="618" fill="#ffffff"/>
+<text x="480.0" y="36" font-size="28" fill="#222222" text-anchor="middle">Pessoas que contribuíram</text>
+<text x="216" y="88.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">1º Inglês</text>
+<rect x="230" y="64" width="600.0" height="34" rx="3" fill="#B4B4B4"><title>1º Inglês: 100.932</title></rect>
+<text x="840.0" y="88.0" font-size="20" font-weight="normal" fill="#666666">100.932</text>
+<text x="216" y="130.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">2º Catalão</text>
+<rect x="230" y="106" width="220.4" height="34" rx="3" fill="#B4B4B4"><title>2º Catalão: 37.084</title></rect>
+<text x="460.4" y="130.0" font-size="20" font-weight="normal" fill="#666666">37.084</text>
+<text x="216" y="172.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">3º Espanhol</text>
+<rect x="230" y="148" width="160.6" height="34" rx="3" fill="#B4B4B4"><title>3º Espanhol: 27.022</title></rect>
+<text x="400.6" y="172.0" font-size="20" font-weight="normal" fill="#666666">27.022</text>
+<text x="216" y="214.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">4º Bengali</text>
+<rect x="230" y="190" width="136.9" height="34" rx="3" fill="#B4B4B4"><title>4º Bengali: 23.027</title></rect>
+<text x="376.9" y="214.0" font-size="20" font-weight="normal" fill="#666666">23.027</text>
+<text x="216" y="256.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">5º Francês</text>
+<rect x="230" y="232" width="126.0" height="34" rx="3" fill="#B4B4B4"><title>5º Francês: 21.194</title></rect>
+<text x="366.0" y="256.0" font-size="20" font-weight="normal" fill="#666666">21.194</text>
+<text x="216" y="298.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">6º Alemão</text>
+<rect x="230" y="274" width="122.6" height="34" rx="3" fill="#B4B4B4"><title>6º Alemão: 20.631</title></rect>
+<text x="362.6" y="298.0" font-size="20" font-weight="normal" fill="#666666">20.631</text>
+<text x="216" y="340.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">7º Basco</text>
+<rect x="230" y="316" width="65.8" height="34" rx="3" fill="#B4B4B4"><title>7º Basco: 11.062</title></rect>
+<text x="305.8" y="340.0" font-size="20" font-weight="normal" fill="#666666">11.062</text>
+<text x="216" y="382.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">8º Bielorrusso</text>
+<rect x="230" y="358" width="51.4" height="34" rx="3" fill="#B4B4B4"><title>8º Bielorrusso: 8.644</title></rect>
+<text x="291.4" y="382.0" font-size="20" font-weight="normal" fill="#666666">8.644</text>
+<text x="216" y="424.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">9º Pachto</text>
+<rect x="230" y="400" width="50.5" height="34" rx="3" fill="#B4B4B4"><title>9º Pachto: 8.492</title></rect>
+<text x="290.5" y="424.0" font-size="20" font-weight="normal" fill="#666666">8.492</text>
+<text x="216" y="466.0" font-size="21" font-weight="normal" fill="#222222" text-anchor="end">10º Tailandês</text>
+<rect x="230" y="442" width="48.0" height="34" rx="3" fill="#B4B4B4"><title>10º Tailandês: 8.072</title></rect>
+<text x="288.0" y="466.0" font-size="20" font-weight="normal" fill="#666666">8.072</text>
+<text x="216" y="508.0" font-size="22" fill="#666666" text-anchor="end">...</text>
+<text x="216" y="550.0" font-size="21" font-weight="bold" fill="#222222" text-anchor="end">17º Português</text>
+<rect x="230" y="526" width="23.1" height="34" rx="3" fill="#E00000"><title>17º Português: 3.887</title></rect>
+<text x="263.1" y="550.0" font-size="20" font-weight="bold" fill="#222222">3.887</text>
+<text x="480.0" y="602" font-size="15" fill="#666666" text-anchor="middle">Fonte: API do Common Voice (commonvoice.mozilla.org), coletado em 2026-10-16</text>
+</svg>

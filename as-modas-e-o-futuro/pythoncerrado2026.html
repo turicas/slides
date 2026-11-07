@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Keynote - As Modas e o Futuro
+    </title>
+
+    <meta name="description" content="Keynote - As Modas e o Futuro">
+    <meta name="author" content="Álvaro Justen aka Turicas">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <style type="text/css">
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+        text-transform: none !important;
+      }
+      .reveal section img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reveal .progress span {
+        background: #FF0000 !important;
+      }
+      code { font-size: 25px !important; }
+      /* Imagens (prints, recortes) cabendo no slide junto com título e link */
+      .reveal section img { max-height: 390px; }
+      .reveal section img[src$="nfts-dead.png"], .reveal section img[src$="gartner-previsao-metaverso.png"],
+      .reveal section img[src$="yells-at-cloud-simpsons-original-newspaper-clipping.webp"],
+      .reveal section img[src$="culpa-chatgpt.png"] { max-height: 300px; }
+      .reveal section li img { max-height: 300px; }
+      /* Linha de fonte (link da matéria) abaixo das imagens */
+      .reveal section p > a { font-size: 0.75em; }
+
+      .reveal section img[src$="-horas.svg"], .reveal section img[src*="ranking-"],
+      .reveal section img[src*="whisper-"], .reveal section img[src*="genero-"] {
+        max-height: 600px;
+      }
+      .reveal .legenda { font-size: 0.8em; margin: 0; }
+
+      .qrcodes { display: flex; justify-content: center; gap: 80px; }
+      .reveal .qrcodes img { width: 340px; margin: 10px 0; }
+      .qrcodes div { font-size: 0.7em; }
+
+      .reveal video { width: 100%; max-height: 600px; }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <!-- Any section element inside of this container is displayed as a slide -->
+
+        <!-- ============================================================ ABERTURA -->
+
+        <section>
+          <h2>
+            Keynote: As Modas e o Futuro
+          </h2>
+          <br>
+
+          <h2>
+            <b>Turicas</b> <i>aka</i> <b>Álvaro Justen</b>
+          </h2>
+          <br>
+
+          <h4> 07 de novembro de 2026 </h4>
+          <a href="https://pythoncerrado.org/2026">PythonCerrado2026 - Brasília/DF</a>
+        </section>
+
+        <section>
+          <h2><pre>$ whoami</pre></h2>
+          <h2><b>Turicas</b>, prazer! =)</h2>
+          <h3>Sigam-me os bons:</h3>
+          <h3>
+            {<a href="https://twitter.com/turicas">twitter</a>,
+            <br>
+            <a href="https://bsky.app/profile/turicas.bsky.social">bsky.social</a>,
+            <br>
+            <a href="https://github.com/turicas">github</a>,
+            <br>
+            <a href="https://youtube.com/turicas">youtube</a>,
+            <br>
+            <a href="https://slideshare.net/turicas">slideshare</a>,
+            <br>
+            <a href="https://instagram.com/turicas">instagram</a>}
+            <br>
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a></h3>
+        </section>
+
+        <section>
+          <img src="images/logos_pycafe-brio.png" width="100%">
+          <br>
+          <a href="https://pythonic.cafe/">pythonic.cafe</a> | <a href="https://brasil.io/">brasil.io</a>
+        </section>
+
+        <section>
+          <h2>Quem aqui começou a programar<br>a partir de 2023?</h2>
+        </section>
+
+        <section data-markdown>
+          ## pyoldies
+
+          ![](images/pyoldies-pybr2025.jpg)
+
+          24/10/2025, [PythonBrasil 2025](https://2025.pythonbrasil.org.br/), São Paulo/SP
+        </section>
+
+        <!-- SEÇÃO 1: JÁ VI MUITA MODA -->
+
+        <section class="fragments" data-markdown>
+          ## Old
+
+          - Digitalização:
+            - Primeiro computador em 1998 (AMD K6 II 266MHz, 32MB RAM, 3GB HD)
+            - Internet discada 56kb/s
+            - Internet banda larga (128+kb/s) em 2005
+          - Mídias sociais:
+            - Blog (2005), Twitter (2009), GitHub (2010)
+          - IA:
+            - ChatGPT (30/11/2022)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Atualização Profissional
+
+          - Em tecnologia, se atualizar é imperativo
+          - Cursos específicos
+          - Eventos
+            - 12x Fórum Internacional de Software Livre (2006 - 2018)
+            - 18x PythonBrasil (2009 - presente)
+            - N LatinoWare, N MiniDebConf/Dia-Debian, N PythOnCampus
+            - 2x EuroSciPy, 2x PyConUS, 1x DjangoConUs, 1x PythonQuito
+            - ...
+          - Notícias
+          - Mídias sociais
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas de Estar Sempre Atualizado(a)
+
+          - **Algumas pessoas são viciadas em novidade**
+          - Trocar de linguagem/framework com frequência
+          - Usar bibliotecas novas (e nem sempre estáveis/robustas)
+          - Seguem a moda da vez
+        </section>
+
+        <section data-markdown>
+          ## Computação em Nuvem
+          ### 04/08/2008
+
+          ![](images/hype-nuvem.png)
+
+          [How Cloud Computing Is Changing the World (BusinessWeek)](https://www.bloomberg.com/news/articles/2008-08-04/how-cloud-computing-is-changing-the-worldbusinessweek-business-news-stock-market-and-financial-advice)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## E depois?
+
+          ![](images/old-man-yells-at-cloud-simpsons-original-newspaper-clipping.webp)
+
+          - 2015: Dropbox tira mais de 90% dos dados da AWS
+          - 2024: 37signals sai da nuvem: de US$ 3,2 mi para US$ 1,3 mi por ano, mesma equipe, US$ 10 mi economizados em 5 anos - [DHH](https://world.hey.com/dhh/our-cloud-exit-savings-will-now-top-ten-million-over-five-years-c7d9b5bd)
+          - Ainda hoje, muita gente não faz ideia de que existe outro caminho para hospedar aplicações
+        </section>
+
+        <section data-markdown>
+          ## NoSQL ("MongoDB is Web scale")
+          ### 02/07/2009
+
+          ![](images/hype-nosql.png)
+
+          [No to SQL? Anti-database movement gains steam (Computerworld)](https://www.computerworld.com/article/1602389/no-to-sql-anti-database-movement-gains-steam.html)
+        </section>
+
+        <section data-markdown>
+          ## Big Data e Ciência de Dados
+          ### 10/2012
+
+          ![](images/hype-big-data.png)
+
+          [Data Scientist: The Sexiest Job of the 21st Century (Harvard Business Review)](https://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century)
+        </section>
+
+        <section data-markdown>
+          ## Microsserviços
+          ### 25/01/2016
+
+          ![](images/hype-microsservicos.png)
+
+          [2016 Prediction #1 – ... Rapidly Transforming to Microservices Architecture (Cisco Blogs)](https://blogs.cisco.com/cloud/2016-prediction-1-production-application-development-and-deployment-rapidly-transforming-to-microservices-architecture)
+        </section>
+
+        <section data-markdown>
+          ## Bots são os novos apps
+          ### 25/04/2016
+
+          ![](images/hype-bots.png)
+
+          [Assistentes pessoais miram era pós-apps (Estadão)](https://www.estadao.com.br/link/cultura-digital/assistentes-pessoais-miram-era-pos-apps/)
+        </section>
+
+        <!-- SEÇÃO 2: COMO DIFERENCIAR -->
+
+        <section data-markdown>
+          ## Gartner Hype Cycle
+
+          ![](images/gartner-hype-cycle.png)
+
+          [wikipedia/Gartner hype cycle](https://en.wikipedia.org/wiki/Gartner_hype_cycle)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Gartner Hype Cycle 2021
+
+          ![](images/gartner-hype-cycle-2021.png)
+
+          - NFTs no pico das expectativas infladas
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## NFTs
+
+          - 24/08/2021: [Gartner's hype cycle: NFTs could be 5 years from mainstream acceptance](https://protos.com/gartners-hype-cycle-nfts-could-be-5-years-from-mainstream-acceptance/)
+          - 21/09/2023: [95% das coleções de NFT não valem mais nada](https://www.theregister.com/2023/09/21/95_percent_nfts_worthless/)
+          - 08/2024: [Are NFTs dead?](https://nftevening.com/are-nfts-dead-2024/)
+            ![](images/nfts-dead.png)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## 1h/dia no Metaverso até 2026
+          ### Matéria de 24/04/2022
+
+          ![](images/gartner-previsao-metaverso.png)
+
+          "Até 2026, 30% das organizações do mundo terão produtos e serviços prontos para o metaverso"
+
+          Fonte: [Forbes.com.br](https://forbes.com.br/forbes-tech/2022/04/mais-de-25-da-populacao-passara-1-hora-no-metaverso-ate-2026-diz-gartner/)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## E depois?
+
+          - Hoje é 07/11/2026: quem passou 1h no metaverso hoje?
+          - Reality Labs (Meta): mais de US$ 70 bilhões de prejuízo desde 2020 - [People Matters](https://www.peoplematters.in/amp/news/strategic-hr/meta-eyes-10percent-15percent-reality-labs-job-cuts-as-losses-top-dollar70bn-47991)
+        </section>
+
+        <section data-markdown>
+          ## Como Diferenciar?
+
+          ![](images/tecnocracia-metaverso.jpg)
+
+          [Tecnocracia #66: "O metaverso proposto pela Meta/Facebook já nasceu morto"](https://manualdousuario.net/podcast/tecnocracia-66/) (18/08/2022)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Tecnologia hypada vai sobreviver ou implodir?
+
+          - **Utilidade**: a introdução desta tecnologia vai tornar sua vida mais fácil?
+          - **Ancestralidade**: essa tecnologia já tentou emplacar e, se sim, qual foi o grau de sucesso?
+          - **Realidade**: ela já existe em algum grau ou só estão tentando reempacotar algo comum com um elã de histeria?
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## E a IA?
+
+          - Eu uso IA (muito)
+            - IA não é só LLM (ex: transcrição)
+          - Acho útil (passa nos 3 critérios)
+          - Mas tem muita gente exagerando
+          - Cuidado com tudo o que dizem
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Como ler uma profecia
+
+          - Quase nunca erram a **direção**
+          - Erram a totalidade ("vai acabar")
+            - Nem um extremo, nem outro
+          - Erram o **prazo** (inércia de adoção, regulamentação etc.)
+          - **Quem ganha com a profecia?**
+            - Quem vende o produto
+            - Quem ganha com atenção nas mídias sociais
+          - [Tecnocracia #77: "Além do hype: IA gerativa é revolucionária e perigosa"](https://manualdousuario.net/podcast/tecnocracia-77/) (14/12/2023)
+        </section>
+
+        <!-- SEÇÃO 3: IA -->
+
+        <section class="fragments" data-markdown>
+          ## IA: Histeria Coletiva
+
+          - Muita empolgação, pouco raciocínio
+          - [Token maxxing](https://www.ibm.com/think/topics/tokenmaxxing): ranking de funcionários por tokens gastos
+            - Uber esgotou o orçamento anual de IA em 4 meses - [Ed Zitron](https://www.youtube.com/watch?v=TXiOO-nKqpw)
+            - Mesma lógica de medir linhas de código ou movimento do mouse - [Tecnologia e Classe](https://www.youtube.com/watch?v=TmRwyXz-_bk)
+          - ![](images/tweet-2055272248919871812.png) [xuitter/yegor256](https://x.com/yegor256/status/2055272248919871812)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas Técnicos (1)
+          ### O modelo é não determinístico
+
+          - **O comportamento pode variar**
+          - Aconteceu comigo na mesma semana:
+            - Fable 5 criou um PR com uma regressão bizarra (e esgotou o limite de 5h três vezes)
+            - Gemma 4 se recusou a fazer uma tarefa que o Qwen 3.8 27B fez com maestria
+            - O mesmo Qwen 3.8 27B revisou o PR do Fable 5 e deixou a regressão passar
+            - Gemini 3.7 Flash apagou 611 arquivos (que eu não pedi) porque não sabe usar o Git
+            - GPT 5.6 Terra parava de trabalhar de tempos em tempos sem que eu pedisse
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas Técnicos (2)
+          ### O modelo pode não ser confiável
+
+          ![](images/tweet-2116318734700728746.png)
+
+          [xuitter/SuJinyan6](https://x.com/SuJinyan6/status/2116318734700728746)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas Técnicos (3)
+          ### Segurança
+
+          ![](images/tweet-2113293521398772162.png)
+
+          [xuitter/turicas](https://x.com/turicas/status/2113293521398772162)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Há quem Discorde
+
+          ![](images/tweet-2113351760244871372.png)
+
+          [xuitter/dav_rants](https://x.com/dav_rants/status/2113351760244871372)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## O Extraordinário (1)
+
+          ![](images/tweet-2075657271401390161.png)
+
+          [xuitter/mattshumer_](https://x.com/mattshumer_/status/2075657271401390161)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## O Extraordinário (2)
+
+          ![](images/tweet-2076769881534398974.png)
+
+          [xuitter/brunolemos](https://x.com/brunolemos/status/2076769881534398974)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## O Extraordinário (3)
+
+          ![](images/tweet-2107486740491669879.png)
+
+          [xuitter/ShaneMac](https://x.com/ShaneMac/status/2107486740491669879)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## O Extraordinário (4)
+
+          ![](images/github-openai-codex-issue-59060.png)
+
+          [gh/openai/codex#59060](https://github.com/openai/codex/issues/59060) (03/11/2026)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## A História Rima
+          ### Permissões requisitadas pelo Facebook Messenger em 2014
+
+          ![](images/2014-facebook-messenger-permissions.jpg)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas Técnicos (4)
+          ### Spyware
+
+          - 03/03/2026: [Data brokers are selling deeply personal bot transcripts](https://www.theregister.com/2026/03/03/chatbot_data_harvesting_personal_info/)
+          - 14/07/2026: [Grok Build Uploaded Entire Git Repositories to xAI Storage, Not Just Files It Read](https://thehackernews.com/2026/07/grok-build-uploads-entire-git.html)
+          - 05/11/2026: [Coding Agents Copy Your Secrets to a Hidden File. Thousands Are on GitHub](https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas Técnicos (5)
+          ### AI slop
+
+          - 23/06/2026: [OpenAI Codex bombards SSDs with needless write operations, costing millions](https://www.theregister.com/ai-and-ml/2026/06/23/openai-codex-bombards-ssds-with-needless-write-operations-costing-millions/5260402)
+          - 23/09/2026: [How we made claude.ai 3x faster in two weeks](https://claude.dev/blog/how-we-made-claude-ai-faster/)
+            - Ou: "Como usamos o Claude para otimizar o código ruim que o próprio Claude fez e foi para produção assim mesmo"
+          - 24/09/2026: [OpenClaw deleted around 400k LOC of its own tests without much change in code coverage](https://x.com/steipete/status/2103147927313199260)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas Técnicos (6)
+          ### _Prompt Injection_
+
+          - 12/2023: [Chatbot da Chevrolet aceita vender Tahoe de US$ 76 mil por US$ 1](https://incidentdatabase.ai/reports/3534/)
+          - 17/02/2026: [A GitHub Issue Title Compromised 4,000 Developer Machines](https://grith.ai/blog/clinejection-when-your-ai-tool-installs-another)
+          - 04/06/2026: [Meta’s AI support bot happily handed Instagram accounts to hackers](https://malwarebytes.com/blog/news/2026/06/metas-ai-support-bot-happily-handed-instagram-accounts-to-hackers)
+          - 05/08/2026: [Justiça condena Natura por prompt injection](https://www.baguete.com.br/noticias/justica-condena-natura-por-prompt-injection)
+          - 28/08/2026: [Researcher shows how Claude Code can be tricked simply by asking it to summarize a website](https://www.theregister.com/research/2026/08/28/researcher-shows-how-claude-code-can-be-tricked-simply-by-asking-it-to-summarize-a-website/5293372)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Mudança de Paradigma
+          ### De Programador a Gerente de IA
+
+          - Usar IA é **delegar decisão**
+          - Digitar o código nunca foi o gargalo
+          - Toda linha de código é uma responsabilidade assumida
+          - Curto _versus_ longo prazo
+            - Software para "jogar fora" _vs_ sistema robusto
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## IA: Como Lidar
+
+          - IA: um Colega Genial
+            - Conhece absurdamente de tudo
+            - Rápido (e não reclama)
+            - Mas é **inexperiente e desatento**
+            - Porém, muito convincente
+          - IA: o Gênio da Lâmpada
+            - Concede desejos que não são bem o que você queria
+            - Código plausível ≠ código correto
+            - [Kent Beck: Software Engineering in the Age of AI](https://www.youtube.com/watch?v=F8fBgDCf2Y4)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas Sociais (1)
+          ### Complexidade e Pensamento Sistêmico
+
+          - É mais fácil confiar em tarefas simples, que já apareceram N vezes no treinamento
+            - Menos código, menos arquivos
+            - Sem pensamento sistêmico
+          - Quanto mais complexa a tarefa:
+            - Maior chance de _bugs_
+            - Maior chance da equipe se perder
+          - [Shopify CEO says employees’ ‘slop grenades’ are making more work for everyone else](https://fortune.com/2026/09/17/shopify-tobias-lutke-ai-slop-grenades/)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas Sociais (2)
+          ### A Mente
+
+          - O trabalho **deixa de ser focado**
+            - _Chat_ com mensagens não exatamente instantâneas
+          - Muitos agentes em paralelo: milhares de coisas, nenhuma completa
+          - Nosso cérebro não é multi-tarefa
+            - Tentativa leva a desgaste mental
+            - [Trabalho Focado: Como Ter Sucesso Em Um Mundo Distraído, Cal Newport](https://meli.la/2LUFAnP)
+            - Interrupções são terríveis
+          - Programar com IA tem dinâmica de caça-níquel (_slop machine_)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas Sociais (3)
+          ### FOMO, Fadiga
+
+          - Modelo novo toda semana, ferramenta nova todo dia
+          - Quanto tempo você gasta testando em vez de fazendo?
+            - Até que ponto vale essa constante atualização?
+          - Velocidade de mudança tem limite (para a equipe de desenvolvimento e para clientes)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Problemas Sociais (4)
+          ### Dificuldade de Aprendizado
+
+          - [Failing grades soar as professors see greater AI usage, dwindling math skills in UC Berkeley computer science classes](https://www.dailycal.org/news/campus/academics/failing-grades-soar-as-professors-see-greater-ai-usage-dwindling-math-skills-in-uc-berkeley/article_16fad0bf-02cb-4b8c-8d88-888ffd9f8608.html) (06/2026)
+            - Reprovação em CS 10: ≤10% → 35,3%
+            - Reprovação em EECS 127: 5% → 16,8%
+          - "Confusion is the sweat of learning"
+          - Estudos
+            - [Anthropic](https://www.anthropic.com/research/AI-assistance-coding-skills): compreensão de 50% com IA vs. 67% sem
+            - [MIT](https://www.media.mit.edu/publications/your-brain-on-chatgpt/): 83% de quem escreveu com ChatGPT não conseguiu citar o próprio texto (11% com buscador ou sem ferramenta)
+          - Maior dificuldade é para quem **aprendeu a programar depois da IA**
+        </section>
+
+        <!-- SEÇÃO 4: O QUE FAZER -->
+
+        <section class="fragments" data-markdown>
+          ## Antes de Adotar: Por Quê?
+
+          - Vale para IA e para qualquer outra tecnologia
+          - Porque todo mundo está usando?
+          - Porque o chefe mandou?
+          - Para deixar de fazer tarefas que você não queria?
+          - Depois de adotar, você verifica métricas?
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Dicas Práticas
+
+          - **Nunca** libere acesso a tudo
+            - Contêiner ou VM, uma pasta só, somente leitura por padrão
+          - Dê um **objetivo** com **métricas de sucesso** e formas de o modelo avaliá-las
+            - Métricas podem ser boas ou ruins
+          - Tudo que vai para produção precisa de revisão
+          - Use a IA para gerar programas que depois rodam sem IA
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## O Trabalho é de Sua Responsabilidade
+          ### Com ou sem IA
+
+          - Vai publicar um texto feito por IA? Revise
+          - Vai palestra com slides feitos por IA? Revise
+          - Vai criar um PR criado por IA? Revise
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Não Seja Essa Pessoa (1)
+
+          ![](images/honeypot-turborepo.jpg)
+
+          [gh/vercel/turborepo](https://github.com/vercel/turborepo/pull/14263)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Não Seja Essa Pessoa (2)
+
+          [Aliados de Flávio Bolsonaro culpam ChatGPT por vaivém em versões da carta golpista](https://www1.folha.uol.com.br/poder/2026/10/aliados-de-flavio-bolsonaro-culpam-chatgpt-por-vaivem-em-versoes-da-carta-golpista.shtml)
+
+          ![](images/culpa-chatgpt.png)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## O Que Podemos Fazer?
+
+          - **Aprender** como funciona para utilizar com cuidado
+            - Convide sua equipe!
+            - Pesquisar e discutir boas práticas e práticas questionáveis
+          - **Regular**
+            - Debater sobre regulamentação (não ditada por _big tech_)
+            - Pressão política por soberania
+          - Produzir **soluções técnicas**
+            - Colaborar com soluções baseadas em software livre
+            - Treinar modelos especializados
+              - Exemplo: [Maritaca AI](https://www.maritaca.ai/en/)
+          - **Produzir dados** de qualidade para nossa realidade
+        </section>
+
+        <section data-markdown>
+          ## Exemplo: Transcrição de Áudio
+          ### Taxa de Erro de Palavras (WER)
+
+          ![](images/whisper-ingles-portugues.svg)
+        </section>
+
+        <section class="fragments" data-markdown>
+          ## Exemplo: Common Voice
+
+          - [commonvoice.mozilla.org](https://commonvoice.mozilla.org/pt)
+          - Projeto da Mozilla para coletar vozes em 295 línguas
+          - Qualquer pessoa contribui pelo navegador
+          - De tempos em tempos vira um _dataset_ aberto (CC0)
+          - Qualquer um pode treinar modelos com ele
+          - Comunidade para Português: [t.me/commonvoicept](https://t.me/commonvoicept)
+        </section>
+
+        <section data-markdown>
+          ## CommonVoice: Horas Validadas nas Línguas Latinas
+          ### [t.me/commonvoicept](https://t.me/commonvoicept)
+
+          ![](images/latinas-horas.svg)
+        </section>
+
+        <section data-markdown>
+          ## CommonVoice: Ranking de Pessoas que Contribuíram
+          ### [t.me/commonvoicept](https://t.me/commonvoicept)
+
+          ![](images/ranking-falantes.svg)
+        </section>
+
+        <section>
+          <h2>Obrigado!</h2>
+          <h2>Perguntas?</h2>
+          <h3>
+            {<a href="https://twitter.com/turicas">xuíter</a>,
+            <a href="https://github.com/turicas">github</a>,
+            <a href="https://youtube.com/turicas">youtube</a>
+            etc.}
+            /<b>turicas</b>
+          </h3>
+          <h3><a href="mailto:alvaro@pythonic.cafe">alvaro@pythonic.cafe</a></h3>
+
+          <br>
+
+          Desconto no curso online
+          <br>
+          <b>Criando aplicações de linha de comando amáveis</b>:
+          <br>
+          <a href="https://bit.ly/curso-cli">bit.ly/curso-cli</a>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: 'zoom',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+        { src: 'lib/js/classList.js',
+          condition: function() { return !document.body.classList; } },
+        { src: 'plugin/markdown/marked.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'plugin/markdown/markdown.js',
+          condition: function() { return !!document.querySelector( '[data-markdown]' ); },
+          callback: function() {
+            Array.prototype.forEach.call(
+            document.querySelectorAll('section.fragments > ul > li'),
+              function(ele){ ele.className = 'fragment roll-in'; });
+            } },
+        { src: 'plugin/highlight/highlight.js', async: true,
+          callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/zoom-js/zoom.js', async: true,
+          condition: function() { return !!document.body.classList; } },
+        { src: 'plugin/notes/notes.js', async: true,
+          condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
